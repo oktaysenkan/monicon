@@ -17,6 +17,7 @@ module.exports = function (api) {
           },
         },
       ],
+      path.join(__dirname, '..', 'src', 'plugin'),
     ],
   };
 };
