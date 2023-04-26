@@ -33,7 +33,7 @@ import React from 'react';
 import { Iconify } from 'react-native-iconify';
 
 const ExampleScreen = () => {
-  return <Iconify name="mdi:heart" size={24} color="#900" />;
+  return <Iconify icon="mdi:heart" size={24} color="#900" />;
 };
 
 export default ExampleScreen;
