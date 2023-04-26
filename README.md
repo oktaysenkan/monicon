@@ -15,7 +15,7 @@ Install [react-native-svg](https://github.com/software-mansion/react-native-svg#
 ```sh
 # for bare react native apps
 npm install react-native-iconify
-npx pod install
+npx pod-install
 ```
 
 or
