@@ -10,12 +10,12 @@ module.exports = function (babel) {
   const { types: t } = babel;
 
   return {
-    name: 'transform-react-icons',
+    name: 'react-native-iconify',
     visitor: {
       JSXElement(path) {
         const openingElement = path.node.openingElement;
         const tagName = openingElement.name.name;
-        const isIcon = tagName === 'Icon';
+        const isIcon = tagName === 'Iconify';
 
         if (!isIcon) {
           return;

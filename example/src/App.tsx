@@ -1,11 +1,13 @@
 import * as React from 'react';
 import { SafeAreaView, ViewStyle } from 'react-native';
-import { Icon } from 'react-native-iconify';
+import { Iconify } from 'react-native-iconify';
 
 export default function App() {
+  const icon = 'mdi:heart';
+
   return (
     <SafeAreaView style={$flex}>
-      <Icon icon="mdi:trash" size={32} color="red" />
+      <Iconify icon={icon} size={32} color="red" />
     </SafeAreaView>
   );
 }

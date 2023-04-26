@@ -7,7 +7,7 @@ type Props = {
   svg?: string;
 } & Omit<XmlProps, 'xml'>;
 
-export const Icon = ({
+export const Iconify = ({
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   icon,
   size = 24,
@@ -18,4 +18,4 @@ export const Icon = ({
   return <SvgXml xml={svg!} height={size} color={color} {...props} />;
 };
 
-export default Icon;
+export default Iconify;
