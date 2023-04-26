@@ -10,6 +10,21 @@ To use the react-native-iconify library, you first need to install it in your pr
 npm install react-native-iconify
 ```
 
+Install [react-native-svg](https://github.com/software-mansion/react-native-svg#installation)
+
+```sh
+# for bare react native apps
+npm install react-native-iconify
+npx pod install
+```
+
+or
+
+```sh
+# for expo apps
+expo install react-native-svg
+```
+
 add plugin to (babel.config.js)
 
 ```js
@@ -43,7 +58,7 @@ In the example above, we show how to use the mdi-heart Iconify icon. You can pro
 
 ## Supported Iconify Icons
 
-The react-native-iconify library supports all of Iconify's icons. You can find all the supported icons on [Iconify's official website](https://icon-sets.iconify.design/)
+The react-native-iconify library supports all of Iconify's icons. You can find all the supported icons on [Iconify&#39;s official website](https://icon-sets.iconify.design/)
 
 ## Troubleshooting
 
