@@ -29,20 +29,17 @@ module.exports = function (babel) {
           (node) => t.isJSXAttribute(node) && node.name.name === 'icon'
         );
 
-        if (!iconProp) {
-          return;
-        }
-
         let iconValue;
         let sizeValue;
 
         iconValue =
           iconProp?.value?.value ||
           iconProp?.value?.expression?.value ||
-          iconProp?.value?.expression?.extra?.rawValue;
+          iconProp?.value?.expression?.extra?.rawValue ||
+          'material-symbols:help-center-outline-sharp';
 
         if (!iconValue) {
-          throw new Error("Iconify prop 'icon' must be a string literal.");
+          throw new Error("Iconify: 'icon' prop must be a string literal");
         }
 
         sizeValue =
@@ -55,14 +52,14 @@ module.exports = function (babel) {
         const iconAsJson = require(filename);
 
         if (!iconAsJson) {
-          throw new Error(`Could not find icon ${iconValue}`);
+          throw new Error(`Iconify: Could not find icon set ${iconValue}`);
         }
 
         const iconData = getIconData(iconAsJson, icon.name);
 
         if (!iconData) {
           throw new Error(
-            `\nIcon not found!\nCould not find icon ${iconValue}\n\nCheck all icons at\nhttps://iconify.design/icon-sets/`
+            `Iconify: Icon not found!\nCould not find icon ${iconValue}\n\nCheck all icons at\nhttps://iconify.design/icon-sets/`
           );
         }
 

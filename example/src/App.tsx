@@ -6,6 +6,7 @@ export default function App() {
   return (
     <SafeAreaView style={$flex}>
       <Iconify icon="mdi:heart" size={32} color="red" />
+      <Iconify icon="mdi:heart" size={32} color="red" />
     </SafeAreaView>
   );
 }

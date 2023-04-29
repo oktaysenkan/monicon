@@ -63,7 +63,7 @@ In the example above, we show how to use the mdi-heart Iconify icon. You can pro
 
 ## Troubleshooting
 
-### Iconify prop 'icon' must be a string literal
+### Iconify: 'icon' prop must be a string literal
 
 Adding more than 150,000 icons to the application would increase the size and loading time of the application. Therefore, the React Native Iconify Babel plugin loads only the necessary icons, allowing the application to contain only the icons that are needed so you cannot use variable.
 
