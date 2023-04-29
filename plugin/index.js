@@ -49,10 +49,12 @@ module.exports = function (babel) {
 
         const filename = locate(icon.prefix);
 
-        const iconAsJson = require(filename);
+        let iconAsJson;
 
-        if (!iconAsJson) {
-          throw new Error(`Iconify: Could not find icon set ${iconValue}`);
+        try {
+          iconAsJson = require(filename);
+        } catch (error) {
+          throw new Error(`Iconify: Could not find icon set "${icon.prefix}"`);
         }
 
         const iconData = getIconData(iconAsJson, icon.name);
