@@ -79,6 +79,26 @@ To fix this issue, use like this:
 <Iconify icon="mdi:heart" size={24} color="red" />
 ```
 
+### Iconify: You need to install a Babel plugin before using this library. You can continue by adding the following to your babel.config.js
+
+If you're using a library that requires the "react-native-iconify/plugin" Babel plugin but you forgot to install it, you may encounter errors. Here's how to troubleshoot and fix the issue:
+
+Add the following code to your Babel configuration file (usually babel.config.js):
+
+```js
+module.exports = {
+  presets: [
+    ...
+  ],
+  plugins: [
+    ...
+    'react-native-iconify/plugin',
+  ],
+};
+```
+
+After installing and configuring the plugin, you may need to restart your bundler to ensure that the changes take effect.
+
 ## Contributing
 
 See the [contributing guide](CONTRIBUTING.md) to learn how to contribute to the repository and the development workflow.
