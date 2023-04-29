@@ -4,18 +4,24 @@ import { SvgXml, XmlProps } from 'react-native-svg';
 type Props = {
   icon: string;
   size?: number;
-  svg?: string;
 } & Omit<XmlProps, 'xml'>;
 
-export const Iconify = ({
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  icon,
-  size = 24,
-  color = 'black',
-  svg,
-  ...props
-}: Props) => {
-  return <SvgXml xml={svg!} height={size} color={color} {...props} />;
+type RuntimeProps = Props & {
+  isPluginInstalled: boolean;
+  svg: string;
+};
+
+export const Iconify = ({ size = 24, color = 'black', ...props }: Props) => {
+  const runtimeProps = props as RuntimeProps;
+  const { isPluginInstalled, svg } = runtimeProps;
+
+  if (!isPluginInstalled) {
+    throw new Error(
+      'Iconify: You need to install a Babel plugin before using this library. You can continue by adding the following to your babel.config.js'
+    );
+  }
+
+  return <SvgXml xml={svg} height={size} color={color} {...props} />;
 };
 
 export default Iconify;

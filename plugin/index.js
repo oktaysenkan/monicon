@@ -77,7 +77,13 @@ module.exports = function (babel) {
           t.jSXExpressionContainer(t.stringLiteral(svg))
         );
 
+        const isPluginInstalledProp = t.jSXAttribute(
+          t.jSXIdentifier('isPluginInstalled'),
+          t.jSXExpressionContainer(t.booleanLiteral(true))
+        );
+
         openingElement.attributes.push(svgProp);
+        openingElement.attributes.push(isPluginInstalledProp);
       },
     },
   };
