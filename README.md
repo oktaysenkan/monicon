@@ -2,6 +2,11 @@
 
 react-native-iconify is a library that simplifies the use of icons in React Native projects. It provides access 150,000+ icons.
 
+You can find all the supported icons on these websites:
+
+[Icones](https://icones.js.org/)
+[Iconify](https://icon-sets.iconify.design/)
+
 ## Installation
 
 To use the react-native-iconify library, you first need to install it in your project. You can do this using the following command:
@@ -55,10 +60,6 @@ export default ExampleScreen;
 ```
 
 In the example above, we show how to use the mdi-heart Iconify icon. You can provide values for the size and color props to customize the appearance of the icon.
-
-## Supported Iconify Icons
-
-The react-native-iconify library supports all of Iconify's icons. You can find all the supported icons on [Iconify&#39;s official website](https://icon-sets.iconify.design/)
 
 ## Troubleshooting
 
