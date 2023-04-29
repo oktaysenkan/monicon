@@ -14,7 +14,7 @@ Install [react-native-svg](https://github.com/software-mansion/react-native-svg#
 
 ```sh
 # for bare react native apps
-npm install react-native-iconify
+npm install react-native-svg
 npx pod-install
 ```
 
@@ -41,7 +41,7 @@ module.exports = {
 
 ## Usage
 
-Using the react-native-iconify library is straightforward. First, you need to call the Iconify component and provide the icon name using the name prop:
+Using the react-native-iconify library is straightforward. First, you need to call the Iconify component and provide the icon name using the icon prop:
 
 ```js
 import React from 'react';
@@ -62,9 +62,9 @@ The react-native-iconify library supports all of Iconify's icons. You can find a
 
 ## Troubleshooting
 
-### Icon prop 'icon' must be a string literal
+### Iconify prop 'icon' must be a string literal
 
-The correct prop to use for passing the icon name.
+Adding more than 150,000 icons to the application would increase the size and loading time of the application. Therefore, the React Native Iconify Babel plugin loads only the necessary icons, allowing the application to contain only the icons that are needed so you cannot use variable.
 
 Here is an example of the **incorrect** usage:
 
@@ -78,8 +78,6 @@ To fix this issue, use like this:
 ```js
 <Iconify icon="mdi:heart" size={24} color="red" />
 ```
-
-Adding more than 150,000 icons to the application would increase the size and loading time of the application. Therefore, the React Native Iconify Babel plugin loads only the necessary icons, allowing the application to contain only the icons that are needed.
 
 ## Contributing
 

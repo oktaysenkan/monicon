@@ -42,7 +42,7 @@ module.exports = function (babel) {
           iconProp?.value?.expression?.extra?.rawValue;
 
         if (!iconValue) {
-          throw new Error("Icon prop 'icon' must be a string literal.");
+          throw new Error("Iconify prop 'icon' must be a string literal.");
         }
 
         sizeValue =
