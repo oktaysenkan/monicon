@@ -13,7 +13,7 @@ module.exports = function (babel) {
     name: 'react-native-iconify',
     visitor: {
       JSXElement(path) {
-        const openingElement = path.node.openingElement;
+        const { openingElement } = path.node;
         const tagName = openingElement.name.name;
         const isIcon = tagName === 'Iconify';
 
@@ -21,29 +21,18 @@ module.exports = function (babel) {
           return;
         }
 
-        const sizeProp = openingElement.attributes.find(
-          (node) => t.isJSXAttribute(node) && node.name.name === 'size'
-        );
-
         const iconProp = openingElement.attributes.find(
           (node) => t.isJSXAttribute(node) && node.name.name === 'icon'
         );
 
-        let iconValue;
-        let sizeValue;
-
-        iconValue =
+        const iconValue =
           iconProp?.value?.value ||
           iconProp?.value?.expression?.value ||
-          iconProp?.value?.expression?.extra?.rawValue ||
-          'material-symbols:help-center-outline-sharp';
+          iconProp?.value?.expression?.extra?.rawValue;
 
         if (!iconValue) {
           throw new Error("Iconify: 'icon' prop must be a string literal");
         }
-
-        sizeValue =
-          sizeProp?.value?.value || sizeProp?.value?.expression?.value || 24;
 
         const icon = stringToIcon(iconValue);
 
@@ -66,7 +55,7 @@ module.exports = function (babel) {
         }
 
         const renderData = iconToSVG(iconData, {
-          height: sizeValue || 'auto',
+          height: 'auto',
         });
 
         const svg = iconToHTML(renderData.body, renderData.attributes);
