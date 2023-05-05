@@ -21,6 +21,10 @@ export const Iconify = ({ size = 24, color = 'black', ...props }: Props) => {
     );
   }
 
+  if (!svg) {
+    return null;
+  }
+
   return <SvgXml xml={svg} height={size} color={color} {...props} />;
 };
 
