@@ -1,5 +1,12 @@
 
 
+## [0.2.6](https://github.com/oktaysenkan/react-native-iconify/compare/v0.2.5...v0.2.6) (2023-05-25)
+
+
+### Features
+
+* add support for not square icons ([71f519a](https://github.com/oktaysenkan/react-native-iconify/commit/71f519a17eac862f61d7586e490ef909209d3be7))
+
 ## [0.2.5](https://github.com/oktaysenkan/react-native-iconify/compare/v0.2.4...v0.2.5) (2023-05-25)
 
 
