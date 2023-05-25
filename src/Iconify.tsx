@@ -1,4 +1,5 @@
-import React from 'react';
+import { FullExtendedIconifyIcon, iconToHTML, iconToSVG } from '@iconify/utils';
+import React, { useMemo } from 'react';
 import { SvgXml, XmlProps } from 'react-native-svg';
 
 type Props = {
@@ -8,12 +9,30 @@ type Props = {
 
 type RuntimeProps = Props & {
   isPluginInstalled: boolean;
-  svg: string;
+  iconData: FullExtendedIconifyIcon;
 };
 
 export const Iconify = ({ size = 24, color = 'black', ...props }: Props) => {
   const runtimeProps = props as RuntimeProps;
-  const { isPluginInstalled, svg } = runtimeProps;
+  const { isPluginInstalled, iconData } = runtimeProps;
+
+  const renderData = useMemo(() => {
+    if (!iconData) {
+      return null;
+    }
+
+    return iconToSVG(iconData, {
+      height: size,
+    });
+  }, [size, iconData]);
+
+  const svg = useMemo(() => {
+    if (!renderData) {
+      return null;
+    }
+
+    return iconToHTML(renderData.body, renderData.attributes);
+  }, [renderData]);
 
   if (!isPluginInstalled) {
     throw new Error(
@@ -21,12 +40,18 @@ export const Iconify = ({ size = 24, color = 'black', ...props }: Props) => {
     );
   }
 
-  if (!svg) {
+  if (!iconData || !renderData || !svg) {
     return null;
   }
 
   return (
-    <SvgXml xml={svg} height={size} width={size} color={color} {...props} />
+    <SvgXml
+      xml={svg}
+      height={renderData.attributes.height}
+      width={renderData.attributes.width}
+      color={color}
+      {...props}
+    />
   );
 };
 

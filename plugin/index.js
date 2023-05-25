@@ -1,10 +1,5 @@
 const { locate } = require('@iconify/json');
-const {
-  stringToIcon,
-  iconToHTML,
-  iconToSVG,
-  getIconData,
-} = require('@iconify/utils');
+const { stringToIcon, getIconData } = require('@iconify/utils');
 
 module.exports = function (babel) {
   const { types: t } = babel;
@@ -54,15 +49,24 @@ module.exports = function (babel) {
           );
         }
 
-        const renderData = iconToSVG(iconData, {
-          height: 'auto',
-        });
-
-        const svg = iconToHTML(renderData.body, renderData.attributes);
-
-        const svgProp = t.jSXAttribute(
-          t.jSXIdentifier('svg'),
-          t.jSXExpressionContainer(t.stringLiteral(svg))
+        const iconDataProp = t.jSXAttribute(
+          t.jSXIdentifier('iconData'),
+          t.jSXExpressionContainer(
+            t.objectExpression([
+              t.objectProperty(
+                t.stringLiteral('width'),
+                t.numericLiteral(iconData.width)
+              ),
+              t.objectProperty(
+                t.stringLiteral('height'),
+                t.numericLiteral(iconData.height)
+              ),
+              t.objectProperty(
+                t.stringLiteral('body'),
+                t.stringLiteral(iconData.body)
+              ),
+            ])
+          )
         );
 
         const isPluginInstalledProp = t.jSXAttribute(
@@ -70,7 +74,7 @@ module.exports = function (babel) {
           t.jSXExpressionContainer(t.booleanLiteral(true))
         );
 
-        openingElement.attributes.push(svgProp);
+        openingElement.attributes.push(iconDataProp);
         openingElement.attributes.push(isPluginInstalledProp);
       },
     },
