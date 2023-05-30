@@ -49,24 +49,34 @@ module.exports = function (babel) {
           );
         }
 
+        const iconDataExpression = [
+          t.objectProperty(
+            t.stringLiteral('body'),
+            t.stringLiteral(iconData.body)
+          ),
+        ];
+
+        if (iconData.width) {
+          iconDataExpression.push(
+            t.objectProperty(
+              t.stringLiteral('width'),
+              t.numericLiteral(iconData.width)
+            )
+          );
+        }
+
+        if (iconData.height) {
+          iconDataExpression.push(
+            t.objectProperty(
+              t.stringLiteral('height'),
+              t.numericLiteral(iconData.height)
+            )
+          );
+        }
+
         const iconDataProp = t.jSXAttribute(
           t.jSXIdentifier('iconData'),
-          t.jSXExpressionContainer(
-            t.objectExpression([
-              t.objectProperty(
-                t.stringLiteral('width'),
-                t.numericLiteral(iconData.width)
-              ),
-              t.objectProperty(
-                t.stringLiteral('height'),
-                t.numericLiteral(iconData.height)
-              ),
-              t.objectProperty(
-                t.stringLiteral('body'),
-                t.stringLiteral(iconData.body)
-              ),
-            ])
-          )
+          t.jSXExpressionContainer(t.objectExpression(iconDataExpression))
         );
 
         const isPluginInstalledProp = t.jSXAttribute(
