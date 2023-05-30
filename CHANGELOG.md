@@ -1,5 +1,12 @@
 
 
+## [0.2.7](https://github.com/oktaysenkan/react-native-iconify/compare/v0.2.6...v0.2.7) (2023-05-30)
+
+
+### Features
+
+* add support for getIconData function ([761aa1b](https://github.com/oktaysenkan/react-native-iconify/commit/761aa1baad90655f3592f1c2aa9ae7841b7411b4))
+
 ## [0.2.6](https://github.com/oktaysenkan/react-native-iconify/compare/v0.2.5...v0.2.6) (2023-05-25)
 
 
