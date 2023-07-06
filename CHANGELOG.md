@@ -1,5 +1,12 @@
 
 
+## [0.2.8](https://github.com/oktaysenkan/react-native-iconify/compare/v0.2.7...v0.2.8) (2023-07-06)
+
+
+### Features
+
+* add react-native-svg as peer dependency ([eddf704](https://github.com/oktaysenkan/react-native-iconify/commit/eddf7042dd7cd37bd202c7841bf6d083fbe054a0))
+
 ## [0.2.7](https://github.com/oktaysenkan/react-native-iconify/compare/v0.2.6...v0.2.7) (2023-05-30)
 
 
