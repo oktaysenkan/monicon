@@ -1,5 +1,12 @@
 
 
+## [0.2.9](https://github.com/oktaysenkan/react-native-iconify/compare/v0.2.8...v0.2.9) (2023-07-06)
+
+
+### Bug Fixes
+
+* change react-native-svg version ([944b58f](https://github.com/oktaysenkan/react-native-iconify/commit/944b58fce71d79ed3a9e126ab4f6f1be1efacb5a))
+
 ## [0.2.8](https://github.com/oktaysenkan/react-native-iconify/compare/v0.2.7...v0.2.8) (2023-07-06)
 
 
