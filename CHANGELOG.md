@@ -1,5 +1,13 @@
 
 
+## [0.2.10](https://github.com/oktaysenkan/react-native-iconify/compare/v0.2.9...v0.2.10) (2023-07-06)
+
+
+### Bug Fixes
+
+* add react-native-svg as devDependencies for type declarations ([0f1c996](https://github.com/oktaysenkan/react-native-iconify/commit/0f1c99666a39d71283d4862f84d6e9c86c3067e9))
+* remove react-native-svg from dependencies ([191b5e7](https://github.com/oktaysenkan/react-native-iconify/commit/191b5e7462906e4cafa9fe8d782d74b258e30d38))
+
 ## [0.2.9](https://github.com/oktaysenkan/react-native-iconify/compare/v0.2.8...v0.2.9) (2023-07-06)
 
 

@@ -1,6 +1,6 @@
 {
   "name": "react-native-iconify",
-  "version": "0.2.9",
+  "version": "0.2.10",
   "description": "test",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
