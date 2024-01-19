@@ -1,5 +1,12 @@
 
 
+## [0.2.11](https://github.com/oktaysenkan/react-native-iconify/compare/v0.2.10...v0.2.11) (2024-01-19)
+
+
+### Features
+
+* update iconify version ([078511d](https://github.com/oktaysenkan/react-native-iconify/commit/078511d538efa05dc70b36bc585a3cbeed65208e))
+
 ## [0.2.10](https://github.com/oktaysenkan/react-native-iconify/compare/v0.2.9...v0.2.10) (2023-07-06)
 
 
