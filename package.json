@@ -70,9 +70,9 @@
     "react": "18.2.0",
     "react-native": "0.71.3",
     "react-native-builder-bob": "^0.20.0",
+    "react-native-svg": "^13.2.0",
     "release-it": "^15.0.0",
-    "typescript": "^4.5.2",
-    "react-native-svg": "^13.2.0"
+    "typescript": "^4.5.2"
   },
   "resolutions": {
     "@types/react": "17.0.21"
@@ -161,7 +161,7 @@
     ]
   },
   "dependencies": {
-    "@iconify/json": "^2.2.69",
-    "@iconify/utils": "^2.1.5"
+    "@iconify/json": "^2.2.171",
+    "@iconify/utils": "^2.1.15"
   }
 }
