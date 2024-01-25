@@ -16,23 +16,20 @@ export const Iconify = ({ size = 24, color = 'black', ...props }: Props) => {
   const runtimeProps = props as RuntimeProps;
   const { isPluginInstalled, iconData } = runtimeProps;
 
-  const renderData = useMemo(() => {
+  const svg = useMemo(() => {
     if (!iconData) {
       return null;
     }
 
-    return iconToSVG(iconData, {
+    const iconBuildResult = iconToSVG(iconData, {
       height: size,
     });
+
+    return {
+      ...iconBuildResult,
+      body: iconToHTML(iconBuildResult.body, iconBuildResult.attributes),
+    };
   }, [size, iconData]);
-
-  const svg = useMemo(() => {
-    if (!renderData) {
-      return null;
-    }
-
-    return iconToHTML(renderData.body, renderData.attributes);
-  }, [renderData]);
 
   if (!isPluginInstalled) {
     throw new Error(
@@ -40,15 +37,15 @@ export const Iconify = ({ size = 24, color = 'black', ...props }: Props) => {
     );
   }
 
-  if (!iconData || !renderData || !svg) {
+  if (!iconData || !svg || !svg.body) {
     return null;
   }
 
   return (
     <SvgXml
-      xml={svg}
-      height={renderData.attributes.height}
-      width={renderData.attributes.width}
+      xml={svg.body}
+      height={svg.attributes.height}
+      width={svg.attributes.width}
       color={color}
       {...props}
     />

@@ -160,7 +160,7 @@
     ]
   },
   "dependencies": {
-    "@iconify/json": "^2.2.171",
-    "@iconify/utils": "^2.1.15"
+    "@iconify/json": "^2.2.174",
+    "@iconify/utils": "^2.1.16"
   }
 }
