@@ -1,5 +1,12 @@
 
 
+# [1.0.0](https://github.com/oktaysenkan/react-native-iconify/compare/v0.2.12...v1.0.0) (2024-01-25)
+
+
+### Features
+
+* add react-native-web support ([0bec175](https://github.com/oktaysenkan/react-native-iconify/commit/0bec1752abca532cf9bcf82e37b909158716bd4d)), closes [#8](https://github.com/oktaysenkan/react-native-iconify/issues/8)
+
 ## [0.2.12](https://github.com/oktaysenkan/react-native-iconify/compare/v0.2.11...v0.2.12) (2024-01-25)
 
 ## [0.2.11](https://github.com/oktaysenkan/react-native-iconify/compare/v0.2.10...v0.2.11) (2024-01-19)
