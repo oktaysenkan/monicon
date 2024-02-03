@@ -26,8 +26,8 @@ npx pod-install
 or
 
 ```sh
-# for expo apps
-expo install react-native-svg
+# for Expo apps
+npx expo install react-native-svg
 ```
 
 add plugin to (babel.config.js)
