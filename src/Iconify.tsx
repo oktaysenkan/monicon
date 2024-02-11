@@ -3,7 +3,7 @@ import { XmlProps } from 'react-native-svg';
 import { renderIcon } from './icon';
 
 type Props = {
-  icon: string;
+  icon: string | TemplateStringsArray;
   size?: number;
 } & Omit<XmlProps, 'xml'>;
 
