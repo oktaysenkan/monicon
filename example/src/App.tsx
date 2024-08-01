@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 import { StyleSheet, View, Text } from 'react-native';
-import { Iconify } from 'react-native-test-babel';
+import { Iconify } from 'react-native-iconify';
 
 const icons = ['mdi:home', 'mdi:account', 'feather:activity'];
 

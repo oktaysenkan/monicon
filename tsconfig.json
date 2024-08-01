@@ -2,7 +2,7 @@
   "compilerOptions": {
     "rootDir": ".",
     "paths": {
-      "react-native-test-babel": ["./src/index"]
+      "react-native-iconify": ["./src/index"]
     },
     "allowUnreachableCode": false,
     "allowUnusedLabels": false,

@@ -15536,9 +15536,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-native-test-babel-example@workspace:example":
+"react-native-iconify-example@workspace:example":
   version: 0.0.0-use.local
-  resolution: "react-native-test-babel-example@workspace:example"
+  resolution: "react-native-iconify-example@workspace:example"
   dependencies:
     "@babel/core": ^7.20.0
     "@expo/webpack-config": ^18.0.1
@@ -15555,9 +15555,9 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"react-native-test-babel@workspace:.":
+"react-native-iconify@workspace:.":
   version: 0.0.0-use.local
-  resolution: "react-native-test-babel@workspace:."
+  resolution: "react-native-iconify@workspace:."
   dependencies:
     "@commitlint/config-conventional": ^17.0.2
     "@evilmartians/lefthook": ^1.5.0

@@ -1,5 +1,5 @@
 {
-  "name": "react-native-test-babel",
+  "name": "react-native-iconify",
   "version": "0.1.0",
   "description": "test",
   "main": "dist/index.js",
@@ -17,7 +17,7 @@
     "dist"
   ],
   "scripts": {
-    "example": "yarn workspace react-native-test-babel-example",
+    "example": "yarn workspace react-native-iconify-example",
     "test": "jest",
     "typecheck": "tsc --noEmit",
     "lint": "eslint \"**/*.{js,ts,tsx}\"",
@@ -32,14 +32,14 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/oktaysenkan/react-native-test-babel.git"
+    "url": "git+https://github.com/oktaysenkan/react-native-iconify.git"
   },
   "author": "Oktay Şenkan <oktay.senkan@gmail.com> (https://github.com/oktaysenkan)",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/oktaysenkan/react-native-test-babel/issues"
+    "url": "https://github.com/oktaysenkan/react-native-iconify/issues"
   },
-  "homepage": "https://github.com/oktaysenkan/react-native-test-babel#readme",
+  "homepage": "https://github.com/oktaysenkan/react-native-iconify#readme",
   "publishConfig": {
     "registry": "https://registry.npmjs.org/"
   },
