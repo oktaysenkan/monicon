@@ -1,28 +1,35 @@
-import { FullExtendedIconifyIcon } from '@iconify/utils';
-import { XmlProps } from 'react-native-svg';
-import { renderIcon } from './icon';
+import type { XmlProps } from 'react-native-svg';
 
-type Props = {
+import IconNotFoundError from './errors/icon-not-found.error';
+import PluginNotInstalledError from './errors/plugin-not-installed.error';
+import { renderIcon } from './renderer';
+
+export interface IconifyProps extends Omit<XmlProps, 'xml'> {
   icon: string;
   size?: number;
-} & Omit<XmlProps, 'xml'>;
+}
 
-export type RuntimeProps = Props & {
-  isPluginInstalled: boolean;
-  iconData: FullExtendedIconifyIcon;
-};
+/* @@iconify-code-gen */
+const icons = global.__ICONIFY__;
+const isPluginInstalled = global.__ICONIFY_PLUGIN_LOADED__;
 
-export const Iconify = (props: Props) => {
-  const runtimeProps = props as RuntimeProps;
-  const { isPluginInstalled } = runtimeProps;
+/**
+ * Icon component
+ * @param {string} icon - Icon name
+ * @returns {React.ReactElement}
+ * @example
+ * <Icon icon="mdi:home" color="black" />
+ */
+export const Iconify = (props: IconifyProps) => {
+  if (!isPluginInstalled) throw PluginNotInstalledError();
 
-  if (!isPluginInstalled) {
-    throw new Error(
-      'Iconify: You need to install a Babel plugin before using this library. You can continue by adding the following to your babel.config.js'
-    );
+  const icon = icons?.[props.icon];
+
+  if (!icon) {
+    if (!__DEV__) return null;
+
+    throw IconNotFoundError(props.icon);
   }
 
-  return renderIcon(runtimeProps);
+  return renderIcon(icon, props);
 };
-
-export default Iconify;

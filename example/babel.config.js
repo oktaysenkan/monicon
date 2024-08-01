@@ -17,7 +17,28 @@ module.exports = function (api) {
           },
         },
       ],
-      path.join(__dirname, '..', 'plugin'),
+      [
+        path.join(__dirname, '..', 'dist', 'babel'),
+        {
+          icons: [
+            'mdi:home',
+            'mdi:account-circle',
+            'mdi:account',
+            'mdi:account-group',
+            'mdi:ab-testing',
+            'mdi:abacus',
+            'mdi:abjad-arabic',
+            'mdi:abjad-hebrew',
+            'mdi:abugida-devanagari',
+            'mdi:abugida-thai',
+            'mdi:access-point',
+            'mdi:access-point-check',
+            'mdi:access-point-minus',
+            'mdi:access-point-network',
+            'feather:activity',
+          ],
+        },
+      ],
     ],
   };
 };

@@ -40,6 +40,14 @@ module.exports = {
   plugins: [
     ...
     'react-native-iconify/plugin',
+    {
+      icons: [
+        'mdi:heart',
+        'mdi:home',
+        'mdi:account',
+        // other icons
+      ],
+    },
   ],
 };
 ```
@@ -73,23 +81,6 @@ Tested on empty expo managed app
 
 ## Troubleshooting
 
-### Iconify: 'icon' prop must be a string literal
-
-Adding more than 150,000 icons to the application would increase the size and loading time of the application. Therefore, the React Native Iconify Babel plugin loads only the necessary icons, allowing the application to contain only the icons that are needed so you cannot use variable.
-
-Here is an example of the **incorrect** usage:
-
-```js
-const icon = 'mdi:heart';
-<Iconify icon={icon} size={24} color="red" />;
-```
-
-To fix this issue, use like this:
-
-```js
-<Iconify icon="mdi:heart" size={24} color="red" />
-```
-
 ### Iconify: You need to install a Babel plugin before using this library. You can continue by adding the following to your babel.config.js
 
 If you're using a library that requires the "react-native-iconify/plugin" Babel plugin but you forgot to install it, you may encounter errors. Here's how to troubleshoot and fix the issue:
@@ -104,6 +95,14 @@ module.exports = {
   plugins: [
     ...
     'react-native-iconify/plugin',
+    {
+      icons: [
+        'mdi:heart',
+        'mdi:home',
+        'mdi:account',
+        // other icons
+      ],
+    },
   ],
 };
 ```
