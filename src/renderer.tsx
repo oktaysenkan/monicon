@@ -1,6 +1,5 @@
 import React from 'react';
 import { Platform } from 'react-native';
-import { SvgXml } from 'react-native-svg';
 import {
   type IconifyIconBuildResult,
   iconToHTML,
@@ -8,12 +7,25 @@ import {
 } from '@iconify/utils';
 import parse from 'html-react-parser';
 import type { IconifyProps } from './Iconify';
+import type { SvgXml } from 'react-native-svg';
+
+interface WebIconProps extends IconifyProps {
+  svg: IconifyIconBuildResult;
+}
+
+interface NativeIconProps extends IconifyProps {
+  svg: IconifyIconBuildResult;
+}
+
+interface IconProps extends IconifyProps {
+  iconData: Icon;
+}
 
 const prepareSvgIcon = (
-  icon: Icon,
+  iconData: Icon,
   props: IconifyProps
 ): IconifyIconBuildResult => {
-  const iconBuildResult = iconToSVG(icon, {
+  const iconBuildResult = iconToSVG(iconData, {
     height: props.size,
   });
 
@@ -23,47 +35,52 @@ const prepareSvgIcon = (
   };
 };
 
-export const renderWebIcon = (
-  svg: IconifyIconBuildResult,
-  props: IconifyProps
-) => {
+export const WebIcon = (props: WebIconProps) => {
   const svgAsHtml = props.color
-    ? svg.body.replace(
+    ? props.svg.body.replace(
         /<svg([^>]*)>/,
         `<svg$1 style="color: ${String(props.color)};">`
       )
-    : svg.body;
+    : props.svg.body;
 
   return <>{parse(svgAsHtml)}</>;
 };
 
-export const renderNativeIcon = (
-  svg: IconifyIconBuildResult,
-  props: IconifyProps
-) => {
+export const NativeIcon = (props: NativeIconProps) => {
+  const [Component, setComponent] = React.useState<typeof SvgXml>();
+
+  const loadComponent = async () => {
+    const { SvgXml } = await import('react-native-svg');
+    setComponent(() => SvgXml);
+  };
+
+  React.useEffect(() => {
+    loadComponent();
+  }, []);
+
+  if (!Component) return null;
+
   return (
-    <SvgXml
-      xml={svg.body}
-      height={svg.attributes.height}
-      width={svg.attributes.width}
-      color={props.color}
-      {...props}
+    <Component
+      xml={props.svg.body}
+      width={props.svg.attributes.width}
+      height={props.svg.attributes.height}
     />
   );
 };
 
-export const renderIcon = (icon: Icon, props: IconifyProps) => {
+export const Icon = (props: IconProps) => {
   const defaultProps: IconifyProps = {
     size: 24,
     color: 'currentColor',
     ...props,
   };
 
-  const svg = prepareSvgIcon(icon, defaultProps);
+  const svg = prepareSvgIcon(props.iconData, defaultProps);
 
-  if (!icon || !svg || !svg.body) return null;
+  if (!props.icon || !svg || !svg.body) return null;
 
-  if (Platform.OS === 'web') return renderWebIcon(svg, defaultProps);
+  if (Platform.OS === 'web') return <WebIcon svg={svg} {...defaultProps} />;
 
-  return renderNativeIcon(svg, defaultProps);
+  return <NativeIcon svg={svg} {...defaultProps} />;
 };

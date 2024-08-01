@@ -1,8 +1,9 @@
+import React from 'react';
 import type { XmlProps } from 'react-native-svg';
 
 import IconNotFoundError from './errors/icon-not-found.error';
 import PluginNotInstalledError from './errors/plugin-not-installed.error';
-import { renderIcon } from './renderer';
+import { Icon } from './renderer';
 
 export interface IconifyProps extends Omit<XmlProps, 'xml'> {
   icon: string;
@@ -23,13 +24,13 @@ const isPluginInstalled = global.__ICONIFY_PLUGIN_LOADED__;
 export const Iconify = (props: IconifyProps) => {
   if (!isPluginInstalled) throw PluginNotInstalledError();
 
-  const icon = icons?.[props.icon];
+  const iconData = icons?.[props.icon];
 
-  if (!icon) {
+  if (!iconData) {
     if (!__DEV__) return null;
 
     throw IconNotFoundError(props.icon);
   }
 
-  return renderIcon(icon, props);
+  return <Icon iconData={iconData} {...props} />;
 };
