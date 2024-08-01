@@ -15510,32 +15510,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-native-svg@npm:13.2.0":
-  version: 13.2.0
-  resolution: "react-native-svg@npm:13.2.0"
-  dependencies:
-    css-select: ^5.1.0
-    css-tree: ^1.1.3
-  peerDependencies:
-    react: "*"
-    react-native: "*"
-  checksum: 5e02d60478d360b62fd7fb1fcce6094af01798326a7df5cdc735eb74bf8305cbf31c4d61b409bc6109e707175268f67319945dc752e0ce11ae0fd6ad793dd02b
-  languageName: node
-  linkType: hard
-
-"react-native-svg@npm:15.2.0":
-  version: 15.2.0
-  resolution: "react-native-svg@npm:15.2.0"
-  dependencies:
-    css-select: ^5.1.0
-    css-tree: ^1.1.3
-  peerDependencies:
-    react: "*"
-    react-native: "*"
-  checksum: 0075d3c5bcf6bbbebe064364ec72c02eeff3fc0f2b1ba127bde26a8ecedc190a7890a910a6a051687318fa80504a3bc335eee2bfd6846b90193ca1608bae821e
-  languageName: node
-  linkType: hard
-
 "react-native-iconify-example@workspace:example":
   version: 0.0.0-use.local
   resolution: "react-native-iconify-example@workspace:example"
@@ -15592,6 +15566,32 @@ __metadata:
     react-native-svg: 13.2.0
   languageName: unknown
   linkType: soft
+
+"react-native-svg@npm:13.2.0":
+  version: 13.2.0
+  resolution: "react-native-svg@npm:13.2.0"
+  dependencies:
+    css-select: ^5.1.0
+    css-tree: ^1.1.3
+  peerDependencies:
+    react: "*"
+    react-native: "*"
+  checksum: 5e02d60478d360b62fd7fb1fcce6094af01798326a7df5cdc735eb74bf8305cbf31c4d61b409bc6109e707175268f67319945dc752e0ce11ae0fd6ad793dd02b
+  languageName: node
+  linkType: hard
+
+"react-native-svg@npm:15.2.0":
+  version: 15.2.0
+  resolution: "react-native-svg@npm:15.2.0"
+  dependencies:
+    css-select: ^5.1.0
+    css-tree: ^1.1.3
+  peerDependencies:
+    react: "*"
+    react-native: "*"
+  checksum: 0075d3c5bcf6bbbebe064364ec72c02eeff3fc0f2b1ba127bde26a8ecedc190a7890a910a6a051687318fa80504a3bc335eee2bfd6846b90193ca1608bae821e
+  languageName: node
+  linkType: hard
 
 "react-native-web@npm:~0.19.10":
   version: 0.19.12

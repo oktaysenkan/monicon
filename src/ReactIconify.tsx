@@ -2,7 +2,7 @@ import React from 'react';
 
 import IconNotFoundError from './errors/icon-not-found.error';
 import PluginNotInstalledError from './errors/plugin-not-installed.error';
-import { Icon } from './renderer';
+import { WebIcon, prepareSvgIcon } from './renderer';
 import type { IconifyProps } from './types';
 
 /* @@iconify-code-gen */
@@ -16,7 +16,7 @@ const isPluginInstalled = global.__ICONIFY_PLUGIN_LOADED__;
  * @example
  * <Icon icon="mdi:home" color="black" />
  */
-export const Iconify = (props: IconifyProps) => {
+export const ReactIconify = (props: IconifyProps) => {
   if (!isPluginInstalled) throw PluginNotInstalledError();
 
   const iconData = icons?.[props.icon];
@@ -27,5 +27,13 @@ export const Iconify = (props: IconifyProps) => {
     throw IconNotFoundError(props.icon);
   }
 
-  return <Icon iconData={iconData} {...props} />;
+  const defaultProps: IconifyProps = {
+    size: 24,
+    color: 'currentColor',
+    ...props,
+  };
+
+  const svg = prepareSvgIcon(iconData, defaultProps);
+
+  return <WebIcon svg={svg} {...defaultProps} />;
 };

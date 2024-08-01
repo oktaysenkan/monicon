@@ -1,27 +1,21 @@
 import React from 'react';
-import { Platform } from 'react-native';
 import {
   type IconifyIconBuildResult,
   iconToHTML,
   iconToSVG,
 } from '@iconify/utils';
 import parse from 'html-react-parser';
-import type { IconifyProps } from './Iconify';
 import type { SvgXml } from 'react-native-svg';
+import { Platform } from 'react-native';
 
-interface WebIconProps extends IconifyProps {
-  svg: IconifyIconBuildResult;
-}
+import type {
+  IconProps,
+  IconifyProps,
+  NativeIconProps,
+  WebIconProps,
+} from './types';
 
-interface NativeIconProps extends IconifyProps {
-  svg: IconifyIconBuildResult;
-}
-
-interface IconProps extends IconifyProps {
-  iconData: Icon;
-}
-
-const prepareSvgIcon = (
+export const prepareSvgIcon = (
   iconData: Icon,
   props: IconifyProps
 ): IconifyIconBuildResult => {
