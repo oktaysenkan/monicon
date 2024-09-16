@@ -50,16 +50,18 @@ module.exports = {
     ...
   ],
   plugins: [
-    ...
-    'react-native-iconify/plugin',
-    {
-      icons: [
-        'mdi:heart',
-        'mdi:home',
-        'mdi:account',
-        // other icons
-      ],
-    },
+    [
+      'react-native-iconify/babel',
+      {
+        icons: [
+          'mdi:heart',
+          'mdi:home',
+          'mdi:account',
+          'feather:activity',
+          // Add more icons here
+        ],
+      },
+    ],
   ],
 };
 ```
@@ -116,7 +118,8 @@ const nextConfig = {
                   'mdi:heart',
                   'mdi:home',
                   'mdi:account',
-                  // other icons
+                  'feather:activity',
+                  // Add more icons here
                 ],
               },
             ],
@@ -178,16 +181,18 @@ module.exports = {
     ...
   ],
   plugins: [
-    ...
-    'react-native-iconify/plugin',
-    {
-      icons: [
-        'mdi:heart',
-        'mdi:home',
-        'mdi:account',
-        // other icons
-      ],
-    },
+    [
+      'react-native-iconify/babel',
+      {
+        icons: [
+          'mdi:heart',
+          'mdi:home',
+          'mdi:account',
+          'feather:activity',
+          // Add more icons here
+        ],
+      },
+    ],
   ],
 };
 ```
