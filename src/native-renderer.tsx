@@ -1,7 +1,6 @@
 import React from 'react';
 import { Platform } from 'react-native';
-
-const SvgXml = require('react-native-svg').SvgXml ?? React.Fragment;
+import * as RNSvg from 'react-native-svg';
 
 import type {
   IconProps,
@@ -17,8 +16,10 @@ export const WebIcon = (props: WebIconProps) => {
 };
 
 export const NativeIcon = (props: NativeIconProps) => {
+  if (!RNSvg.SvgXml) return null;
+
   return (
-    <SvgXml
+    <RNSvg.SvgXml
       xml={props.svg.body}
       width={props.svg.attributes.width}
       height={props.svg.attributes.height}
