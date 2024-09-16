@@ -30,7 +30,19 @@ or
 npx expo install react-native-svg
 ```
 
-add plugin to (babel.config.js)
+Add comment line to entryfile of your project (App.js or App.tsx or main.tsx or \_layout.tsx)
+
+```tsx
+// @@iconify-code-gen
+
+ReactDOM.createRoot(document.getElementById('root')!).render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>
+);
+```
+
+Add plugin to (babel.config.js)
 
 ```js
 module.exports = {
@@ -52,7 +64,7 @@ module.exports = {
 };
 ```
 
-add plugin to vite.config for Vite
+Add plugin to vite.config for Vite
 
 ```js
 import { defineConfig } from 'vite';
@@ -81,7 +93,7 @@ export default defineConfig({
 });
 ```
 
-add plugin to next.config.mjs for Next
+Add plugin to next.config.mjs for Next
 
 Warning: You can not use "next/font" with babel
 
