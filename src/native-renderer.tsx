@@ -1,6 +1,7 @@
 import React from 'react';
-import { SvgXml } from 'react-native-svg';
 import { Platform } from 'react-native';
+
+const SvgXml = require('react-native-svg').SvgXml ?? React.Fragment;
 
 import type {
   IconProps,
