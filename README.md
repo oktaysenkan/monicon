@@ -30,7 +30,19 @@ or
 npx expo install react-native-svg
 ```
 
-add plugin to (babel.config.js)
+Add comment line to entryfile of your project (App.js or App.tsx or main.tsx or \_layout.tsx)
+
+```tsx
+// @@iconify-code-gen
+
+ReactDOM.createRoot(document.getElementById('root')!).render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>
+);
+```
+
+Add plugin to (babel.config.js)
 
 ```js
 module.exports = {
@@ -40,8 +52,84 @@ module.exports = {
   plugins: [
     ...
     'react-native-iconify/plugin',
+    {
+      icons: [
+        'mdi:heart',
+        'mdi:home',
+        'mdi:account',
+        // other icons
+      ],
+    },
   ],
 };
+```
+
+Add plugin to vite.config for Vite
+
+```js
+import { defineConfig } from 'vite';
+import react from '@vitejs/plugin-react';
+
+export default defineConfig({
+  plugins: [
+    react({
+      babel: {
+        plugins: [
+          [
+            'react-native-iconify/babel',
+            {
+              icons: [
+                'mdi:heart',
+                'mdi:home',
+                'mdi:account',
+                // other icons
+              ],
+            },
+          ],
+        ],
+      },
+    }),
+  ],
+});
+```
+
+Add plugin to next.config.mjs for Next
+
+Warning: You can not use "next/font" with babel
+
+```js
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  webpack: (config) => {
+    config.module.rules.push({
+      test: /\.(js|jsx|ts|tsx)$/,
+      exclude: /node_modules/,
+      use: {
+        loader: 'babel-loader',
+        options: {
+          presets: ['next/babel'],
+          plugins: [
+            [
+              'react-native-iconify/babel',
+              {
+                icons: [
+                  'mdi:heart',
+                  'mdi:home',
+                  'mdi:account',
+                  // other icons
+                ],
+              },
+            ],
+          ],
+        },
+      },
+    });
+
+    return config;
+  },
+};
+
+export default nextConfig;
 ```
 
 ## Usage
@@ -51,6 +139,11 @@ Using the react-native-iconify library is straightforward. First, you need to ca
 ```js
 import React from 'react';
 import { Iconify } from 'react-native-iconify';
+// or
+import { Iconify } from 'react-native-iconify/native';
+
+// for web (not react-native-web)
+import { Iconify } from 'react-native-iconify/web';
 
 const ExampleScreen = () => {
   return <Iconify icon="mdi:heart" size={24} color="#900" />;
@@ -73,23 +166,6 @@ Tested on empty expo managed app
 
 ## Troubleshooting
 
-### Iconify: 'icon' prop must be a string literal
-
-Adding more than 150,000 icons to the application would increase the size and loading time of the application. Therefore, the React Native Iconify Babel plugin loads only the necessary icons, allowing the application to contain only the icons that are needed so you cannot use variable.
-
-Here is an example of the **incorrect** usage:
-
-```js
-const icon = 'mdi:heart';
-<Iconify icon={icon} size={24} color="red" />;
-```
-
-To fix this issue, use like this:
-
-```js
-<Iconify icon="mdi:heart" size={24} color="red" />
-```
-
 ### Iconify: You need to install a Babel plugin before using this library. You can continue by adding the following to your babel.config.js
 
 If you're using a library that requires the "react-native-iconify/plugin" Babel plugin but you forgot to install it, you may encounter errors. Here's how to troubleshoot and fix the issue:
@@ -104,6 +180,14 @@ module.exports = {
   plugins: [
     ...
     'react-native-iconify/plugin',
+    {
+      icons: [
+        'mdi:heart',
+        'mdi:home',
+        'mdi:account',
+        // other icons
+      ],
+    },
   ],
 };
 ```

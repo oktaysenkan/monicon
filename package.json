@@ -1,47 +1,54 @@
 {
   "name": "react-native-iconify",
-  "version": "1.0.2",
-  "description": "test",
-  "main": "lib/commonjs/index",
-  "module": "lib/module/index",
-  "types": "lib/typescript/index.d.ts",
-  "react-native": "src/index",
+  "version": "2.0.0",
+  "description": "Iconify for React Native",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
   "source": "src/index",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "require": "./dist/index.js",
+      "import": "./dist/index.mjs"
+    },
+    "./babel": {
+      "require": "./dist/babel/index.js"
+    },
+    "./web": {
+      "require": "./dist/web.js",
+      "import": "./dist/web.mjs"
+    },
+    "./native": {
+      "require": "./dist/native.js",
+      "import": "./dist/native.mjs"
+    },
+    "./types": {
+      "require": "./dist/types/index.js",
+      "import": "./dist/types/index.mjs"
+    }
+  },
   "files": [
-    "src",
-    "lib",
-    "plugin",
-    "android",
-    "ios",
-    "cpp",
-    "*.podspec",
-    "!lib/typescript/example",
-    "!ios/build",
-    "!android/build",
-    "!android/gradle",
-    "!android/gradlew",
-    "!android/gradlew.bat",
-    "!android/local.properties",
-    "!**/__tests__",
-    "!**/__fixtures__",
-    "!**/__mocks__",
-    "!**/.*"
+    "dist"
   ],
   "scripts": {
+    "example": "yarn workspace react-native-iconify-example",
     "test": "jest",
     "typecheck": "tsc --noEmit",
     "lint": "eslint \"**/*.{js,ts,tsx}\"",
-    "prepack": "bob build",
-    "release": "release-it",
-    "example": "yarn --cwd example",
-    "bootstrap": "yarn example && yarn install"
+    "clean": "del-cli lib",
+    "build": "tsup",
+    "prepare": "yarn build",
+    "release": "release-it"
   },
   "keywords": [
     "react-native",
     "ios",
     "android"
   ],
-  "repository": "https://github.com/oktaysenkan/react-native-iconify",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/oktaysenkan/react-native-iconify.git"
+  },
   "author": "Oktay Şenkan <oktay.senkan@gmail.com> (https://github.com/oktaysenkan)",
   "license": "MIT",
   "bugs": {
@@ -53,43 +60,44 @@
   },
   "devDependencies": {
     "@commitlint/config-conventional": "^17.0.2",
-    "@evilmartians/lefthook": "^1.2.2",
-    "@react-native-community/eslint-config": "^3.0.2",
+    "@evilmartians/lefthook": "^1.5.0",
+    "@react-native/eslint-config": "^0.73.1",
     "@release-it/conventional-changelog": "^5.0.0",
-    "@types/jest": "^28.1.2",
-    "@types/react": "~17.0.21",
-    "@types/react-native": "0.70.0",
+    "@types/jest": "^29.5.5",
+    "@types/jscodeshift": "^0.11.11",
+    "@types/react": "^18.2.44",
     "commitlint": "^17.0.2",
-    "del-cli": "^5.0.0",
-    "eslint": "^8.4.1",
-    "eslint-config-prettier": "^8.5.0",
-    "eslint-plugin-prettier": "^4.0.0",
-    "jest": "^28.1.1",
-    "pod-install": "^0.1.0",
-    "prettier": "^2.0.5",
+    "del-cli": "^5.1.0",
+    "eslint": "^8.51.0",
+    "eslint-config-prettier": "^9.0.0",
+    "eslint-plugin-prettier": "^5.0.1",
+    "jest": "^29.7.0",
+    "prettier": "^3.0.3",
     "react": "18.2.0",
-    "react-native": "0.73.6",
-    "react-native-builder-bob": "^0.20.0",
-    "react-native-svg": "14.1.0",
+    "react-native": "0.74.2",
+    "react-native-builder-bob": "^0.23.2",
+    "react-native-svg": "13.2.0",
     "release-it": "^15.0.0",
-    "typescript": "^4.5.2"
+    "tsup": "^8.1.0",
+    "typescript": "^5.2.2"
   },
   "resolutions": {
-    "@types/react": "17.0.21"
+    "@types/react": "^18.2.44"
   },
   "peerDependencies": {
     "react": "*",
     "react-native": "*",
-    "react-native-svg": ">=13.2.0"
+    "react-native-svg": "13.2.0"
   },
-  "engines": {
-    "node": ">= 16.0.0"
-  },
+  "workspaces": [
+    "example"
+  ],
+  "packageManager": "yarn@3.6.1",
   "jest": {
     "preset": "react-native",
     "modulePathIgnorePatterns": [
       "<rootDir>/example/node_modules",
-      "<rootDir>/lib/"
+      "<rootDir>/dist/"
     ]
   },
   "commitlint": {
@@ -110,15 +118,14 @@
     },
     "plugins": {
       "@release-it/conventional-changelog": {
-        "preset": "angular",
-        "infile": "CHANGELOG.md"
+        "preset": "angular"
       }
     }
   },
   "eslintConfig": {
     "root": true,
     "extends": [
-      "@react-native-community",
+      "@react-native",
       "prettier"
     ],
     "rules": {
@@ -136,7 +143,7 @@
   },
   "eslintIgnore": [
     "node_modules/",
-    "lib/"
+    "dist/"
   ],
   "prettier": {
     "quoteProps": "consistent",
@@ -145,24 +152,12 @@
     "trailingComma": "es5",
     "useTabs": false
   },
-  "react-native-builder-bob": {
-    "source": "src",
-    "output": "lib",
-    "targets": [
-      "commonjs",
-      "module",
-      [
-        "typescript",
-        {
-          "project": "tsconfig.build.json"
-        }
-      ]
-    ]
-  },
   "dependencies": {
-    "@iconify/json": "^2.2.213",
-    "@iconify/utils": "^2.1.23",
-    "html-react-parser": "^5.1.1",
-    "metro-react-native-babel-preset": "^0.77.0"
+    "@iconify/json": "^2.2.218",
+    "@iconify/react": "^5.0.1",
+    "@iconify/utils": "2.1.23",
+    "html-react-parser": "^5.1.12",
+    "iconify-icon": "^2.1.0",
+    "jscodeshift": "^0.15.2"
   }
 }
