@@ -1,6 +1,6 @@
 {
   "name": "react-native-iconify",
-  "version": "1.0.0-rc11",
+  "version": "2.0.0",
   "description": "Iconify for React Native",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
