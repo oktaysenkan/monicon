@@ -1,7 +1,7 @@
 import { defineConfig } from 'tsup';
 
 export default defineConfig({
-  entry: ['src/index.ts', 'src/babel/index.ts'],
+  entry: ['src'],
   treeshake: true,
   sourcemap: 'inline',
   minify: true,
@@ -9,6 +9,6 @@ export default defineConfig({
   dts: true,
   splitting: false,
   format: ['cjs', 'esm'],
-  external: ['react'],
+  external: ['react', 'react-native', 'react-native-svg'],
   injectStyle: false,
 });

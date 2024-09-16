@@ -1,4 +1,4 @@
-import * as b from '@babel/core';
+import type * as b from '@babel/core';
 import { loadIcons, setPluginInstalled } from './utils';
 
 export default (_babel: typeof b): b.PluginObj => {

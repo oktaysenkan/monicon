@@ -1,2 +1,3 @@
-export { Iconify } from './Iconify';
-export type { IconifyProps } from './types';
+export * from './native';
+export { default } from './native';
+export * from './types';

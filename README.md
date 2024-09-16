@@ -52,6 +52,74 @@ module.exports = {
 };
 ```
 
+add plugin to vite.config for Vite
+
+```js
+import { defineConfig } from 'vite';
+import react from '@vitejs/plugin-react';
+
+export default defineConfig({
+  plugins: [
+    react({
+      babel: {
+        plugins: [
+          [
+            'react-native-iconify/babel',
+            {
+              icons: [
+                'mdi:heart',
+                'mdi:home',
+                'mdi:account',
+                // other icons
+              ],
+            },
+          ],
+        ],
+      },
+    }),
+  ],
+});
+```
+
+add plugin to next.config.mjs for Next
+
+Warning: You can not use "next/font" with babel
+
+```js
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  webpack: (config) => {
+    config.module.rules.push({
+      test: /\.(js|jsx|ts|tsx)$/,
+      exclude: /node_modules/,
+      use: {
+        loader: 'babel-loader',
+        options: {
+          presets: ['next/babel'],
+          plugins: [
+            [
+              'react-native-iconify/babel',
+              {
+                icons: [
+                  'mdi:heart',
+                  'mdi:home',
+                  'mdi:account',
+                  // other icons
+                ],
+              },
+            ],
+          ],
+        },
+      },
+    });
+
+    return config;
+  },
+};
+
+export default nextConfig;
+```
+
 ## Usage
 
 Using the react-native-iconify library is straightforward. First, you need to call the Iconify component and provide the icon name using the icon prop:
@@ -59,6 +127,11 @@ Using the react-native-iconify library is straightforward. First, you need to ca
 ```js
 import React from 'react';
 import { Iconify } from 'react-native-iconify';
+// or
+import { Iconify } from 'react-native-iconify/native';
+
+// for web (not react-native-web)
+import { Iconify } from 'react-native-iconify/web';
 
 const ExampleScreen = () => {
   return <Iconify icon="mdi:heart" size={24} color="#900" />;

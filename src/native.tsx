@@ -2,12 +2,8 @@ import React from 'react';
 
 import IconNotFoundError from './errors/icon-not-found.error';
 import PluginNotInstalledError from './errors/plugin-not-installed.error';
-import { Icon } from './renderer';
+import { Icon } from './native-renderer';
 import type { IconifyProps } from './types';
-
-/* @@iconify-code-gen */
-const icons = global.__ICONIFY__;
-const isPluginInstalled = global.__ICONIFY_PLUGIN_LOADED__;
 
 /**
  * Icon component
@@ -17,6 +13,9 @@ const isPluginInstalled = global.__ICONIFY_PLUGIN_LOADED__;
  * <Icon icon="mdi:home" color="black" />
  */
 export const Iconify = (props: IconifyProps) => {
+  const icons = globalThis.__ICONIFY__;
+  const isPluginInstalled = globalThis.__ICONIFY_PLUGIN_LOADED__;
+
   if (!isPluginInstalled) throw PluginNotInstalledError();
 
   const iconData = icons?.[props.icon];
@@ -29,3 +28,5 @@ export const Iconify = (props: IconifyProps) => {
 
   return <Icon iconData={iconData} {...props} />;
 };
+
+export default Iconify;

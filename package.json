@@ -1,16 +1,30 @@
 {
   "name": "react-native-iconify",
-  "version": "0.1.0",
+  "version": "1.0.0-rc11",
   "description": "test",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
-  "react-native": "src/index",
   "source": "src/index",
   "types": "./dist/index.d.ts",
   "exports": {
     ".": {
       "require": "./dist/index.js",
       "import": "./dist/index.mjs"
+    },
+    "./babel": {
+      "require": "./dist/babel/index.js"
+    },
+    "./web": {
+      "require": "./dist/web.js",
+      "import": "./dist/web.mjs"
+    },
+    "./native": {
+      "require": "./dist/native.js",
+      "import": "./dist/native.mjs"
+    },
+    "./types": {
+      "require": "./dist/types/index.js",
+      "import": "./dist/types/index.mjs"
     }
   },
   "files": [
@@ -22,7 +36,8 @@
     "typecheck": "tsc --noEmit",
     "lint": "eslint \"**/*.{js,ts,tsx}\"",
     "clean": "del-cli lib",
-    "prepare": "tsup",
+    "build": "tsup",
+    "prepare": "yarn build",
     "release": "release-it"
   },
   "keywords": [
