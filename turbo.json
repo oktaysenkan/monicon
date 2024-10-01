@@ -18,6 +18,22 @@
     "webpack#build": {
       "dependsOn": ["core#build"]
     },
+
+    "native#build": {
+      "dependsOn": [
+        "babel-plugin#build",
+        "metro#build",
+        "webpack#build",
+        "ui#build"
+      ]
+    },
+    "next#build": {
+      "dependsOn": ["webpack#build", "ui#build"]
+    },
+    "vite-react#build": {
+      "dependsOn": ["vite#build", "ui#build"]
+    },
+
     "dev": {
       "cache": false,
       "persistent": true

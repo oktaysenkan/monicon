@@ -1,5 +1,5 @@
 {
-  "name": "next",
+  "name": "@oktaytest/next",
   "version": "1.0.0",
   "private": true,
   "scripts": {
@@ -17,6 +17,7 @@
   },
   "devDependencies": {
     "@oktaytest/typescript-config": "*",
+    "@oktaytest/webpack": "*",
     "@types/node": "^20.10.6",
     "@types/react": "^18.2.46",
     "@types/react-dom": "^18.2.18",

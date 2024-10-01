@@ -1,5 +1,5 @@
 {
-  "name": "native",
+  "name": "@oktaytest/native",
   "version": "1.0.0",
   "private": true,
   "main": "index.js",
@@ -14,6 +14,7 @@
     "@oktaytest/metro": "*",
     "@oktaytest/ui": "*",
     "@oktaytest/webpack": "*",
+    "@oktaytest/babel-plugin": "*",
     "expo": "^49.0.21",
     "expo-status-bar": "~1.7.0",
     "react": "^18.2.0",
