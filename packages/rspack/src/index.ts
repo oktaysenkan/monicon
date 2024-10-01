@@ -6,10 +6,11 @@ import {
   getResolveExtensions,
 } from "@oktaytest/core";
 import { Compiler, RspackPluginInstance } from "@rspack/core";
-import { assign, merge } from "radash";
+
+const pluginName = "rspack-iconify";
 
 export class IconifyPlugin implements RspackPluginInstance {
-  name = "rspack-iconify";
+  name = pluginName;
   private options!: IconifyOptions;
 
   constructor(options: IconifyOptions) {
@@ -22,18 +23,15 @@ export class IconifyPlugin implements RspackPluginInstance {
   async apply(compiler: Compiler) {
     const alias = getResolveAlias();
 
-    await loadIcons(this.options);
-
-    compiler.options.resolve = assign(compiler.options.resolve, {
+    compiler.options.resolve = {
+      ...compiler.options.resolve,
       alias: {
+        ...compiler.options.resolve.alias,
         [alias]: getIconsFilePath(this.options),
       },
-      extensions: merge(
-        compiler.options.resolve.extensions ?? [],
-        getResolveExtensions(),
-        (item) => item
-      ) as string[],
-    });
+    };
+
+    await loadIcons(this.options);
   }
 }
 
