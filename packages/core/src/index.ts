@@ -10,30 +10,53 @@ import InvalidIconError from "./errors/invalid-icon.error";
 
 import { toPx } from "./utils";
 
+export type IconifyOptions = {
+  icons: string[];
+  outputFileName?: string;
+  type?: "cjs" | "esm";
+};
+
 type Icon = {
   svg: string;
   width: number;
   height: number;
 };
 
+const defaultOptions: IconifyOptions = {
+  outputFileName: "icons",
+  type: "cjs",
+  icons: [],
+};
+
 const iconsAsObject: Record<string, Icon> = {};
 
-const getIconsFilePathEsm = () => {
+export const getResolveAlias = () => {
+  return "oktay";
+};
+
+const getIconsFilePathEsm = (
+  fileName: IconifyOptions["outputFileName"] = "icons"
+) => {
   // @ts-ignore
-  const fileName = fileURLToPath(import.meta.url);
-  const directory = dirname(fileName);
+  const currentFileName = fileURLToPath(import.meta.url);
+  const directory = dirname(currentFileName);
 
-  return path.resolve(directory, `icons.mjs`);
+  return path.resolve(directory, `${fileName}.mjs`);
 };
 
-const getIconsFilePathCjs = () => {
-  return path.resolve(__dirname, `icons.js`);
+const getIconsFilePathCjs = (
+  fileName: IconifyOptions["outputFileName"] = "icons"
+) => {
+  return path.resolve(__dirname, `${fileName}.js`);
 };
 
-export const getIconsFilePath = (type: "commonjs" | "esm" = "commonjs") => {
-  if (type === "esm") return getIconsFilePathEsm();
+export const getIconsFilePath = (opts?: IconifyOptions) => {
+  const options: IconifyOptions = { ...defaultOptions, ...opts };
 
-  return getIconsFilePathCjs();
+  if (options.type === "esm")
+    return getIconsFilePathEsm(options.outputFileName);
+
+  return getIconsFilePathCjs(options.outputFileName);
 };
 
 export const loadIcon = async (iconName: string) => {
@@ -58,25 +81,27 @@ export const loadIcon = async (iconName: string) => {
   };
 };
 
-export const loadIcons = async (
-  icons: string[],
-  type: "commonjs" | "esm" = "commonjs"
-) => {
-  for (const icon of icons) {
+export const loadIcons = async (opts?: IconifyOptions) => {
+  const options: IconifyOptions = {
+    ...defaultOptions,
+    ...opts,
+  };
+
+  for (const icon of options.icons) {
     await loadIcon(icon);
   }
 
-  const outputPath = getIconsFilePath(type);
+  const outputPath = getIconsFilePath(options);
 
-  writeIcons(outputPath, type);
+  writeIcons(outputPath, options.type);
 };
 
 const writeIcons = (
   outputPath: string,
-  type: "commonjs" | "esm" = "commonjs"
+  type: IconifyOptions["type"] = "cjs"
 ) => {
   const commonjsCode = `module.exports = ${JSON.stringify(iconsAsObject, null, 2)};`;
   const esmCode = `export default ${JSON.stringify(iconsAsObject, null, 2)};`;
 
-  fs.writeFileSync(outputPath, type === "commonjs" ? commonjsCode : esmCode);
+  fs.writeFileSync(outputPath, type === "cjs" ? commonjsCode : esmCode);
 };

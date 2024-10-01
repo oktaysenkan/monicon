@@ -1,12 +1,20 @@
 import type * as b from "@babel/core";
-import { getIconsFilePath } from "@oktaytest/core";
+import {
+  getIconsFilePath,
+  getResolveAlias,
+  IconifyOptions,
+} from "@oktaytest/core";
+
+const alias = getResolveAlias();
 
 export default ({ types: t }: typeof b): b.PluginObj => {
   return {
     visitor: {
       ImportDeclaration(path) {
-        if (path.node.source.value === "oktay") {
-          path.node.source.value = getIconsFilePath("commonjs");
+        if (path.node.source.value === alias) {
+          path.node.source.value = getIconsFilePath(
+            this.opts as IconifyOptions
+          );
         }
       },
       CallExpression(path) {
@@ -22,10 +30,10 @@ export default ({ types: t }: typeof b): b.PluginObj => {
         const isImportingIcons =
           args.length === 1 &&
           t.isStringLiteral(firstArg) &&
-          firstArg.value === "oktay";
+          firstArg.value === alias;
 
         if (isFunctionImport && isImportingIcons && firstArg) {
-          firstArg.value = getIconsFilePath("commonjs");
+          firstArg.value = getIconsFilePath(this.opts as IconifyOptions);
         }
       },
     },

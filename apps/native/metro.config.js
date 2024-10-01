@@ -19,6 +19,7 @@ const configWithIconify = withIconify(config, {
     "logos:active-campaign",
     "logos:apache-superset-icon",
   ],
+  outputFileName: "native",
 });
 
 // 1. Watch all files within the monorepo

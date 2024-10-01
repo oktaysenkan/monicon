@@ -1,20 +1,24 @@
 import { PluginOption } from "vite";
-import { loadIcons, getIconsFilePath } from "@oktaytest/core";
+import {
+  loadIcons,
+  getIconsFilePath,
+  IconifyOptions,
+  getResolveAlias,
+} from "@oktaytest/core";
 
-interface IconifyOptions {
-  icons: string[];
-}
+const alias = getResolveAlias();
 
 export const IconifyPlugin = (options: IconifyOptions): PluginOption[] => [
   {
     name: "vite-plugin-iconify",
     resolveId(source) {
-      if (source === "oktay") return getIconsFilePath("esm");
+      if (source === alias)
+        return getIconsFilePath({ ...options, type: "esm" });
 
       return null;
     },
     async buildStart() {
-      await loadIcons(options.icons ?? [], "esm");
+      await loadIcons({ ...options, type: "esm" });
     },
   },
 ];

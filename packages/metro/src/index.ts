@@ -1,19 +1,22 @@
 import { type IntermediateConfigT } from "metro-config";
-import { loadIcons, getIconsFilePath } from "@oktaytest/core";
-
-export type IconifyOptions = {
-  icons: string[];
-};
+import {
+  loadIcons,
+  getIconsFilePath,
+  getResolveAlias,
+  IconifyOptions,
+} from "@oktaytest/core";
 
 export const withIconify = (
   metroConfig: IntermediateConfigT,
   options?: IconifyOptions
 ): IntermediateConfigT => {
-  void loadIcons(options?.icons ?? []);
+  const alias = getResolveAlias();
+
+  void loadIcons(options);
 
   metroConfig.resolver.extraNodeModules = {
     ...metroConfig.resolver.extraNodeModules,
-    oktay: getIconsFilePath("commonjs"),
+    [alias]: getIconsFilePath(options),
   };
 
   return metroConfig;

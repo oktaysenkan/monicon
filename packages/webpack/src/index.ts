@@ -1,10 +1,11 @@
-import { loadIcons, getIconsFilePath } from "@oktaytest/core";
+import {
+  loadIcons,
+  getIconsFilePath,
+  IconifyOptions,
+  getResolveAlias,
+} from "@oktaytest/core";
 import { Compiler } from "webpack";
 import { assign } from "radash";
-
-export type IconifyOptions = {
-  icons: string[];
-};
 
 export class IconifyPlugin {
   private options!: IconifyOptions;
@@ -14,11 +15,13 @@ export class IconifyPlugin {
   }
 
   async apply(compiler: Compiler) {
-    await loadIcons(this.options?.icons ?? []);
+    const alias = getResolveAlias();
+
+    await loadIcons(this.options);
 
     compiler.options.resolve = assign(compiler.options.resolve, {
       alias: {
-        oktay: getIconsFilePath("commonjs"),
+        [alias]: getIconsFilePath(this.options),
       },
     });
   }

@@ -28,6 +28,7 @@ module.exports = {
           "logos:active-campaign",
           "logos:apache-superset-icon",
         ],
+        outputFileName: "next",
       })
     );
 

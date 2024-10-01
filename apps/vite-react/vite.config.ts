@@ -16,6 +16,7 @@ export default defineConfig({
         "logos:active-campaign",
         "logos:apache-superset-icon",
       ],
+      outputFileName: "vite-react",
     }),
   ],
 });
