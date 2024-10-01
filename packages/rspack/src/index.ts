@@ -1,37 +1,18 @@
-import {
-  loadIcons,
-  getIconsFilePath,
-  IconifyOptions,
-  getResolveAlias,
-  getResolveExtensions,
-} from "@oktaytest/core";
-import { Compiler, RspackPluginInstance } from "@rspack/core";
+import { IconifyOptions } from "@oktaytest/core";
+import { IconifyPlugin as IconifyWebpackPlugin } from "@oktaytest/webpack";
 
 const pluginName = "rspack-iconify";
 
-export class IconifyPlugin implements RspackPluginInstance {
+export class IconifyPlugin extends IconifyWebpackPlugin {
   name = pluginName;
-  private options!: IconifyOptions;
 
   constructor(options: IconifyOptions) {
-    this.options = {
+    const opts: IconifyOptions = {
       type: "esm",
       ...options,
     };
-  }
 
-  async apply(compiler: Compiler) {
-    const alias = getResolveAlias();
-
-    compiler.options.resolve = {
-      ...compiler.options.resolve,
-      alias: {
-        ...compiler.options.resolve.alias,
-        [alias]: getIconsFilePath(this.options),
-      },
-    };
-
-    await loadIcons(this.options);
+    super(opts);
   }
 }
 

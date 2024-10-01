@@ -28,6 +28,7 @@
   },
   "dependencies": {
     "@oktaytest/core": "*",
+    "@oktaytest/webpack": "*",
     "@rspack/core": "^1.0.8",
     "radash": "^12.1.0"
   }
