@@ -1,4 +1,5 @@
 {
+  "name": "react-native-iconify",
   "private": true,
   "workspaces": [
     "apps/*",
@@ -17,6 +18,5 @@
   "packageManager": "yarn@1.22.19",
   "engines": {
     "node": ">=18"
-  },
-  "name": "with-react-native-web"
+  }
 }
