@@ -15563,7 +15563,7 @@ __metadata:
   peerDependencies:
     react: "*"
     react-native: "*"
-    react-native-svg: 13.2.0
+    react-native-svg: ">=13.2.0"
   languageName: unknown
   linkType: soft
 
