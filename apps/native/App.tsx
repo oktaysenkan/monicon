@@ -6,7 +6,6 @@ export default function App() {
   return (
     <View style={styles.container}>
       <Iconify name="mdi:home" />
-      <Iconify name="mdi:bell" />
       <Iconify name="logos:active-campaign" size={30} />
       <Iconify name="logos:apache-superset-icon" />
     </View>

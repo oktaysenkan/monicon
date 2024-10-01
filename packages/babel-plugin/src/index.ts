@@ -19,13 +19,15 @@ export default (_babel: typeof b): b.PluginObj => {
           t.isIdentifier(callee, { name: "require" }) ||
           t.isImport(callee);
 
-        if (
-          isFunctionImport &&
+        const firstArg = args?.[0];
+
+        const isImportingIcons =
           args.length === 1 &&
-          t.isStringLiteral(args[0]) &&
-          args[0].value === "oktay"
-        ) {
-          args[0].value = getIconsFilePath("commonjs");
+          t.isStringLiteral(firstArg) &&
+          firstArg.value === "oktay";
+
+        if (isFunctionImport && isImportingIcons && firstArg) {
+          firstArg.value = getIconsFilePath("commonjs");
         }
       },
     },
