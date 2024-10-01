@@ -15,6 +15,12 @@
     "vite#build": {
       "dependsOn": ["core#build"]
     },
+    "rollup#build": {
+      "dependsOn": ["vite#build"]
+    },
+    "esbuild#build": {
+      "dependsOn": ["core#build"]
+    },
     "webpack#build": {
       "dependsOn": ["core#build"]
     },
