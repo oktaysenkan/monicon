@@ -1,0 +1,34 @@
+{
+  "name": "@oktaytest/core",
+  "version": "0.0.109",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "exports": {
+    ".": {
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js"
+    }
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "clean": "rm -rf dist"
+  },
+  "devDependencies": {
+    "@oktaytest/typescript-config": "*",
+    "tsup": "^8.0.1",
+    "typescript": "^5.3.3",
+    "@iconify/types": "^2.0.0",
+    "@iconify/json": "^2.2.251"
+  },
+  "dependencies": {
+    "@iconify/utils": "^2.1.33",
+    "radash": "^12.1.0"
+  }
+}

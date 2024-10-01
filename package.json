@@ -1,163 +1,22 @@
 {
-  "name": "react-native-iconify",
-  "version": "2.0.3",
-  "description": "Iconify for React Native",
-  "main": "dist/index.js",
-  "module": "dist/index.mjs",
-  "source": "src/index",
-  "types": "./dist/index.d.ts",
-  "exports": {
-    ".": {
-      "require": "./dist/index.js",
-      "import": "./dist/index.mjs"
-    },
-    "./babel": {
-      "require": "./dist/babel/index.js"
-    },
-    "./web": {
-      "require": "./dist/web.js",
-      "import": "./dist/web.mjs"
-    },
-    "./native": {
-      "require": "./dist/native.js",
-      "import": "./dist/native.mjs"
-    },
-    "./types": {
-      "require": "./dist/types/index.js",
-      "import": "./dist/types/index.mjs"
-    }
-  },
-  "files": [
-    "dist"
+  "private": true,
+  "workspaces": [
+    "apps/*",
+    "packages/*"
   ],
   "scripts": {
-    "example": "yarn workspace react-native-iconify-example",
-    "test": "jest",
-    "typecheck": "tsc --noEmit",
-    "lint": "eslint \"**/*.{js,ts,tsx}\"",
-    "clean": "del-cli lib",
-    "build": "tsup",
-    "prepare": "yarn build",
-    "release": "release-it"
-  },
-  "keywords": [
-    "react-native",
-    "ios",
-    "android"
-  ],
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/oktaysenkan/react-native-iconify.git"
-  },
-  "author": "Oktay Şenkan <oktay.senkan@gmail.com> (https://github.com/oktaysenkan)",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/oktaysenkan/react-native-iconify/issues"
-  },
-  "homepage": "https://github.com/oktaysenkan/react-native-iconify#readme",
-  "publishConfig": {
-    "registry": "https://registry.npmjs.org/"
+    "dev": "turbo run dev",
+    "build": "turbo run build",
+    "clean": "turbo run clean && rm -rf node_modules",
+    "format": "prettier --write \"**/*.{ts,tsx,js,jsx,json,md}\" --ignore-path .gitignore"
   },
   "devDependencies": {
-    "@commitlint/config-conventional": "^17.0.2",
-    "@evilmartians/lefthook": "^1.5.0",
-    "@react-native/eslint-config": "^0.73.1",
-    "@release-it/conventional-changelog": "^5.0.0",
-    "@types/jest": "^29.5.5",
-    "@types/jscodeshift": "^0.11.11",
-    "@types/react": "^18.2.44",
-    "commitlint": "^17.0.2",
-    "del-cli": "^5.1.0",
-    "eslint": "^8.51.0",
-    "eslint-config-prettier": "^9.0.0",
-    "eslint-plugin-prettier": "^5.0.1",
-    "jest": "^29.7.0",
-    "prettier": "^3.0.3",
-    "react": "18.2.0",
-    "react-native": "0.74.2",
-    "react-native-builder-bob": "^0.23.2",
-    "react-native-svg": "13.2.0",
-    "release-it": "^15.0.0",
-    "tsup": "^8.1.0",
-    "typescript": "^5.2.2"
+    "prettier": "^3.1.1",
+    "turbo": "^2.1.2"
   },
-  "resolutions": {
-    "@types/react": "^18.2.44"
+  "packageManager": "yarn@1.22.19",
+  "engines": {
+    "node": ">=18"
   },
-  "peerDependencies": {
-    "react": "*",
-    "react-native": "*",
-    "react-native-svg": ">=13.2.0"
-  },
-  "workspaces": [
-    "example"
-  ],
-  "packageManager": "yarn@3.6.1",
-  "jest": {
-    "preset": "react-native",
-    "modulePathIgnorePatterns": [
-      "<rootDir>/example/node_modules",
-      "<rootDir>/dist/"
-    ]
-  },
-  "commitlint": {
-    "extends": [
-      "@commitlint/config-conventional"
-    ]
-  },
-  "release-it": {
-    "git": {
-      "commitMessage": "chore: release ${version}",
-      "tagName": "v${version}"
-    },
-    "npm": {
-      "publish": true
-    },
-    "github": {
-      "release": true
-    },
-    "plugins": {
-      "@release-it/conventional-changelog": {
-        "preset": "angular"
-      }
-    }
-  },
-  "eslintConfig": {
-    "root": true,
-    "extends": [
-      "@react-native",
-      "prettier"
-    ],
-    "rules": {
-      "prettier/prettier": [
-        "error",
-        {
-          "quoteProps": "consistent",
-          "singleQuote": true,
-          "tabWidth": 2,
-          "trailingComma": "es5",
-          "useTabs": false
-        }
-      ]
-    }
-  },
-  "eslintIgnore": [
-    "node_modules/",
-    "dist/"
-  ],
-  "prettier": {
-    "quoteProps": "consistent",
-    "singleQuote": true,
-    "tabWidth": 2,
-    "trailingComma": "es5",
-    "useTabs": false
-  },
-  "dependencies": {
-    "@iconify/json": "^2.2.218",
-    "@iconify/react": "^5.0.1",
-    "@iconify/utils": "2.1.23",
-    "html-react-parser": "^5.1.12",
-    "iconify-icon": "^2.1.0",
-    "jscodeshift": "^0.15.2"
-  }
+  "name": "with-react-native-web"
 }

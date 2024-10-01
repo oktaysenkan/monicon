@@ -1,0 +1,30 @@
+{
+  "$schema": "https://turbo.build/schema.json",
+  "tasks": {
+    "build": {
+      "inputs": ["$TURBO_DEFAULT$", ".env*"],
+      "outputs": ["dist/**", ".next/**", "!.next/cache/**"],
+      "dependsOn": ["^build"]
+    },
+    "babel-plugin#build": {
+      "dependsOn": ["core#build"]
+    },
+    "metro#build": {
+      "dependsOn": ["core#build"]
+    },
+    "vite#build": {
+      "dependsOn": ["core#build"]
+    },
+    "webpack#build": {
+      "dependsOn": ["core#build"]
+    },
+    "dev": {
+      "cache": false,
+      "persistent": true
+    },
+    "lint": {},
+    "clean": {
+      "cache": false
+    }
+  }
+}

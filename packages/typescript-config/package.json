@@ -1,0 +1,8 @@
+{
+  "name": "@oktaytest/typescript-config",
+  "version": "0.0.109",
+  "private": true,
+  "publishConfig": {
+    "access": "public"
+  }
+}

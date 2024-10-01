@@ -5,21 +5,12 @@ node_modules
 .pnp
 .pnp.js
 
-# testing
-coverage
-
-# next.js
-.next/
-.swc/
-out/
-build
-
-# expo
-.expo
 
 # misc
 .DS_Store
 *.pem
+
+# build
 dist
 
 # debug

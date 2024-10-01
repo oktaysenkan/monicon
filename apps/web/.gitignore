@@ -1,26 +1,23 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
 # dependencies
-node_modules
-.pnp
+/node_modules
+/.pnp
 .pnp.js
 
 # testing
-coverage
+/coverage
 
 # next.js
-.next/
-.swc/
-out/
-build
+/.next/
+/out/
 
-# expo
-.expo
+# production
+/build
 
 # misc
 .DS_Store
 *.pem
-dist
 
 # debug
 npm-debug.log*
@@ -33,5 +30,5 @@ yarn-error.log*
 .env.test.local
 .env.production.local
 
-# turbo
-.turbo
+# vercel
+.vercel
