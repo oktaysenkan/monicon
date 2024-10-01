@@ -6,7 +6,11 @@ import {
 } from "@oktaytest/core";
 import { Compiler } from "webpack";
 
+const pluginName = "webpack-iconify";
+
 export class IconifyPlugin {
+  name = pluginName;
+
   private options!: IconifyOptions;
 
   constructor(options: IconifyOptions) {
