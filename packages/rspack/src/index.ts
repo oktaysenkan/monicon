@@ -5,14 +5,18 @@ import {
   getResolveAlias,
   getResolveExtensions,
 } from "@oktaytest/core";
-import { Compiler } from "webpack";
+import { Compiler, RspackPluginInstance } from "@rspack/core";
 import { assign, merge } from "radash";
 
-export class IconifyPlugin {
+export class IconifyPlugin implements RspackPluginInstance {
+  name = "rspack-iconify";
   private options!: IconifyOptions;
 
   constructor(options: IconifyOptions) {
-    this.options = options;
+    this.options = {
+      type: "esm",
+      ...options,
+    };
   }
 
   async apply(compiler: Compiler) {

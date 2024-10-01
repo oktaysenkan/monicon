@@ -34,6 +34,10 @@ export const getResolveAlias = () => {
   return "oktay";
 };
 
+export const getResolveExtensions = () => {
+  return [".js", ".mjs"];
+};
+
 const getIconsFilePathEsm = (
   fileName: IconifyOptions["outputFileName"] = "icons"
 ) => {
