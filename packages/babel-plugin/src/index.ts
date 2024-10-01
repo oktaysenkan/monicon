@@ -1,9 +1,7 @@
 import type * as b from "@babel/core";
 import { getIconsFilePath } from "@oktaytest/core";
 
-export default (_babel: typeof b): b.PluginObj => {
-  const { types: t } = _babel;
-
+export default ({ types: t }: typeof b): b.PluginObj => {
   return {
     visitor: {
       ImportDeclaration(path) {
