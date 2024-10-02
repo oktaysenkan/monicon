@@ -24,6 +24,9 @@
     "webpack#build": {
       "dependsOn": ["core#build"]
     },
+    "rspack#build": {
+      "dependsOn": ["core#build", "webpack#build"]
+    },
 
     "native#build": {
       "dependsOn": [
@@ -38,6 +41,9 @@
     },
     "vite-react#build": {
       "dependsOn": ["vite#build", "ui#build"]
+    },
+    "rspack-react#build": {
+      "dependsOn": ["rspack#build", "ui#build"]
     },
 
     "dev": {
