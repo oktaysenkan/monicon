@@ -20,6 +20,11 @@ export class IconifyPlugin {
   async apply(compiler: Compiler) {
     const alias = getResolveAlias();
 
+    compiler.hooks.beforeRun.tapAsync(this.name, async (compiler, callback) => {
+      await loadIcons(this.options);
+      callback();
+    });
+
     compiler.options.resolve = {
       ...compiler.options.resolve,
       alias: {
@@ -27,8 +32,6 @@ export class IconifyPlugin {
         [alias]: getIconsFilePath(this.options),
       },
     };
-
-    await loadIcons(this.options);
   }
 }
 
