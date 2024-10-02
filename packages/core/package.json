@@ -10,6 +10,10 @@
     ".": {
       "import": "./dist/index.mjs",
       "require": "./dist/index.js"
+    },
+    "./constants": {
+      "import": "./dist/constants.mjs",
+      "require": "./dist/constants.js"
     }
   },
   "publishConfig": {

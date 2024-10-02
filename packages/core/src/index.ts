@@ -5,9 +5,6 @@ import path from "path";
 import { fileURLToPath } from "url";
 import { dirname } from "path";
 
-import IconNotFoundError from "./errors/icon-not-found.error";
-import InvalidIconError from "./errors/invalid-icon.error";
-
 import { toPx } from "./utils";
 
 export type IconifyOptions = {
@@ -66,11 +63,21 @@ export const getIconsFilePath = (opts?: IconifyOptions) => {
 export const loadIcon = async (iconName: string) => {
   const iconDetails = stringToIcon(iconName);
 
-  if (!iconDetails) throw InvalidIconError(iconName);
+  if (!iconDetails) {
+    console.warn(
+      `[Iconify] The icon "${iconName}" was not found. This icon might not exist, or the required icon collection might not be installed. You can explore available icons at https://icones.js.org and ensure the correct collection is added to your project.`
+    );
+    return;
+  }
 
-  const svg = await loadNodeIcon(iconDetails.prefix, iconDetails.name);
+  let svg = await loadNodeIcon(iconDetails.prefix, iconDetails.name);
 
-  if (!svg) throw IconNotFoundError(iconDetails.name, iconDetails.prefix);
+  if (!svg) {
+    console.warn(
+      `[Iconify] The icon "${iconName}" was not found. This icon might not exist, or the required icon collection might not be installed. You can explore available icons at https://icones.js.org and ensure the correct collection is added to your project.`
+    );
+    return;
+  }
 
   const widthMatch = svg.match(/width="([^"]+)"/);
   const heightMatch = svg.match(/height="([^"]+)"/);

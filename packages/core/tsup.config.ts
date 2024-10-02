@@ -1,9 +1,7 @@
 import { defineConfig, Options } from "tsup";
 
 export default defineConfig((options: Options) => ({
-  entry: {
-    index: "src/index.ts",
-  },
+  entry: ["src/index.ts", "src/constants.ts"],
   clean: true,
   format: ["cjs", "esm"],
   external: ["react"],

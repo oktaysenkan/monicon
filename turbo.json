@@ -7,6 +7,11 @@
       "outputs": ["dist/**", ".next/**", "!.next/cache/**"],
       "dependsOn": ["^build"]
     },
+
+    "ui#build": {
+      "dependsOn": ["core#build"]
+    },
+
     "babel-plugin#build": {
       "dependsOn": ["core#build"]
     },
