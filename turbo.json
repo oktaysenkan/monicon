@@ -51,6 +51,9 @@
     "rspack-react#build": {
       "dependsOn": ["rspack#build", "ui#build"]
     },
+    "rollup-react#build": {
+      "dependsOn": ["rollup#build", "ui#build"]
+    },
 
     "dev": {
       "cache": false,

@@ -17,6 +17,7 @@ const isReactNative = async () => {
 const getIcon = (iconName: string) =>
   new Promise<RuntimeIcon>(async (resolve, reject) => {
     try {
+      // todo: add error handling
       // @ts-ignore
       const iconsImport = await import("oktay");
 
