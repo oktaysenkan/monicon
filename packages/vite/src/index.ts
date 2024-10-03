@@ -13,12 +13,12 @@ export const IconifyPlugin = (options: IconifyOptions): PluginOption[] => [
     name: "vite-plugin-iconify",
     resolveId(source) {
       if (source === alias)
-        return getIconsFilePath({ ...options, type: "esm" });
+        return getIconsFilePath({ type: "esm", ...options });
 
       return null;
     },
     async buildStart() {
-      await loadIcons({ ...options, type: "esm" });
+      await loadIcons({ type: "esm", ...options });
     },
   },
 ];

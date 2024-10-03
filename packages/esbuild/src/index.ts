@@ -13,11 +13,11 @@ export const IconifyPlugin = (options: IconifyOptions): Plugin => {
     name: "esbuild-plugin-iconify",
     setup(build) {
       build.onResolve({ filter: new RegExp(`^${alias}$`) }, (args) => {
-        return { path: getIconsFilePath({ ...options, type: "esm" }) };
+        return { path: getIconsFilePath({ type: "esm", ...options }) };
       });
 
       build.onStart(async () => {
-        await loadIcons({ ...options, type: "esm" });
+        await loadIcons({ type: "esm", ...options });
       });
     },
   };
