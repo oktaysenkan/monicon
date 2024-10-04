@@ -10,9 +10,9 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@oktaytest/ui": "*",
     "react": "^18.3.1",
-    "react-dom": "^18.3.1",
-    "@oktaytest/ui": "*"
+    "react-dom": "^18.3.1"
   },
   "devDependencies": {
     "@eslint/js": "^9.9.0",
@@ -26,6 +26,6 @@
     "globals": "^15.9.0",
     "typescript": "^5.5.3",
     "typescript-eslint": "^8.0.1",
-    "vite": "^5.4.1"
+    "vite": "^5.4.8"
   }
 }
