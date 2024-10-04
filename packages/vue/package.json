@@ -1,0 +1,38 @@
+{
+  "name": "@oktaytest/vue",
+  "version": "0.0.109",
+  "main": "./dist/iconify.umd.js",
+  "module": "dist/iconify.mjs",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "exports": {
+    ".": {
+      "import": "./dist/iconify.mjs",
+      "require": "./dist/iconify.umd.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "scripts": {
+    "build": "vite build",
+    "clean": "rm -rf dist"
+  },
+  "devDependencies": {
+    "@oktaytest/typescript-config": "*",
+    "@vitejs/plugin-vue": "^5.1.4",
+    "rollup-plugin-typescript2": "^0.36.0",
+    "typescript": "^5.3.3",
+    "vite": "^5.4.8",
+    "vite-plugin-dts": "^4.2.3"
+  },
+  "dependencies": {
+    "@oktaytest/core": "*"
+  },
+  "peerDependencies": {
+    "vue": "^2.6.14 || ^3.0.0"
+  }
+}

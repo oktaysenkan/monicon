@@ -11,7 +11,8 @@
   "dependencies": {
     "svg-parser": "^2.0.4",
     "svgson": "^5.3.1",
-    "vue": "^3.5.10"
+    "vue": "^3.5.10",
+    "@oktaytest/vue": "*"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^5.1.4",

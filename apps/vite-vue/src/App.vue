@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import Iconify from "./components/Iconify.vue";
+import { Iconify } from "@oktaytest/vue";
 </script>
 
 <template>
