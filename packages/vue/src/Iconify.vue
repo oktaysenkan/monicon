@@ -4,7 +4,7 @@ import { parseSync, stringify, INode } from "svgson";
 import icons from "oktay";
 // @ts-ignore
 import { fallbackIcon } from "@oktaytest/core/constants";
-import { ref, defineProps, computed } from "vue";
+import { defineProps, computed } from "vue";
 
 export type IconifyProps = {
   name: string;

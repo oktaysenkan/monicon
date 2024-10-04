@@ -11,6 +11,9 @@
     "ui#build": {
       "dependsOn": ["core#build"]
     },
+    "vue#build": {
+      "dependsOn": ["core#build"]
+    },
 
     "babel-plugin#build": {
       "dependsOn": ["core#build"]
@@ -53,6 +56,9 @@
     },
     "rollup-react#build": {
       "dependsOn": ["rollup#build", "ui#build"]
+    },
+    "vite-vue#build": {
+      "dependsOn": ["vite#build", "vue#build"]
     },
 
     "dev": {
