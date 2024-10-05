@@ -21,11 +21,6 @@ runs:
           ${{ runner.os }}-yarn-${{ hashFiles('yarn.lock') }}
           ${{ runner.os }}-yarn-
 
-    - name: Install global dependencies
-      if: steps.yarn-cache.outputs.cache-hit != 'true'
-      run: yarn global add nuxt
-      shell: bash
-
     - name: Install dependencies
       if: steps.yarn-cache.outputs.cache-hit != 'true'
       run: yarn install --immutable
