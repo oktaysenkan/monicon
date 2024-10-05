@@ -3,6 +3,7 @@
   "ui": "tui",
   "tasks": {
     "build": {
+      "cache": false,
       "inputs": ["$TURBO_DEFAULT$", ".env*"],
       "outputs": ["dist/**", ".next/**", "!.next/cache/**"],
       "dependsOn": ["^build"]
@@ -74,7 +75,7 @@
       "dependsOn": ["vite#build", "vue#build"]
     },
     "nuxt-app#build": {
-      "dependsOn": ["nuxt#build"]
+      "dependsOn": ["nuxt#build", "vue#build"]
     },
     "svelte-app#build": {
       "dependsOn": ["svelte#build"]
