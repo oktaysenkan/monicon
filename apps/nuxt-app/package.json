@@ -1,6 +1,6 @@
 {
   "name": "@oktaytest/nuxt-app",
-  "version": "0.0.0",
+  "version": "0.0.114",
   "private": true,
   "type": "module",
   "scripts": {
