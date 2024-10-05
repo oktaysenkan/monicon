@@ -1,6 +1,4 @@
-<script setup lang="ts">
-import { Iconify } from "@oktaytest/vue";
-</script>
+<script setup lang="ts"></script>
 
 <template>
   <main>
