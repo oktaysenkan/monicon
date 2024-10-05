@@ -1,15 +1,26 @@
 <script setup lang="ts">
-import { defineProps, computed } from "vue";
+import { defineProps, ref, watch, onMounted } from "vue";
 import { getIconDetails, IconifyProps } from "@oktaytest/icon-loader";
-
-// @ts-ignore
-import icons from "oktay";
 
 const props = defineProps<IconifyProps>();
 
-const details = computed(() => getIconDetails(props, icons));
+const details = ref<ReturnType<typeof getIconDetails> | null>(null);
+
+const loadIcons = async () => {
+  // @ts-ignore
+  const iconsImport = await import("oktay");
+  const icons = iconsImport.default ?? iconsImport;
+  details.value = getIconDetails(props, icons);
+};
+
+watch(props, loadIcons);
+onMounted(loadIcons);
 </script>
 
 <template>
-  <svg v-html="details.innerHtml" v-bind="details.attributes"></svg>
+  <svg
+    v-if="details"
+    v-html="details.innerHtml"
+    v-bind="details.attributes"
+  ></svg>
 </template>

@@ -1,20 +1,26 @@
 <script lang="ts">
-  import type { Icon } from "@oktaytest/core";
   import { getIconDetails } from "@oktaytest/icon-loader";
 
   export let name: string;
   export let size: number | undefined = undefined;
   export let color: string | undefined = undefined;
 
-  // @ts-ignore
-  import icons from "oktay";
+  let details: ReturnType<typeof getIconDetails> | null = null;
 
-  $: details = getIconDetails(
-    { name, color, size },
-    icons as Record<string, Icon>
-  );
+  const loadIcons = async () => {
+    // @ts-ignore
+    const iconsImport = await import("oktay");
+
+    const icons = iconsImport.default ?? iconsImport;
+
+    details = getIconDetails({ name, color, size }, icons);
+  };
+
+  $: name, size, color, loadIcons();
 </script>
 
-<svg {...details.attributes}>
-  {@html details.innerHtml}
-</svg>
+{#if details}
+  <svg {...details.attributes}>
+    {@html details.innerHtml}
+  </svg>
+{/if}
