@@ -1,5 +1,11 @@
 # @oktaytest/typescript-config
 
+## 0.0.119
+
+### Patch Changes
+
+- add svelte support
+
 ## 0.0.118
 
 ### Patch Changes

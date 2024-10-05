@@ -1,5 +1,13 @@
 # @oktaytest/webpack
 
+## 0.0.119
+
+### Patch Changes
+
+- add svelte support
+- Updated dependencies
+  - @oktaytest/core@0.0.119
+
 ## 0.0.118
 
 ### Patch Changes
