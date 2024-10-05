@@ -1,5 +1,14 @@
 # @oktaytest/rspack
 
+## 0.0.121
+
+### Patch Changes
+
+- implement dynamic import for icon components
+- Updated dependencies
+  - @oktaytest/webpack@0.0.121
+  - @oktaytest/core@0.0.121
+
 ## 0.0.120
 
 ### Patch Changes

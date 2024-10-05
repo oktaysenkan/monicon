@@ -1,6 +1,6 @@
 {
   "name": "@oktaytest/vue",
-  "version": "0.0.120",
+  "version": "0.0.121",
   "main": "./dist/iconify.umd.js",
   "module": "dist/iconify.mjs",
   "types": "./dist/index.d.ts",

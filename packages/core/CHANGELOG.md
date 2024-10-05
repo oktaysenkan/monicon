@@ -1,5 +1,11 @@
 # @oktaytest/core
 
+## 0.0.121
+
+### Patch Changes
+
+- implement dynamic import for icon components
+
 ## 0.0.120
 
 ### Patch Changes

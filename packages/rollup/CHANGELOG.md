@@ -1,5 +1,13 @@
 # @oktaytest/rollup
 
+## 0.0.121
+
+### Patch Changes
+
+- implement dynamic import for icon components
+- Updated dependencies
+  - @oktaytest/vite@0.0.121
+
 ## 0.0.120
 
 ### Patch Changes

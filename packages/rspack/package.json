@@ -1,6 +1,6 @@
 {
   "name": "@oktaytest/rspack",
-  "version": "0.0.120",
+  "version": "0.0.121",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
