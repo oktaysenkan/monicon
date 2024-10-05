@@ -1,6 +1,6 @@
 {
   "name": "@oktaytest/core",
-  "version": "0.0.114",
+  "version": "0.0.118",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "files": [
