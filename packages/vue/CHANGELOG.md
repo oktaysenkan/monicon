@@ -1,5 +1,13 @@
 # @oktaytest/vue
 
+## 0.0.122
+
+### Patch Changes
+
+- wrap import icons with try catch
+- Updated dependencies
+  - @oktaytest/icon-loader@0.0.122
+
 ## 0.0.121
 
 ### Patch Changes
