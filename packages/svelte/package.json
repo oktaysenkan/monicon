@@ -18,6 +18,9 @@
       "svelte": "./dist/index.js"
     }
   },
+  "publishConfig": {
+    "access": "public"
+  },
   "files": [
     "dist",
     "!dist/**/*.test.*",
