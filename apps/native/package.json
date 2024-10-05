@@ -1,6 +1,6 @@
 {
   "name": "@oktaytest/native",
-  "version": "0.0.114",
+  "version": "0.0.0",
   "private": true,
   "main": "index.js",
   "scripts": {
