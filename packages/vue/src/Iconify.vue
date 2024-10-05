@@ -1,16 +1,29 @@
 <script setup lang="ts">
 import { defineProps, ref, watch, onMounted } from "vue";
 import { getIconDetails, IconifyProps } from "@oktaytest/icon-loader";
+import { Icon } from "@oktaytest/core";
 
 const props = defineProps<IconifyProps>();
 
 const details = ref<ReturnType<typeof getIconDetails> | null>(null);
 
+const importIcons = () =>
+  new Promise<Record<string, Icon> | null>(async (resolve) => {
+    try {
+      // @ts-ignore
+      const iconsImport = await import("oktay");
+      const icons = iconsImport.default ?? iconsImport;
+
+      return resolve(icons);
+    } catch (error) {
+      return resolve(null);
+    }
+  });
+
 const loadIcons = async () => {
-  // @ts-ignore
-  const iconsImport = await import("oktay");
-  const icons = iconsImport.default ?? iconsImport;
-  details.value = getIconDetails(props, icons);
+  const icons = await importIcons();
+
+  details.value = getIconDetails(props, icons ?? {});
 };
 
 watch(props, loadIcons);

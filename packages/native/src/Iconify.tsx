@@ -1,5 +1,19 @@
 import React from "react";
 import { getIconDetails, IconifyProps } from "@oktaytest/icon-loader";
+import { Icon } from "@oktaytest/core";
+
+const importIcons = () =>
+  new Promise<Record<string, Icon> | null>(async (resolve) => {
+    try {
+      // @ts-ignore
+      const iconsImport = await import("oktay");
+      const icons = iconsImport.default ?? iconsImport;
+
+      return resolve(icons);
+    } catch (error) {
+      return resolve(null);
+    }
+  });
 
 const isReactNative = async () => {
   try {
@@ -49,12 +63,9 @@ export const Iconify = (props: IconifyProps) => {
   );
 
   const renderIcon = async () => {
-    // @ts-ignore
-    const iconsImport = await import("oktay");
+    const icons = await importIcons();
 
-    const icons = iconsImport.default ?? iconsImport;
-
-    const details = getIconDetails(props, icons);
+    const details = getIconDetails(props, icons ?? {});
 
     const component = await getComponent(details);
 

@@ -1,4 +1,5 @@
 <script lang="ts">
+  import type { Icon } from "@oktaytest/core";
   import { getIconDetails } from "@oktaytest/icon-loader";
 
   export let name: string;
@@ -7,13 +8,23 @@
 
   let details: ReturnType<typeof getIconDetails> | null = null;
 
+  const importIcons = () =>
+    new Promise<Record<string, Icon> | null>(async (resolve) => {
+      try {
+        // @ts-ignore
+        const iconsImport = await import("oktay");
+        const icons = iconsImport.default ?? iconsImport;
+
+        return resolve(icons);
+      } catch (error) {
+        return resolve(null);
+      }
+    });
+
   const loadIcons = async () => {
-    // @ts-ignore
-    const iconsImport = await import("oktay");
+    const icons = await importIcons();
 
-    const icons = iconsImport.default ?? iconsImport;
-
-    details = getIconDetails({ name, color, size }, icons);
+    details = getIconDetails({ name, color, size }, icons ?? {});
   };
 
   $: name, size, color, loadIcons();
