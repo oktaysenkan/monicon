@@ -8,11 +8,12 @@
   "scripts": {
     "dev": "turbo run dev",
     "build": "turbo run build",
+    "build:pkgs": "turbo run build --filter='./packages/*'",
     "clean": "turbo run clean && rm -rf node_modules",
     "format": "prettier --write \"**/*.{ts,tsx,js,jsx,json,md}\" --ignore-path .gitignore",
     "changeset": "changeset",
     "version": "changeset version",
-    "release": "changeset publish"
+    "release": "yarn build:pkgs && changeset publish"
   },
   "devDependencies": {
     "@changesets/cli": "^2.27.9",
