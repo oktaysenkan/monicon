@@ -4,11 +4,12 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "build": "yarn nuxt prepare && nuxt build",
+    "build": "nuxt build",
     "dev": "nuxt dev --port 3001",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "postinstall": "turbo run build --filter='@oktaytest/nuxt' && nuxt prepare"
   },
   "dependencies": {
     "@oktaytest/nuxt": "*"
