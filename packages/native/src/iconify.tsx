@@ -1,8 +1,5 @@
 import React from "react";
-
-import { IconifyProps, RuntimeIcon, RuntimeIconifyProps } from "./types";
-import { setAttributes } from "./utils";
-import { fallbackIcon } from "./constants";
+import { getIconDetails, IconifyProps } from "@oktaytest/icon-loader";
 
 const isReactNative = async () => {
   try {
@@ -16,59 +13,34 @@ const isReactNative = async () => {
   }
 };
 
-const getIcon = (iconName: string) =>
-  new Promise<RuntimeIcon>(async (resolve, reject) => {
-    try {
-      // todo: add error handling
-      // @ts-ignore
-      const iconsImport = await import("oktay");
-
-      const icons = iconsImport.default ?? iconsImport;
-
-      let icon = icons[iconName];
-
-      if (!icon) {
-        console.warn(
-          `[Iconify] The icon "${iconName}" is missing from the configuration. To resolve this, ensure it is added to the 'icons' array within the Iconify plugin's configuration.`
-        );
-
-        icon = fallbackIcon;
-      }
-
-      resolve(icon);
-    } catch (error) {
-      reject(error);
-    }
-  });
-
-const nativeIcon = async (props: RuntimeIconifyProps) => {
+const nativeIcon = async (props: ReturnType<typeof getIconDetails>) => {
   const { SvgXml } = require("react-native-svg");
 
   return (
     <SvgXml
       {...props}
-      xml={props.icon.svg}
-      width={props.icon.width}
-      height={props.icon.height}
+      xml={props.svg}
+      width={props.attributes.width}
+      height={props.attributes.height}
     />
   );
 };
 
-const webIcon = async (props: RuntimeIconifyProps) => {
-  // @ts-ignore
-  const parse = await import("html-react-parser");
-
-  return parse.default(props.icon.svg);
+const webIcon = async (props: ReturnType<typeof getIconDetails>) => {
+  return (
+    <svg
+      {...props.attributes}
+      dangerouslySetInnerHTML={{ __html: props.innerHtml }}
+    />
+  );
 };
 
-const getComponent = async (props: RuntimeIconifyProps) => {
-  const formatted = setAttributes(props);
-
+const getComponent = async (props: ReturnType<typeof getIconDetails>) => {
   const isNative = await isReactNative();
 
-  if (isNative) return nativeIcon(formatted);
+  if (isNative) return nativeIcon(props);
 
-  return webIcon(formatted);
+  return webIcon(props);
 };
 
 export const Iconify = (props: IconifyProps) => {
@@ -77,12 +49,14 @@ export const Iconify = (props: IconifyProps) => {
   );
 
   const renderIcon = async () => {
-    const icon = await getIcon(props.name);
+    // @ts-ignore
+    const iconsImport = await import("oktay");
 
-    const component = await getComponent({
-      ...props,
-      icon,
-    });
+    const icons = iconsImport.default ?? iconsImport;
+
+    const details = getIconDetails(props, icons);
+
+    const component = await getComponent(details);
 
     setComponent(component);
   };

@@ -9,6 +9,7 @@ export default function App() {
       <Iconify name="feather:activity" />
       <Iconify name="logos:active-campaign" size={30} />
       <Iconify name="logos:apache-superset-icon" />
+      <Iconify name="invalid:icon" />
     </View>
   );
 }

@@ -26,7 +26,6 @@ export class IconifyPlugin {
       this.name,
       async (params, callback) => {
         if (!iconsLoaded) {
-          console.log("beforeCompile");
           await loadIcons(this.options);
           iconsLoaded = true;
         }

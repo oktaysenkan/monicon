@@ -1,10 +1,11 @@
 import React from "react";
-import { getIconDetails } from "@oktaytest/icon-loader";
+import { getIconDetails, IconifyProps } from "@oktaytest/icon-loader";
 
-import { IconifyProps } from "./types";
+// @ts-ignore
+import icons from "oktay";
 
 export const Iconify = (props: IconifyProps) => {
-  const details = getIconDetails(props);
+  const details = getIconDetails(props, icons);
 
   return (
     <svg

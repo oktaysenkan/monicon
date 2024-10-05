@@ -11,11 +11,6 @@
       "import": "./dist/index.mjs",
       "require": "./dist/index.js",
       "types": "./dist/index.d.ts"
-    },
-    "./constants": {
-      "import": "./dist/constants.mjs",
-      "require": "./dist/constants.js",
-      "types": "./dist/constants.d.mts"
     }
   },
   "publishConfig": {

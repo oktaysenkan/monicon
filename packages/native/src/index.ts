@@ -1,0 +1,1 @@
+export { Iconify } from "./Iconify";

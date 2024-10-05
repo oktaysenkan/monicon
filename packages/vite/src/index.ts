@@ -11,16 +11,13 @@ const alias = getResolveAlias();
 export const IconifyPlugin = (options: IconifyOptions): PluginOption[] => [
   {
     name: "vite-plugin-iconify",
+    async buildStart() {
+      await loadIcons({ type: "esm", ...options });
+    },
     resolveId(source) {
       if (source === alias)
         return getIconsFilePath({ type: "esm", ...options });
 
-      return null;
-    },
-    async buildStart() {
-      await loadIcons({ type: "esm", ...options });
-    },
-    load(id) {
       return null;
     },
   },

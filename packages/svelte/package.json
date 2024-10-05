@@ -44,7 +44,8 @@
     "@oktaytest/vite": "*"
   },
   "dependencies": {
-    "svgson": "^5.3.1"
+    "svgson": "^5.3.1",
+    "@oktaytest/icon-loader": "*"
   },
   "svelte": "./dist/index.js",
   "types": "./dist/index.d.ts",

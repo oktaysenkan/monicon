@@ -15,9 +15,9 @@
       "import": "./dist/index.mjs",
       "require": "./dist/index.js"
     },
-    "./iconify": {
-      "import": "./dist/iconify.mjs",
-      "require": "./dist/iconify.js"
+    "./Iconify": {
+      "import": "./dist/Iconify.mjs",
+      "require": "./dist/Iconify.js"
     }
   },
   "scripts": {
@@ -35,7 +35,8 @@
   },
   "dependencies": {
     "html-react-parser": "^5.1.16",
-    "@oktaytest/core": "*"
+    "@oktaytest/core": "*",
+    "@oktaytest/icon-loader": "*"
   },
   "peerDependencies": {
     "react": ">=18.2.0",

@@ -6,7 +6,7 @@ import "./App.css";
 function App() {
   return (
     <div className="App">
-      <Iconify name="mdi:home" />
+      <Iconify name="mdi:home" size={32} />
       <Iconify name="invalid:icon" />
     </div>
   );

@@ -1,4 +1,6 @@
 import type { App } from "vue";
+import { IconifyProps } from "@oktaytest/icon-loader";
+
 import Iconify from "./Iconify.vue";
 
 export default {
@@ -7,4 +9,4 @@ export default {
   },
 };
 
-export { Iconify };
+export { Iconify, type IconifyProps };
