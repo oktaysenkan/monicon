@@ -3,7 +3,7 @@ import {
   getIconsFilePath,
   IconifyOptions,
   getResolveAlias,
-} from "@oktaytest/core";
+} from "@monicon/core";
 import { Plugin } from "esbuild";
 
 const alias = getResolveAlias();

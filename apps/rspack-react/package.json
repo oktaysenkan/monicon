@@ -1,5 +1,5 @@
 {
-  "name": "@oktaytest/rspack-react",
+  "name": "@monicon/rspack-react",
   "private": true,
   "version": "0.0.0",
   "scripts": {
@@ -9,7 +9,7 @@
   "dependencies": {
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "@oktaytest/react": "*"
+    "@monicon/react": "*"
   },
   "devDependencies": {
     "@rspack/plugin-react-refresh": "1.0.0",
@@ -19,6 +19,6 @@
     "@types/react-dom": "^18.2.18",
     "cross-env": "^7.0.3",
     "react-refresh": "^0.14.0",
-    "@oktaytest/rspack": "*"
+    "@monicon/rspack": "*"
   }
 }

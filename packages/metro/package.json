@@ -1,5 +1,5 @@
 {
-  "name": "@oktaytest/metro",
+  "name": "@monicon/metro",
   "version": "0.0.122",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
@@ -23,12 +23,12 @@
     "prepack": "yarn build"
   },
   "devDependencies": {
-    "@oktaytest/typescript-config": "*",
+    "@monicon/typescript-config": "*",
     "tsup": "^8.0.1",
     "typescript": "^5.3.3",
     "metro-config": "^0.80.12"
   },
   "dependencies": {
-    "@oktaytest/core": "*"
+    "@monicon/core": "*"
   }
 }

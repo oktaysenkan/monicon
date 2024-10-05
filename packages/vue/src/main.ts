@@ -1,5 +1,5 @@
 import type { App } from "vue";
-import { IconifyProps } from "@oktaytest/icon-loader";
+import { IconifyProps } from "@monicon/icon-loader";
 
 import Iconify from "./Iconify.vue";
 

@@ -1,5 +1,5 @@
 {
-  "name": "@oktaytest/next",
+  "name": "@monicon/next",
   "version": "0.0.0",
   "private": true,
   "scripts": {
@@ -9,15 +9,15 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@oktaytest/react": "*",
+    "@monicon/react": "*",
     "next": "^14.0.4",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-native-web": "^0.19.10"
   },
   "devDependencies": {
-    "@oktaytest/typescript-config": "*",
-    "@oktaytest/webpack": "*",
+    "@monicon/typescript-config": "*",
+    "@monicon/webpack": "*",
     "@types/node": "^20.10.6",
     "@types/react": "^18.2.46",
     "@types/react-dom": "^18.2.18",

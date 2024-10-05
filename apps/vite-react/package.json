@@ -1,5 +1,5 @@
 {
-  "name": "@oktaytest/vite-react",
+  "name": "@monicon/vite-react",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -10,13 +10,13 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@oktaytest/react": "*",
+    "@monicon/react": "*",
     "react": "^18.3.1",
     "react-dom": "^18.3.1"
   },
   "devDependencies": {
     "@eslint/js": "^9.9.0",
-    "@oktaytest/vite": "*",
+    "@monicon/vite": "*",
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
     "@vitejs/plugin-react": "^4.3.1",

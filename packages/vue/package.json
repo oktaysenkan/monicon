@@ -1,5 +1,5 @@
 {
-  "name": "@oktaytest/vue",
+  "name": "@monicon/vue",
   "version": "0.0.122",
   "main": "./dist/iconify.umd.js",
   "module": "dist/iconify.mjs",
@@ -23,7 +23,7 @@
     "prepack": "yarn build"
   },
   "devDependencies": {
-    "@oktaytest/typescript-config": "*",
+    "@monicon/typescript-config": "*",
     "@vitejs/plugin-vue": "^5.1.4",
     "rollup-plugin-typescript2": "^0.36.0",
     "typescript": "^5.3.3",
@@ -31,7 +31,7 @@
     "vite-plugin-dts": "^4.2.3"
   },
   "dependencies": {
-    "@oktaytest/icon-loader": "*"
+    "@monicon/icon-loader": "*"
   },
   "peerDependencies": {
     "vue": "^2.6.14 || ^3.0.0"

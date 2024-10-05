@@ -1,5 +1,5 @@
 {
-  "name": "@oktaytest/vite-vue",
+  "name": "@monicon/vite-vue",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "vue": "^3.5.10",
-    "@oktaytest/vue": "*"
+    "@monicon/vue": "*"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^5.1.4",

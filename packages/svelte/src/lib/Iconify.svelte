@@ -1,6 +1,6 @@
 <script lang="ts">
-  import type { Icon } from "@oktaytest/core";
-  import { getIconDetails } from "@oktaytest/icon-loader";
+  import type { Icon } from "@monicon/core";
+  import { getIconDetails } from "@monicon/icon-loader";
 
   export let name: string;
   export let size: number | undefined = undefined;

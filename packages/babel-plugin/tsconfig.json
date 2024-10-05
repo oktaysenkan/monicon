@@ -1,5 +1,5 @@
 {
-  "extends": "@oktaytest/typescript-config/react-native-library",
+  "extends": "@monicon/typescript-config/react-native-library",
   "include": ["."],
   "exclude": ["dist", "build", "node_modules"],
   "compilerOptions": {

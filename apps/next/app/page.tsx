@@ -1,4 +1,4 @@
-import { Iconify } from "@oktaytest/react";
+import { Iconify } from "@monicon/react";
 
 import styles from "../styles/index.module.css";
 

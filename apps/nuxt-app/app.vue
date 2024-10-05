@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Iconify } from "@oktaytest/vue";
+import { Iconify } from "@monicon/vue";
 
 useHead({
   title: "Nuxt App",

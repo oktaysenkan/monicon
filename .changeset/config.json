@@ -2,19 +2,19 @@
   "$schema": "https://unpkg.com/@changesets/config@3.0.3/schema.json",
   "changelog": "@changesets/cli/changelog",
   "commit": false,
-  "fixed": [["@oktaytest/*"]],
+  "fixed": [["@monicon/*"]],
   "linked": [],
   "access": "restricted",
   "baseBranch": "main",
   "updateInternalDependencies": "patch",
   "ignore": [
-    "@oktaytest/react-native-app",
-    "@oktaytest/next",
-    "@oktaytest/nuxt-app",
-    "@oktaytest/rollup-react",
-    "@oktaytest/rspack-react",
-    "@oktaytest/vite-react",
-    "@oktaytest/vite-vue",
-    "@oktaytest/svelte-app"
+    "@monicon/react-native-app",
+    "@monicon/next",
+    "@monicon/nuxt-app",
+    "@monicon/rollup-react",
+    "@monicon/rspack-react",
+    "@monicon/vite-react",
+    "@monicon/vite-vue",
+    "@monicon/svelte-app"
   ]
 }

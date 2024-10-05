@@ -1,5 +1,5 @@
 {
-  "name": "react-native-iconify",
+  "name": "monicon",
   "private": true,
   "workspaces": [
     "apps/*",

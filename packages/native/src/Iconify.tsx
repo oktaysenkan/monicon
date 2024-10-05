@@ -1,6 +1,6 @@
 import React from "react";
-import { getIconDetails, IconifyProps } from "@oktaytest/icon-loader";
-import { Icon } from "@oktaytest/core";
+import { getIconDetails, IconifyProps } from "@monicon/icon-loader";
+import { Icon } from "@monicon/core";
 
 const importIcons = () =>
   new Promise<Record<string, Icon> | null>(async (resolve) => {

@@ -1,5 +1,5 @@
-import { IconifyOptions } from "@oktaytest/core";
-import { IconifyPlugin as IconifyWebpackPlugin } from "@oktaytest/webpack";
+import { IconifyOptions } from "@monicon/core";
+import { IconifyPlugin as IconifyWebpackPlugin } from "@monicon/webpack";
 
 const pluginName = "rspack-iconify";
 

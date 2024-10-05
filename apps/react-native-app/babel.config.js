@@ -4,7 +4,7 @@ module.exports = function (api) {
     presets: ["babel-preset-expo"],
     plugins: [
       [
-        "@oktaytest/babel-plugin",
+        "@monicon/babel-plugin",
         {
           icons: [
             "mdi:home",

@@ -1,4 +1,4 @@
-const { IconifyPlugin } = require("@oktaytest/webpack");
+const { IconifyPlugin } = require("@monicon/webpack");
 
 module.exports = {
   reactStrictMode: true,

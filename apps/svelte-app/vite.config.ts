@@ -1,6 +1,6 @@
 import { sveltekit } from "@sveltejs/kit/vite";
 import { defineConfig } from "vite";
-import { IconifyPlugin } from "@oktaytest/vite";
+import { IconifyPlugin } from "@monicon/vite";
 
 export default defineConfig({
   plugins: [

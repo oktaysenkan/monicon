@@ -4,7 +4,7 @@ import {
   getIconsFilePath,
   IconifyOptions,
   getResolveAlias,
-} from "@oktaytest/core";
+} from "@monicon/core";
 
 const alias = getResolveAlias();
 

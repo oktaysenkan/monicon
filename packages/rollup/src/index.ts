@@ -1,1 +1,1 @@
-export { IconifyPlugin } from "@oktaytest/vite";
+export { IconifyPlugin } from "@monicon/vite";

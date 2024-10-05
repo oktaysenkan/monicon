@@ -4,7 +4,7 @@ import {
   getResolveAlias,
   loadIcons,
   type IconifyOptions,
-} from "@oktaytest/core";
+} from "@monicon/core";
 
 const defaultOptions: IconifyOptions = {
   icons: [],
@@ -21,7 +21,7 @@ export default defineNuxtModule<IconifyOptions>({
     addComponent({
       name: "Iconify",
       export: "Iconify",
-      filePath: "@oktaytest/vue",
+      filePath: "@monicon/vue",
     });
 
     const alias = getResolveAlias();

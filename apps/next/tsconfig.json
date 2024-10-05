@@ -1,5 +1,5 @@
 {
-  "extends": "@oktaytest/typescript-config/nextjs.json",
+  "extends": "@monicon/typescript-config/nextjs.json",
   "compilerOptions": {
     "plugins": [{ "name": "next" }]
   },

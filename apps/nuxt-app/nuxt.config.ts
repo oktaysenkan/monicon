@@ -1,7 +1,7 @@
 export default defineNuxtConfig({
   devtools: { enabled: true },
   compatibilityDate: "2024-10-05",
-  modules: ["@oktaytest/nuxt"],
+  modules: ["@monicon/nuxt"],
   iconify: {
     icons: [
       "mdi:home",

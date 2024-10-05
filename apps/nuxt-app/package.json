@@ -1,5 +1,5 @@
 {
-  "name": "@oktaytest/nuxt-app",
+  "name": "@monicon/nuxt-app",
   "version": "0.0.0",
   "private": true,
   "type": "module",
@@ -9,10 +9,10 @@
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "lint": "eslint .",
-    "postinstall": "turbo run build --filter='@oktaytest/nuxt' && nuxt prepare"
+    "postinstall": "turbo run build --filter='@monicon/nuxt' && nuxt prepare"
   },
   "dependencies": {
-    "@oktaytest/nuxt": "*"
+    "@monicon/nuxt": "*"
   },
   "devDependencies": {
     "@nuxt/devtools": "latest",
@@ -21,6 +21,6 @@
     "nuxt": "^3.13.2",
     "vue": "^3.4.21",
     "vue-router": "^4.3.0",
-    "@oktaytest/vue": "*"
+    "@monicon/vue": "*"
   }
 }

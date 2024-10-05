@@ -1,4 +1,4 @@
-import { Icon } from "@oktaytest/core";
+import { Icon } from "@monicon/core";
 import { parseSync, stringify } from "svgson";
 
 export type IconifyProps = {

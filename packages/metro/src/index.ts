@@ -4,7 +4,7 @@ import {
   getIconsFilePath,
   getResolveAlias,
   IconifyOptions,
-} from "@oktaytest/core";
+} from "@monicon/core";
 
 export const withIconify = (
   metroConfig: IntermediateConfigT,

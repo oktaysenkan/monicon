@@ -1,6 +1,6 @@
 import { defineConfig } from "vite";
 import vue from "@vitejs/plugin-vue";
-import { getResolveAlias } from "@oktaytest/core";
+import { getResolveAlias } from "@monicon/core";
 import dts from "vite-plugin-dts";
 
 export default defineConfig({

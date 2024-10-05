@@ -1,5 +1,5 @@
 const createExpoWebpackConfigAsync = require("@expo/webpack-config");
-const { IconifyPlugin } = require("@oktaytest/webpack");
+const { IconifyPlugin } = require("@monicon/webpack");
 
 module.exports = async function (env, argv) {
   const config = await createExpoWebpackConfigAsync(env, argv);

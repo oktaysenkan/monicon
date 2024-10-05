@@ -1,5 +1,5 @@
 import React from "react";
-import { Iconify } from "@oktaytest/react";
+import { Iconify } from "@monicon/react";
 
 import "./App.css";
 

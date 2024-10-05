@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { defineProps, ref, watch, onMounted } from "vue";
-import { getIconDetails, IconifyProps } from "@oktaytest/icon-loader";
-import { Icon } from "@oktaytest/core";
+import { getIconDetails, IconifyProps } from "@monicon/icon-loader";
+import { Icon } from "@monicon/core";
 
 const props = defineProps<IconifyProps>();
 

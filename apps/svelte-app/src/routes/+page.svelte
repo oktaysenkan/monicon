@@ -1,5 +1,5 @@
 <script>
-  import { Iconify } from "@oktaytest/svelte";
+  import { Iconify } from "@monicon/svelte";
 </script>
 
 <main>

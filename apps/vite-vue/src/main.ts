@@ -1,5 +1,5 @@
 import { createApp } from "vue";
-import Iconify from "@oktaytest/vue";
+import Iconify from "@monicon/vue";
 
 import App from "./App.vue";
 

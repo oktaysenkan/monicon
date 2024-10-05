@@ -1,2 +1,2 @@
 export { Iconify } from "./iconify";
-export { type IconifyProps } from "@oktaytest/icon-loader";
+export { type IconifyProps } from "@monicon/icon-loader";

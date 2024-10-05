@@ -3,7 +3,7 @@ import {
   getIconsFilePath,
   IconifyOptions,
   getResolveAlias,
-} from "@oktaytest/core";
+} from "@monicon/core";
 import { Compiler } from "webpack";
 
 const pluginName = "webpack-iconify";

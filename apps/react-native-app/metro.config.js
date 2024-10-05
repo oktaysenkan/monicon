@@ -1,6 +1,6 @@
 // Learn more https://docs.expo.io/guides/customizing-metro
 const { getDefaultConfig } = require("expo/metro-config");
-const { withIconify } = require("@oktaytest/metro");
+const { withIconify } = require("@monicon/metro");
 const path = require("path");
 
 // Find the workspace root, this can be replaced with `find-yarn-workspace-root`

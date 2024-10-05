@@ -1,5 +1,5 @@
 {
-  "name": "@oktaytest/react-native-app",
+  "name": "@monicon/react-native-app",
   "version": "0.0.0",
   "private": true,
   "main": "index.js",
@@ -11,10 +11,10 @@
     "eject": "expo eject"
   },
   "dependencies": {
-    "@oktaytest/metro": "*",
-    "@oktaytest/native": "*",
-    "@oktaytest/webpack": "*",
-    "@oktaytest/babel-plugin": "*",
+    "@monicon/metro": "*",
+    "@monicon/native": "*",
+    "@monicon/webpack": "*",
+    "@monicon/babel-plugin": "*",
     "expo": "^49.0.21",
     "expo-status-bar": "~1.7.0",
     "react": "^18.2.0",
