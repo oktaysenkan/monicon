@@ -36,6 +36,9 @@
     "rspack#build": {
       "dependsOn": ["core#build", "webpack#build"]
     },
+    "nuxt#build": {
+      "dependsOn": ["core#build"]
+    },
 
     "native#build": {
       "dependsOn": [
@@ -59,6 +62,9 @@
     },
     "vite-vue#build": {
       "dependsOn": ["vite#build", "vue#build"]
+    },
+    "nuxt-app#build": {
+      "dependsOn": ["nuxt#build"]
     },
 
     "dev": {

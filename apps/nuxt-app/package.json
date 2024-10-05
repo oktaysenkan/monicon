@@ -1,0 +1,25 @@
+{
+  "name": "@oktaytest/nuxt-app",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "nuxt build",
+    "dev": "nuxt dev --port 3001",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview",
+    "postinstall": "nuxt prepare",
+    "lint": "eslint ."
+  },
+  "dependencies": {
+    "@oktaytest/nuxt": "*"
+  },
+  "devDependencies": {
+    "@nuxt/devtools": "latest",
+    "@nuxtjs/eslint-config-typescript": "^12.1.0",
+    "eslint": "^8.57.0",
+    "nuxt": "^3.13.2",
+    "vue": "^3.4.21",
+    "vue-router": "^4.3.0"
+  }
+}
