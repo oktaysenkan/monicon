@@ -1,6 +1,6 @@
 {
   "name": "@monicon/react",
-  "version": "0.0.122",
+  "version": "0.0.123",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
@@ -23,8 +23,7 @@
   "scripts": {
     "build": "tsup",
     "dev": "tsup --watch",
-    "clean": "rm -rf dist",
-    "prepack": "yarn build"
+    "clean": "rm -rf dist"
   },
   "devDependencies": {
     "@monicon/typescript-config": "*",
