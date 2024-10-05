@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import { defineProps, ref, watch, onMounted } from "vue";
-import { getIconDetails, IconifyProps } from "@monicon/icon-loader";
+import { getIconDetails, MoniconProps } from "@monicon/icon-loader";
 import { Icon } from "@monicon/core";
 
-const props = defineProps<IconifyProps>();
+const props = defineProps<MoniconProps>();
 
 const details = ref<ReturnType<typeof getIconDetails> | null>(null);
 

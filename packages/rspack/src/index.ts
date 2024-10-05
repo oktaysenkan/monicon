@@ -1,13 +1,13 @@
-import { IconifyOptions } from "@monicon/core";
-import { IconifyPlugin as IconifyWebpackPlugin } from "@monicon/webpack";
+import { MoniconOptions } from "@monicon/core";
+import { MoniconPlugin as MoniconWebpackPlugin } from "@monicon/webpack";
 
-const pluginName = "rspack-iconify";
+const pluginName = "rspack-monicon";
 
-export class IconifyPlugin extends IconifyWebpackPlugin {
+export class MoniconPlugin extends MoniconWebpackPlugin {
   name = pluginName;
 
-  constructor(options: IconifyOptions) {
-    const opts: IconifyOptions = {
+  constructor(options: MoniconOptions) {
+    const opts: MoniconOptions = {
       type: "esm",
       ...options,
     };
@@ -16,4 +16,4 @@ export class IconifyPlugin extends IconifyWebpackPlugin {
   }
 }
 
-export default IconifyPlugin;
+export default MoniconPlugin;

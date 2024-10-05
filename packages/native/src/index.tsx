@@ -1,4 +1,6 @@
-import Iconify from "./Iconify";
+export type { MoniconProps } from "@monicon/icon-loader";
 
-export { Iconify };
-export default Iconify;
+import Monicon from "./Monicon";
+
+export { Monicon };
+export default Monicon;

@@ -1,12 +1,12 @@
 import { defineConfig } from "vite";
 import vue from "@vitejs/plugin-vue";
-import { IconifyPlugin } from "@monicon/vite";
+import monicon from "@monicon/vite";
 
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
     vue(),
-    IconifyPlugin({
+    monicon({
       icons: [
         "mdi:home",
         "mdi:account",

@@ -1,7 +1,7 @@
 import { Icon } from "@monicon/core";
 import { parseSync, stringify } from "svgson";
 
-export type IconifyProps = {
+export type MoniconProps = {
   name: string;
   size?: number;
   color?: string;
@@ -9,7 +9,7 @@ export type IconifyProps = {
 
 export type GetIconDetailsOptions = {
   icon: Icon;
-  props: IconifyProps;
+  props: MoniconProps;
 };
 
 export const fallbackIcon: Icon = {
@@ -24,14 +24,14 @@ const loadIcon = (iconName: string, icons: Record<string, Icon>) => {
   if (icon) return icon;
 
   console.warn(
-    `[Iconify] The icon "${iconName}" is missing from the configuration. To resolve this, ensure it is added to the 'icons' array within the Iconify plugin's configuration.`
+    `[Monicon] The icon "${iconName}" is missing from the configuration. To resolve this, ensure it is added to the 'icons' array within the Monicon plugin's configuration.`
   );
 
   return fallbackIcon;
 };
 
 export const getIconDetails = (
-  props: IconifyProps,
+  props: MoniconProps,
   icons: Record<string, Icon>
 ) => {
   const icon = loadIcon(props.name, icons);

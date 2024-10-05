@@ -1,11 +1,11 @@
 import { sveltekit } from "@sveltejs/kit/vite";
 import { defineConfig } from "vite";
-import { IconifyPlugin } from "@monicon/vite";
+import { monicon } from "@monicon/vite";
 
 export default defineConfig({
   plugins: [
     sveltekit(),
-    IconifyPlugin({
+    monicon({
       icons: [
         "mdi:home",
         "mdi:account",

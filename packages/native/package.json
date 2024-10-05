@@ -15,9 +15,9 @@
       "import": "./dist/index.mjs",
       "require": "./dist/index.js"
     },
-    "./Iconify": {
-      "import": "./dist/Iconify.mjs",
-      "require": "./dist/Iconify.js"
+    "./Monicon": {
+      "import": "./dist/Monicon.mjs",
+      "require": "./dist/Monicon.js"
     }
   },
   "scripts": {

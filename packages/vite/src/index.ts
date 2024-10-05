@@ -2,15 +2,17 @@ import { PluginOption } from "vite";
 import {
   loadIcons,
   getIconsFilePath,
-  IconifyOptions,
+  MoniconOptions,
   getResolveAlias,
 } from "@monicon/core";
 
 const alias = getResolveAlias();
 
-export const IconifyPlugin = (options: IconifyOptions): PluginOption[] => [
+const name = "vite-monicon";
+
+export const monicon = (options: MoniconOptions): PluginOption[] => [
   {
-    name: "vite-plugin-iconify",
+    name,
     async buildStart() {
       await loadIcons({ type: "esm", ...options });
     },
@@ -22,3 +24,5 @@ export const IconifyPlugin = (options: IconifyOptions): PluginOption[] => [
     },
   },
 ];
+
+export default monicon;

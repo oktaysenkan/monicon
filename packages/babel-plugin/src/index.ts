@@ -2,7 +2,7 @@ import type * as b from "@babel/core";
 import {
   getIconsFilePath,
   getResolveAlias,
-  IconifyOptions,
+  MoniconOptions,
 } from "@monicon/core";
 
 const alias = getResolveAlias();
@@ -13,7 +13,7 @@ export default ({ types: t }: typeof b): b.PluginObj => {
       ImportDeclaration(path) {
         if (path.node.source.value === alias) {
           path.node.source.value = getIconsFilePath(
-            this.opts as IconifyOptions
+            this.opts as MoniconOptions
           );
         }
       },
@@ -33,7 +33,7 @@ export default ({ types: t }: typeof b): b.PluginObj => {
           firstArg.value === alias;
 
         if (isFunctionImport && isImportingIcons && firstArg) {
-          firstArg.value = getIconsFilePath(this.opts as IconifyOptions);
+          firstArg.value = getIconsFilePath(this.opts as MoniconOptions);
         }
       },
     },

@@ -3,25 +3,27 @@ import {
   getIconsFilePath,
   getResolveAlias,
   loadIcons,
-  type IconifyOptions,
+  MoniconOptions,
 } from "@monicon/core";
 
-const defaultOptions: IconifyOptions = {
+const defaultOptions: MoniconOptions = {
   icons: [],
   type: "esm",
 };
 
-export default defineNuxtModule<IconifyOptions>({
+export default defineNuxtModule<MoniconOptions>({
   meta: {
-    name: "nuxt-iconify",
-    configKey: "iconify",
+    name: "nuxt-monicon",
+    configKey: "monicon",
   },
   defaults: defaultOptions,
   async setup(options, nuxt) {
     addComponent({
-      name: "Iconify",
-      export: "Iconify",
+      name: "Monicon",
+      export: "Monicon",
       filePath: "@monicon/vue",
+      kebabName: "monicon",
+      pascalName: "Monicon",
     });
 
     const alias = getResolveAlias();

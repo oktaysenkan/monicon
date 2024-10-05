@@ -1,4 +1,4 @@
-# react-native-iconify v3
+# monicon
 
 ## Development
 

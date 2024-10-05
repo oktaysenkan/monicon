@@ -3,12 +3,12 @@ import {
   loadIcons,
   getIconsFilePath,
   getResolveAlias,
-  IconifyOptions,
+  MoniconOptions,
 } from "@monicon/core";
 
-export const withIconify = (
+export const withMonicon = (
   metroConfig: IntermediateConfigT,
-  options?: IconifyOptions
+  options?: MoniconOptions
 ): IntermediateConfigT => {
   const alias = getResolveAlias();
 

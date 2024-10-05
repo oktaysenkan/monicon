@@ -1,16 +1,18 @@
 import {
   loadIcons,
   getIconsFilePath,
-  IconifyOptions,
+  MoniconOptions,
   getResolveAlias,
 } from "@monicon/core";
 import { Plugin } from "esbuild";
 
 const alias = getResolveAlias();
 
-export const IconifyPlugin = (options: IconifyOptions): Plugin => {
+const name = "esbuild-monicon";
+
+export const monicon = (options: MoniconOptions): Plugin => {
   return {
-    name: "esbuild-plugin-iconify",
+    name,
     setup(build) {
       build.onResolve({ filter: new RegExp(`^${alias}$`) }, (args) => {
         return { path: getIconsFilePath({ type: "esm", ...options }) };
@@ -22,3 +24,5 @@ export const IconifyPlugin = (options: IconifyOptions): Plugin => {
     },
   };
 };
+
+export default monicon;

@@ -13,9 +13,9 @@ export default defineConfig({
   build: {
     lib: {
       entry: "src/index.ts",
-      name: "Iconify",
+      name: "Monicon",
       formats: ["es", "cjs", "umd"],
-      fileName: "iconify",
+      fileName: "monicon",
     },
     rollupOptions: {
       input: {
@@ -26,7 +26,6 @@ export default defineConfig({
         exports: "named",
         globals: {
           vue: "Vue",
-          oktay: "Oktay",
         },
       },
     },

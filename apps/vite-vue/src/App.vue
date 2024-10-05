@@ -2,9 +2,9 @@
 
 <template>
   <main>
-    <Iconify name="mdi:home" :size="32" />
-    <Iconify name="logos:active-campaign" />
-    <Iconify name="logos:apache-superset-icon" />
-    <Iconify name="invalid:icon" />
+    <Monicon name="mdi:home" :size="32" />
+    <Monicon name="logos:active-campaign" />
+    <Monicon name="logos:apache-superset-icon" />
+    <Monicon name="invalid:icon" />
   </main>
 </template>

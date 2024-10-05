@@ -1,12 +1,12 @@
 import type { App } from "vue";
-import { IconifyProps } from "@monicon/icon-loader";
+import { MoniconProps } from "@monicon/icon-loader";
 
-import Iconify from "./Iconify.vue";
+import Monicon from "./monicon.vue";
 
 export default {
   install: (app: App) => {
-    app.component("Iconify", Iconify);
+    app.component("Monicon", Monicon);
   },
 };
 
-export { Iconify, type IconifyProps };
+export { Monicon, type MoniconProps };

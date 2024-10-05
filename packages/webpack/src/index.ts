@@ -1,21 +1,21 @@
 import {
   loadIcons,
   getIconsFilePath,
-  IconifyOptions,
+  MoniconOptions,
   getResolveAlias,
 } from "@monicon/core";
 import { Compiler } from "webpack";
 
-const pluginName = "webpack-iconify";
+const pluginName = "webpack-monicon";
 
 let iconsLoaded = false;
 
-export class IconifyPlugin {
+export class MoniconPlugin {
   name = pluginName;
 
-  private options!: IconifyOptions;
+  private options!: MoniconOptions;
 
-  constructor(options: IconifyOptions) {
+  constructor(options: MoniconOptions) {
     this.options = options;
   }
 
@@ -44,4 +44,4 @@ export class IconifyPlugin {
   }
 }
 
-export default IconifyPlugin;
+export default MoniconPlugin;

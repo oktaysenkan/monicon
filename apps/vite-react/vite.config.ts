@@ -1,12 +1,12 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
-import { IconifyPlugin } from "@monicon/vite";
+import monicon from "@monicon/vite";
 
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
     react(),
-    IconifyPlugin({
+    monicon({
       icons: [
         "mdi:home",
         "mdi:account",

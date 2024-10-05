@@ -1,14 +1,14 @@
 import "./App.css";
 
-import { Iconify } from "@monicon/react";
+import { Monicon } from "@monicon/react";
 
 function App() {
   return (
     <main>
-      <Iconify name="mdi:home" />
-      <Iconify name="logos:active-campaign" />
-      <Iconify name="logos:apache-superset-icon" />
-      <Iconify name="invalid:icon" />
+      <Monicon name="mdi:home" />
+      <Monicon name="logos:active-campaign" />
+      <Monicon name="logos:apache-superset-icon" />
+      <Monicon name="invalid:icon" />
     </main>
   );
 }

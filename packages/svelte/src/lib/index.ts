@@ -1,4 +1,4 @@
-import Iconify from "./Iconify.svelte";
+import Monicon from "./Monicon.svelte";
 
-export { Iconify };
-export default Iconify;
+export { Monicon };
+export default Monicon;

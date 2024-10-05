@@ -1,8 +1,8 @@
 {
   "name": "@monicon/vue",
   "version": "0.0.122",
-  "main": "./dist/iconify.umd.js",
-  "module": "dist/iconify.mjs",
+  "main": "./dist/monicon.umd.js",
+  "module": "dist/monicon.mjs",
   "types": "./dist/index.d.ts",
   "files": [
     "dist"
@@ -12,8 +12,8 @@
   },
   "exports": {
     ".": {
-      "import": "./dist/iconify.mjs",
-      "require": "./dist/iconify.umd.js",
+      "import": "./dist/monicon.mjs",
+      "require": "./dist/monicon.umd.js",
       "types": "./dist/index.d.ts"
     }
   },

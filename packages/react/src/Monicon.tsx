@@ -1,5 +1,5 @@
 import React from "react";
-import { getIconDetails, IconifyProps } from "@monicon/icon-loader";
+import { getIconDetails, MoniconProps } from "@monicon/icon-loader";
 import { Icon } from "@monicon/core";
 
 const importIcons = () =>
@@ -15,7 +15,7 @@ const importIcons = () =>
     }
   });
 
-export const Iconify = (props: IconifyProps) => {
+export const Monicon = (props: MoniconProps) => {
   const [Component, setComponent] = React.useState<React.ReactElement | null>(
     null
   );
@@ -40,4 +40,4 @@ export const Iconify = (props: IconifyProps) => {
   return Component;
 };
 
-export default Iconify;
+export default Monicon;

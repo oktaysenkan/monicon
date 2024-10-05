@@ -1,6 +1,6 @@
 // Learn more https://docs.expo.io/guides/customizing-metro
 const { getDefaultConfig } = require("expo/metro-config");
-const { withIconify } = require("@monicon/metro");
+const { withMonicon } = require("@monicon/metro");
 const path = require("path");
 
 // Find the workspace root, this can be replaced with `find-yarn-workspace-root`
@@ -9,7 +9,7 @@ const projectRoot = __dirname;
 
 const config = getDefaultConfig(projectRoot);
 
-const configWithIconify = withIconify(config, {
+const configWithMonicon = withMonicon(config, {
   icons: [
     "mdi:home",
     "mdi:account",
@@ -23,13 +23,13 @@ const configWithIconify = withIconify(config, {
 });
 
 // 1. Watch all files within the monorepo
-configWithIconify.watchFolders = [workspaceRoot];
+configWithMonicon.watchFolders = [workspaceRoot];
 // 2. Let Metro know where to resolve packages, and in what order
-configWithIconify.resolver.nodeModulesPaths = [
+configWithMonicon.resolver.nodeModulesPaths = [
   path.resolve(projectRoot, "node_modules"),
   path.resolve(workspaceRoot, "node_modules"),
 ];
 // 3. Force Metro to resolve (sub)dependencies only from the `nodeModulesPaths`
-configWithIconify.resolver.disableHierarchicalLookup = true;
+configWithMonicon.resolver.disableHierarchicalLookup = true;
 
-module.exports = configWithIconify;
+module.exports = configWithMonicon;

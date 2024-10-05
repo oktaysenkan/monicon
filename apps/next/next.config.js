@@ -1,4 +1,4 @@
-const { IconifyPlugin } = require("@monicon/webpack");
+const { MoniconPlugin } = require("@monicon/webpack");
 
 module.exports = {
   reactStrictMode: true,
@@ -18,7 +18,7 @@ module.exports = {
     ];
 
     config.plugins.push(
-      new IconifyPlugin({
+      new MoniconPlugin({
         icons: [
           "mdi:home",
           "mdi:account",

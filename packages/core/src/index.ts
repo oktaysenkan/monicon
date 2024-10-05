@@ -7,7 +7,7 @@ import { dirname } from "path";
 
 import { toPx } from "./utils";
 
-export type IconifyOptions = {
+export type MoniconOptions = {
   icons: string[];
   outputFileName?: string;
   type?: "cjs" | "esm";
@@ -19,7 +19,7 @@ export type Icon = {
   height: number;
 };
 
-const defaultOptions: IconifyOptions = {
+const defaultOptions: MoniconOptions = {
   outputFileName: "icons",
   type: "cjs",
   icons: [],
@@ -36,7 +36,7 @@ export const getResolveExtensions = () => {
 };
 
 const getIconsFilePathEsm = (
-  fileName: IconifyOptions["outputFileName"] = "icons"
+  fileName: MoniconOptions["outputFileName"] = "icons"
 ) => {
   // @ts-ignore
   const currentFileName = fileURLToPath(import.meta.url);
@@ -46,13 +46,13 @@ const getIconsFilePathEsm = (
 };
 
 const getIconsFilePathCjs = (
-  fileName: IconifyOptions["outputFileName"] = "icons"
+  fileName: MoniconOptions["outputFileName"] = "icons"
 ) => {
   return path.resolve(__dirname, `${fileName}.js`);
 };
 
-export const getIconsFilePath = (opts?: IconifyOptions) => {
-  const options: IconifyOptions = { ...defaultOptions, ...opts };
+export const getIconsFilePath = (opts?: MoniconOptions) => {
+  const options: MoniconOptions = { ...defaultOptions, ...opts };
 
   if (options.type === "esm")
     return getIconsFilePathEsm(options.outputFileName);
@@ -65,7 +65,7 @@ export const loadIcon = async (iconName: string) => {
 
   if (!iconDetails) {
     console.warn(
-      `[Iconify] The icon "${iconName}" was not found. This icon might not exist, or the required icon collection might not be installed. You can explore available icons at https://icones.js.org and ensure the correct collection is added to your project.`
+      `[Monicon] The icon "${iconName}" was not found. This icon might not exist, or the required icon collection might not be installed. You can explore available icons at https://icones.js.org and ensure the correct collection is added to your project.`
     );
     return;
   }
@@ -74,7 +74,7 @@ export const loadIcon = async (iconName: string) => {
 
   if (!svg) {
     console.warn(
-      `[Iconify] The icon "${iconName}" was not found. This icon might not exist, or the required icon collection might not be installed. You can explore available icons at https://icones.js.org and ensure the correct collection is added to your project.`
+      `[Monicon] The icon "${iconName}" was not found. This icon might not exist, or the required icon collection might not be installed. You can explore available icons at https://icones.js.org and ensure the correct collection is added to your project.`
     );
     return;
   }
@@ -92,8 +92,8 @@ export const loadIcon = async (iconName: string) => {
   };
 };
 
-export const loadIcons = async (opts?: IconifyOptions) => {
-  const options: IconifyOptions = {
+export const loadIcons = async (opts?: MoniconOptions) => {
+  const options: MoniconOptions = {
     ...defaultOptions,
     ...opts,
   };
@@ -109,7 +109,7 @@ export const loadIcons = async (opts?: IconifyOptions) => {
 
 const writeIcons = (
   outputPath: string,
-  type: IconifyOptions["type"] = "cjs"
+  type: MoniconOptions["type"] = "cjs"
 ) => {
   const commonjsCode = `module.exports = ${JSON.stringify(iconsAsObject, null, 2)};`;
   const esmCode = `export default ${JSON.stringify(iconsAsObject, null, 2)};`;

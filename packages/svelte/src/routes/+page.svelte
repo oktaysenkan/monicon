@@ -1,12 +1,12 @@
 <script>
-  import Iconify from "../lib/Iconify.svelte";
+  import Monicon from "../lib/Monicon.svelte";
 </script>
 
 <main>
-  <Iconify name="mdi:home" size={24} />
-  <Iconify name="logos:active-campaign" />
-  <Iconify name="logos:apache-superset-icon" />
-  <Iconify name="invalid:icon" color="red" />
+  <Monicon name="mdi:home" size={24} />
+  <Monicon name="logos:active-campaign" />
+  <Monicon name="logos:apache-superset-icon" />
+  <Monicon name="invalid:icon" color="red" />
 </main>
 
 <style>

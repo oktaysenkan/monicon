@@ -1,5 +1,5 @@
 import React from "react";
-import { getIconDetails, IconifyProps } from "@monicon/icon-loader";
+import { getIconDetails, MoniconProps } from "@monicon/icon-loader";
 import { Icon } from "@monicon/core";
 
 const importIcons = () =>
@@ -57,7 +57,7 @@ const getComponent = async (props: ReturnType<typeof getIconDetails>) => {
   return webIcon(props);
 };
 
-export const Iconify = (props: IconifyProps) => {
+export const Monicon = (props: MoniconProps) => {
   const [Component, setComponent] = React.useState<React.ReactNode | null>(
     null
   );
@@ -79,4 +79,4 @@ export const Iconify = (props: IconifyProps) => {
   return Component;
 };
 
-export default Iconify;
+export default Monicon;
