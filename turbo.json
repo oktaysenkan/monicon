@@ -8,7 +8,7 @@
       "dependsOn": ["^build"]
     },
 
-    "ui#build": {
+    "react#build": {
       "dependsOn": ["core#build"]
     },
     "native#build": {
@@ -55,16 +55,16 @@
       ]
     },
     "next#build": {
-      "dependsOn": ["webpack#build", "ui#build"]
+      "dependsOn": ["webpack#build", "react#build"]
     },
     "vite-react#build": {
-      "dependsOn": ["vite#build", "ui#build"]
+      "dependsOn": ["vite#build", "react#build"]
     },
     "rspack-react#build": {
-      "dependsOn": ["rspack#build", "ui#build"]
+      "dependsOn": ["rspack#build", "react#build"]
     },
     "rollup-react#build": {
-      "dependsOn": ["rollup#build", "ui#build"]
+      "dependsOn": ["rollup#build", "react#build"]
     },
     "vite-vue#build": {
       "dependsOn": ["vite#build", "vue#build"]

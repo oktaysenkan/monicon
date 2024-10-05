@@ -1,18 +1,7 @@
-import React, { useState, useEffect, ReactNode } from "react";
+import React from "react";
+
 import { IconifyProps, RuntimeIcon, RuntimeIconifyProps } from "./types";
 import { setAttributes } from "./utils";
-
-const isReactNative = async () => {
-  try {
-    if (typeof navigator === "undefined") return true;
-
-    require("react-native");
-
-    return true;
-  } catch (error) {
-    return false;
-  }
-};
 
 const getIcon = (iconName: string) =>
   new Promise<RuntimeIcon>(async (resolve, reject) => {
@@ -46,19 +35,6 @@ const getIcon = (iconName: string) =>
     }
   });
 
-const nativeIcon = async (props: RuntimeIconifyProps) => {
-  const { SvgXml } = require("react-native-svg");
-
-  return (
-    <SvgXml
-      {...props}
-      xml={props.icon.svg}
-      width={props.icon.width}
-      height={props.icon.height}
-    />
-  );
-};
-
 const webIcon = async (props: RuntimeIconifyProps) => {
   // @ts-ignore
   const parse = await import("html-react-parser");
@@ -69,15 +45,13 @@ const webIcon = async (props: RuntimeIconifyProps) => {
 const getComponent = async (props: RuntimeIconifyProps) => {
   const formatted = setAttributes(props);
 
-  const isNative = await isReactNative();
-
-  if (isNative) return nativeIcon(formatted);
-
   return webIcon(formatted);
 };
 
 export const Iconify = (props: IconifyProps) => {
-  const [Component, setComponent] = useState<ReactNode | null>(null);
+  const [Component, setComponent] = React.useState<React.ReactNode | null>(
+    null
+  );
 
   const renderIcon = async () => {
     const icon = await getIcon(props.name);
@@ -90,7 +64,7 @@ export const Iconify = (props: IconifyProps) => {
     setComponent(component);
   };
 
-  useEffect(() => {
+  React.useEffect(() => {
     renderIcon();
   }, [props]);
 

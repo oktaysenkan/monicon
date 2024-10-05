@@ -1,6 +1,6 @@
 import "./App.css";
 
-import { Iconify } from "@oktaytest/ui";
+import { Iconify } from "@oktaytest/react";
 
 function App() {
   return (

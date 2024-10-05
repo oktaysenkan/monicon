@@ -9,7 +9,7 @@
     "dev": "rollup -c --watch"
   },
   "dependencies": {
-    "@oktaytest/ui": "*",
+    "@oktaytest/react": "*",
     "react": "^18.3.1",
     "react-dom": "^18.3.1"
   },

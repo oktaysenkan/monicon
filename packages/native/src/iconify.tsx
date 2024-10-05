@@ -1,4 +1,4 @@
-import React, { useState, useEffect, ReactNode } from "react";
+import React from "react";
 
 import { IconifyProps, RuntimeIcon, RuntimeIconifyProps } from "./types";
 import { setAttributes } from "./utils";
@@ -72,7 +72,9 @@ const getComponent = async (props: RuntimeIconifyProps) => {
 };
 
 export const Iconify = (props: IconifyProps) => {
-  const [Component, setComponent] = useState<ReactNode | null>(null);
+  const [Component, setComponent] = React.useState<React.ReactNode | null>(
+    null
+  );
 
   const renderIcon = async () => {
     const icon = await getIcon(props.name);
@@ -85,7 +87,7 @@ export const Iconify = (props: IconifyProps) => {
     setComponent(component);
   };
 
-  useEffect(() => {
+  React.useEffect(() => {
     renderIcon();
   }, [props]);
 
