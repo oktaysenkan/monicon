@@ -11,11 +11,11 @@
     "ui#build": {
       "dependsOn": ["core#build"]
     },
-    "vue#build": {
-      "dependsOn": ["core#build"]
-    },
 
     "babel-plugin#build": {
+      "dependsOn": ["core#build"]
+    },
+    "vue#build": {
       "dependsOn": ["core#build"]
     },
     "metro#build": {
@@ -34,10 +34,13 @@
       "dependsOn": ["core#build"]
     },
     "rspack#build": {
-      "dependsOn": ["core#build", "webpack#build"]
+      "dependsOn": ["webpack#build"]
     },
     "nuxt#build": {
-      "dependsOn": ["core#build", "vue#build"]
+      "dependsOn": ["vue#build"]
+    },
+    "svelte#build": {
+      "dependsOn": ["vite#build"]
     },
 
     "native#build": {
@@ -65,6 +68,9 @@
     },
     "nuxt-app#build": {
       "dependsOn": ["nuxt#build"]
+    },
+    "svelte-app#build": {
+      "dependsOn": ["svelte#build"]
     },
 
     "dev": {
