@@ -4,11 +4,10 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "build": "nuxt build",
+    "build": "yarn nuxt prepare && nuxt build",
     "dev": "nuxt dev --port 3001",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
-    "postinstall": "yarn nuxt prepare",
     "lint": "eslint ."
   },
   "dependencies": {
