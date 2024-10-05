@@ -7,5 +7,13 @@
   "access": "restricted",
   "baseBranch": "main",
   "updateInternalDependencies": "patch",
-  "ignore": []
+  "ignore": [
+    "@oktaytest/native",
+    "@oktaytest/next",
+    "@oktaytest/nuxt-app",
+    "@oktaytest/rollup-react",
+    "@oktaytest/rspack-react",
+    "@oktaytest/vite-react",
+    "@oktaytest/vite-vue"
+  ]
 }
