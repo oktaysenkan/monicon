@@ -37,7 +37,7 @@
       "dependsOn": ["core#build", "webpack#build"]
     },
     "nuxt#build": {
-      "dependsOn": ["core#build"]
+      "dependsOn": ["core#build", "vue#build"]
     },
 
     "native#build": {
