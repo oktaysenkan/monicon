@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import { parseSync, stringify, INode } from "svgson";
+import { defineProps, computed } from "vue";
+import { parseSync, stringify } from "svgson";
 // @ts-ignore
 import icons from "oktay";
 // @ts-ignore
 import { fallbackIcon } from "@oktaytest/core/constants";
-import { defineProps, computed } from "vue";
 
 export type IconifyProps = {
   name: string;

@@ -9,8 +9,6 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "svg-parser": "^2.0.4",
-    "svgson": "^5.3.1",
     "vue": "^3.5.10",
     "@oktaytest/vue": "*"
   },
