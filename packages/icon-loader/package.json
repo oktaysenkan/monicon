@@ -1,24 +1,25 @@
 {
-  "name": "@oktaytest/react",
+  "name": "@oktaytest/icon-loader",
   "version": "0.0.119",
   "main": "./dist/index.js",
-  "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
   "files": [
     "dist"
   ],
-  "publishConfig": {
-    "access": "public"
-  },
   "exports": {
     ".": {
       "import": "./dist/index.mjs",
-      "require": "./dist/index.js"
+      "require": "./dist/index.js",
+      "types": "./dist/index.d.ts"
     },
-    "./iconify": {
-      "import": "./dist/iconify.mjs",
-      "require": "./dist/iconify.js"
+    "./constants": {
+      "import": "./dist/constants.mjs",
+      "require": "./dist/constants.js",
+      "types": "./dist/constants.d.mts"
     }
+  },
+  "publishConfig": {
+    "access": "public"
   },
   "scripts": {
     "build": "tsup",
@@ -28,15 +29,11 @@
   },
   "devDependencies": {
     "@oktaytest/typescript-config": "*",
-    "@types/react": "^18.2.46",
+    "@oktaytest/core": "*",
     "tsup": "^8.0.1",
     "typescript": "^5.3.3"
   },
   "dependencies": {
-    "@oktaytest/core": "*",
-    "@oktaytest/icon-loader": "*"
-  },
-  "peerDependencies": {
-    "react": ">=18.2.0"
+    "svgson": "^5.3.1"
   }
 }

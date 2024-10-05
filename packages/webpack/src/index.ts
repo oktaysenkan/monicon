@@ -8,6 +8,8 @@ import { Compiler } from "webpack";
 
 const pluginName = "webpack-iconify";
 
+let iconsLoaded = false;
+
 export class IconifyPlugin {
   name = pluginName;
 
@@ -20,10 +22,18 @@ export class IconifyPlugin {
   async apply(compiler: Compiler) {
     const alias = getResolveAlias();
 
-    compiler.hooks.beforeRun.tapAsync(this.name, async (compiler, callback) => {
-      await loadIcons(this.options);
-      callback();
-    });
+    compiler.hooks.beforeCompile.tapAsync(
+      this.name,
+      async (params, callback) => {
+        if (!iconsLoaded) {
+          console.log("beforeCompile");
+          await loadIcons(this.options);
+          iconsLoaded = true;
+        }
+
+        callback();
+      }
+    );
 
     compiler.options.resolve = {
       ...compiler.options.resolve,

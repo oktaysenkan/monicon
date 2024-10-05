@@ -8,29 +8,17 @@
       "dependsOn": ["^build"]
     },
 
-    "react#build": {
+    "icon-loader#build": {
       "dependsOn": ["core#build"]
     },
-    "native#build": {
-      "dependsOn": ["core#build"]
-    },
-    "vue#build": {
-      "dependsOn": ["core#build"]
-    },
+
     "vite#build": {
       "dependsOn": ["core#build"]
     },
-    "nuxt#build": {
-      "dependsOn": ["vue#build"]
-    },
-    "svelte#build": {
-      "dependsOn": ["vite#build"]
-    },
-
-    "babel-plugin#build": {
+    "metro#build": {
       "dependsOn": ["core#build"]
     },
-    "metro#build": {
+    "webpack#build": {
       "dependsOn": ["core#build"]
     },
     "rollup#build": {
@@ -39,11 +27,27 @@
     "esbuild#build": {
       "dependsOn": ["core#build"]
     },
-    "webpack#build": {
-      "dependsOn": ["core#build"]
-    },
     "rspack#build": {
       "dependsOn": ["webpack#build"]
+    },
+    "babel-plugin#build": {
+      "dependsOn": ["core#build"]
+    },
+
+    "react#build": {
+      "dependsOn": ["core#build", "icon-loader#build"]
+    },
+    "native#build": {
+      "dependsOn": ["core#build", "icon-loader#build"]
+    },
+    "vue#build": {
+      "dependsOn": ["core#build", "icon-loader#build"]
+    },
+    "nuxt#build": {
+      "dependsOn": ["vue#build"]
+    },
+    "svelte#build": {
+      "dependsOn": ["vite#build", "icon-loader#build"]
     },
 
     "react-native-app#build": {

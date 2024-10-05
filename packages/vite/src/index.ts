@@ -20,5 +20,8 @@ export const IconifyPlugin = (options: IconifyOptions): PluginOption[] => [
     async buildStart() {
       await loadIcons({ type: "esm", ...options });
     },
+    load(id) {
+      return null;
+    },
   },
 ];

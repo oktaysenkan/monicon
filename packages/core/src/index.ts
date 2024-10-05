@@ -13,7 +13,7 @@ export type IconifyOptions = {
   type?: "cjs" | "esm";
 };
 
-type Icon = {
+export type Icon = {
   svg: string;
   width: number;
   height: number;

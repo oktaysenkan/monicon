@@ -7,6 +7,7 @@ function App() {
   return (
     <div className="App">
       <Iconify name="mdi:home" />
+      <Iconify name="invalid:icon" />
     </div>
   );
 }
