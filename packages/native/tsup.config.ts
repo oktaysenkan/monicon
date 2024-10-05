@@ -1,7 +1,7 @@
 import { defineConfig, Options } from "tsup";
 
 export default defineConfig((options: Options) => ({
-  entry: ["src/index.ts", "src/Iconify.tsx"],
+  entry: ["src/index.tsx", "src/Iconify.tsx"],
   banner: {
     js: "'use client'",
   },
