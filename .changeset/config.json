@@ -8,7 +8,7 @@
   "baseBranch": "main",
   "updateInternalDependencies": "patch",
   "ignore": [
-    "@oktaytest/native",
+    "@oktaytest/react-native-app",
     "@oktaytest/next",
     "@oktaytest/nuxt-app",
     "@oktaytest/rollup-react",

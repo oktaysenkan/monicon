@@ -1,6 +1,6 @@
 import React from "react";
 import { StyleSheet, View } from "react-native";
-import { Iconify } from "@oktaytest/ui";
+import { Iconify } from "@oktaytest/native";
 
 export default function App() {
   return (

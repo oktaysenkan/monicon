@@ -15,7 +15,7 @@ module.exports = async function (env, argv) {
         "logos:active-campaign",
         "logos:apache-superset-icon",
       ],
-      outputFileName: "native-web",
+      outputFileName: "react-native-app",
     })
   );
 

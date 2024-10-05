@@ -1,0 +1,45 @@
+{
+  "name": "@oktaytest/native",
+  "version": "0.0.119",
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "exports": {
+    ".": {
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js"
+    },
+    "./iconify": {
+      "import": "./dist/iconify.mjs",
+      "require": "./dist/iconify.js"
+    }
+  },
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "clean": "rm -rf dist",
+    "prepack": "yarn build"
+  },
+  "devDependencies": {
+    "@oktaytest/typescript-config": "*",
+    "@types/react": "^18.2.46",
+    "@types/react-native": "^0.73.0",
+    "tsup": "^8.0.1",
+    "typescript": "^5.3.3"
+  },
+  "dependencies": {
+    "html-react-parser": "^5.1.16",
+    "@oktaytest/core": "*"
+  },
+  "peerDependencies": {
+    "react": ">=18.2.0",
+    "react-native": ">=0.63.0",
+    "react-native-svg": ">=13.2.0"
+  }
+}

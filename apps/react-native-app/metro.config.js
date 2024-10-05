@@ -19,7 +19,7 @@ const configWithIconify = withIconify(config, {
     "logos:active-campaign",
     "logos:apache-superset-icon",
   ],
-  outputFileName: "native",
+  outputFileName: "react-native-app",
 });
 
 // 1. Watch all files within the monorepo

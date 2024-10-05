@@ -11,17 +11,26 @@
     "ui#build": {
       "dependsOn": ["core#build"]
     },
-
-    "babel-plugin#build": {
+    "native#build": {
       "dependsOn": ["core#build"]
     },
     "vue#build": {
       "dependsOn": ["core#build"]
     },
-    "metro#build": {
+    "vite#build": {
       "dependsOn": ["core#build"]
     },
-    "vite#build": {
+    "nuxt#build": {
+      "dependsOn": ["vue#build"]
+    },
+    "svelte#build": {
+      "dependsOn": ["vite#build"]
+    },
+
+    "babel-plugin#build": {
+      "dependsOn": ["core#build"]
+    },
+    "metro#build": {
       "dependsOn": ["core#build"]
     },
     "rollup#build": {
@@ -36,19 +45,13 @@
     "rspack#build": {
       "dependsOn": ["webpack#build"]
     },
-    "nuxt#build": {
-      "dependsOn": ["vue#build"]
-    },
-    "svelte#build": {
-      "dependsOn": ["vite#build"]
-    },
 
-    "native#build": {
+    "react-native-app#build": {
       "dependsOn": [
         "babel-plugin#build",
         "metro#build",
         "webpack#build",
-        "ui#build"
+        "native#build"
       ]
     },
     "next#build": {
