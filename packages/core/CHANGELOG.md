@@ -1,5 +1,11 @@
 # @oktaytest/core
 
+## 0.0.120
+
+### Patch Changes
+
+- implement icon-loader package
+
 ## 0.0.119
 
 ### Patch Changes

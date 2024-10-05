@@ -1,5 +1,13 @@
 # @oktaytest/esbuild
 
+## 0.0.120
+
+### Patch Changes
+
+- implement icon-loader package
+- Updated dependencies
+  - @oktaytest/core@0.0.120
+
 ## 0.0.119
 
 ### Patch Changes

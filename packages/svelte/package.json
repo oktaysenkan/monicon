@@ -1,6 +1,6 @@
 {
   "name": "@oktaytest/svelte",
-  "version": "0.0.119",
+  "version": "0.0.120",
   "scripts": {
     "dev": "vite dev",
     "build": "vite build && npm run package",
