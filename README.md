@@ -3,6 +3,7 @@
 Monicon is an easy-to-use icon library that makes adding icons to your projects simple. It works with popular frameworks like React, React Native, Next.js, Vue, Nuxt, Svelte and more. It's provides 200,000+ icons from popular sets like Material Design, Feather, and Font Awesome.
 
 **📕 [Documentation](https://monicon-docs.vercel.app)**
+
 **🔎 [Explore Icons](https://icones.js.org/)**
 
 ## Why Use Monicon?
