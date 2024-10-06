@@ -1,5 +1,13 @@
 # @monicon/babel-plugin
 
+## 0.0.124
+
+### Patch Changes
+
+- add docs website
+- Updated dependencies
+  - @monicon/core@0.0.124
+
 ## 0.0.123
 
 ### Patch Changes

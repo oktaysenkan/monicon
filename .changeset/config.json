@@ -15,6 +15,7 @@
     "@monicon/rspack-react",
     "@monicon/vite-react",
     "@monicon/vite-vue",
-    "@monicon/svelte-app"
+    "@monicon/svelte-app",
+    "@monicon/docs"
   ]
 }
