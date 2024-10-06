@@ -1,5 +1,11 @@
 # @monicon/core
 
+## 0.0.125
+
+### Patch Changes
+
+- add placeholder variable back
+
 ## 0.0.124
 
 ### Patch Changes

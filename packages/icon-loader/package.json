@@ -1,6 +1,6 @@
 {
   "name": "@monicon/icon-loader",
-  "version": "0.0.124",
+  "version": "0.0.125",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "files": [

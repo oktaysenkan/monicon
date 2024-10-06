@@ -1,5 +1,13 @@
 # @monicon/rollup
 
+## 0.0.125
+
+### Patch Changes
+
+- add placeholder variable back
+- Updated dependencies
+  - @monicon/vite@0.0.125
+
 ## 0.0.124
 
 ### Patch Changes

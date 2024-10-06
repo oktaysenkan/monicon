@@ -1,5 +1,13 @@
 # @monicon/nuxt
 
+## 0.0.125
+
+### Patch Changes
+
+- add placeholder variable back
+- Updated dependencies
+  - @monicon/core@0.0.125
+
 ## 0.0.124
 
 ### Patch Changes
