@@ -5,4 +5,5 @@ export default {
   vue: "Vue",
   nuxt: "Nuxt",
   svelte: "Svelte",
+  "react-rollup": "React (Rollup)",
 };
