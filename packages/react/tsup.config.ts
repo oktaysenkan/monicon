@@ -7,7 +7,7 @@ export default defineConfig((options: Options) => ({
   },
   clean: true,
   format: ["cjs", "esm"],
-  external: ["react", "monicon-runtime", "react-native"],
+  external: ["react", "icon-runtime", "react-native"],
   dts: true,
   ...options,
 }));

@@ -28,7 +28,7 @@ const defaultOptions: MoniconOptions = {
 const iconsAsObject: Record<string, Icon> = {};
 
 export const getResolveAlias = () => {
-  return "monicon-runtime";
+  return "icon-runtime";
 };
 
 export const getResolveExtensions = () => {
