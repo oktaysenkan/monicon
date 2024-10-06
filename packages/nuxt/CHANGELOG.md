@@ -1,5 +1,13 @@
 # @monicon/nuxt
 
+## 0.0.130
+
+### Patch Changes
+
+- add postinstall script
+- Updated dependencies
+  - @monicon/core@0.0.130
+
 ## 0.0.129
 
 ### Patch Changes
