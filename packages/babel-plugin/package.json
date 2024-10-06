@@ -1,6 +1,6 @@
 {
   "name": "@monicon/babel-plugin",
-  "version": "0.0.126",
+  "version": "0.0.127",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",

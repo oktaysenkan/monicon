@@ -1,5 +1,11 @@
 # @monicon/core
 
+## 0.0.127
+
+### Patch Changes
+
+- change placeholder package name as icon-runtime
+
 ## 0.0.126
 
 ### Patch Changes

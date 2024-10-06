@@ -1,5 +1,13 @@
 # @monicon/rollup
 
+## 0.0.127
+
+### Patch Changes
+
+- change placeholder package name as icon-runtime
+- Updated dependencies
+  - @monicon/vite@0.0.127
+
 ## 0.0.126
 
 ### Patch Changes
