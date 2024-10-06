@@ -35,7 +35,7 @@ export const Monicon = (props: MoniconProps) => {
 
   React.useEffect(() => {
     loadComponent();
-  }, []);
+  }, [props]);
 
   return Component;
 };
