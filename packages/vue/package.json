@@ -1,6 +1,6 @@
 {
   "name": "@monicon/vue",
-  "version": "0.0.130",
+  "version": "0.0.131",
   "main": "./dist/monicon.umd.js",
   "module": "dist/monicon.mjs",
   "types": "./dist/index.d.ts",

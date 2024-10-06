@@ -1,6 +1,6 @@
 {
   "name": "@monicon/svelte",
-  "version": "0.0.130",
+  "version": "0.0.131",
   "scripts": {
     "dev": "vite dev",
     "build": "vite build && npm run package",

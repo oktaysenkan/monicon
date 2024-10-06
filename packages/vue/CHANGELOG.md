@@ -1,5 +1,13 @@
 # @monicon/vue
 
+## 0.0.131
+
+### Patch Changes
+
+- update readme
+- Updated dependencies
+  - @monicon/icon-loader@0.0.131
+
 ## 0.0.130
 
 ### Patch Changes
