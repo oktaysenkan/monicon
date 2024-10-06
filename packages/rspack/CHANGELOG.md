@@ -1,5 +1,14 @@
 # @monicon/rspack
 
+## 0.0.126
+
+### Patch Changes
+
+- change placeholder package name as monicon-runtime
+- Updated dependencies
+  - @monicon/webpack@0.0.126
+  - @monicon/core@0.0.126
+
 ## 0.0.125
 
 ### Patch Changes

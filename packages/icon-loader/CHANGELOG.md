@@ -1,5 +1,11 @@
 # @monicon/icon-loader
 
+## 0.0.126
+
+### Patch Changes
+
+- change placeholder package name as monicon-runtime
+
 ## 0.0.125
 
 ### Patch Changes
