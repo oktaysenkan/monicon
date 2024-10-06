@@ -1,5 +1,14 @@
 # @monicon/rspack
 
+## 0.0.129
+
+### Patch Changes
+
+- change resolve name as @monicon/runtime
+- Updated dependencies
+  - @monicon/webpack@0.0.129
+  - @monicon/core@0.0.129
+
 ## 0.0.128
 
 ### Patch Changes

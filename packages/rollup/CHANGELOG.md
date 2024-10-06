@@ -1,5 +1,13 @@
 # @monicon/rollup
 
+## 0.0.129
+
+### Patch Changes
+
+- change resolve name as @monicon/runtime
+- Updated dependencies
+  - @monicon/vite@0.0.129
+
 ## 0.0.128
 
 ### Patch Changes
