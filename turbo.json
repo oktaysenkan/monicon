@@ -61,6 +61,9 @@
     "next#build": {
       "dependsOn": ["webpack#build", "react#build"]
     },
+    "remix#build": {
+      "dependsOn": ["vite#build", "react#build"]
+    },
     "vite-react#build": {
       "dependsOn": ["vite#build", "react#build"]
     },
