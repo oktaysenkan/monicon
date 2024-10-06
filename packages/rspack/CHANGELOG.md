@@ -1,5 +1,14 @@
 # @monicon/rspack
 
+## 0.0.128
+
+### Patch Changes
+
+- change import path
+- Updated dependencies
+  - @monicon/webpack@0.0.128
+  - @monicon/core@0.0.128
+
 ## 0.0.127
 
 ### Patch Changes

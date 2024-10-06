@@ -1,5 +1,13 @@
 # @monicon/svelte
 
+## 0.0.128
+
+### Patch Changes
+
+- change import path
+- Updated dependencies
+  - @monicon/icon-loader@0.0.128
+
 ## 0.0.127
 
 ### Patch Changes

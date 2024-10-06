@@ -1,5 +1,13 @@
 # @monicon/nuxt
 
+## 0.0.128
+
+### Patch Changes
+
+- change import path
+- Updated dependencies
+  - @monicon/core@0.0.128
+
 ## 0.0.127
 
 ### Patch Changes
