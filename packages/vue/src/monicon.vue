@@ -11,7 +11,7 @@ const importIcons = () =>
   new Promise<Record<string, Icon> | null>(async (resolve) => {
     try {
       // @ts-ignore
-      const iconsImport = await import("icon-runtime");
+      const iconsImport = await import("monicon");
       const icons = iconsImport.default ?? iconsImport;
 
       return resolve(icons);
