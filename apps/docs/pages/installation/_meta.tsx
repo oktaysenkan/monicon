@@ -6,4 +6,5 @@ export default {
   nuxt: "Nuxt",
   svelte: "Svelte",
   "react-rollup": "React (Rollup)",
+  "react-rspack": "React (Rspack)",
 };
