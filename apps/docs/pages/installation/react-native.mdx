@@ -30,7 +30,7 @@ npm i -D @iconify-json/mdi @iconify-json/feather
 
 Now that the dependencies are installed, you’ll need to configure Metro to use Monicon.
 
-```tsx filename="metro.config.js"
+```js filename="metro.config.js"
 const { getDefaultConfig } = require("expo/metro-config");
 const { withMonicon } = require("@monicon/metro");
 
@@ -57,7 +57,7 @@ For a complete list of available icon sets, refer to the [Icones](https://icones
 
 Now you’ll need to configure Babel.
 
-```tsx filename="vite.config.ts"
+```ts filename="vite.config.ts"
 module.exports = function (api) {
   api.cache(true);
   return {
@@ -71,7 +71,7 @@ module.exports = function (api) {
 
 If you want to use Monicon with React Native Web, you’ll need to configure Webpack.
 
-```tsx filename="webpack.config.js"
+```js filename="webpack.config.js"
 const createExpoWebpackConfigAsync = require("@expo/webpack-config");
 const { MoniconPlugin } = require("@monicon/webpack");
 

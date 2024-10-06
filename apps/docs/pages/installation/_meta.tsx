@@ -4,4 +4,5 @@ export default {
   "react-native": "React Native",
   vue: "Vue",
   nuxt: "Nuxt",
+  svelte: "Svelte",
 };
