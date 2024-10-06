@@ -1,0 +1,38 @@
+{
+  "name": "@monicon/vue",
+  "version": "0.0.130",
+  "main": "./dist/monicon.umd.js",
+  "module": "dist/monicon.mjs",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "exports": {
+    ".": {
+      "import": "./dist/monicon.mjs",
+      "require": "./dist/monicon.umd.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "scripts": {
+    "build": "vite build",
+    "clean": "rm -rf dist"
+  },
+  "devDependencies": {
+    "@monicon/typescript-config": "*",
+    "@vitejs/plugin-vue": "^5.1.4",
+    "rollup-plugin-typescript2": "^0.36.0",
+    "typescript": "^5.3.3",
+    "vite": "^5.4.8",
+    "vite-plugin-dts": "^4.2.3"
+  },
+  "dependencies": {
+    "@monicon/icon-loader": "*"
+  },
+  "peerDependencies": {
+    "vue": "^2.6.14 || ^3.0.0"
+  }
+}

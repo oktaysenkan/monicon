@@ -1,0 +1,30 @@
+{
+  "name": "@monicon/rollup-react",
+  "version": "0.0.0",
+  "private": true,
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "build": "rollup -c",
+    "dev": "rollup -c --watch"
+  },
+  "dependencies": {
+    "@monicon/react": "*",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "@babel/preset-env": "^7.25.7",
+    "@babel/preset-react": "^7.25.7",
+    "@monicon/rollup": "*",
+    "@rollup/plugin-babel": "^6.0.4",
+    "@rollup/plugin-commonjs": "^28.0.0",
+    "@rollup/plugin-node-resolve": "^15.3.0",
+    "@rollup/plugin-replace": "^6.0.1",
+    "rollup-plugin-serve": "^1.1.1",
+    "babel-core": "^6.26.3",
+    "babel-loader": "^9.2.1",
+    "rollup": "^4.24.0",
+    "typescript": "^5.6.2"
+  }
+}

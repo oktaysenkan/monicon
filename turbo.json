@@ -1,0 +1,92 @@
+{
+  "$schema": "https://turbo.build/schema.json",
+  "ui": "tui",
+  "tasks": {
+    "build": {
+      "inputs": ["$TURBO_DEFAULT$", ".env*"],
+      "outputs": ["dist/**", ".next/**", "!.next/cache/**"],
+      "dependsOn": ["^build"]
+    },
+
+    "icon-loader#build": {
+      "dependsOn": ["core#build"]
+    },
+
+    "vite#build": {
+      "dependsOn": ["core#build"]
+    },
+    "metro#build": {
+      "dependsOn": ["core#build"]
+    },
+    "webpack#build": {
+      "dependsOn": ["core#build"]
+    },
+    "rollup#build": {
+      "dependsOn": ["vite#build"]
+    },
+    "esbuild#build": {
+      "dependsOn": ["core#build"]
+    },
+    "rspack#build": {
+      "dependsOn": ["webpack#build"]
+    },
+    "babel-plugin#build": {
+      "dependsOn": ["core#build"]
+    },
+
+    "react#build": {
+      "dependsOn": ["core#build", "icon-loader#build"]
+    },
+    "native#build": {
+      "dependsOn": ["core#build", "icon-loader#build"]
+    },
+    "vue#build": {
+      "dependsOn": ["core#build", "icon-loader#build"]
+    },
+    "nuxt#build": {
+      "dependsOn": ["vue#build"]
+    },
+    "svelte#build": {
+      "dependsOn": ["vite#build", "icon-loader#build"]
+    },
+
+    "react-native-app#build": {
+      "dependsOn": [
+        "babel-plugin#build",
+        "metro#build",
+        "webpack#build",
+        "native#build"
+      ]
+    },
+    "next#build": {
+      "dependsOn": ["webpack#build", "react#build"]
+    },
+    "vite-react#build": {
+      "dependsOn": ["vite#build", "react#build"]
+    },
+    "rspack-react#build": {
+      "dependsOn": ["rspack#build", "react#build"]
+    },
+    "rollup-react#build": {
+      "dependsOn": ["rollup#build", "react#build"]
+    },
+    "vite-vue#build": {
+      "dependsOn": ["vite#build", "vue#build"]
+    },
+    "nuxt-app#build": {
+      "dependsOn": ["nuxt#build", "vue#build"]
+    },
+    "svelte-app#build": {
+      "dependsOn": ["svelte#build"]
+    },
+
+    "dev": {
+      "cache": false,
+      "persistent": true
+    },
+    "lint": {},
+    "clean": {
+      "cache": false
+    }
+  }
+}

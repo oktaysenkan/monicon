@@ -1,0 +1,75 @@
+import { Steps, Callout } from "nextra/components";
+
+# Install Monicon with React (Rollup)
+
+Setting up Monicon with React and Rollup is a straightforward process. This guide will walk you through the installation and configuration steps to get started with Monicon in your React project.
+
+<Steps>
+
+## Install
+
+To get started, you’ll need to install the necessary dependencies for Monicon. In your project directory, run the following command to install the dependencies.
+
+```sh npm2yarn
+npm i @monicon/react @monicon/rollup
+```
+
+Now you should install the development dependency `@iconify/json` for the icon sets. This package provides a comprehensive collection of icons that can be easily integrated into your project.
+
+```sh npm2yarn
+npm i -D @iconify/json
+
+# or specific icon sets
+npm i -D @iconify-json/mdi @iconify-json/feather
+```
+
+## Configure Rollup
+
+Now that the dependencies are installed, you’ll need to configure Rollup to use Monicon.
+
+```ts filename="rollup.config.mjs"
+import monicon from "@monicon/rollup";
+
+export default {
+  plugins: [
+    monicon({
+      icons: [
+        "mdi:home",
+        "feather:activity",
+        "logos:active-campaign",
+      ],
+    }),
+  ],
+};
+```
+
+<Callout>
+The `icons` array in the `monicon` plugin configuration specifies the icon sets you want to use in your project. You can add more icon sets as needed.
+
+For a complete list of available icon sets, refer to the [Icones](https://icones.js.org/) website.
+</Callout>
+
+## Usage
+
+You can now use Monicon in your React components. Here’s an example of how to use Monicon in a React component.
+
+```tsx filename="src/App.tsx"
+import { Monicon } from "@monicon/react";
+
+function App() {
+  return (
+    <main>
+      <Monicon name="mdi:home" />
+      <Monicon name="logos:active-campaign" size={30} />
+      <Monicon name="feather:activity" color="red" />
+    </main>
+  );
+}
+
+export default App;
+```
+
+## Next Steps
+
+You’ve successfully set up Monicon with React and Rollup! You can now explore more icon sets and customize your usage further.
+</Steps>

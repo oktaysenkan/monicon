@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json.schemastore.org/tsconfig",
+  "display": "Vue Library",
+  "extends": "./base.json",
+  "compilerOptions": {
+    "lib": ["ES2015", "dom"],
+    "module": "ESNext",
+    "target": "es6",
+    "jsx": "preserve",
+    "baseUrl": ".",
+  },
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.d.ts",
+    "src/**/*.tsx",
+    "src/**/*.vue"
+  ],
+}
