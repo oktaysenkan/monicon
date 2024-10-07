@@ -1,19 +1,9 @@
 import React from "react";
-import { getIconDetails, MoniconProps } from "@monicon/icon-loader";
-import { Icon } from "@monicon/core";
-
-const importIcons = () =>
-  new Promise<Record<string, Icon> | null>(async (resolve) => {
-    try {
-      // @ts-ignore
-      const iconsImport = await import("@monicon/runtime");
-      const icons = iconsImport.default ?? iconsImport;
-
-      return resolve(icons);
-    } catch (error) {
-      return resolve(null);
-    }
-  });
+import {
+  getIconDetails,
+  IconDetails,
+  MoniconProps,
+} from "@monicon/icon-loader";
 
 const isReactNative = async () => {
   try {
@@ -27,7 +17,7 @@ const isReactNative = async () => {
   }
 };
 
-const nativeIcon = async (details: ReturnType<typeof getIconDetails>) => {
+const nativeIcon = async (details: IconDetails) => {
   const { SvgXml } = require("react-native-svg");
 
   return (
@@ -40,7 +30,7 @@ const nativeIcon = async (details: ReturnType<typeof getIconDetails>) => {
   );
 };
 
-const webIcon = async (details: ReturnType<typeof getIconDetails>) => {
+const webIcon = async (details: IconDetails) => {
   return (
     <svg
       {...details.attributes}
@@ -49,7 +39,7 @@ const webIcon = async (details: ReturnType<typeof getIconDetails>) => {
   );
 };
 
-const getComponent = async (details: ReturnType<typeof getIconDetails>) => {
+const getComponent = async (details: IconDetails) => {
   const isNative = await isReactNative();
 
   if (isNative) return nativeIcon(details);
@@ -63,12 +53,11 @@ export const Monicon = React.memo((props: MoniconProps) => {
   );
 
   const renderIcon = React.useCallback(async () => {
-    const icons = await importIcons();
-
-    const details = getIconDetails(
-      { name: props.name, size: props.size, color: props.color },
-      icons ?? {}
-    );
+    const details = await getIconDetails({
+      name: props.name,
+      size: props.size,
+      color: props.color,
+    });
 
     const component = await getComponent(details);
 

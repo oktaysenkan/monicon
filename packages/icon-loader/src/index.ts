@@ -7,9 +7,10 @@ export type MoniconProps = {
   color?: string;
 };
 
-export type GetIconDetailsOptions = {
-  icon: Icon;
-  props: MoniconProps;
+export type IconDetails = {
+  innerHtml: string;
+  attributes: Record<string, string>;
+  svg: string;
 };
 
 export const fallbackIcon: Icon = {
@@ -18,7 +19,22 @@ export const fallbackIcon: Icon = {
   height: 32,
 };
 
-const loadIcon = (iconName: string, icons: Record<string, Icon>) => {
+const importIcons = async () =>
+  new Promise<Record<string, Icon> | null>(async (resolve) => {
+    try {
+      // @ts-ignore
+      const iconsImport = await import("@monicon/runtime");
+      const icons = iconsImport.default ?? iconsImport;
+
+      return resolve(icons);
+    } catch (error) {
+      return resolve(null);
+    }
+  });
+
+const loadIcon = async (iconName: string) => {
+  const icons = await importIcons();
+
   const icon = icons?.[iconName];
 
   if (icon) return icon;
@@ -30,11 +46,8 @@ const loadIcon = (iconName: string, icons: Record<string, Icon>) => {
   return fallbackIcon;
 };
 
-export const getIconDetails = (
-  props: MoniconProps,
-  icons: Record<string, Icon>
-) => {
-  const icon = loadIcon(props.name, icons);
+export const getIconDetails = async (props: MoniconProps) => {
+  const icon = await loadIcon(props.name);
 
   const parsed = parseSync(icon.svg);
 
@@ -58,11 +71,11 @@ export const getIconDetails = (
 
   parsed.attributes = attributes;
 
-  icon.svg = stringify(parsed);
+  const svg = stringify(parsed);
 
   return {
     innerHtml,
     attributes,
-    svg: icon.svg,
-  };
+    svg,
+  } satisfies IconDetails;
 };
