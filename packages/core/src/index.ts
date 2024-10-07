@@ -25,8 +25,6 @@ const defaultOptions: MoniconOptions = {
   icons: [],
 };
 
-const iconsAsObject: Record<string, Icon> = {};
-
 export const getResolveAlias = () => {
   return "@monicon/runtime";
 };
@@ -85,11 +83,11 @@ export const loadIcon = async (iconName: string) => {
   const width = toPx(widthMatch?.[1] ?? "1em");
   const height = toPx(heightMatch?.[1] ?? "1em");
 
-  iconsAsObject[iconName] = {
+  return {
     svg: svg,
     width: width,
     height: height,
-  };
+  } satisfies Icon;
 };
 
 export const loadIcons = async (opts?: MoniconOptions) => {
@@ -98,21 +96,28 @@ export const loadIcons = async (opts?: MoniconOptions) => {
     ...opts,
   };
 
-  for (const icon of options.icons) {
-    await loadIcon(icon);
+  const loadedIcons: Record<string, Icon> = {};
+
+  for (const iconName of options.icons) {
+    const icon = await loadIcon(iconName);
+
+    if (!icon) continue;
+
+    loadedIcons[iconName] = icon;
   }
 
   const outputPath = getIconsFilePath(options);
 
-  writeIcons(outputPath, options.type);
+  writeIcons(loadedIcons, outputPath, options.type);
 };
 
 const writeIcons = (
+  icons: Record<string, Icon>,
   outputPath: string,
   type: MoniconOptions["type"] = "cjs"
 ) => {
-  const commonjsCode = `module.exports = ${JSON.stringify(iconsAsObject, null, 2)};`;
-  const esmCode = `export default ${JSON.stringify(iconsAsObject, null, 2)};`;
+  const commonjsCode = `module.exports = ${JSON.stringify(icons, null, 2)};`;
+  const esmCode = `export default ${JSON.stringify(icons, null, 2)};`;
 
   fs.writeFileSync(outputPath, type === "cjs" ? commonjsCode : esmCode);
 };
