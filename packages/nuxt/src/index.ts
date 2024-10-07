@@ -1,10 +1,7 @@
 import { addComponent, defineNuxtModule } from "@nuxt/kit";
-import {
-  getIconsFilePath,
-  getResolveAlias,
-  loadIcons,
-  MoniconOptions,
-} from "@monicon/core";
+import { MoniconOptions } from "@monicon/core";
+import moniconVitePlugin from "@monicon/vite";
+import MoniconWebpackPlugin from "@monicon/webpack";
 
 const defaultOptions: MoniconOptions = {
   icons: [],
@@ -26,17 +23,16 @@ export default defineNuxtModule<MoniconOptions>({
       pascalName: "Monicon",
     });
 
-    const alias = getResolveAlias();
+    nuxt.hook("webpack:config", async (configs: any[]) => {
+      configs.forEach((config) => {
+        config.plugins = config.plugins || [];
+        config.plugins.unshift(new MoniconWebpackPlugin(options));
+      });
+    });
 
-    nuxt.options.alias = {
-      ...nuxt.options.alias,
-      [alias]: getIconsFilePath(options),
-    };
-
-    nuxt.addHooks({
-      "app:resolve": async () => {
-        await loadIcons(options);
-      },
+    nuxt.hook("vite:extend", async (vite: any) => {
+      vite.config.plugins = vite.config.plugins || [];
+      vite.config.plugins.push(moniconVitePlugin(options));
     });
   },
 });

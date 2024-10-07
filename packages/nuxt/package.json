@@ -28,6 +28,8 @@
   },
   "dependencies": {
     "@nuxt/kit": "^3.11.2",
-    "@monicon/core": "0.0.137"
+    "@monicon/core": "0.0.137",
+    "@monicon/webpack": "0.0.137",
+    "@monicon/vite": "0.0.137"
   }
 }

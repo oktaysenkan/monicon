@@ -10,6 +10,7 @@ useHead({
     <Monicon name="mdi:home" :size="24" />
     <Monicon name="logos:active-campaign" />
     <Monicon name="logos:apache-superset-icon" />
+    <Monicon name="lucide:badge-check" :size="24" :stroke-width="3" />
     <Monicon name="invalid:icon" />
   </main>
 </template>
