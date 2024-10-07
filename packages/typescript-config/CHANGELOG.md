@@ -1,5 +1,11 @@
 # @monicon/typescript-config
 
+## 0.0.140
+
+### Patch Changes
+
+- remove unused deps
+
 ## 0.0.139
 
 ### Patch Changes

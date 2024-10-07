@@ -1,5 +1,13 @@
 # @monicon/vue
 
+## 0.0.140
+
+### Patch Changes
+
+- remove unused deps
+- Updated dependencies
+  - @monicon/icon-loader@0.0.140
+
 ## 0.0.139
 
 ### Patch Changes

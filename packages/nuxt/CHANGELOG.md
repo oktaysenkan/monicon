@@ -1,5 +1,15 @@
 # @monicon/nuxt
 
+## 0.0.140
+
+### Patch Changes
+
+- remove unused deps
+- Updated dependencies
+  - @monicon/core@0.0.140
+  - @monicon/vite@0.0.140
+  - @monicon/webpack@0.0.140
+
 ## 0.0.139
 
 ### Patch Changes
