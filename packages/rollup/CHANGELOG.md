@@ -1,5 +1,13 @@
 # @monicon/rollup
 
+## 0.0.136
+
+### Patch Changes
+
+- remove importIcons functions
+- Updated dependencies
+  - @monicon/vite@0.0.136
+
 ## 0.0.135
 
 ### Patch Changes

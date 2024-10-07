@@ -1,6 +1,6 @@
 {
   "name": "@monicon/react",
-  "version": "0.0.135",
+  "version": "0.0.136",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
@@ -26,14 +26,14 @@
     "clean": "rm -rf dist"
   },
   "devDependencies": {
-    "@monicon/typescript-config": "0.0.135",
+    "@monicon/typescript-config": "0.0.136",
     "@types/react": "^18.2.46",
     "tsup": "^8.0.1",
     "typescript": "^5.3.3"
   },
   "dependencies": {
-    "@monicon/core": "0.0.135",
-    "@monicon/icon-loader": "0.0.135"
+    "@monicon/core": "0.0.136",
+    "@monicon/icon-loader": "0.0.136"
   },
   "peerDependencies": {
     "react": ">=18.2.0"

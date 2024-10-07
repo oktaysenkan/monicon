@@ -1,5 +1,11 @@
 # @monicon/typescript-config
 
+## 0.0.136
+
+### Patch Changes
+
+- remove importIcons functions
+
 ## 0.0.135
 
 ### Patch Changes

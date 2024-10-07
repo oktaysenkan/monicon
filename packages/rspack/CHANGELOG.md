@@ -1,5 +1,14 @@
 # @monicon/rspack
 
+## 0.0.136
+
+### Patch Changes
+
+- remove importIcons functions
+- Updated dependencies
+  - @monicon/core@0.0.136
+  - @monicon/webpack@0.0.136
+
 ## 0.0.135
 
 ### Patch Changes

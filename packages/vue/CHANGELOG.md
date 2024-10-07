@@ -1,5 +1,13 @@
 # @monicon/vue
 
+## 0.0.136
+
+### Patch Changes
+
+- remove importIcons functions
+- Updated dependencies
+  - @monicon/icon-loader@0.0.136
+
 ## 0.0.135
 
 ### Patch Changes

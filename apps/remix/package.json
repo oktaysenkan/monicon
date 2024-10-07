@@ -12,8 +12,8 @@
     "typecheck": "tsc"
   },
   "dependencies": {
-    "@monicon/react": "^0.0.135",
-    "@monicon/vite": "^0.0.135",
+    "@monicon/react": "^0.0.136",
+    "@monicon/vite": "^0.0.136",
     "@remix-run/node": "^2.12.1",
     "@remix-run/react": "^2.12.1",
     "@remix-run/serve": "^2.12.1",
