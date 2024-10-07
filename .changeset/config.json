@@ -10,6 +10,7 @@
   "ignore": [
     "@monicon/react-native-app",
     "@monicon/next",
+    "@monicon/remix",
     "@monicon/nuxt-app",
     "@monicon/rollup-react",
     "@monicon/rspack-react",
