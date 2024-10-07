@@ -1,6 +1,4 @@
-export type { MoniconProps } from "@monicon/icon-loader";
+import Monicon, { MoniconProps } from "./Monicon";
 
-import Monicon from "./Monicon";
-
-export { Monicon };
+export { Monicon, type MoniconProps };
 export default Monicon;

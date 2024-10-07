@@ -1,6 +1,16 @@
 import React from "react";
-import { getIconDetails, MoniconProps } from "@monicon/icon-loader";
+import {
+  getIconDetails,
+  MoniconProps as LoaderProps,
+} from "@monicon/icon-loader";
 import { Icon } from "@monicon/core";
+import type { XmlProps } from "react-native-svg";
+
+export interface MoniconProps extends LoaderProps, XmlProps {
+  name: LoaderProps["name"];
+  color?: LoaderProps["color"];
+  webProps?: React.SVGProps<SVGSVGElement>;
+}
 
 const importIcons = () =>
   new Promise<Record<string, Icon> | null>(async (resolve) => {
@@ -27,37 +37,48 @@ const isReactNative = async () => {
   }
 };
 
-const nativeIcon = async (props: ReturnType<typeof getIconDetails>) => {
+const nativeIcon = async (
+  details: ReturnType<typeof getIconDetails>,
+  props: Partial<MoniconProps>
+) => {
   const { SvgXml } = require("react-native-svg");
 
   return (
     <SvgXml
+      {...details}
+      xml={details.svg}
+      width={details.attributes.width}
+      height={details.attributes.height}
       {...props}
-      xml={props.svg}
-      width={props.attributes.width}
-      height={props.attributes.height}
     />
   );
 };
 
-const webIcon = async (props: ReturnType<typeof getIconDetails>) => {
+const webIcon = async (
+  details: ReturnType<typeof getIconDetails>,
+  props: Partial<MoniconProps>
+) => {
   return (
     <svg
-      {...props.attributes}
-      dangerouslySetInnerHTML={{ __html: props.innerHtml }}
+      {...details.attributes}
+      {...props.webProps}
+      dangerouslySetInnerHTML={{ __html: details.innerHtml }}
     />
   );
 };
 
-const getComponent = async (props: ReturnType<typeof getIconDetails>) => {
+const getComponent = async (
+  details: ReturnType<typeof getIconDetails>,
+  props: Partial<MoniconProps>
+) => {
   const isNative = await isReactNative();
 
-  if (isNative) return nativeIcon(props);
+  if (isNative) return nativeIcon(details, props);
 
-  return webIcon(props);
+  return webIcon(details, props);
 };
 
-export const Monicon = (props: MoniconProps) => {
+export const Monicon = ({ name, xml, color, size, ...props }: MoniconProps) => {
   const [Component, setComponent] = React.useState<React.ReactNode | null>(
     null
   );
@@ -65,9 +86,9 @@ export const Monicon = (props: MoniconProps) => {
   const renderIcon = async () => {
     const icons = await importIcons();
 
-    const details = getIconDetails(props, icons ?? {});
+    const details = getIconDetails({ name, color, size }, icons ?? {});
 
-    const component = await getComponent(details);
+    const component = await getComponent(details, props);
 
     setComponent(component);
   };
