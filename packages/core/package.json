@@ -34,7 +34,6 @@
     "@iconify/json": "^2.2.251"
   },
   "dependencies": {
-    "@iconify/utils": "^2.1.33",
-    "radash": "^12.1.0"
+    "@iconify/utils": "^2.1.33"
   }
 }
