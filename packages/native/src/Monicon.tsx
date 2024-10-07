@@ -65,7 +65,10 @@ export const Monicon = React.memo((props: MoniconProps) => {
   const renderIcon = React.useCallback(async () => {
     const icons = await importIcons();
 
-    const details = getIconDetails(props, icons ?? {});
+    const details = getIconDetails(
+      { name: props.name, size: props.size, color: props.color },
+      icons ?? {}
+    );
 
     const component = await getComponent(details);
 

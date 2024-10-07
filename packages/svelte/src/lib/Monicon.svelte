@@ -2,11 +2,7 @@
   import type { Icon } from "@monicon/core";
   import { getIconDetails, type MoniconProps } from "@monicon/icon-loader";
 
-  interface $$Props extends MoniconProps {
-    name: string;
-    size?: number;
-    color?: string;
-  }
+  interface $$Props extends MoniconProps {}
 
   export let name: MoniconProps["name"];
   export let size: MoniconProps["size"] = undefined;

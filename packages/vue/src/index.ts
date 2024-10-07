@@ -1,5 +1,5 @@
 import type { App } from "vue";
-import type { MoniconProps } from "@monicon/icon-loader";
+export type { MoniconProps } from "@monicon/icon-loader";
 
 import Monicon from "./monicon.vue";
 
@@ -9,4 +9,4 @@ export default {
   },
 };
 
-export { Monicon, type MoniconProps };
+export { Monicon };

@@ -1,5 +1,5 @@
-import type { MoniconProps } from "@monicon/icon-loader";
+export type { MoniconProps } from "@monicon/icon-loader";
 import Monicon from "./Monicon.svelte";
 
-export { Monicon, type MoniconProps };
+export { Monicon };
 export default Monicon;
