@@ -1,6 +1,6 @@
 {
   "name": "@monicon/typescript-config",
-  "version": "0.0.133",
+  "version": "0.0.134",
   "private": true,
   "publishConfig": {
     "access": "public"

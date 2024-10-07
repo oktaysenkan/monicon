@@ -1,5 +1,13 @@
 # @monicon/nuxt
 
+## 0.0.134
+
+### Patch Changes
+
+- remove prop drilling
+- Updated dependencies
+  - @monicon/core@0.0.134
+
 ## 0.0.133
 
 ### Patch Changes

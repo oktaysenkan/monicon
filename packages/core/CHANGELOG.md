@@ -1,5 +1,11 @@
 # @monicon/core
 
+## 0.0.134
+
+### Patch Changes
+
+- remove prop drilling
+
 ## 0.0.133
 
 ### Patch Changes

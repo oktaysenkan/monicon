@@ -1,6 +1,6 @@
 {
   "name": "@monicon/babel-plugin",
-  "version": "0.0.133",
+  "version": "0.0.134",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
@@ -22,12 +22,12 @@
     "clean": "rm -rf dist"
   },
   "devDependencies": {
-    "@monicon/typescript-config": "0.0.133",
+    "@monicon/typescript-config": "0.0.134",
     "tsup": "^8.0.1",
     "typescript": "^5.3.3"
   },
   "dependencies": {
     "@babel/core": "^7.25.2",
-    "@monicon/core": "0.0.133"
+    "@monicon/core": "0.0.134"
   }
 }
