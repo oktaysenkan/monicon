@@ -1,10 +1,17 @@
 <script lang="ts">
   import type { Icon } from "@monicon/core";
-  import { getIconDetails } from "@monicon/icon-loader";
+  import type { SVGAttributes } from "svelte/elements";
+  import { getIconDetails, type MoniconProps } from "@monicon/icon-loader";
 
-  export let name: string;
-  export let size: number | undefined = undefined;
-  export let color: string | undefined = undefined;
+  interface $$Props extends Omit<SVGAttributes<any>, "name">, MoniconProps {
+    name: string;
+    size?: number;
+    color?: string;
+  }
+
+  export let name: MoniconProps["name"];
+  export let size: MoniconProps["size"] = undefined;
+  export let color: MoniconProps["color"] = undefined;
 
   let details: ReturnType<typeof getIconDetails> | null = null;
 
@@ -27,11 +34,31 @@
     details = getIconDetails({ name, color, size }, icons ?? {});
   };
 
-  $: name, size, color, loadIcons();
+  $: $$props, loadIcons();
 </script>
 
 {#if details}
-  <svg {...details.attributes}>
+  <svg
+    role="button"
+    tabindex="0"
+    {...details.attributes}
+    {...$$props}
+    on:click
+    on:dblclick
+    on:focus
+    on:blur
+    on:keydown
+    on:keypress
+    on:keyup
+    on:mouseenter
+    on:mouseleave
+    on:mouseover
+    on:mouseout
+    on:mousemove
+    on:mousedown
+    on:mouseup
+    on:select
+  >
     {@html details.innerHtml}
   </svg>
 {/if}

@@ -1,7 +1,16 @@
 <script setup lang="ts">
-import { defineProps, ref, watch, onMounted } from "vue";
-import { getIconDetails, MoniconProps } from "@monicon/icon-loader";
+import { defineProps, ref, watch, onMounted, SVGAttributes } from "vue";
+import {
+  getIconDetails,
+  MoniconProps as LoaderProps,
+} from "@monicon/icon-loader";
 import { Icon } from "@monicon/core";
+
+export interface MoniconProps
+  extends LoaderProps,
+    /* @vue-ignore */ SVGAttributes {
+  name: LoaderProps["name"];
+}
 
 const props = defineProps<MoniconProps>();
 
@@ -23,7 +32,10 @@ const importIcons = () =>
 const loadIcons = async () => {
   const icons = await importIcons();
 
-  details.value = getIconDetails(props, icons ?? {});
+  details.value = getIconDetails(
+    { name: props.name, size: props.size, color: props.color },
+    icons ?? {}
+  );
 };
 
 watch(props, loadIcons);
@@ -35,5 +47,6 @@ onMounted(loadIcons);
     v-if="details"
     v-html="details.innerHtml"
     v-bind="details.attributes"
+    v-on="$attrs"
   ></svg>
 </template>

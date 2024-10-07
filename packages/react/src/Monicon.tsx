@@ -1,6 +1,14 @@
 import React from "react";
-import { getIconDetails, MoniconProps } from "@monicon/icon-loader";
+import {
+  getIconDetails,
+  MoniconProps as LoaderProps,
+} from "@monicon/icon-loader";
 import { Icon } from "@monicon/core";
+
+// extends svg props
+interface MoniconProps
+  extends LoaderProps,
+    Omit<React.SVGProps<SVGSVGElement>, "name"> {}
 
 const importIcons = () =>
   new Promise<Record<string, Icon> | null>(async (resolve) => {
@@ -23,11 +31,15 @@ export const Monicon = (props: MoniconProps) => {
   const loadComponent = React.useCallback(async () => {
     const icons = await importIcons();
 
-    const details = getIconDetails(props, icons ?? {});
+    const details = getIconDetails(
+      { name: props.name, size: props.size, color: props.color },
+      icons ?? {}
+    );
 
     setComponent(
       <svg
         {...details.attributes}
+        {...props}
         dangerouslySetInnerHTML={{ __html: details.innerHtml }}
       />
     );
