@@ -1,0 +1,6 @@
+{
+  "semverRange": "*",
+  "source": [
+    "packages/*/package.json"
+  ]
+}

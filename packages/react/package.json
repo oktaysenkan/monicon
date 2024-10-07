@@ -26,14 +26,14 @@
     "clean": "rm -rf dist"
   },
   "devDependencies": {
-    "@monicon/typescript-config": "*",
+    "@monicon/typescript-config": "0.0.132",
     "@types/react": "^18.2.46",
     "tsup": "^8.0.1",
     "typescript": "^5.3.3"
   },
   "dependencies": {
-    "@monicon/core": "*",
-    "@monicon/icon-loader": "*"
+    "@monicon/core": "0.0.132",
+    "@monicon/icon-loader": "0.0.132"
   },
   "peerDependencies": {
     "react": ">=18.2.0"

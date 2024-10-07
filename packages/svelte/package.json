@@ -27,7 +27,7 @@
     "!dist/**/*.spec.*"
   ],
   "peerDependencies": {
-    "svelte": "^4.0.0"
+    "svelte": "^4.2.7"
   },
   "devDependencies": {
     "@sveltejs/adapter-auto": "^3.0.0",
@@ -39,13 +39,13 @@
     "publint": "^0.2.0",
     "svelte": "^4.2.7",
     "svelte-check": "^4.0.0",
-    "typescript": "^5.0.0",
-    "vite": "^5.0.11",
-    "@monicon/vite": "*"
+    "typescript": "^5.3.3",
+    "vite": "^5.4.8",
+    "@monicon/vite": "0.0.132"
   },
   "dependencies": {
     "svgson": "^5.3.1",
-    "@monicon/icon-loader": "*"
+    "@monicon/icon-loader": "0.0.132"
   },
   "svelte": "./dist/index.js",
   "types": "./dist/index.d.ts",
