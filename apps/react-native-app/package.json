@@ -11,10 +11,10 @@
     "eject": "expo eject"
   },
   "dependencies": {
+    "@monicon/babel-plugin": "*",
     "@monicon/metro": "*",
     "@monicon/native": "*",
     "@monicon/webpack": "*",
-    "@monicon/babel-plugin": "*",
     "expo": "^49.0.21",
     "expo-status-bar": "~1.7.0",
     "react": "^18.2.0",

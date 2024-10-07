@@ -6,7 +6,7 @@ import {
 import { Icon } from "@monicon/core";
 import type { XmlProps } from "react-native-svg";
 
-export interface MoniconProps extends LoaderProps, XmlProps {
+export interface MoniconProps extends LoaderProps, Omit<XmlProps, "xml"> {
   name: LoaderProps["name"];
   color?: LoaderProps["color"];
   webProps?: React.SVGProps<SVGSVGElement>;
@@ -78,26 +78,26 @@ const getComponent = async (
   return webIcon(details, props);
 };
 
-export const Monicon = ({ name, xml, color, size, ...props }: MoniconProps) => {
+export const Monicon = React.memo((props: MoniconProps) => {
   const [Component, setComponent] = React.useState<React.ReactNode | null>(
     null
   );
 
-  const renderIcon = async () => {
+  const renderIcon = React.useCallback(async () => {
     const icons = await importIcons();
 
-    const details = getIconDetails({ name, color, size }, icons ?? {});
+    const details = getIconDetails(props, icons ?? {});
 
     const component = await getComponent(details, props);
 
     setComponent(component);
-  };
+  }, [props]);
 
   React.useEffect(() => {
     renderIcon();
   }, [props]);
 
   return Component;
-};
+});
 
 export default Monicon;

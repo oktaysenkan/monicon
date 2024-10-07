@@ -38,11 +38,11 @@ export const getIconDetails = (
 
   const parsed = parseSync(icon.svg);
 
-  let innerHtml = parsed.children.map((child) => stringify(child)).join("");
-
   if (props.color) {
-    innerHtml = innerHtml.replace(/fill="([^"]+)"/, `fill="${props.color}"`);
+    parsed.attributes.color = props.color;
   }
+
+  let innerHtml = parsed.children.map((child) => stringify(child)).join("");
 
   const ratio = icon.width / icon.height;
 
@@ -58,13 +58,7 @@ export const getIconDetails = (
 
   parsed.attributes = attributes;
 
-  icon.svg = icon.svg
-    .replace(/width="([^"]+)"/, `width="${width}"`)
-    .replace(/height="([^"]+)"/, `height="${height}"`);
-
-  if (props.color) {
-    icon.svg = icon.svg.replace(/fill="([^"]+)"/, `fill="${props.color}"`);
-  }
+  icon.svg = stringify(parsed);
 
   return {
     innerHtml,

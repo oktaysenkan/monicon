@@ -14,6 +14,7 @@ module.exports = async function (env, argv) {
         "feather:alert-circle",
         "logos:active-campaign",
         "logos:apache-superset-icon",
+        "icon-park-outline:arrow-circle-right",
       ],
       outputFileName: "react-native-app",
     })

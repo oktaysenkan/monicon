@@ -33,9 +33,9 @@
     "typescript": "^5.3.3"
   },
   "dependencies": {
-    "html-react-parser": "^5.1.16",
     "@monicon/core": "*",
-    "@monicon/icon-loader": "*"
+    "@monicon/icon-loader": "*",
+    "html-react-parser": "^5.1.16"
   },
   "peerDependencies": {
     "react": ">=18.2.0",
