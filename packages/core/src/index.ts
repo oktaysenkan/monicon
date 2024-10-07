@@ -1,4 +1,4 @@
-import { stringToIcon } from "@iconify/utils";
+import { stringToIcon } from "@iconify/utils/lib/icon/name";
 import { loadNodeIcon } from "@iconify/utils/lib/loader/node-loader";
 import fs from "fs";
 import path from "path";
