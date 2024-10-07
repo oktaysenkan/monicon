@@ -10,11 +10,12 @@
   export let name: MoniconProps["name"];
   export let size: MoniconProps["size"] = undefined;
   export let color: MoniconProps["color"] = undefined;
+  export let strokeWidth: MoniconProps["strokeWidth"] = undefined;
 
   let details: IconDetails | null = null;
 
   const loadIcons = async () => {
-    details = await getIconDetails({ name, color, size });
+    details = await getIconDetails({ name, color, size, strokeWidth });
   };
 
   $: $$props, loadIcons();

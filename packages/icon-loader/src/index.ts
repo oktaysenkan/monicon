@@ -5,6 +5,7 @@ export type MoniconProps = {
   name: string;
   size?: number;
   color?: string;
+  strokeWidth?: number;
 };
 
 export type IconDetails = {
@@ -47,7 +48,16 @@ const loadIcon = async (iconName: string) => {
 };
 
 export const getIconDetails = async (props: MoniconProps) => {
-  const icon = await loadIcon(props.name);
+  const loadedIcon = await loadIcon(props.name);
+
+  const icon = { ...loadedIcon };
+
+  if (props.strokeWidth) {
+    icon.svg = icon.svg.replace(
+      /stroke-width="[^"]*"/,
+      `stroke-width="${props.strokeWidth}"`
+    );
+  }
 
   const parsed = parseSync(icon.svg);
 

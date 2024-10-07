@@ -9,6 +9,7 @@ function App() {
       <Monicon name="logos:active-campaign" />
       <Monicon name="logos:apache-superset-icon" />
       <Monicon name="invalid:icon" />
+      <Monicon name="lucide:badge-check" size={32} strokeWidth={3} />
     </main>
   );
 }

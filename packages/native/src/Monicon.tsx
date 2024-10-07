@@ -52,21 +52,22 @@ export const Monicon = React.memo((props: MoniconProps) => {
     null
   );
 
-  const renderIcon = React.useCallback(async () => {
+  const loadComponent = React.useCallback(async () => {
     const details = await getIconDetails({
       name: props.name,
       size: props.size,
       color: props.color,
+      strokeWidth: props.strokeWidth,
     });
 
     const component = await getComponent(details);
 
     setComponent(component);
-  }, [props]);
+  }, [props.name, props.size, props.color, props.strokeWidth]);
 
   React.useEffect(() => {
-    renderIcon();
-  }, [props]);
+    loadComponent();
+  }, [loadComponent]);
 
   return Component;
 });

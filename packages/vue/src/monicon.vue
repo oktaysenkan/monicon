@@ -15,6 +15,7 @@ const loadIcons = async () => {
     name: props.name,
     size: props.size,
     color: props.color,
+    strokeWidth: props.strokeWidth,
   });
 };
 

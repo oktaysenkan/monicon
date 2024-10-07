@@ -15,6 +15,7 @@ export default defineConfig({
         "feather:alert-circle",
         "logos:active-campaign",
         "logos:apache-superset-icon",
+        "lucide:badge-check",
       ],
       outputFileName: "vite-react",
     }),

@@ -11,6 +11,7 @@ export const Monicon = (props: MoniconProps) => {
       name: props.name,
       size: props.size,
       color: props.color,
+      strokeWidth: props.strokeWidth,
     });
 
     setComponent(
@@ -19,11 +20,11 @@ export const Monicon = (props: MoniconProps) => {
         dangerouslySetInnerHTML={{ __html: details.innerHtml }}
       />
     );
-  }, [props]);
+  }, [props.name, props.size, props.color, props.strokeWidth]);
 
   React.useEffect(() => {
     loadComponent();
-  }, [props]);
+  }, [loadComponent]);
 
   return Component;
 };
