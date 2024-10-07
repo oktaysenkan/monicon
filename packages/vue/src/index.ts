@@ -1,6 +1,7 @@
 import type { App } from "vue";
+import type { MoniconProps } from "@monicon/icon-loader";
 
-import Monicon, { MoniconProps } from "./monicon.vue";
+import Monicon from "./monicon.vue";
 
 export default {
   install: (app: App) => {
