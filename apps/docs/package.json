@@ -10,9 +10,10 @@
   },
   "license": "MIT",
   "dependencies": {
-    "next": "^13.0.6",
-    "nextra": "latest",
-    "nextra-theme-docs": "latest",
+    "next": "^14.2.14",
+    "nextra": "^3.0.0-alpha.42",
+    "nextra-theme-blog": "^3.0.0-alpha.42",
+    "nextra-theme-docs": "^3.0.0-alpha.42",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
