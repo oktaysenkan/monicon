@@ -1,5 +1,11 @@
 # @monicon/typescript-config
 
+## 0.0.138
+
+### Patch Changes
+
+- remove side effects
+
 ## 0.0.137
 
 ### Patch Changes

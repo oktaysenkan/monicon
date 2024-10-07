@@ -1,5 +1,13 @@
 # @monicon/esbuild
 
+## 0.0.138
+
+### Patch Changes
+
+- remove side effects
+- Updated dependencies
+  - @monicon/core@0.0.138
+
 ## 0.0.137
 
 ### Patch Changes
