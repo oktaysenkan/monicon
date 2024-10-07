@@ -1,5 +1,13 @@
 # @monicon/esbuild
 
+## 0.0.132
+
+### Patch Changes
+
+- implement prop drilling
+- Updated dependencies
+  - @monicon/core@0.0.132
+
 ## 0.0.131
 
 ### Patch Changes
