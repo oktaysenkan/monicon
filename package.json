@@ -24,7 +24,7 @@
   },
   "packageManager": "yarn@1.22.19",
   "engines": {
-    "node": ">=18"
+    "node": ">=20"
   },
   "dependencies": {
     "syncpack": "^13.0.0"
