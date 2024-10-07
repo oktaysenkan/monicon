@@ -1,5 +1,13 @@
 # @monicon/webpack
 
+## 0.0.133
+
+### Patch Changes
+
+- fix color issue
+- Updated dependencies
+  - @monicon/core@0.0.133
+
 ## 0.0.132
 
 ### Patch Changes

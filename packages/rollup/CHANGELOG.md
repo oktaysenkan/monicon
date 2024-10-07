@@ -1,5 +1,13 @@
 # @monicon/rollup
 
+## 0.0.133
+
+### Patch Changes
+
+- fix color issue
+- Updated dependencies
+  - @monicon/vite@0.0.133
+
 ## 0.0.132
 
 ### Patch Changes

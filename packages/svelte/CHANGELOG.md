@@ -1,5 +1,13 @@
 # @monicon/svelte
 
+## 0.0.133
+
+### Patch Changes
+
+- fix color issue
+- Updated dependencies
+  - @monicon/icon-loader@0.0.133
+
 ## 0.0.132
 
 ### Patch Changes

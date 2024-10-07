@@ -13,7 +13,7 @@
     "clean": "turbo run clean && rm -rf node_modules",
     "format": "prettier --write \"**/*.{ts,tsx,js,jsx,json,md}\" --ignore-path .gitignore",
     "changeset": "changeset",
-    "version": "changeset version",
+    "bump": "changeset version",
     "release": "yarn build:pkgs && changeset publish",
     "sync": "syncpack fix-mismatches"
   },
@@ -26,7 +26,6 @@
   "engines": {
     "node": ">=18"
   },
-  "version": "0.0.132",
   "dependencies": {
     "syncpack": "^13.0.0"
   }
