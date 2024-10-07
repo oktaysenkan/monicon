@@ -1,5 +1,13 @@
 # @monicon/rollup
 
+## 0.0.135
+
+### Patch Changes
+
+- fix import path
+- Updated dependencies
+  - @monicon/vite@0.0.135
+
 ## 0.0.134
 
 ### Patch Changes

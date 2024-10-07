@@ -1,5 +1,11 @@
 # @monicon/core
 
+## 0.0.135
+
+### Patch Changes
+
+- fix import path
+
 ## 0.0.134
 
 ### Patch Changes
