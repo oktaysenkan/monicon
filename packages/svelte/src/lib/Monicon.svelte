@@ -1,9 +1,8 @@
 <script lang="ts">
   import type { Icon } from "@monicon/core";
-  import type { SVGAttributes } from "svelte/elements";
   import { getIconDetails, type MoniconProps } from "@monicon/icon-loader";
 
-  interface $$Props extends Omit<SVGAttributes<any>, "name">, MoniconProps {
+  interface $$Props extends MoniconProps {
     name: string;
     size?: number;
     color?: string;
@@ -38,27 +37,7 @@
 </script>
 
 {#if details}
-  <svg
-    role="button"
-    tabindex="0"
-    {...details.attributes}
-    {...$$props}
-    on:click
-    on:dblclick
-    on:focus
-    on:blur
-    on:keydown
-    on:keypress
-    on:keyup
-    on:mouseenter
-    on:mouseleave
-    on:mouseover
-    on:mouseout
-    on:mousemove
-    on:mousedown
-    on:mouseup
-    on:select
-  >
+  <svg {...details.attributes} {...$$props}>
     {@html details.innerHtml}
   </svg>
 {/if}

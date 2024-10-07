@@ -1,16 +1,6 @@
 import React from "react";
-import {
-  getIconDetails,
-  MoniconProps as LoaderProps,
-} from "@monicon/icon-loader";
+import { getIconDetails, MoniconProps } from "@monicon/icon-loader";
 import { Icon } from "@monicon/core";
-import type { XmlProps } from "react-native-svg";
-
-export interface MoniconProps extends LoaderProps, Omit<XmlProps, "xml"> {
-  name: LoaderProps["name"];
-  color?: LoaderProps["color"];
-  webProps?: React.SVGProps<SVGSVGElement>;
-}
 
 const importIcons = () =>
   new Promise<Record<string, Icon> | null>(async (resolve) => {
@@ -37,10 +27,7 @@ const isReactNative = async () => {
   }
 };
 
-const nativeIcon = async (
-  details: ReturnType<typeof getIconDetails>,
-  props: Partial<MoniconProps>
-) => {
+const nativeIcon = async (details: ReturnType<typeof getIconDetails>) => {
   const { SvgXml } = require("react-native-svg");
 
   return (
@@ -49,33 +36,25 @@ const nativeIcon = async (
       xml={details.svg}
       width={details.attributes.width}
       height={details.attributes.height}
-      {...props}
     />
   );
 };
 
-const webIcon = async (
-  details: ReturnType<typeof getIconDetails>,
-  props: Partial<MoniconProps>
-) => {
+const webIcon = async (details: ReturnType<typeof getIconDetails>) => {
   return (
     <svg
       {...details.attributes}
-      {...props.webProps}
       dangerouslySetInnerHTML={{ __html: details.innerHtml }}
     />
   );
 };
 
-const getComponent = async (
-  details: ReturnType<typeof getIconDetails>,
-  props: Partial<MoniconProps>
-) => {
+const getComponent = async (details: ReturnType<typeof getIconDetails>) => {
   const isNative = await isReactNative();
 
-  if (isNative) return nativeIcon(details, props);
+  if (isNative) return nativeIcon(details);
 
-  return webIcon(details, props);
+  return webIcon(details);
 };
 
 export const Monicon = React.memo((props: MoniconProps) => {
@@ -88,7 +67,7 @@ export const Monicon = React.memo((props: MoniconProps) => {
 
     const details = getIconDetails(props, icons ?? {});
 
-    const component = await getComponent(details, props);
+    const component = await getComponent(details);
 
     setComponent(component);
   }, [props]);
