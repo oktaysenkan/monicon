@@ -1,5 +1,14 @@
 # @monicon/rspack
 
+## 0.0.137
+
+### Patch Changes
+
+- implement strokeWidth support
+- Updated dependencies
+  - @monicon/core@0.0.137
+  - @monicon/webpack@0.0.137
+
 ## 0.0.136
 
 ### Patch Changes

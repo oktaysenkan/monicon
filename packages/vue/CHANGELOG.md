@@ -1,5 +1,13 @@
 # @monicon/vue
 
+## 0.0.137
+
+### Patch Changes
+
+- implement strokeWidth support
+- Updated dependencies
+  - @monicon/icon-loader@0.0.137
+
 ## 0.0.136
 
 ### Patch Changes

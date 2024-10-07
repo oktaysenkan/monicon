@@ -1,5 +1,13 @@
 # @monicon/rollup
 
+## 0.0.137
+
+### Patch Changes
+
+- implement strokeWidth support
+- Updated dependencies
+  - @monicon/vite@0.0.137
+
 ## 0.0.136
 
 ### Patch Changes
