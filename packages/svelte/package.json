@@ -1,6 +1,6 @@
 {
   "name": "@monicon/svelte",
-  "version": "0.0.138",
+  "version": "0.0.139",
   "scripts": {
     "dev": "vite dev",
     "build": "vite build && npm run package",
@@ -41,11 +41,11 @@
     "svelte-check": "^4.0.0",
     "typescript": "^5.3.3",
     "vite": "^5.4.8",
-    "@monicon/vite": "0.0.138"
+    "@monicon/vite": "0.0.139"
   },
   "dependencies": {
     "svgson": "^5.3.1",
-    "@monicon/icon-loader": "0.0.138"
+    "@monicon/icon-loader": "0.0.139"
   },
   "svelte": "./dist/index.js",
   "types": "./dist/index.d.ts",

@@ -1,5 +1,11 @@
 # @monicon/core
 
+## 0.0.139
+
+### Patch Changes
+
+- change import path of stringToIcon
+
 ## 0.0.138
 
 ### Patch Changes

@@ -1,5 +1,13 @@
 # @monicon/babel-plugin
 
+## 0.0.139
+
+### Patch Changes
+
+- change import path of stringToIcon
+- Updated dependencies
+  - @monicon/core@0.0.139
+
 ## 0.0.138
 
 ### Patch Changes

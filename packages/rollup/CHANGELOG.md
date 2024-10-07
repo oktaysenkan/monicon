@@ -1,5 +1,13 @@
 # @monicon/rollup
 
+## 0.0.139
+
+### Patch Changes
+
+- change import path of stringToIcon
+- Updated dependencies
+  - @monicon/vite@0.0.139
+
 ## 0.0.138
 
 ### Patch Changes
