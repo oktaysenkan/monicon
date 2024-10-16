@@ -27,13 +27,13 @@
     "clean": "rm -rf dist"
   },
   "devDependencies": {
+    "@iconify/types": "^2.0.0",
     "@monicon/typescript-config": "0.0.140",
     "tsup": "^8.0.1",
-    "typescript": "^5.3.3",
-    "@iconify/types": "^2.0.0",
-    "@iconify/json": "^2.2.251"
+    "typescript": "^5.3.3"
   },
   "dependencies": {
-    "@iconify/utils": "^2.1.33"
+    "@iconify/utils": "^2.1.33",
+    "c12": "^2.0.1"
   }
 }

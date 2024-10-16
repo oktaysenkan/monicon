@@ -1,22 +1,22 @@
 import { PluginOption } from "vite";
 import {
-  loadIcons,
   getIconsFilePath,
-  MoniconOptions,
   getResolveAlias,
+  watchConfig,
+  MoniconBundlerOptions,
 } from "@monicon/core";
 
 const alias = getResolveAlias();
 
 const name = "vite-monicon";
 
-export const monicon = (options: MoniconOptions): PluginOption[] => [
+export const monicon = (options?: MoniconBundlerOptions): PluginOption[] => [
   {
     name,
     async buildStart() {
-      await loadIcons({ type: "esm", ...options });
+      await watchConfig({ type: "esm", ...options });
     },
-    resolveId(source) {
+    async resolveId(source) {
       if (source === alias)
         return getIconsFilePath({ type: "esm", ...options });
 

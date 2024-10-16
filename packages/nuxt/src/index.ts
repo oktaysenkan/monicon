@@ -1,14 +1,13 @@
 import { addComponent, defineNuxtModule } from "@nuxt/kit";
-import { MoniconOptions } from "@monicon/core";
+import { MoniconBundlerOptions } from "@monicon/core";
 import moniconVitePlugin from "@monicon/vite";
 import MoniconWebpackPlugin from "@monicon/webpack";
 
-const defaultOptions: MoniconOptions = {
-  icons: [],
+const defaultOptions: MoniconBundlerOptions = {
   type: "esm",
 };
 
-export default defineNuxtModule<MoniconOptions>({
+export default defineNuxtModule<MoniconBundlerOptions>({
   meta: {
     name: "nuxt-monicon",
     configKey: "monicon",

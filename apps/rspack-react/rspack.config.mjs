@@ -56,10 +56,7 @@ export default defineConfig({
       template: "./index.html",
     }),
     isDev ? new RefreshPlugin() : null,
-    new MoniconPlugin({
-      icons: ["mdi:home"],
-      outputFileName: "rspack-react",
-    }),
+    new MoniconPlugin({ outputFileName: "rspack-react" }),
   ].filter(Boolean),
   optimization: {
     minimizer: [

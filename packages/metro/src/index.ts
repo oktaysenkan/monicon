@@ -1,22 +1,22 @@
 import { type IntermediateConfigT } from "metro-config";
 import {
-  loadIcons,
   getIconsFilePath,
   getResolveAlias,
-  MoniconOptions,
+  MoniconBundlerOptions,
+  watchConfig,
 } from "@monicon/core";
 
 export const withMonicon = (
   metroConfig: IntermediateConfigT,
-  options?: MoniconOptions
+  options?: MoniconBundlerOptions
 ): IntermediateConfigT => {
   const alias = getResolveAlias();
 
-  void loadIcons(options);
+  void watchConfig({ type: "cjs", ...options });
 
   metroConfig.resolver.extraNodeModules = {
     ...metroConfig.resolver.extraNodeModules,
-    [alias]: getIconsFilePath(options),
+    [alias]: getIconsFilePath({ type: "cjs", ...options }),
   };
 
   return metroConfig;

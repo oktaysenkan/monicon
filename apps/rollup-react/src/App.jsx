@@ -13,6 +13,7 @@ const App = () => {
       }}
     >
       <Monicon name="mdi:home" size={32} />
+      <Monicon name="lucide:badge-check" size={32} />
     </main>
   );
 };

@@ -10,16 +10,6 @@ const projectRoot = __dirname;
 const config = getDefaultConfig(projectRoot);
 
 const configWithMonicon = withMonicon(config, {
-  icons: [
-    "mdi:home",
-    "mdi:account",
-    "mdi:account-badge-outline",
-    "feather:activity",
-    "feather:alert-circle",
-    "logos:active-campaign",
-    "logos:apache-superset-icon",
-    "icon-park-outline:arrow-circle-right",
-  ],
   outputFileName: "react-native-app",
 });
 
