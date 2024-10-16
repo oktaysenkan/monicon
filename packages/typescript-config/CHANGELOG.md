@@ -1,5 +1,11 @@
 # @monicon/typescript-config
 
+## 0.0.141
+
+### Patch Changes
+
+- implement config file and hot reload
+
 ## 0.0.140
 
 ### Patch Changes

@@ -1,6 +1,6 @@
 {
   "name": "@monicon/vite",
-  "version": "0.0.140",
+  "version": "0.0.141",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
@@ -22,12 +22,12 @@
     "clean": "rm -rf dist"
   },
   "devDependencies": {
-    "@monicon/typescript-config": "0.0.140",
+    "@monicon/typescript-config": "0.0.141",
     "tsup": "^8.0.1",
     "typescript": "^5.3.3"
   },
   "dependencies": {
     "vite": "^5.4.8",
-    "@monicon/core": "0.0.140"
+    "@monicon/core": "0.0.141"
   }
 }
