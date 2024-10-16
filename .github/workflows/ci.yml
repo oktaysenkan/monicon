@@ -20,8 +20,5 @@ jobs:
       - name: Clean
         run: yarn clean
 
-      - name: Install dependencies
-        run: yarn install --immutable
-
       - name: Build all packages and apps
         run: yarn build
