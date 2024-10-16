@@ -3716,6 +3716,13 @@
   resolved "https://registry.yarnpkg.com/@floating-ui/utils/-/utils-0.2.8.tgz#21a907684723bbbaa5f0974cf7730bd797eb8e62"
   integrity sha512-kym7SodPp8/wloecOpcmSnWJsK7M0E5Wg8UcFA+uO4B9s5d0ywXOEro/8HM9x0rW+TljRzul/14UYz3TleT3ig==
 
+"@formatjs/intl-localematcher@^0.5.4":
+  version "0.5.5"
+  resolved "https://registry.yarnpkg.com/@formatjs/intl-localematcher/-/intl-localematcher-0.5.5.tgz#b24f100f30658104d5f6db35b0b8d97235298681"
+  integrity sha512-t5tOGMgZ/i5+ALl2/offNqAQq/lfUnKLEw0mXQI4N4bqpedhrSE+fyKLpwnd22sK0dif6AV+ufQcTsKShB9J1g==
+  dependencies:
+    tslib "^2.7.0"
+
 "@gar/promisify@^1.0.1":
   version "1.1.3"
   resolved "https://registry.npmjs.org/@gar/promisify/-/promisify-1.1.3.tgz"
@@ -16507,7 +16514,7 @@ ncp@~2.0.0:
   resolved "https://registry.npmjs.org/ncp/-/ncp-2.0.0.tgz"
   integrity sha512-zIdGUrPRFTUELUvr3Gmc7KZ2Sw/h1PiVM0Af/oHB6zgnV1ikqSfRk+TOufi79aHYCW3NiOXmr1BP5nWbzojLaA==
 
-negotiator@0.6.3:
+negotiator@0.6.3, negotiator@^0.6.3:
   version "0.6.3"
   resolved "https://registry.npmjs.org/negotiator/-/negotiator-0.6.3.tgz"
   integrity sha512-+EUsqGPLsM+j/zdChZjsnX51g4XrHFOIXwfnCVPGlQk/k5giakcKsuxCObBRu6DSm9opw/O6slWbJdghQM4bBg==
@@ -16573,17 +16580,10 @@ next@^14.2.14:
     "@next/swc-win32-ia32-msvc" "14.2.14"
     "@next/swc-win32-x64-msvc" "14.2.14"
 
-nextra-theme-blog@^3.0.0-alpha.42:
-  version "3.0.0-alpha.42"
-  resolved "https://registry.yarnpkg.com/nextra-theme-blog/-/nextra-theme-blog-3.0.0-alpha.42.tgz#25135006049c8c68241e1400dd99887e433ab939"
-  integrity sha512-wv/qIx4OUwoqnt6hcPE8XX2+BDnw8TUOkx62kM9TM1GD13/MVqIItovnJqtsLGyAFvxGHnxgeNZBXYE+Ho5d/Q==
-  dependencies:
-    next-themes "^0.3.0"
-
-nextra-theme-docs@^3.0.0-alpha.42:
-  version "3.0.0-alpha.42"
-  resolved "https://registry.yarnpkg.com/nextra-theme-docs/-/nextra-theme-docs-3.0.0-alpha.42.tgz#d30d45e9d4fa72d9e1f12f41d54632e5dd192474"
-  integrity sha512-6cJoHd2eKanCVxzR3yxsQhmI8OPDJYkCv9Z0laR4/ups9Slw8qek7FXEf2LBVcZBvr38E7SzSftuC+gDK9UCVg==
+nextra-theme-docs@^3.0.11:
+  version "3.0.11"
+  resolved "https://registry.yarnpkg.com/nextra-theme-docs/-/nextra-theme-docs-3.0.11.tgz#b51cc0a61ee9ca79537e7bfd0a34bbccde3ba404"
+  integrity sha512-yRWVw5d9MDn0olgaZ1mEcMUOIkxtHce4lJLpkYo6YgPnrXvwO3wRLEry5zU4aWUUJGTfxkGOWcOgFqVFcOq7XA==
   dependencies:
     "@headlessui/react" "^2.1.2"
     clsx "^2.0.0"
@@ -16593,11 +16593,12 @@ nextra-theme-docs@^3.0.0-alpha.42:
     scroll-into-view-if-needed "^3.1.0"
     zod "^3.22.3"
 
-nextra@^3.0.0-alpha.42:
-  version "3.0.0-alpha.42"
-  resolved "https://registry.yarnpkg.com/nextra/-/nextra-3.0.0-alpha.42.tgz#bde359ee3171b37abc2ea8e1884387778dfd2f41"
-  integrity sha512-X9ZcEuNb/DkJo5uaPv88q+Ks4OYs+Uj9BmyguPNT4wlLUeuH22hzpUcinAmRYU2ZZyNaFjtelrdbhW/7MbXLNg==
+nextra@^3.0.11:
+  version "3.0.11"
+  resolved "https://registry.yarnpkg.com/nextra/-/nextra-3.0.11.tgz#bd38e8ce8978a7823c46729570a9ddd3f3e6c796"
+  integrity sha512-P/YidS1aQHrMAHrEbX1skSrOv0T/SFwCaffVt5nSpV+mDgPTUmJXP992GZAarUIAYGKR07mYrfDiEegp6PNQvg==
   dependencies:
+    "@formatjs/intl-localematcher" "^0.5.4"
     "@headlessui/react" "^2.1.2"
     "@mdx-js/mdx" "^3.0.0"
     "@mdx-js/react" "^3.0.0"
@@ -16614,6 +16615,7 @@ nextra@^3.0.0-alpha.42:
     gray-matter "^4.0.3"
     hast-util-to-estree "^3.1.0"
     katex "^0.16.9"
+    negotiator "^0.6.3"
     p-limit "^6.0.0"
     rehype-katex "^7.0.0"
     rehype-pretty-code "0.14.0"
@@ -21160,7 +21162,7 @@ tsconfig-paths@^4.0.0:
     minimist "^1.2.6"
     strip-bom "^3.0.0"
 
-tslib@^2.0.0, tslib@^2.6.2:
+tslib@^2.0.0, tslib@^2.6.2, tslib@^2.7.0:
   version "2.7.0"
   resolved "https://registry.npmjs.org/tslib/-/tslib-2.7.0.tgz"
   integrity sha512-gLXCKdN1/j47AiHiOkJN69hJmcbGTHI0ImLmbYLHykhgeN0jVGola9yVjFgzCUklsZQMW55o+dW7IXv3RCXDzA==

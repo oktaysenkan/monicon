@@ -11,14 +11,21 @@
   "license": "MIT",
   "dependencies": {
     "next": "^14.2.14",
-    "nextra": "^3.0.0-alpha.42",
-    "nextra-theme-blog": "^3.0.0-alpha.42",
-    "nextra-theme-docs": "^3.0.0-alpha.42",
+    "nextra": "^3.0.11",
+    "nextra-theme-docs": "^3.0.11",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
     "@types/node": "18.11.10",
     "typescript": "^4.9.3"
+  },
+  "dependenciesMeta": {
+    "nextra": {
+      "injected": true
+    },
+    "nextra-theme-docs": {
+      "injected": true
+    }
   }
 }

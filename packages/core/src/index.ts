@@ -1,9 +1,8 @@
 import { stringToIcon } from "@iconify/utils/lib/icon/name";
 import { loadNodeIcon } from "@iconify/utils/lib/loader/node-loader";
 import fs from "fs";
-import path from "path";
+import path, { dirname } from "path";
 import { fileURLToPath } from "url";
-import { dirname } from "path";
 
 import { toPx } from "./utils";
 
