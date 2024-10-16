@@ -14,7 +14,7 @@ export default defineConfig({
     lib: {
       entry: "src/index.ts",
       name: "Monicon",
-      formats: ["es", "cjs", "umd"],
+      formats: ["es", "umd"],
       fileName: "monicon",
     },
     rollupOptions: {
