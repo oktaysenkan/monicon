@@ -17,5 +17,8 @@ jobs:
       - name: Setup
         uses: ./.github/actions/setup
 
+      - name: Clean
+        run: yarn clean
+
       - name: Build all packages and apps
         run: yarn build
