@@ -10,13 +10,13 @@ Setting up Monicon with Next.js is a straightforward process. This guide will wa
 
 To get started, you’ll need to install the necessary dependencies for Monicon. In your project directory, run the following command to install the dependencies.
 
-```sh npm2yarn
-npm i @monicon/react @monicon/webpack
+```sh npm2yarn copy
+npm i @monicon/core @monicon/react @monicon/webpack
 ```
 
 Now you should install the development dependency `@iconify/json` for the icon sets. This package provides a comprehensive collection of icons that can be easily integrated into your project.
 
-```sh npm2yarn
+```sh npm2yarn copy
 npm i -D @iconify/json
 
 # or specific icon sets
@@ -27,21 +27,12 @@ npm i -D @iconify-json/mdi @iconify-json/feather
 
 If you want to use Monicon with Next.js, you’ll need to configure Next.js.
 
-```js filename="next.config.js"
+```js filename="next.config.js" copy
 const { MoniconPlugin } = require("@monicon/webpack");
 
 const nextConfig = {
   webpack: (config) => {
-    config.plugins.push(
-      new MoniconPlugin({
-        icons: [
-          "mdi:home",
-          "feather:activity",
-          "logos:active-campaign",
-          "lucide:badge-check",
-        ],
-      })
-    );
+    config.plugins.push(new MoniconPlugin());
 
     return config;
   },
@@ -50,17 +41,35 @@ const nextConfig = {
 module.exports = nextConfig;
 ```
 
+## Configure Monicon
+
+Now you need to configure Monicon to use the icon sets you want in your project. Also you can use `monicon.config.js` file to configure Monicon.
+
+```ts filename="monicon.config.ts" copy
+import type { MoniconOptions } from "@monicon/core";
+
+export default {
+  icons: [
+    "mdi:home",
+    "feather:activity",
+    "logos:active-campaign",
+    "lucide:badge-check",
+  ],
+} satisfies MoniconOptions;
+```
+
 <Callout>
-The `icons` array in the `monicon` plugin configuration specifies the icon sets you want to use in your project. You can add more icon sets as needed.
+The `icons` array in the configuration specifies the icon sets you want to use in your project. You can add more icon sets as needed.
 
 For a complete list of available icon sets, refer to the [Icones](https://icones.js.org/) website.
+
 </Callout>
 
 ## Usage
 
 You can now use Monicon in your React components. Here’s an example of how to use Monicon in a React component.
 
-```tsx filename="src/app/page.tsx"
+```tsx filename="src/app/page.tsx" copy
 import { Monicon } from "@monicon/react";
 
 function App() {
@@ -80,4 +89,5 @@ export default App;
 ## Next Steps
 
 You’ve successfully set up Monicon with Next.js! You can now explore more icon sets and customize your usage further.
+
 </Steps>

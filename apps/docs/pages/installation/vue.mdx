@@ -5,17 +5,18 @@ import { Steps, Callout } from "nextra/components";
 Setting up Monicon with Vue is a straightforward process. This guide will walk you through the installation and configuration steps to get started with Monicon in your Vue project.
 
 <Steps>
+
 ## Install
 
 First, you’ll need to install the necessary dependencies for Monicon. In your project directory, run the following command.
 
-```sh npm2yarn
-npm i @monicon/vue @monicon/vite
+```sh npm2yarn copy
+npm i @monicon/core @monicon/vue @monicon/vite
 ```
 
 Next, install the development dependency @iconify/json for icon sets. This package provides a comprehensive collection of icons that you can easily integrate into your project.
 
-```sh npm2yarn
+```sh npm2yarn copy
 npm i -D @iconify/json
 
 # or specific icon sets
@@ -26,36 +27,45 @@ npm i -D @iconify-json/mdi @iconify-json/feather
 
 Now that the dependencies are installed, you’ll need to configure Vite to use Monicon.
 
-```ts filename="vite.config.ts"
+```ts filename="vite.config.ts" copy
 import { defineConfig } from "vite";
 import vue from "@vitejs/plugin-vue";
 import monicon from "@monicon/vite";
 
 export default defineConfig({
-  plugins: [
-    vue(),
-    monicon({
-      icons: [
-        "mdi:home",
-        "feather:activity",
-        "logos:active-campaign",
-        "lucide:badge-check"
-      ],
-    }),
-  ],
+  plugins: [vue(), monicon()],
 });
 ```
 
-<Callout>
-The `icons` array in the `monicon` plugin configuration specifies the icon sets you want to use in your project. You can add more icon sets as needed. For a complete list of available icon sets, refer to the [Icones](https://icones.js.org/) website.
-</Callout>
+## Configure Monicon
 
+Now you need to configure Monicon to use the icon sets you want in your project. Also you can use `monicon.config.js` file to configure Monicon.
+
+```ts filename="monicon.config.ts" copy
+import type { MoniconOptions } from "@monicon/core";
+
+export default {
+  icons: [
+    "mdi:home",
+    "feather:activity",
+    "logos:active-campaign",
+    "lucide:badge-check",
+  ],
+} satisfies MoniconOptions;
+```
+
+<Callout>
+The `icons` array in the configuration specifies the icon sets you want to use in your project. You can add more icon sets as needed.
+
+For a complete list of available icon sets, refer to the [Icones](https://icones.js.org/) website.
+
+</Callout>
 
 ## Global Import (Optional)
 
 If you want to use Monicon globally in your Vue project, add the following code to your main.ts file.
 
-```ts filename="main.ts"
+```ts filename="main.ts" copy
 import Monicon from "@monicon/vue";
 
 const app = createApp(App);
@@ -67,21 +77,22 @@ app.use(Monicon);
 
 You can now use Monicon in your Vue components. Here’s an example of how to use Monicon in a Vue component.
 
-```vue filename="src/App.vue"
+```vue filename="src/App.vue" copy
 <script setup lang="ts">
 // If you've added app.use(Monicon) in main.ts, you don't need to import Monicon here, also you can use the lower cased `monicon` tag
 import { Monicon } from "@monicon/vue";
 </script>
 
 <template>
-    <Monicon name="mdi:home" />
-    <Monicon name="logos:active-campaign" :size="30" />
-    <Monicon name="feather:activity" color="red" />
-    <Monicon name="lucide:badge-check" size={24} strokeWidth={4} />
+  <Monicon name="mdi:home" />
+  <Monicon name="logos:active-campaign" :size="30" />
+  <Monicon name="feather:activity" color="red" />
+  <Monicon name="lucide:badge-check" size="{24}" strokeWidth="{4}" />
 </template>
 ```
 
 ## Next Steps
 
 You’ve successfully set up Monicon! You can now explore more icon sets and customize your usage further.
+
 </Steps>
