@@ -1,12 +1,5 @@
 # @monicon/icon-loader
 
-## 0.0.142
-
-### Patch Changes
-
-- [#29](https://github.com/oktaysenkan/monicon/pull/29) [`6bd81c6`](https://github.com/oktaysenkan/monicon/commit/6bd81c6b374fb55ed81d71a6186a33820f5cd410) Thanks [@oktaysenkan](https://github.com/oktaysenkan)! - resolve watch config issue
-  add changeset github action
-
 ## 0.0.141
 
 ### Patch Changes
