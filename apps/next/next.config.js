@@ -17,7 +17,20 @@ module.exports = {
       ...config.resolve.extensions,
     ];
 
-    config.plugins.push(new MoniconPlugin({ outputFileName: "next" }));
+    config.plugins.push(
+      new MoniconPlugin({
+        icons: [
+          "mdi:home",
+          "mdi:account",
+          "mdi:account-badge-outline",
+          "feather:activity",
+          "feather:alert-circle",
+          "logos:active-campaign",
+          "logos:apache-superset-icon",
+        ],
+        outputFileName: "next",
+      })
+    );
 
     return config;
   },

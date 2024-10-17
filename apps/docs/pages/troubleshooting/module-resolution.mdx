@@ -1,0 +1,18 @@
+# Module Resolution
+
+Here, module resolution ensures that the correct version and format of the module are loaded, making sure everything works together smoothly. You can specify different formats like "esm" for modern JavaScript or "cjs" for older CommonJS modules.
+
+```ts filename="apps/web/vite.config.ts" copy {10}
+import { defineConfig } from "vite";
+import react from "@vitejs/plugin-react";
+import monicon from "@monicon/vite";
+
+export default defineConfig({
+  plugins: [
+    react(),
+    // The format option makes sure outfile is in ESM format
+    // You can also use "cjs" for CommonJS format but Vite does not support it
+    monicon({ format: "esm" }),
+  ],
+});
+```

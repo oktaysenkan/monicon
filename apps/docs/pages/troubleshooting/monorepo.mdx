@@ -1,0 +1,17 @@
+# Monorepo Configuration
+
+This monorepo configuration each app has a unique output file, so you can use Monicon in multiple apps without conflicts.
+
+```ts filename="apps/web/vite.config.ts" copy {9}
+import { defineConfig } from "vite";
+import react from "@vitejs/plugin-react";
+import monicon from "@monicon/vite";
+
+export default defineConfig({
+  plugins: [
+    react(),
+    // The outputFileName option makes sure each app has a unique file name
+    monicon({ outputFileName: "web" }),
+  ],
+});
+```

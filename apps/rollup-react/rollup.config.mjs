@@ -19,13 +19,16 @@ export default {
     nodeResolve({
       extensions: [".js", ".jsx"],
     }),
-    monicon({ outputFileName: "rollup-react" }),
+    monicon({
+      outputFileName: "rollup-react",
+      icons: ["mdi:home"],
+    }),
     babel(),
     commonjs(),
     replace({
       preventAssignment: false,
       "process.env.NODE_ENV": '"development"',
     }),
-    ...(isDev ? [serve(["public", "dist"])] : []),
+    ...(isDev ? [serve("public")] : []),
   ],
 };

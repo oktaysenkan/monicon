@@ -10,8 +10,8 @@ Setting up Monicon with React Native is a straightforward process. This guide wi
 
 To get started, you’ll need to install the necessary dependencies for Monicon. In your project directory, run the following command to install the dependencies.
 
-```sh npm2yarn copy
-npm i @monicon/core @monicon/native @monicon/metro @monicon/babel-plugin
+```sh npm2yarn
+npm i @monicon/native @monicon/metro @monicon/babel-plugin
 
 # if you want react-native-web support
 npm i @monicon/webpack
@@ -19,7 +19,7 @@ npm i @monicon/webpack
 
 Now you should install the development dependency `@iconify/json` for the icon sets. This package provides a comprehensive collection of icons that can be easily integrated into your project.
 
-```sh npm2yarn copy
+```sh npm2yarn
 npm i -D @iconify/json
 
 # or specific icon sets
@@ -30,22 +30,34 @@ npm i -D @iconify-json/mdi @iconify-json/feather
 
 Now that the dependencies are installed, you’ll need to configure Metro to use Monicon.
 
-```js filename="metro.config.js" copy
+```js filename="metro.config.js"
 const { getDefaultConfig } = require("expo/metro-config");
 const { withMonicon } = require("@monicon/metro");
 
 const config = getDefaultConfig(__dirname);
 
-const configWithMonicon = withMonicon(config);
+const configWithMonicon = withMonicon(config, {
+  icons: [
+    "mdi:home",
+    "feather:activity",
+    "logos:active-campaign",
+  ],
+});
 
 module.exports = configWithMonicon;
 ```
+
+<Callout>
+The `icons` array in the `monicon` plugin configuration specifies the icon sets you want to use in your project. You can add more icon sets as needed.
+
+For a complete list of available icon sets, refer to the [Icones](https://icones.js.org/) website.
+</Callout>
 
 ## Configure Babel
 
 Now you’ll need to configure Babel.
 
-```ts filename="babel.config.js" copy
+```ts filename="vite.config.ts"
 module.exports = function (api) {
   api.cache(true);
   return {
@@ -59,54 +71,39 @@ module.exports = function (api) {
 
 If you want to use Monicon with React Native Web, you’ll need to configure Webpack.
 
-```js filename="webpack.config.js" copy
+```js filename="webpack.config.js"
 const createExpoWebpackConfigAsync = require("@expo/webpack-config");
 const { MoniconPlugin } = require("@monicon/webpack");
 
 module.exports = async function (env, argv) {
   const config = await createExpoWebpackConfigAsync(env, argv);
 
-  config.plugins.push(new MoniconPlugin());
+  config.plugins.push(
+    new MoniconPlugin({
+      icons: [
+        "mdi:home",
+        "feather:activity",
+        "logos:active-campaign",
+        "lucide:badge-check"
+      ],
+    })
+  );
 
   return config;
 };
 ```
 
-## Configure Monicon
-
-Now you need to configure Monicon to use the icon sets you want in your project. Also you can use `monicon.config.js` file to configure Monicon.
-
-```ts filename="monicon.config.ts" copy
-import type { MoniconOptions } from "@monicon/core";
-
-export default {
-  icons: [
-    "mdi:home",
-    "feather:activity",
-    "logos:active-campaign",
-    "lucide:badge-check",
-  ],
-} satisfies MoniconOptions;
-```
-
-<Callout>
-The `icons` array in the configuration specifies the icon sets you want to use in your project. You can add more icon sets as needed.
-
-For a complete list of available icon sets, refer to the [Icones](https://icones.js.org/) website.
-
-</Callout>
-
 ## Usage
 
 You can now use Monicon in your React components. Here’s an example of how to use Monicon in a React component.
 
-```tsx filename="src/App.tsx" copy
+```tsx filename="src/App.tsx"
 import { View } from "react-native";
 import { Monicon } from "@monicon/native";
 
 function App() {
   return (
-    <View>
+    <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
       <Monicon name="mdi:home" />
       <Monicon name="logos:active-campaign" size={30} />
       <Monicon name="feather:activity" color="red" />
@@ -121,5 +118,4 @@ export default App;
 ## Next Steps
 
 You’ve successfully set up Monicon with React Native! You can now explore more icon sets and customize your usage further.
-
 </Steps>

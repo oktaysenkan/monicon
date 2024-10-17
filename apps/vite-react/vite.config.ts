@@ -4,5 +4,20 @@ import monicon from "@monicon/vite";
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [react(), monicon({ outputFileName: "vite-react" })],
+  plugins: [
+    react(),
+    monicon({
+      icons: [
+        "mdi:home",
+        "mdi:account",
+        "mdi:account-badge-outline",
+        "feather:activity",
+        "feather:alert-circle",
+        "logos:active-campaign",
+        "logos:apache-superset-icon",
+        "lucide:badge-check",
+      ],
+      outputFileName: "vite-react",
+    }),
+  ],
 });

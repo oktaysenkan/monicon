@@ -1,6 +1,5 @@
 import { stringToIcon } from "@iconify/utils/lib/icon/name";
 import { loadNodeIcon } from "@iconify/utils/lib/loader/node-loader";
-import * as c from "c12";
 import fs from "fs";
 import path, { dirname } from "path";
 import { fileURLToPath } from "url";
@@ -9,10 +8,6 @@ import { toPx } from "./utils";
 
 export type MoniconOptions = {
   icons: string[];
-  watch?: boolean;
-};
-
-export type MoniconBundlerOptions = {
   outputFileName?: string;
   type?: "cjs" | "esm";
 };
@@ -24,12 +19,9 @@ export type Icon = {
 };
 
 const defaultOptions: MoniconOptions = {
-  icons: [],
-};
-
-const defaultBundlerOptions: MoniconBundlerOptions = {
   outputFileName: "icons",
   type: "cjs",
+  icons: [],
 };
 
 export const getResolveAlias = () => {
@@ -41,7 +33,7 @@ export const getResolveExtensions = () => {
 };
 
 const getIconsFilePathEsm = (
-  fileName: MoniconBundlerOptions["outputFileName"] = "icons"
+  fileName: MoniconOptions["outputFileName"] = "icons"
 ) => {
   // @ts-ignore
   const currentFileName = fileURLToPath(import.meta.url);
@@ -51,13 +43,13 @@ const getIconsFilePathEsm = (
 };
 
 const getIconsFilePathCjs = (
-  fileName: MoniconBundlerOptions["outputFileName"] = "icons"
+  fileName: MoniconOptions["outputFileName"] = "icons"
 ) => {
   return path.resolve(__dirname, `${fileName}.js`);
 };
 
-export const getIconsFilePath = (opts?: MoniconBundlerOptions) => {
-  const options: MoniconBundlerOptions = { ...defaultBundlerOptions, ...opts };
+export const getIconsFilePath = (opts?: MoniconOptions) => {
+  const options: MoniconOptions = { ...defaultOptions, ...opts };
 
   if (options.type === "esm")
     return getIconsFilePathEsm(options.outputFileName);
@@ -97,12 +89,9 @@ export const loadIcon = async (iconName: string) => {
   } satisfies Icon;
 };
 
-export const loadIcons = async (
-  opts?: MoniconOptions & MoniconBundlerOptions
-) => {
-  const options: MoniconOptions & MoniconBundlerOptions = {
+export const loadIcons = async (opts?: MoniconOptions) => {
+  const options: MoniconOptions = {
     ...defaultOptions,
-    ...defaultBundlerOptions,
     ...opts,
   };
 
@@ -124,30 +113,10 @@ export const loadIcons = async (
 const writeIcons = (
   icons: Record<string, Icon>,
   outputPath: string,
-  type: MoniconBundlerOptions["type"] = "cjs"
+  type: MoniconOptions["type"] = "cjs"
 ) => {
   const commonjsCode = `module.exports = ${JSON.stringify(icons, null, 2)};`;
   const esmCode = `export default ${JSON.stringify(icons, null, 2)};`;
 
   fs.writeFileSync(outputPath, type === "cjs" ? commonjsCode : esmCode);
-};
-
-export const watchConfig = async (
-  defaultConfig: Partial<
-    MoniconOptions & MoniconBundlerOptions
-  > = defaultOptions
-) => {
-  const { config, unwatch } = await c.watchConfig<MoniconOptions>({
-    name: "monicon",
-    defaultConfig: { ...defaultOptions, ...defaultConfig },
-    onUpdate: (context) => {
-      context.newConfig.config && loadIcons(context.newConfig.config);
-    },
-  });
-
-  await loadIcons(config);
-
-  const shouldWatch = config.watch || process.env.NODE_ENV === "development";
-
-  !shouldWatch && unwatch();
 };
