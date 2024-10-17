@@ -1,13 +1,10 @@
 {
   "$schema": "https://unpkg.com/@changesets/config@3.0.3/schema.json",
-  "changelog": [
-    "@changesets/changelog-github",
-    { "repo": "oktaysenkan/monicon" }
-  ],
+  "changelog": "@changesets/cli/changelog",
   "commit": false,
   "fixed": [["@monicon/*"]],
   "linked": [],
-  "access": "public",
+  "access": "restricted",
   "baseBranch": "main",
   "updateInternalDependencies": "patch",
   "ignore": [

@@ -1,5 +1,14 @@
 # @monicon/rollup
 
+## 0.0.141
+
+### Patch Changes
+
+- implement config file and hot reload
+
+- Updated dependencies []:
+  - @monicon/vite@0.0.141
+
 ## 0.0.140
 
 ### Patch Changes

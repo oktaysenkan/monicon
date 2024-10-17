@@ -1,5 +1,16 @@
 # @monicon/nuxt
 
+## 0.0.141
+
+### Patch Changes
+
+- implement config file and hot reload
+
+- Updated dependencies []:
+  - @monicon/core@0.0.141
+  - @monicon/vite@0.0.141
+  - @monicon/webpack@0.0.141
+
 ## 0.0.140
 
 ### Patch Changes
