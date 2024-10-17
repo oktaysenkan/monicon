@@ -147,7 +147,7 @@ export const watchConfig = async (
 
   await loadIcons(config);
 
-  const shouldWatch = config.watch ?? process.env.NODE_ENV === "development";
+  const shouldWatch = config.watch || process.env.NODE_ENV === "development";
 
   !shouldWatch && unwatch();
 };
