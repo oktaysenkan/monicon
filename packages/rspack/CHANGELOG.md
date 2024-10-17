@@ -1,5 +1,15 @@
 # @monicon/rspack
 
+## 0.0.144
+
+### Patch Changes
+
+- [`0819e8d`](https://github.com/oktaysenkan/monicon/commit/0819e8d7d31485fed596e985b7dce330f82296f2) Thanks [@oktaysenkan](https://github.com/oktaysenkan)! - revert config file feature
+
+- Updated dependencies [[`0819e8d`](https://github.com/oktaysenkan/monicon/commit/0819e8d7d31485fed596e985b7dce330f82296f2)]:
+  - @monicon/webpack@0.0.144
+  - @monicon/core@0.0.144
+
 ## 0.0.140
 
 ### Patch Changes
