@@ -10,13 +10,13 @@ Setting up Monicon with Svelte is a straightforward process. This guide will wal
 
 To get started, you’ll need to install the necessary dependencies for Monicon. In your project directory, run the following command to install the dependencies.
 
-```sh npm2yarn copy
-npm i @monicon/core @monicon/svelte @monicon/vite
+```sh npm2yarn
+npm i @monicon/svelte @monicon/vite
 ```
 
 Now you should install the development dependency `@iconify/json` for the icon sets. This package provides a comprehensive collection of icons that can be easily integrated into your project.
 
-```sh npm2yarn copy
+```sh npm2yarn
 npm i -D @iconify/json
 
 # or specific icon sets
@@ -27,45 +27,37 @@ npm i -D @iconify-json/mdi @iconify-json/feather
 
 Now that the dependencies are installed, you’ll need to configure Vite to use Monicon.
 
-```tsx filename="vite.config.ts" copy
+```tsx filename="vite.config.ts"
 import { defineConfig } from "vite";
 import { svelte } from "@sveltejs/vite-plugin-svelte";
 import monicon from "@monicon/vite";
 
 export default defineConfig({
-  plugins: [svelte(), monicon()],
+  plugins: [
+    svelte(),
+    monicon({
+      icons: [
+        "mdi:home",
+        "feather:activity",
+        "logos:active-campaign",
+        "lucide:badge-check"
+      ],
+    }),
+  ],
 });
 ```
 
-## Configure Monicon
-
-Now you need to configure Monicon to use the icon sets you want in your project. Also you can use `monicon.config.js` file to configure Monicon.
-
-```ts filename="monicon.config.ts" copy
-import type { MoniconOptions } from "@monicon/core";
-
-export default {
-  icons: [
-    "mdi:home",
-    "feather:activity",
-    "logos:active-campaign",
-    "lucide:badge-check",
-  ],
-} satisfies MoniconOptions;
-```
-
 <Callout>
-The `icons` array in the configuration specifies the icon sets you want to use in your project. You can add more icon sets as needed.
+The `icons` array in the `monicon` plugin configuration specifies the icon sets you want to use in your project. You can add more icon sets as needed.
 
 For a complete list of available icon sets, refer to the [Icones](https://icones.js.org/) website.
-
 </Callout>
 
 ## Usage
 
 You can now use Monicon in your Svelte components. Here’s an example of how to use Monicon in a Svelte component.
 
-```svelte filename="src/App.svelte" copy
+```svelte filename="src/App.svelte"
   <script>
     import { Monicon } from "@monicon/svelte";
   </script>
@@ -81,5 +73,4 @@ You can now use Monicon in your Svelte components. Here’s an example of how to
 ## Next Steps
 
 You’ve successfully set up Monicon with Svelte! You can now explore more icon sets and customize your usage further.
-
 </Steps>
