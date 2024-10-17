@@ -1,15 +1,5 @@
 # @monicon/react
 
-## 0.0.141
-
-### Patch Changes
-
-- implement config file and hot reload
-
-- Updated dependencies []:
-  - @monicon/core@0.0.141
-  - @monicon/icon-loader@0.0.141
-
 ## 0.0.140
 
 ### Patch Changes
