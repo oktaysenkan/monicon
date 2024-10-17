@@ -1,15 +1,5 @@
 # @monicon/rspack
 
-## 0.0.143
-
-### Patch Changes
-
-- [#32](https://github.com/oktaysenkan/monicon/pull/32) [`06cfac3`](https://github.com/oktaysenkan/monicon/commit/06cfac39f27e8188a1249a8749e9517a99fd7826) Thanks [@oktaysenkan](https://github.com/oktaysenkan)! - bump version
-
-- Updated dependencies [[`06cfac3`](https://github.com/oktaysenkan/monicon/commit/06cfac39f27e8188a1249a8749e9517a99fd7826)]:
-  - @monicon/core@0.0.143
-  - @monicon/webpack@0.0.143
-
 ## 0.0.142
 
 ### Patch Changes
