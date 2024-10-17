@@ -18,6 +18,7 @@
     "sync": "syncpack fix-mismatches"
   },
   "devDependencies": {
+    "@changesets/changelog-github": "^0.5.0",
     "@changesets/cli": "^2.27.9",
     "prettier": "^3.3.3",
     "turbo": "^2.1.3"
