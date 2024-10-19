@@ -1,6 +1,6 @@
 {
   "name": "@monicon/nuxt",
-  "version": "0.0.145",
+  "version": "0.0.146",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
@@ -22,14 +22,14 @@
     "clean": "rm -rf dist"
   },
   "devDependencies": {
-    "@monicon/typescript-config": "0.0.145",
+    "@monicon/typescript-config": "0.0.146",
     "tsup": "^8.0.1",
     "typescript": "^5.3.3"
   },
   "dependencies": {
     "@nuxt/kit": "^3.11.2",
-    "@monicon/core": "0.0.145",
-    "@monicon/webpack": "0.0.145",
-    "@monicon/vite": "0.0.145"
+    "@monicon/core": "0.0.146",
+    "@monicon/webpack": "0.0.146",
+    "@monicon/vite": "0.0.146"
   }
 }
