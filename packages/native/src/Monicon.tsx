@@ -7,7 +7,7 @@ import {
 
 const isReactNative = async () => {
   try {
-    return Boolean(typeof window?.document);
+    return Boolean(typeof window && typeof window?.document);
   } catch (error) {
     return false;
   }
