@@ -7,11 +7,7 @@ import {
 
 const isReactNative = async () => {
   try {
-    if (typeof navigator === "undefined") return true;
-
-    require("react-native");
-
-    return true;
+    return Boolean(typeof window?.document);
   } catch (error) {
     return false;
   }
