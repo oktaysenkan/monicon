@@ -1,5 +1,14 @@
 # @monicon/svelte
 
+## 0.0.146
+
+### Patch Changes
+
+- [#37](https://github.com/oktaysenkan/monicon/pull/37) [`4f61546`](https://github.com/oktaysenkan/monicon/commit/4f61546635416f54cd85c2c042f7b44e119d14c4) Thanks [@oktaysenkan](https://github.com/oktaysenkan)! - use await import
+
+- Updated dependencies [[`4f61546`](https://github.com/oktaysenkan/monicon/commit/4f61546635416f54cd85c2c042f7b44e119d14c4)]:
+  - @monicon/icon-loader@0.0.146
+
 ## 0.0.145
 
 ### Patch Changes

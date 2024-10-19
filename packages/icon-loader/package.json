@@ -1,6 +1,6 @@
 {
   "name": "@monicon/icon-loader",
-  "version": "0.0.145",
+  "version": "0.0.146",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "files": [
@@ -22,8 +22,8 @@
     "clean": "rm -rf dist"
   },
   "devDependencies": {
-    "@monicon/typescript-config": "0.0.145",
-    "@monicon/core": "0.0.145",
+    "@monicon/typescript-config": "0.0.146",
+    "@monicon/core": "0.0.146",
     "tsup": "^8.0.1",
     "typescript": "^5.3.3"
   },
