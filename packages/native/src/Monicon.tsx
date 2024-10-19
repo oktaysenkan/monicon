@@ -14,10 +14,11 @@ const isReactNative = async () => {
 };
 
 const nativeIcon = async (details: IconDetails) => {
-  const { SvgXml } = require("react-native-svg");
+  // @ts-ignore
+  const RNSvg = await import("react-native-svg");
 
   return (
-    <SvgXml
+    <RNSvg.SvgXml
       {...details}
       xml={details.svg}
       width={details.attributes.width}
