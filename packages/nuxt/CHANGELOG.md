@@ -1,5 +1,16 @@
 # @monicon/nuxt
 
+## 0.0.145
+
+### Patch Changes
+
+- [#35](https://github.com/oktaysenkan/monicon/pull/35) [`54ee3ff`](https://github.com/oktaysenkan/monicon/commit/54ee3ffd51df589a4d2131029a55847ed15d8f9a) Thanks [@oktaysenkan](https://github.com/oktaysenkan)! - resolve navigator.product issue
+
+- Updated dependencies [[`54ee3ff`](https://github.com/oktaysenkan/monicon/commit/54ee3ffd51df589a4d2131029a55847ed15d8f9a)]:
+  - @monicon/core@0.0.145
+  - @monicon/vite@0.0.145
+  - @monicon/webpack@0.0.145
+
 ## 0.0.144
 
 ### Patch Changes
