@@ -1,5 +1,14 @@
 # @monicon/rollup
 
+## 0.0.147
+
+### Patch Changes
+
+- [`489830b`](https://github.com/oktaysenkan/monicon/commit/489830bc4f352a620f8f54ce863c2f6d8e7f075c) Thanks [@oktaysenkan](https://github.com/oktaysenkan)! - remove mjs output
+
+- Updated dependencies [[`489830b`](https://github.com/oktaysenkan/monicon/commit/489830bc4f352a620f8f54ce863c2f6d8e7f075c)]:
+  - @monicon/vite@0.0.147
+
 ## 0.0.146
 
 ### Patch Changes
