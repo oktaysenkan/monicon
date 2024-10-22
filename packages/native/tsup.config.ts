@@ -6,7 +6,7 @@ export default defineConfig((options: Options) => ({
     js: "'use client'",
   },
   clean: true,
-  format: ["cjs", "esm"],
+  format: ["cjs"],
   external: ["react", "@monicon/runtime", "react-native"],
   dts: true,
   ...options,
