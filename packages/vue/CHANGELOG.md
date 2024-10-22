@@ -1,5 +1,14 @@
 # @monicon/vue
 
+## 0.0.148
+
+### Patch Changes
+
+- [`a3353b6`](https://github.com/oktaysenkan/monicon/commit/a3353b6239937c6523bc621b25a6c75a63ab7cb3) Thanks [@oktaysenkan](https://github.com/oktaysenkan)! - use require instead of await import
+
+- Updated dependencies [[`a3353b6`](https://github.com/oktaysenkan/monicon/commit/a3353b6239937c6523bc621b25a6c75a63ab7cb3)]:
+  - @monicon/icon-loader@0.0.148
+
 ## 0.0.147
 
 ### Patch Changes
