@@ -38,10 +38,12 @@ export default defineConfig({
         "mdi:home",
         "feather:activity",
         "logos:active-campaign",
-        "lucide:badge-check"
+        "lucide:badge-check",
       ],
+      // Load all icons from the listed collections
+      collections: ["radix-icons"],
     }),
-  ]
+  ],
 });
 ```
 
@@ -49,6 +51,7 @@ export default defineConfig({
 The `icons` array in the `monicon` plugin configuration specifies the icon sets you want to use in your project. You can add more icon sets as needed.
 
 For a complete list of available icon sets, refer to the [Icones](https://icones.js.org/) website.
+
 </Callout>
 
 ## Usage
@@ -75,4 +78,5 @@ export default App;
 ## Next Steps
 
 You’ve successfully set up Monicon with React and Rspack! You can now explore more icon sets and customize your usage further.
+
 </Steps>

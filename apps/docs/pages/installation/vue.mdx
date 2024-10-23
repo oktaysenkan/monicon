@@ -39,17 +39,21 @@ export default defineConfig({
         "mdi:home",
         "feather:activity",
         "logos:active-campaign",
-        "lucide:badge-check"
+        "lucide:badge-check",
       ],
+      // Load all icons from the listed collections
+      collections: ["radix-icons"],
     }),
   ],
 });
 ```
 
 <Callout>
-The `icons` array in the `monicon` plugin configuration specifies the icon sets you want to use in your project. You can add more icon sets as needed. For a complete list of available icon sets, refer to the [Icones](https://icones.js.org/) website.
+  The `icons` array in the `monicon` plugin configuration specifies the icon
+  sets you want to use in your project. You can add more icon sets as needed.
+  For a complete list of available icon sets, refer to the
+  [Icones](https://icones.js.org/) website.
 </Callout>
-
 
 ## Global Import (Optional)
 
@@ -74,14 +78,15 @@ import { Monicon } from "@monicon/vue";
 </script>
 
 <template>
-    <Monicon name="mdi:home" />
-    <Monicon name="logos:active-campaign" :size="30" />
-    <Monicon name="feather:activity" color="red" />
-    <Monicon name="lucide:badge-check" size={24} strokeWidth={4} />
+  <Monicon name="mdi:home" />
+  <Monicon name="logos:active-campaign" :size="30" />
+  <Monicon name="feather:activity" color="red" />
+  <Monicon name="lucide:badge-check" size="{24}" strokeWidth="{4}" />
 </template>
 ```
 
 ## Next Steps
 
 You’ve successfully set up Monicon! You can now explore more icon sets and customize your usage further.
+
 </Steps>

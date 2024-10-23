@@ -9,9 +9,37 @@ import { fileURLToPath } from "url";
 import { toPx } from "./utils";
 
 export type MoniconOptions = {
+  /**
+   * The names of the icons to load.
+   *
+   * The icon names should be in the format `collection:icon-name`.
+   *
+   * For example, `mdi:home`.
+   *
+   * You can explore available icons at https://icones.js.org
+   */
   icons: string[];
+  /**
+   * The names of the collections to load. All icons from the collections will be loaded.
+   *
+   * For example, `mdi`.
+   *
+   * You can explore available collections at https://icones.js.org
+   */
   collections?: string[];
+  /**
+   * The name of the file to output the icons to. The file extension will be added automatically based on the type.
+   */
   outputFileName?: string;
+  /**
+   * The type of output file to generate.
+   *
+   * - `cjs` - CommonJS module
+   *
+   * - `esm` - ECMAScript module
+   *
+   * Details: https://monicon-docs.vercel.app/troubleshooting/module-resolution
+   */
   type?: "cjs" | "esm";
 };
 
