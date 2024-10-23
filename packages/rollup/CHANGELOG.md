@@ -1,5 +1,14 @@
 # @monicon/rollup
 
+## 0.0.149
+
+### Patch Changes
+
+- [`a096797`](https://github.com/oktaysenkan/monicon/commit/a0967972bbbb57d9ac701822fcb6e8947d7aed19) Thanks [@oktaysenkan](https://github.com/oktaysenkan)! - add tutorial for loading collections
+
+- Updated dependencies [[`a096797`](https://github.com/oktaysenkan/monicon/commit/a0967972bbbb57d9ac701822fcb6e8947d7aed19)]:
+  - @monicon/vite@0.0.149
+
 ## 0.0.148
 
 ### Patch Changes
