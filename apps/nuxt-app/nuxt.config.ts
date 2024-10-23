@@ -13,6 +13,7 @@ export default defineNuxtConfig({
       "logos:apache-superset-icon",
       "lucide:badge-check",
     ],
+    collections: ["lucide"],
     outputFileName: "nuxt",
   },
 });

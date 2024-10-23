@@ -1,13 +1,16 @@
 import { stringToIcon } from "@iconify/utils/lib/icon/name";
+import { loadCollectionFromFS } from "@iconify/utils/lib/loader/fs";
 import { loadNodeIcon } from "@iconify/utils/lib/loader/node-loader";
 import fs from "fs";
 import path, { dirname } from "path";
+import { parseSync } from "svgson";
 import { fileURLToPath } from "url";
 
 import { toPx } from "./utils";
 
 export type MoniconOptions = {
   icons: string[];
+  collections?: string[];
   outputFileName?: string;
   type?: "cjs" | "esm";
 };
@@ -18,10 +21,11 @@ export type Icon = {
   height: number;
 };
 
-const defaultOptions: MoniconOptions = {
+const defaultOptions: Required<MoniconOptions> = {
   outputFileName: "icons",
   type: "cjs",
   icons: [],
+  collections: [],
 };
 
 export const getResolveAlias = () => {
@@ -57,6 +61,19 @@ export const getIconsFilePath = (opts?: MoniconOptions) => {
   return getIconsFilePathCjs(options.outputFileName);
 };
 
+export const transformIcon = (svg: string) => {
+  const svgObject = parseSync(svg);
+
+  const width = toPx(svgObject.attributes.width ?? "1em");
+  const height = toPx(svgObject.attributes.height ?? "1em");
+
+  return {
+    svg,
+    width: width,
+    height: height,
+  } satisfies Icon;
+};
+
 export const loadIcon = async (iconName: string) => {
   const iconDetails = stringToIcon(iconName);
 
@@ -76,28 +93,43 @@ export const loadIcon = async (iconName: string) => {
     return;
   }
 
-  const widthMatch = svg.match(/width="([^"]+)"/);
-  const heightMatch = svg.match(/height="([^"]+)"/);
+  return transformIcon(svg);
+};
 
-  const width = toPx(widthMatch?.[1] ?? "1em");
-  const height = toPx(heightMatch?.[1] ?? "1em");
+const getIconsFromCollection = async (collectionName: string) => {
+  const collection = await loadCollectionFromFS(collectionName);
 
-  return {
-    svg: svg,
-    width: width,
-    height: height,
-  } satisfies Icon;
+  const icons = collection?.icons;
+
+  if (!icons) {
+    console.warn(
+      `[Monicon] The collection "${collectionName}" was not found. This collection might not exist, or the required icon collection might not be installed. You can explore available icons at https://icones.js.org and ensure the correct collection is added to your project.`
+    );
+    return [];
+  }
+
+  const iconNames = Object.keys(icons).map(
+    (iconName) => `${collectionName}:${iconName}`
+  );
+
+  return iconNames;
 };
 
 export const loadIcons = async (opts?: MoniconOptions) => {
-  const options: MoniconOptions = {
+  const options: Required<MoniconOptions> = {
     ...defaultOptions,
     ...opts,
   };
 
   const loadedIcons: Record<string, Icon> = {};
 
-  for (const iconName of options.icons) {
+  for await (const collection of options.collections) {
+    const collectionIcons = await getIconsFromCollection(collection);
+
+    options.icons.push(...collectionIcons);
+  }
+
+  for await (const iconName of options.icons) {
     const icon = await loadIcon(iconName);
 
     if (!icon) continue;

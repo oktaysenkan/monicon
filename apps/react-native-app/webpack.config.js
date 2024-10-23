@@ -16,6 +16,7 @@ module.exports = async function (env, argv) {
         "logos:apache-superset-icon",
         "icon-park-outline:arrow-circle-right",
       ],
+      collections: ["lucide"],
       outputFileName: "react-native-app",
     })
   );

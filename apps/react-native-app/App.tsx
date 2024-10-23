@@ -12,6 +12,7 @@ export default function App() {
       <Monicon name="logos:active-campaign" size={30} />
       <Monicon name="logos:apache-superset-icon" />
       <Monicon name="invalid:icon" />
+      <Monicon name="lucide:trash" />
       <Monicon
         size={24}
         name="icon-park-outline:arrow-circle-right"

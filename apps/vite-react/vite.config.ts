@@ -17,6 +17,7 @@ export default defineConfig({
         "logos:apache-superset-icon",
         "lucide:badge-check",
       ],
+      collections: ["lucide"],
       outputFileName: "vite-react",
     }),
   ],

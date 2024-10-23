@@ -20,6 +20,7 @@ const configWithMonicon = withMonicon(config, {
     "logos:apache-superset-icon",
     "icon-park-outline:arrow-circle-right",
   ],
+  collections: ["lucide"],
   outputFileName: "react-native-app",
 });
 
