@@ -61,7 +61,7 @@ For a complete list of available icon sets, refer to the [Icones](https://icones
 
 Now you’ll need to configure Babel.
 
-```ts filename="vite.config.ts"
+```ts filename="babel.config.js"
 module.exports = function (api) {
   api.cache(true);
   return {
@@ -72,6 +72,8 @@ module.exports = function (api) {
 ```
 
 ## Configure Webpack (Optional)
+
+<Callout>If you are using Expo Router, skip this step.</Callout>
 
 If you want to use Monicon with React Native Web, you’ll need to configure Webpack.
 
@@ -90,10 +92,31 @@ module.exports = async function (env, argv) {
         "logos:active-campaign",
         "lucide:badge-check",
       ],
+      // Load all icons from the listed collections
+      collections: ["radix-icons"],
     })
   );
 
   return config;
+};
+```
+
+For **bare React Native** projects, you can use the `@monicon/webpack` plugin to configure Webpack.
+
+```js filename="webpack.config.js"
+module.exports = {
+  plugins: [
+    new MoniconPlugin({
+      icons: [
+        "mdi:home",
+        "feather:activity",
+        "logos:active-campaign",
+        "lucide:badge-check",
+      ],
+      // Load all icons from the listed collections
+      collections: ["radix-icons"],
+    }),
+  ],
 };
 ```
 
@@ -107,7 +130,7 @@ import { Monicon } from "@monicon/native";
 
 function App() {
   return (
-    <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
+    <View>
       <Monicon name="mdi:home" />
       <Monicon name="logos:active-campaign" size={30} />
       <Monicon name="feather:activity" color="red" />
