@@ -35,19 +35,22 @@
     },
 
     "react#build": {
-      "dependsOn": ["core#build", "icon-loader#build"]
+      "dependsOn": ["icon-loader#build"]
     },
     "native#build": {
-      "dependsOn": ["core#build", "icon-loader#build"]
+      "dependsOn": ["icon-loader#build"]
     },
     "vue#build": {
-      "dependsOn": ["core#build", "icon-loader#build"]
+      "dependsOn": ["icon-loader#build"]
     },
     "nuxt#build": {
       "dependsOn": ["vue#build"]
     },
     "svelte#build": {
       "dependsOn": ["vite#build", "icon-loader#build"]
+    },
+    "qwik#build": {
+      "dependsOn": ["icon-loader#build"]
     },
 
     "react-native-app#build": {
@@ -81,6 +84,9 @@
     },
     "svelte-app#build": {
       "dependsOn": ["svelte#build"]
+    },
+    "qwik-app#build": {
+      "dependsOn": ["qwik#build"]
     },
 
     "dev": {
