@@ -19,6 +19,10 @@ const config: DocsThemeConfig = {
         <meta property="og:title" content={title} />
         <meta name="description" content={description} />
         <meta property="og:description" content={description} />
+        <meta
+          name="google-site-verification"
+          content="NB5Gz6YQzn4N-x--CS5dS4h0MsbnRgSfrekYnuv9gQs"
+        />
       </>
     );
   },
