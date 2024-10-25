@@ -1,6 +1,6 @@
 {
   "name": "@monicon/core",
-  "version": "0.0.149",
+  "version": "0.0.150",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "files": [
@@ -32,7 +32,7 @@
   "devDependencies": {
     "@iconify/json": "^2.2.251",
     "@iconify/types": "^2.0.0",
-    "@monicon/typescript-config": "0.0.149",
+    "@monicon/typescript-config": "0.0.150",
     "tsup": "^8.0.1",
     "typescript": "^5.3.3"
   },
