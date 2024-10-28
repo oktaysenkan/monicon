@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://monicon-docs.vercel.app
+
+# Sitemaps
+Sitemap: https://monicon-docs.vercel.app/sitemap.xml
