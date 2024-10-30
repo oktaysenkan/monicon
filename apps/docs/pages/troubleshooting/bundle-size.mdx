@@ -34,7 +34,7 @@ dist/assets/vite-react-Ceh97ktz.js  528.50 kB │ gzip: 68.80 kB
 
 To reduce the bundle size, specify only the icons you need by adding them to the `icons` option and leaving `collections` empty. This setup includes just `"lucide:badge-check"` and reduces the bundle size significantly.
 
-```tsx filename="src/App.tsx" {9,10}
+```tsx filename="vite.config.ts" {9,10}
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 import monicon from "@monicon/vite";
