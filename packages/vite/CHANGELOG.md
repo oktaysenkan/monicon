@@ -1,5 +1,14 @@
 # @monicon/vite
 
+## 0.0.151
+
+### Patch Changes
+
+- [#44](https://github.com/oktaysenkan/monicon/pull/44) [`da4bd96`](https://github.com/oktaysenkan/monicon/commit/da4bd969ed3af993d4d01ffb69cbad86cf32184f) Thanks [@oktaysenkan](https://github.com/oktaysenkan)! - update react peer dependencies
+
+- Updated dependencies [[`da4bd96`](https://github.com/oktaysenkan/monicon/commit/da4bd969ed3af993d4d01ffb69cbad86cf32184f)]:
+  - @monicon/core@0.0.151
+
 ## 0.0.150
 
 ### Patch Changes
