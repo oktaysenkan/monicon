@@ -1,0 +1,71 @@
+import { Steps, Callout } from "nextra/components";
+
+# Bundle Size
+
+To keep your application efficient, it’s best to only include the icons you actually use. This guide shows how to reduce your bundle size by selecting specific icons with Monicon.
+
+<Steps>
+## Unoptimized Configuration
+
+In the example below, the entire `lucide` icon collection is included, which increases the bundle size significantly.
+
+```ts filename="vite.config.ts" {9,10}
+import { defineConfig } from "vite";
+import react from "@vitejs/plugin-react";
+import monicon from "@monicon/vite";
+
+export default defineConfig({
+  plugins: [
+    react(),
+    monicon({
+      icons: [],
+      collections: ["lucide"],
+    }),
+  ],
+});
+```
+
+```sh
+vite v5.4.8 building for production...
+dist/assets/vite-react-Ceh97ktz.js  528.50 kB │ gzip: 68.80 kB
+```
+
+## Optimized Configuration
+
+To reduce the bundle size, specify only the icons you need by adding them to the `icons` option and leaving `collections` empty. This setup includes just `"lucide:badge-check"` and reduces the bundle size significantly.
+
+```tsx filename="src/App.tsx" {9,10}
+import { defineConfig } from "vite";
+import react from "@vitejs/plugin-react";
+import monicon from "@monicon/vite";
+
+export default defineConfig({
+  plugins: [
+    react(),
+    monicon({
+      icons: ["lucide:badge-check"],
+      collections: [],
+    }),
+  ],
+});
+```
+
+```sh
+vite v5.4.8 building for production...
+dist/assets/vite-react-CloGAhCu.js    0.44 kB │ gzip:  0.27 kB
+```
+
+<Callout type="info">
+  Bundle size reduced from **528.50 kB** to **0.44 kB** for the whole app.
+</Callout>
+
+## Conclusion
+
+To keep your bundle size small and your application efficient:
+
+1. Specify only the icons you need with the `icons` option.
+2. Leave `collections` empty if the entire set is unnecessary.
+
+This setup minimizes the bundle size and optimizes performance in production.
+
+</Steps>
