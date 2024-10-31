@@ -38,13 +38,12 @@ export default async function handler(
           display: "flex",
           flexDirection: "column",
           padding: "140px 200px 140px 140px",
-          gap: 160,
           fontFamily: "Inter",
           fontWeight: 500,
+          fontSize: 80,
         }}
       >
-        <p style={{ fontSize: 80 }}>{text}</p>
-        <p style={{ fontSize: 42 }}>{website}</p>
+        {text}
       </div>
     ),
     {
