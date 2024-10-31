@@ -11,7 +11,7 @@ const interMedium = fetch(
 
 const dotPattern = `
 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16">
-  <circle cx="1" cy="1" r="1" fill="rgb(163, 163, 163, 0.3)" />
+  <circle cx="1" cy="1" r="1" fill="rgb(163, 163, 163, 0.5)" />
 </svg>
 `;
 
@@ -23,8 +23,7 @@ export default async function handler(
 
   const { searchParams } = new URL(req.url || "", `http://${req.headers.host}`);
 
-  const text = searchParams.get("text") || "Default Text";
-  const website = "Monicon";
+  const text = searchParams.get("text") || "Monicon";
 
   return new ImageResponse(
     (
@@ -37,7 +36,7 @@ export default async function handler(
           height: "100%",
           display: "flex",
           flexDirection: "column",
-          padding: "140px 200px 140px 140px",
+          padding: "100px 200px 100px 100px",
           fontFamily: "Inter",
           fontWeight: 500,
           fontSize: 80,

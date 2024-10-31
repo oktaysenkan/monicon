@@ -15,7 +15,7 @@ const config: DocsThemeConfig = {
 
     const title = config.title + (route === "/" ? "" : " - Monicon");
 
-    const ogImage = `${site}/api/og?text=${config.title}`;
+    const ogImage = `${site}/api/og?text=${title}`;
 
     return (
       <>
