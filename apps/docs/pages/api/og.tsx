@@ -5,10 +5,6 @@ export const config = {
   runtime: "edge",
 };
 
-const interRegular = fetch(
-  new URL("../../public/Inter-Regular.ttf", import.meta.url)
-).then((res) => res.arrayBuffer());
-
 const interMedium = fetch(
   new URL("../../public/Inter-Medium.ttf", import.meta.url)
 ).then((res) => res.arrayBuffer());
@@ -23,10 +19,7 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  const [interRegularFont, interBoldFont] = await Promise.all([
-    interRegular,
-    interMedium,
-  ]);
+  const [interMediumFont] = await Promise.all([interMedium]);
 
   const { searchParams } = new URL(req.url || "", `http://${req.headers.host}`);
 
@@ -47,10 +40,11 @@ export default async function handler(
           padding: "140px 200px 140px 140px",
           gap: 160,
           fontFamily: "Inter",
+          fontWeight: 500,
         }}
       >
-        <p style={{ fontWeight: 500, fontSize: 80 }}>{text}</p>
-        <p style={{ fontWeight: 400, fontSize: 42 }}>{website}</p>
+        <p style={{ fontSize: 80 }}>{text}</p>
+        <p style={{ fontSize: 42 }}>{website}</p>
       </div>
     ),
     {
@@ -59,13 +53,7 @@ export default async function handler(
       fonts: [
         {
           name: "Inter",
-          data: interRegularFont,
-          style: "normal",
-          weight: 400,
-        },
-        {
-          name: "Inter",
-          data: interBoldFont,
+          data: interMediumFont,
           style: "normal",
           weight: 500,
         },
