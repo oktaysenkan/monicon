@@ -11,6 +11,7 @@
   },
   "license": "MIT",
   "dependencies": {
+    "@vercel/og": "^0.6.3",
     "next": "^14.2.14",
     "next-sitemap": "^4.2.3",
     "nextra": "^3.0.11",
