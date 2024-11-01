@@ -7,7 +7,7 @@ const config: DocsThemeConfig = {
     const config = useConfig();
     const { route, basePath } = useRouter();
 
-    const site = basePath ?? "https://monicon.vercel.app";
+    const site = basePath || "https://monicon.vercel.app";
 
     const description =
       config.frontMatter.description ??
