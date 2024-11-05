@@ -1,5 +1,7 @@
 import { Icon } from "@monicon/core";
 import { parseSync, stringify } from "svgson";
+// @ts-ignore
+import icons from "@monicon/runtime";
 
 export type MoniconProps = {
   name: string;
@@ -20,22 +22,7 @@ export const fallbackIcon: Icon = {
   height: 32,
 };
 
-const importIcons = async () =>
-  new Promise<Record<string, Icon> | null>(async (resolve) => {
-    try {
-      // @ts-ignore
-      const iconsImport = await import("@monicon/runtime");
-      const icons = iconsImport.default ?? iconsImport;
-
-      return resolve(icons);
-    } catch (error) {
-      return resolve(null);
-    }
-  });
-
-const loadIcon = async (iconName: string) => {
-  const icons = await importIcons();
-
+const loadIcon = (iconName: string) => {
   const icon = icons?.[iconName];
 
   if (icon) return icon;
@@ -47,8 +34,8 @@ const loadIcon = async (iconName: string) => {
   return fallbackIcon;
 };
 
-export const getIconDetails = async (props: MoniconProps) => {
-  const loadedIcon = await loadIcon(props.name);
+export const getIconDetails = (props: MoniconProps) => {
+  const loadedIcon = loadIcon(props.name);
 
   const icon = { ...loadedIcon };
 

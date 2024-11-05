@@ -11,7 +11,7 @@ const props = defineProps<MoniconProps>();
 const details = ref<IconDetails | null>(null);
 
 const loadIcons = async () => {
-  details.value = await getIconDetails({
+  details.value = getIconDetails({
     name: props.name,
     size: props.size,
     color: props.color,
@@ -19,8 +19,7 @@ const loadIcons = async () => {
   });
 };
 
-watch(props, loadIcons);
-onMounted(loadIcons);
+watch(props, loadIcons, { immediate: true });
 </script>
 
 <template>
