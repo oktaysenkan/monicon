@@ -1,5 +1,15 @@
 # @monicon/native
 
+## 0.0.152
+
+### Patch Changes
+
+- [#46](https://github.com/oktaysenkan/monicon/pull/46) [`bf84d7e`](https://github.com/oktaysenkan/monicon/commit/bf84d7edc2b9d4d197875437c663eae6f800e2c4) Thanks [@oktaysenkan](https://github.com/oktaysenkan)! - load icons synchronously
+
+- Updated dependencies [[`bf84d7e`](https://github.com/oktaysenkan/monicon/commit/bf84d7edc2b9d4d197875437c663eae6f800e2c4)]:
+  - @monicon/icon-loader@0.0.152
+  - @monicon/core@0.0.152
+
 ## 0.0.151
 
 ### Patch Changes
