@@ -1,6 +1,6 @@
 {
   "name": "@monicon/vue",
-  "version": "0.0.151",
+  "version": "0.0.152",
   "main": "./dist/monicon.umd.js",
   "module": "dist/monicon.mjs",
   "types": "./dist/index.d.ts",
@@ -22,7 +22,7 @@
     "clean": "rm -rf dist"
   },
   "devDependencies": {
-    "@monicon/typescript-config": "0.0.151",
+    "@monicon/typescript-config": "0.0.152",
     "@vitejs/plugin-vue": "^5.1.4",
     "rollup-plugin-typescript2": "^0.36.0",
     "typescript": "^5.3.3",
@@ -30,7 +30,7 @@
     "vite-plugin-dts": "^4.2.3"
   },
   "dependencies": {
-    "@monicon/icon-loader": "0.0.151"
+    "@monicon/icon-loader": "0.0.152"
   },
   "peerDependencies": {
     "vue": "^2.6.14 || ^3.0.0"
