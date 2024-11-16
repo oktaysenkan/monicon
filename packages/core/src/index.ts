@@ -6,6 +6,7 @@ import fs from "fs";
 import path, { dirname } from "path";
 import { parseSync } from "svgson";
 import { fileURLToPath } from "url";
+import * as f from "fuuu";
 
 import { toPx } from "./utils";
 
@@ -127,7 +128,16 @@ export const loadIcon = async (iconName: string) => {
     return;
   }
 
-  return transformIcon(svg);
+  const transformedIcon = f.syncSafe(() => transformIcon(svg));
+
+  if (transformedIcon.error) {
+    console.warn(
+      `[Monicon] The icon "${iconName}" could not be transformed. This icon might not be in the correct format.`
+    );
+    return;
+  }
+
+  return transformedIcon.data;
 };
 
 const getIconsFromCollection = async (collectionName: string) => {
