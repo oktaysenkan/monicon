@@ -31,7 +31,6 @@
   },
   "devDependencies": {
     "@iconify/json": "^2.2.251",
-    "@monicon/loader": "*",
     "@iconify/types": "^2.0.0",
     "@monicon/typescript-config": "0.0.152",
     "tsup": "^8.0.1",

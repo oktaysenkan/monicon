@@ -2,7 +2,6 @@ import { stringToIcon } from "@iconify/utils/lib/icon/name";
 import { loadCollectionFromFS } from "@iconify/utils/lib/loader/fs";
 import { loadNodeIcon } from "@iconify/utils/lib/loader/node-loader";
 import type { Loader } from "@monicon/loader";
-import { remoteLoader, mockLoader, localLoader } from "@monicon/loader";
 import fs from "fs";
 import path, { dirname } from "path";
 import { parseSync } from "svgson";
@@ -30,7 +29,7 @@ export type MoniconOptions = {
    */
   collections?: string[];
   /**
-   * Custom loaders to load icons from different sources
+   * Custom collections to load icons from different sources.
    */
   customCollections?: Record<string, ReturnType<Loader>>;
   /**
