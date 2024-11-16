@@ -14,7 +14,7 @@ export type Loader<T = any> = (
   input: T
 ) => () => Promise<LoaderResult> | LoaderResult;
 
-export type JSONLoaderOptions =
+export type JSONCollectionLoaderOptions =
   | string
   | {
       url: string;
@@ -32,36 +32,39 @@ const isValidSvg = (svg: string) => {
   return !parsed.error;
 };
 
-export const JSONLoader: Loader<JSONLoaderOptions> = (input) => async () => {
-  const url = typeof input === "string" ? input : input.url;
+export const loadJSONCollection: Loader<JSONCollectionLoaderOptions> =
+  (input) => async () => {
+    const url = typeof input === "string" ? input : input.url;
 
-  const options = typeof input === "string" ? undefined : input.options;
+    const options = typeof input === "string" ? undefined : input.options;
 
-  const response = await f.safe(() => fetch(url, options));
+    const response = await f.safe(() => fetch(url, options));
 
-  if (response.error) {
-    console.warn(`[Monicon] Request to "${url}" failed.`);
-    return {};
-  }
-
-  const content = await f.safe<LoaderResult>(() => response.data.json());
-
-  if (content.error) {
-    console.warn(`[Monicon] Unable to parse response from "${url}".`);
-    return {};
-  }
-
-  Object.entries(content.data).forEach(([key, value]) => {
-    if (!isValidSvg(value)) {
-      console.warn(`[Monicon] The response from "${url}" is not a valid SVG.`);
-      delete content.data[key];
+    if (response.error) {
+      console.warn(`[Monicon] Request to "${url}" failed.`);
+      return {};
     }
-  });
 
-  return content.data as LoaderResult;
-};
+    const content = await f.safe<LoaderResult>(() => response.data.json());
 
-export type RemoteLoaderOptions = Record<
+    if (content.error) {
+      console.warn(`[Monicon] Unable to parse response from "${url}".`);
+      return {};
+    }
+
+    Object.entries(content.data).forEach(([key, value]) => {
+      if (!isValidSvg(value)) {
+        console.warn(
+          `[Monicon] The response from "${url}" is not a valid SVG.`
+        );
+        delete content.data[key];
+      }
+    });
+
+    return content.data as LoaderResult;
+  };
+
+export type RemoteCollectionLoaderOptions = Record<
   string,
   | string
   | {
@@ -70,7 +73,7 @@ export type RemoteLoaderOptions = Record<
     }
 >;
 
-export const remoteLoader: Loader<RemoteLoaderOptions> =
+export const loadRemoteCollection: Loader<RemoteCollectionLoaderOptions> =
   (input) => async () => {
     const asArray = await Promise.all(
       Object.entries(input).map(async ([key, value]) => {
@@ -114,63 +117,64 @@ export const remoteLoader: Loader<RemoteLoaderOptions> =
     return asObject as LoaderResult;
   };
 
-export type LocalLoaderOptions =
+export type LocalCollectionLoaderOptions =
   | string
   | {
       directory: string;
     };
 
-export const localLoader: Loader<LocalLoaderOptions> = (input) => () => {
-  const directory = typeof input === "string" ? input : input.directory;
+export const loadLocalCollection: Loader<LocalCollectionLoaderOptions> =
+  (input) => () => {
+    const directory = typeof input === "string" ? input : input.directory;
 
-  if (!directory) throw new Error("directory is required");
+    if (!directory) throw new Error("directory is required");
 
-  const directoryAbsolutePath = path.resolve(directory);
+    const directoryAbsolutePath = path.resolve(directory);
 
-  const filePaths = glob.sync(`${directory}/**/*.svg`);
+    const filePaths = glob.sync(`${directory}/**/*.svg`);
 
-  if (!filePaths.length) {
-    console.warn(
-      `[Monicon] No files were found in the directory "${directory}".`
-    );
-  }
-
-  const files = filePaths.map((filePath) => {
-    const content = f.syncSafe(() => readFileSync(filePath, "utf-8"));
-
-    if (content.error) {
+    if (!filePaths.length) {
       console.warn(
-        `[Monicon] The file "${filePath}" was not found. This file might not exist, or the required icon file might not be in the correct format.`
+        `[Monicon] No files were found in the directory "${directory}".`
       );
-      return;
     }
 
-    if (!isValidSvg(content.data)) {
-      console.warn(`[Monicon] The file "${filePath}" is not a valid SVG.`);
-      return;
-    }
+    const files = filePaths.map((filePath) => {
+      const content = f.syncSafe(() => readFileSync(filePath, "utf-8"));
 
-    const fileAbsolutePath = path.resolve(filePath);
+      if (content.error) {
+        console.warn(
+          `[Monicon] The file "${filePath}" was not found. This file might not exist, or the required icon file might not be in the correct format.`
+        );
+        return;
+      }
 
-    const relativePath = fileAbsolutePath.replace(
-      `${directoryAbsolutePath}/`,
-      ""
+      if (!isValidSvg(content.data)) {
+        console.warn(`[Monicon] The file "${filePath}" is not a valid SVG.`);
+        return;
+      }
+
+      const fileAbsolutePath = path.resolve(filePath);
+
+      const relativePath = fileAbsolutePath.replace(
+        `${directoryAbsolutePath}/`,
+        ""
+      );
+
+      const fileNameWithoutExtension = relativePath.slice(0, -4).trim();
+
+      const slugified = slugify(fileNameWithoutExtension, { lower: true });
+
+      return { name: slugified, content: content.data } as Content;
+    });
+
+    const filesFiltered = files.filter((item) => !!item) as Content[];
+
+    const asObject = _.objectify(
+      filesFiltered,
+      (item) => item.name,
+      (item) => item.content
     );
 
-    const fileNameWithoutExtension = relativePath.slice(0, -4).trim();
-
-    const slugified = slugify(fileNameWithoutExtension, { lower: true });
-
-    return { name: slugified, content: content.data } as Content;
-  });
-
-  const filesFiltered = files.filter((item) => !!item) as Content[];
-
-  const asObject = _.objectify(
-    filesFiltered,
-    (item) => item.name,
-    (item) => item.content
-  );
-
-  return asObject;
-};
+    return asObject;
+  };

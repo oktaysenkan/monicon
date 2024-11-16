@@ -1,7 +1,11 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 import monicon from "@monicon/vite";
-import { localLoader, JSONLoader, remoteLoader } from "@monicon/loader";
+import {
+  loadLocalCollection,
+  loadJSONCollection,
+  loadRemoteCollection,
+} from "@monicon/loader";
 
 export default defineConfig({
   plugins: [
@@ -19,11 +23,11 @@ export default defineConfig({
       ],
       collections: ["lucide"],
       customCollections: {
-        local: localLoader("../../packages/icons"),
-        json: JSONLoader(
+        local: loadLocalCollection("../../packages/icons"),
+        json: loadJSONCollection(
           "https://gist.githubusercontent.com/oktaysenkan/39681ecdb066dc44c52fa840dacc7562/raw/6aa7b8f8bf9d806742be0e1c4759809391d00bcd/icons.json"
         ),
-        remote: remoteLoader({
+        remote: loadRemoteCollection({
           download: "https://api.iconify.design/lucide:cloud-download.svg",
           attachment: "https://api.iconify.design/ri:attachment-2.svg",
         }),
