@@ -1,6 +1,8 @@
 import { stringToIcon } from "@iconify/utils/lib/icon/name";
 import { loadCollectionFromFS } from "@iconify/utils/lib/loader/fs";
 import { loadNodeIcon } from "@iconify/utils/lib/loader/node-loader";
+import type { Loader } from "@monicon/loader";
+import { remoteLoader, mockLoader, localLoader } from "@monicon/loader";
 import fs from "fs";
 import path, { dirname } from "path";
 import { parseSync } from "svgson";
@@ -28,6 +30,10 @@ export type MoniconOptions = {
    */
   collections?: string[];
   /**
+   * Custom loaders to load icons from different sources
+   */
+  customCollections?: Record<string, ReturnType<Loader>>;
+  /**
    * The name of the file to output the icons to. The file extension will be added automatically based on the type.
    */
   outputFileName?: string;
@@ -54,6 +60,7 @@ const defaultOptions: Required<MoniconOptions> = {
   type: "cjs",
   icons: [],
   collections: [],
+  customCollections: {},
 };
 
 export const getResolveAlias = () => {
@@ -163,6 +170,20 @@ export const loadIcons = async (opts?: MoniconOptions) => {
     if (!icon) continue;
 
     loadedIcons[iconName] = icon;
+  }
+
+  const loaders = Object.entries(options.customCollections);
+
+  for await (const [loaderName, loader] of loaders) {
+    const loaderResult = await loader();
+
+    for await (const [iconName, svg] of Object.entries(loaderResult)) {
+      const icon = transformIcon(svg);
+
+      const name = `${loaderName}:${iconName}`;
+
+      loadedIcons[name] = icon;
+    }
   }
 
   const outputPath = getIconsFilePath(options);

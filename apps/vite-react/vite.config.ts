@@ -1,8 +1,8 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 import monicon from "@monicon/vite";
+import { localLoader, mockLoader, remoteLoader } from "@monicon/loader";
 
-// https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
     react(),
@@ -18,6 +18,11 @@ export default defineConfig({
         "lucide:badge-check",
       ],
       collections: ["lucide"],
+      customCollections: {
+        mock: mockLoader(),
+        remote: remoteLoader({ url: "" }),
+        local: localLoader({ directory: "" }),
+      },
       outputFileName: "vite-react",
     }),
   ],
