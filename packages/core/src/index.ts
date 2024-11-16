@@ -20,7 +20,7 @@ export type MoniconOptions = {
    *
    * You can explore available icons at https://icones.js.org
    */
-  icons: string[];
+  icons?: string[];
   /**
    * The names of the collections to load. All icons from the collections will be loaded.
    *
