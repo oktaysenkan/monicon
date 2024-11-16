@@ -1,0 +1,55 @@
+# Local Collections
+
+Local Collections in Monicon allow you to use icons stored locally on your file system. These collections can be loaded using the `loadLocalCollection` function, which points to the directory containing your SVG files. This setup is ideal for projects where icons are managed locally, providing a quick and flexible way to integrate custom icon sets.
+
+```ts filename="vite.config.ts"
+import { defineConfig } from "vite";
+import react from "@vitejs/plugin-react";
+import monicon from "@monicon/vite";
+import { loadLocalCollection } from "@monicon/loader";
+
+export default defineConfig({
+  plugins: [
+    react(),
+    monicon({
+      customCollections: {
+        local: loadLocalCollection("assets/icons"),
+      },
+    }),
+  ],
+});
+```
+
+### Example Directory Structure
+
+For the above configuration, your assets/icons directory might look like this:
+
+```
+assets/
+└── icons/
+    ├── folder.svg
+    ├── user.svg
+    └── network.svg
+```
+
+Each SVG file in the directory is automatically assigned a name based on its filename (e.g., `folder` for `folder.svg`).
+
+### Usage
+
+You can now use Monicon in your React components. Here’s an example of how to use an icon from your local collection in a React component:
+
+```tsx filename="src/App.tsx"
+import { Monicon } from "@monicon/react";
+
+function App() {
+  return (
+    <main>
+      <Monicon name="local:folder" size={24} />
+      <Monicon name="local:user" size={24} />
+      <Monicon name="local:network" size={24} />
+    </main>
+  );
+}
+
+export default App;
+```

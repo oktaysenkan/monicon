@@ -1,0 +1,51 @@
+# JSON Collections
+
+JSON Collections in Monicon allow you to define custom icons from JSON files or URLs. These JSON files typically map icon names to their corresponding SVG data, making it easy to include and manage custom icon sets in your project. In the example above, the loadJSONCollection function fetches icons from a hosted JSON file and integrates them into your application.
+
+```ts filename="vite.config.ts"
+import { defineConfig } from "vite";
+import react from "@vitejs/plugin-react";
+import monicon from "@monicon/vite";
+import { loadJSONCollection } from "@monicon/loader";
+
+export default defineConfig({
+  plugins: [
+    react(),
+    monicon({
+      customCollections: {
+        json: loadJSONCollection(
+          "https://gist.githubusercontent.com/oktaysenkan/39681ecdb066dc44c52fa840dacc7562/raw/6aa7b8f8bf9d806742be0e1c4759809391d00bcd/icons.json"
+        ),
+      },
+    }),
+  ],
+});
+```
+
+### Example JSON File
+
+Here is an example JSON file you can use for a Monicon JSON Collection. This file maps an icon name (network) to its corresponding SVG markup:
+
+```json filename="https://gist.githubusercontent.com/oktaysenkan/39681ecdb066dc44c52fa840dacc7562/raw/6aa7b8f8bf9d806742be0e1c4759809391d00bcd/icons.json"
+{
+  "network": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><rect x=\"16\" y=\"16\" width=\"6\" height=\"6\" rx=\"1\"/><rect x=\"2\" y=\"16\" width=\"6\" height=\"6\" rx=\"1\"/><rect x=\"9\" y=\"2\" width=\"6\" height=\"6\" rx=\"1\"/><path d=\"M5 16v-3a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v3\"/><path d=\"M12 12V8\"/></svg>"
+}
+```
+
+### Usage
+
+You can now use Monicon in your React components. Here’s an example of how to use Monicon in a React component.
+
+```tsx filename="src/App.tsx"
+import { Monicon } from "@monicon/react";
+
+function App() {
+  return (
+    <main>
+      <Monicon name="json:network" size={24} />
+    </main>
+  );
+}
+
+export default App;
+```

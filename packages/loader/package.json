@@ -1,24 +1,16 @@
 {
-  "name": "@monicon/core",
+  "name": "@monicon/loader",
   "version": "0.0.152",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "files": [
-    "dist/index.d.ts",
-    "dist/index.d.mts",
-    "dist/index.js",
-    "dist/index.mjs"
+    "dist"
   ],
   "exports": {
     ".": {
       "import": "./dist/index.mjs",
       "require": "./dist/index.js",
       "types": "./dist/index.d.ts"
-    },
-    "./constants": {
-      "import": "./dist/constants.mjs",
-      "require": "./dist/constants.js",
-      "types": "./dist/constants.d.mts"
     }
   },
   "publishConfig": {
@@ -30,16 +22,15 @@
     "clean": "rm -rf dist"
   },
   "devDependencies": {
-    "@iconify/json": "^2.2.251",
-    "@iconify/types": "^2.0.0",
-    "@monicon/loader": "*",
     "@monicon/typescript-config": "0.0.152",
     "tsup": "^8.0.1",
     "typescript": "^5.3.3"
   },
   "dependencies": {
-    "@iconify/utils": "^2.1.33",
     "fuuu": "^0.0.8",
+    "glob": "^11.0.0",
+    "radashi": "^12.2.3",
+    "slugify": "^1.6.6",
     "svgson": "^5.3.1"
   }
 }

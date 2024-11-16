@@ -1,0 +1,43 @@
+# Remote Collections
+
+Remote Collections in Monicon allow you to fetch and use icons directly from remote URLs. These collections are configured using the `loadRemoteCollection` function, which maps icon names to their respective URLs. This setup is perfect for integrating third-party or dynamically fetched icons into your project.
+
+```ts filename="vite.config.ts"
+import { defineConfig } from "vite";
+import react from "@vitejs/plugin-react";
+import monicon from "@monicon/vite";
+import { loadRemoteCollection } from "@monicon/loader";
+
+export default defineConfig({
+  plugins: [
+    react(),
+    monicon({
+      customCollections: {
+        remote: loadRemoteCollection({
+          download: "https://api.iconify.design/lucide:cloud-download.svg",
+          attachment: "https://api.iconify.design/ri:attachment-2.svg",
+        }),
+      },
+    }),
+  ],
+});
+```
+
+### Usage
+
+You can now use Monicon in your React components. Here’s an example of how to use icons from your remote collection in a React component:
+
+```tsx filename="src/App.tsx"
+import { Monicon } from "@monicon/react";
+
+function App() {
+  return (
+    <main>
+      <Monicon name="remote:download" size={24} />
+      <Monicon name="remote:attachment" size={24} />
+    </main>
+  );
+}
+
+export default App;
+```

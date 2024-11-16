@@ -1,10 +1,12 @@
 import { stringToIcon } from "@iconify/utils/lib/icon/name";
 import { loadCollectionFromFS } from "@iconify/utils/lib/loader/fs";
 import { loadNodeIcon } from "@iconify/utils/lib/loader/node-loader";
+import type { Loader } from "@monicon/loader";
 import fs from "fs";
 import path, { dirname } from "path";
 import { parseSync } from "svgson";
 import { fileURLToPath } from "url";
+import * as f from "fuuu";
 
 import { toPx } from "./utils";
 
@@ -18,7 +20,7 @@ export type MoniconOptions = {
    *
    * You can explore available icons at https://icones.js.org
    */
-  icons: string[];
+  icons?: string[];
   /**
    * The names of the collections to load. All icons from the collections will be loaded.
    *
@@ -27,6 +29,10 @@ export type MoniconOptions = {
    * You can explore available collections at https://icones.js.org
    */
   collections?: string[];
+  /**
+   * Custom collections to load icons from different sources.
+   */
+  customCollections?: Record<string, ReturnType<Loader>>;
   /**
    * The name of the file to output the icons to. The file extension will be added automatically based on the type.
    */
@@ -54,6 +60,7 @@ const defaultOptions: Required<MoniconOptions> = {
   type: "cjs",
   icons: [],
   collections: [],
+  customCollections: {},
 };
 
 export const getResolveAlias = () => {
@@ -121,7 +128,16 @@ export const loadIcon = async (iconName: string) => {
     return;
   }
 
-  return transformIcon(svg);
+  const transformedIcon = f.syncSafe(() => transformIcon(svg));
+
+  if (transformedIcon.error) {
+    console.warn(
+      `[Monicon] The icon "${iconName}" could not be transformed. This icon might not be in the correct format.`
+    );
+    return;
+  }
+
+  return transformedIcon.data;
 };
 
 const getIconsFromCollection = async (collectionName: string) => {
@@ -163,6 +179,20 @@ export const loadIcons = async (opts?: MoniconOptions) => {
     if (!icon) continue;
 
     loadedIcons[iconName] = icon;
+  }
+
+  const loaders = Object.entries(options.customCollections);
+
+  for await (const [loaderName, loader] of loaders) {
+    const loaderResult = await loader();
+
+    for await (const [iconName, svg] of Object.entries(loaderResult)) {
+      const icon = transformIcon(svg);
+
+      const name = `${loaderName}:${iconName}`;
+
+      loadedIcons[name] = icon;
+    }
   }
 
   const outputPath = getIconsFilePath(options);
