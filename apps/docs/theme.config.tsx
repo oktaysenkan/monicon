@@ -30,6 +30,11 @@ const config: DocsThemeConfig = {
           name="google-site-verification"
           content="NB5Gz6YQzn4N-x--CS5dS4h0MsbnRgSfrekYnuv9gQs"
         />
+        <script
+          async
+          src="https://cdn.seline.so/seline.js"
+          data-token="ee8e773ffe2477a"
+        />
         <meta name="twitter:creator" content="@senkanoktay" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content={title} />
