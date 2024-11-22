@@ -140,7 +140,30 @@ const config: DocsThemeConfig = {
   },
   docsRepositoryBase: "https://github.com/oktaysenkan/monicon",
   footer: {
-    content: `MIT ${new Date().getFullYear()} © Monicon`,
+    content: (
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+          flex: 1,
+        }}
+      >
+        <p>MIT {new Date().getFullYear()} © Monicon</p>
+        <a
+          href="https://www.producthunt.com/posts/monicon?embed=true&utm_source=badge-featured&utm_medium=badge&utm_souce=badge-monicon"
+          target="_blank"
+        >
+          <img
+            style={{ width: 250, height: 54 }}
+            src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=641308&theme=light"
+            alt="Monicon - Universal&#0032;Icon&#0032;Library | Product Hunt"
+            width="250"
+            height="54"
+          />
+        </a>
+      </div>
+    ),
   },
 };
 
