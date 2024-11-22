@@ -5,17 +5,13 @@ import { useRouter } from "next/router";
 const config: DocsThemeConfig = {
   head() {
     const config = useConfig();
-    const { route, basePath } = useRouter();
-
-    const site = basePath || "https://monicon-docs.vercel.app";
+    const { route } = useRouter();
 
     const description =
       config.frontMatter.description ??
       "Monicon is a icon library for Modern Frameworks";
 
     const title = config.title + (route === "/" ? "" : " - Monicon");
-
-    const ogImage = `${site}/api/og?text=${title}`;
 
     return (
       <>
@@ -25,21 +21,23 @@ const config: DocsThemeConfig = {
         <meta property="og:url" content="https://monicon-docs.vercel.app" />
         <meta property="og:title" content={title} />
         <meta property="og:description" content={description} />
-        <meta property="og:image" content={ogImage} />
         <meta
-          name="google-site-verification"
-          content="NB5Gz6YQzn4N-x--CS5dS4h0MsbnRgSfrekYnuv9gQs"
+          property="og:image"
+          content="https://monicon-docs.vercel.app/og-image.png"
         />
-        <script
-          async
-          src="https://cdn.seline.so/seline.js"
-          data-token="ee8e773ffe2477a"
+        <meta property="og:locale" content="en" />
+        <meta
+          property="og:logo"
+          content="https://monicon-docs.vercel.app/apple-icon-180x180.png"
         />
         <meta name="twitter:creator" content="@senkanoktay" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content={title} />
         <meta name="twitter:description" content={description} />
-        <meta name="twitter:image" content={ogImage} />
+        <meta
+          name="twitter:image"
+          content="https://monicon-docs.vercel.app/og-image-twitter.png"
+        />
         <meta property="twitter:domain" content="monicon-docs.vercel.app" />
         <meta
           property="twitter:url"
@@ -118,6 +116,15 @@ const config: DocsThemeConfig = {
         <meta name="msapplication-TileColor" content="#000000" />
         <meta name="msapplication-TileImage" content="/ms-icon-144x144.png" />
         <meta name="theme-color" content="#000000" />
+        <meta
+          name="google-site-verification"
+          content="NB5Gz6YQzn4N-x--CS5dS4h0MsbnRgSfrekYnuv9gQs"
+        />
+        <script
+          async
+          src="https://cdn.seline.so/seline.js"
+          data-token="ee8e773ffe2477a"
+        />
       </>
     );
   },
