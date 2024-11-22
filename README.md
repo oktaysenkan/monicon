@@ -6,6 +6,8 @@ Monicon is an easy-to-use icon library that makes adding icons to your projects 
 
 **🔎 [Explore Icons](https://icones.js.org/)**
 
+<a href="https://www.producthunt.com/posts/monicon?embed=true&utm_source=badge-featured&utm_medium=badge&utm_souce=badge-monicon" target="_blank"><img src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=641308&theme=light" alt="Monicon - Universal&#0032;Icon&#0032;Library | Product Hunt" style="width: 250px; height: 54px;" width="250" height="54" /></a>
+
 ## Why Use Monicon?
 
 - **Huge Icon Library**: Get access to over 200,000 icons from famous sets like Material Design, Feather, and Font Awesome.
