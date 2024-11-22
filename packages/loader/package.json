@@ -1,6 +1,6 @@
 {
   "name": "@monicon/loader",
-  "version": "0.0.153",
+  "version": "1.0.0",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "files": [
@@ -22,7 +22,7 @@
     "clean": "rm -rf dist"
   },
   "devDependencies": {
-    "@monicon/typescript-config": "0.0.153",
+    "@monicon/typescript-config": "1.0.0",
     "tsup": "^8.0.1",
     "typescript": "^5.3.3"
   },

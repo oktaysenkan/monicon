@@ -1,5 +1,16 @@
 # @monicon/vite
 
+## 1.0.0
+
+### Major Changes
+
+- [#52](https://github.com/oktaysenkan/monicon/pull/52) [`05ae5f5`](https://github.com/oktaysenkan/monicon/commit/05ae5f59e76be1b91bcba22b62e2b928d179c217) Thanks [@oktaysenkan](https://github.com/oktaysenkan)! - stable release
+
+### Patch Changes
+
+- Updated dependencies [[`05ae5f5`](https://github.com/oktaysenkan/monicon/commit/05ae5f59e76be1b91bcba22b62e2b928d179c217)]:
+  - @monicon/core@1.0.0
+
 ## 0.0.153
 
 ### Patch Changes
