@@ -14,3 +14,17 @@ Monicon is an easy-to-use icon library that makes adding icons to your projects 
 - **Free and Open Source**: Monicon is free to use and open source, so you can use it in any project without restrictions.
 
 No matter which framework you use, Monicon makes adding and managing icons easy. Check out the documentation to see how Monicon can help improve your next project with great-looking icons!
+
+## Comparison: Monicon & Iconify & unplugin-icons
+
+Monicon was created to address a critical gap in the React ecosystem: The need for a truly universal icon package that works seamlessly across both web and native platforms. While tools like unplugin-icons are great for certain use cases, they fall short in key areas that Monicon was specifically designed to solve.
+
+Check out the issues for more details: [Universal Support #15](https://github.com/oktaysenkan/monicon/issues/15#issuecomment-2054178367)
+
+| Feature                    | Monicon                                                                                       | @iconify/react                                                    | unplugin-icons                                       |
+| -------------------------- | --------------------------------------------------------------------------------------------- | ----------------------------------------------------------------- | ---------------------------------------------------- |
+| **Icon Rendering**         | Icons are bundled during build time, ensuring instant rendering with no blinking.             | Icons load over HTTP, which can cause blinking during rendering.  | Icons are bundled at build time, no blinking issues. |
+| **Offline Support**        | Fully offline-compatible, works seamlessly with PWAs, Electron apps, and native environments. | Does not work offline due to reliance on HTTP for fetching icons. | Works offline                                        |
+| **React Native Support**   | Fully supports React Native, making it ideal for mobile and native projects.                  | No support for React Native.                                      | No support for React Native.                         |
+| **Modern Bundler Support** | Compatible with Metro, Vite, Webpack, Rollup, Rspack, and others.                             | Primarily web-focused and lacks versatility across bundlers.      | No support for Metro.                                |
+| **Custom Icon Support**    | Easily create and use custom icons in your projects.                                          | Easily create and use custom icons in your projects.              | Easily create and use custom icons in your projects. |
