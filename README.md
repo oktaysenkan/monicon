@@ -1,4 +1,4 @@
-<a href="https://kronash-docs.vercel.app" target="_blank" rel="noopener">
+<a href="https://monicon-docs.vercel.app/" target="_blank" rel="noopener">
   <picture>
     <source srcset="https://github.com/user-attachments/assets/720e6358-9466-4992-8214-71aa7b65c723" />
     <img alt="banner" src="https://github.com/user-attachments/assets/720e6358-9466-4992-8214-71aa7b65c723" />
