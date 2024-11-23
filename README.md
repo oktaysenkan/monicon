@@ -20,7 +20,10 @@ Universal Icon Library
 
 <p>
   <strong><a href="https://monicon-docs.vercel.app">Documentation</a></strong>
+  ·
   <strong><a href="https://icones.js.org/">Explore Icons</a></strong>
+  ·
+  <strong><a href="https://github.com/oktaysenkan/monicon/issues">Issues</a></strong>
 </p>
 </div>
 
