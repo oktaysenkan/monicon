@@ -1,12 +1,31 @@
-# Monicon: Universal Icon Library
+<a href="https://kronash-docs.vercel.app" target="_blank" rel="noopener">
+  <picture>
+    <source srcset="https://github.com/user-attachments/assets/720e6358-9466-4992-8214-71aa7b65c723" />
+    <img alt="banner" src="https://github.com/user-attachments/assets/720e6358-9466-4992-8214-71aa7b65c723" />
+  </picture>
+</a>
 
-Monicon is an easy-to-use icon library that makes adding icons to your projects simple. It works with popular frameworks like React, React Native, Next.js, Vue, Nuxt, Svelte and more. It's provides 200,000+ icons from popular sets like Material Design, Feather, and Font Awesome.
+<h1 align="center">Monicon</h1>
 
-**📕 [Documentation](https://monicon-docs.vercel.app)**
+<h3 align="center">
+Universal Icon Library
+</h3>
 
-**🔎 [Explore Icons](https://icones.js.org/)**
+<div align="center">
+<p>  
+  Monicon is an easy-to-use icon library that makes adding icons to your projects simple. It works with popular frameworks like React, React Native, Next.js, Vue, Nuxt, Svelte and more. It's provides 200,000+ icons  from popular sets like Material Design, Feather, and Font Awesome.
+</p>
 
 <a href="https://www.producthunt.com/posts/monicon?embed=true&utm_source=badge-featured&utm_medium=badge&utm_souce=badge-monicon" target="_blank"><img src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=641308&theme=light" alt="Monicon - Universal&#0032;Icon&#0032;Library | Product Hunt" style="width: 250px; height: 54px;" width="250" height="54" /></a>
+
+<p>
+  <strong><a href="https://monicon-docs.vercel.app">Documentation</a></strong>
+  <strong><a href="https://icones.js.org/">Explore Icons</a></strong>
+</p>
+</div>
+
+
+
 
 ## Why Use Monicon?
 
