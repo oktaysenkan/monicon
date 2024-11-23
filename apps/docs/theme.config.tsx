@@ -146,6 +146,13 @@ const config: DocsThemeConfig = {
     link: "https://github.com/oktaysenkan/monicon",
   },
   docsRepositoryBase: "https://github.com/oktaysenkan/monicon",
+  banner: {
+    content: () => (
+      <a href="https://www.producthunt.com/posts/monicon" target="_blank">
+        Monicon is now featured on Product Hunt! 🚀
+      </a>
+    ),
+  },
   footer: {
     content: (
       <div
