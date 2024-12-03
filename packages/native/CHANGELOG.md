@@ -1,5 +1,17 @@
 # @monicon/native
 
+## 1.1.0
+
+### Minor Changes
+
+- [#56](https://github.com/oktaysenkan/monicon/pull/56) [`82fb3b0`](https://github.com/oktaysenkan/monicon/commit/82fb3b09cbfa74cce0d59ea7999bc87936059de3) Thanks [@oktaysenkan](https://github.com/oktaysenkan)! - feat(svelte): add svelte 5 support (#55)
+
+### Patch Changes
+
+- Updated dependencies [[`82fb3b0`](https://github.com/oktaysenkan/monicon/commit/82fb3b09cbfa74cce0d59ea7999bc87936059de3)]:
+  - @monicon/core@1.1.0
+  - @monicon/icon-loader@1.1.0
+
 ## 1.0.0
 
 ### Major Changes
