@@ -1,6 +1,6 @@
 {
 	"name": "@monicon/svelte",
-	"version": "1.0.0",
+	"version": "1.1.0",
 	"scripts": {
 		"dev": "vite dev",
 		"build": "vite build && npm run package",
@@ -34,8 +34,8 @@
 	},
 	"devDependencies": {
 		"@eslint/compat": "^1.2.3",
-		"@monicon/icon-loader": "1.0.0",
-		"@monicon/vite": "1.0.0",
+		"@monicon/icon-loader": "1.1.0",
+		"@monicon/vite": "1.1.0",
 		"@sveltejs/adapter-auto": "^3.0.0",
 		"@sveltejs/kit": "^2.9.0",
 		"@sveltejs/package": "^2.0.0",
