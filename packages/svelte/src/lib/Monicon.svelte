@@ -1,22 +1,12 @@
 <script lang="ts">
-  import {
-    getIconDetails,
-    type IconDetails,
-    type MoniconProps,
-  } from "@monicon/icon-loader";
+	import { getIconDetails, type MoniconProps } from '@monicon/icon-loader';
 
-  interface $$Props extends MoniconProps {}
-
-  export let name: MoniconProps["name"];
-  export let size: MoniconProps["size"] = undefined;
-  export let color: MoniconProps["color"] = undefined;
-  export let strokeWidth: MoniconProps["strokeWidth"] = undefined;
-
-  $: details = getIconDetails({ name, color, size, strokeWidth });
+	let { name, color, strokeWidth, size, ...props }: MoniconProps = $props();
+	let details = $derived(getIconDetails({ name, color, strokeWidth, size }));
 </script>
 
 {#if details}
-  <svg {...details.attributes} {...$$props}>
-    {@html details.innerHtml}
-  </svg>
+	<svg {...details.attributes} {...props}>
+		{@html details.innerHtml}
+	</svg>
 {/if}

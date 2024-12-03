@@ -1,5 +1,5 @@
 import React from "react";
-import { DocsThemeConfig, useConfig } from "nextra-theme-docs";
+import { DocsThemeConfig, useConfig, useTheme } from "nextra-theme-docs";
 import { useRouter } from "next/router";
 
 const config: DocsThemeConfig = {
@@ -128,49 +128,31 @@ const config: DocsThemeConfig = {
       </>
     );
   },
-  logo: () => (
-    <svg
-      width="48"
-      height="48"
-      viewBox="0 0 500 500"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <path
-        d="M44 128C62.3333 124 78.8333 122 93.5 122C108.167 122 120.333 122.333 130 123V148C138 141.333 148 135.667 160 131C172 126.333 182.833 124 192.5 124C230.5 124 255.833 133.5 268.5 152.5C276.833 144.5 287.833 137.833 301.5 132.5C315.167 126.833 327.833 124 339.5 124C376.167 124 400.833 132.333 413.5 149C426.167 165.333 432.5 196.167 432.5 241.5V322.5C445.5 327.5 454.667 333.167 460 339.5L455 378H340L335 339.5C339.667 333.167 348.833 327.5 362.5 322.5V223.5C362.5 205.167 360 193 355 187C350 181 340 178 325 178C310.333 178 296.333 183.5 283 194.5C284.667 205.833 285.5 221.5 285.5 241.5V322.5C298.5 327.5 307.667 333.167 313 339.5L308 378H193L188 339.5C192.667 333.167 201.833 327.5 215.5 322.5V223.5C215.5 205.167 213 193 208 187C203 181 193.167 178 178.5 178C163.833 178 149.833 183.333 136.5 194V322.5C149.5 327.5 158.667 333.167 164 339.5L159 378H44L39 339.5C43.6667 333.167 52.8333 327.5 66.5 322.5V183.5C54.8333 179.5 45.6667 173.833 39 166.5L44 128Z"
-        fill="white"
-      />
-    </svg>
-  ),
+  logo: () => {
+    const { resolvedTheme } = useTheme();
+
+    return (
+      <svg
+        width="48"
+        height="48"
+        viewBox="0 0 500 500"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M44 128C62.3333 124 78.8333 122 93.5 122C108.167 122 120.333 122.333 130 123V148C138 141.333 148 135.667 160 131C172 126.333 182.833 124 192.5 124C230.5 124 255.833 133.5 268.5 152.5C276.833 144.5 287.833 137.833 301.5 132.5C315.167 126.833 327.833 124 339.5 124C376.167 124 400.833 132.333 413.5 149C426.167 165.333 432.5 196.167 432.5 241.5V322.5C445.5 327.5 454.667 333.167 460 339.5L455 378H340L335 339.5C339.667 333.167 348.833 327.5 362.5 322.5V223.5C362.5 205.167 360 193 355 187C350 181 340 178 325 178C310.333 178 296.333 183.5 283 194.5C284.667 205.833 285.5 221.5 285.5 241.5V322.5C298.5 327.5 307.667 333.167 313 339.5L308 378H193L188 339.5C192.667 333.167 201.833 327.5 215.5 322.5V223.5C215.5 205.167 213 193 208 187C203 181 193.167 178 178.5 178C163.833 178 149.833 183.333 136.5 194V322.5C149.5 327.5 158.667 333.167 164 339.5L159 378H44L39 339.5C43.6667 333.167 52.8333 327.5 66.5 322.5V183.5C54.8333 179.5 45.6667 173.833 39 166.5L44 128Z"
+          fill={resolvedTheme === "dark" ? "#fff" : "#000"}
+        />
+      </svg>
+    );
+  },
   project: {
     link: "https://github.com/oktaysenkan/monicon",
   },
-  docsRepositoryBase: "https://github.com/oktaysenkan/monicon",
+  docsRepositoryBase:
+    "https://github.com/oktaysenkan/monicon/tree/main/apps/docs",
   footer: {
-    content: (
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "center",
-          flex: 1,
-        }}
-      >
-        <p>MIT {new Date().getFullYear()} © Monicon</p>
-        <a
-          href="https://www.producthunt.com/posts/monicon?embed=true&utm_source=badge-featured&utm_medium=badge&utm_souce=badge-monicon"
-          target="_blank"
-        >
-          <img
-            style={{ width: 250, height: 54 }}
-            src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=641308&theme=light"
-            alt="Monicon - Universal&#0032;Icon&#0032;Library | Product Hunt"
-            width="250"
-            height="54"
-          />
-        </a>
-      </div>
-    ),
+    content: <p>MIT {new Date().getFullYear()} © Monicon</p>,
   },
 };
 
