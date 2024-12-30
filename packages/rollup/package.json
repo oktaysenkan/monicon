@@ -1,6 +1,6 @@
 {
   "name": "@monicon/rollup",
-  "version": "1.1.0",
+  "version": "1.1.1-next.0",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
@@ -22,11 +22,11 @@
     "clean": "rm -rf dist"
   },
   "devDependencies": {
-    "@monicon/typescript-config": "1.1.0",
+    "@monicon/typescript-config": "1.1.1-next.0",
     "tsup": "^8.0.1",
     "typescript": "^5.3.3"
   },
   "dependencies": {
-    "@monicon/vite": "1.1.0"
+    "@monicon/vite": "1.1.1-next.0"
   }
 }

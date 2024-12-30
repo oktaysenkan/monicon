@@ -1,5 +1,14 @@
 # @monicon/vue
 
+## 1.1.1-next.0
+
+### Patch Changes
+
+- fix: change auto-generated icons folder path
+
+- Updated dependencies []:
+  - @monicon/icon-loader@1.1.1-next.0
+
 ## 1.1.0
 
 ### Minor Changes

@@ -1,0 +1,36 @@
+{
+  "mode": "pre",
+  "tag": "next",
+  "initialVersions": {
+    "@monicon/docs": "0.0.143",
+    "@monicon/next": "0.0.0",
+    "@monicon/nuxt-app": "0.0.0",
+    "@monicon/qwik-app": "1.1.0",
+    "@monicon/react-native-app": "0.0.0",
+    "@monicon/remix": "0.0.0",
+    "@monicon/rollup-react": "0.0.0",
+    "@monicon/rspack-react": "0.0.0",
+    "@monicon/svelte-app": "1.0.0",
+    "@monicon/vite-react": "0.0.0",
+    "@monicon/vite-vue": "0.0.0",
+    "@monicon/core": "1.1.0",
+    "@monicon/esbuild": "1.1.0",
+    "@monicon/icon-loader": "1.1.0",
+    "@monicon/loader": "1.1.0",
+    "@monicon/metro": "1.1.0",
+    "@monicon/native": "1.1.0",
+    "@monicon/nuxt": "1.1.0",
+    "@monicon/qwik": "1.1.0",
+    "@monicon/react": "1.1.0",
+    "@monicon/rollup": "1.1.0",
+    "@monicon/rspack": "1.1.0",
+    "@monicon/svelte": "1.1.0",
+    "@monicon/typescript-config": "1.1.0",
+    "@monicon/vite": "1.1.0",
+    "@monicon/vue": "1.1.0",
+    "@monicon/webpack": "1.1.0"
+  },
+  "changesets": [
+    "swift-pigs-nail"
+  ]
+}

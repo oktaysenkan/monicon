@@ -1,5 +1,11 @@
 # @monicon/core
 
+## 1.1.1-next.0
+
+### Patch Changes
+
+- fix: change auto-generated icons folder path
+
 ## 1.1.0
 
 ### Minor Changes
