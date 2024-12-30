@@ -17,7 +17,7 @@ module.exports = async function (env, argv) {
         "icon-park-outline:arrow-circle-right",
       ],
       collections: ["lucide"],
-      outputFileName: "react-native-app",
+      outputFileName: "react-native-web-app",
     })
   );
 

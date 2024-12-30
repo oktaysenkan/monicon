@@ -30,9 +30,6 @@
     "rspack#build": {
       "dependsOn": ["webpack#build"]
     },
-    "babel-plugin#build": {
-      "dependsOn": ["core#build"]
-    },
 
     "react#build": {
       "dependsOn": ["icon-loader#build"]
@@ -54,12 +51,7 @@
     },
 
     "react-native-app#build": {
-      "dependsOn": [
-        "babel-plugin#build",
-        "metro#build",
-        "webpack#build",
-        "native#build"
-      ]
+      "dependsOn": ["metro#build", "webpack#build", "native#build"]
     },
     "next#build": {
       "dependsOn": ["webpack#build", "react#build"]

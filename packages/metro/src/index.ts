@@ -12,11 +12,13 @@ export const withMonicon = (
 ): IntermediateConfigT => {
   const alias = getResolveAlias();
 
-  void loadIcons(options);
+  const config: MoniconOptions = { ...options, type: "cjs" };
+
+  void loadIcons(config);
 
   metroConfig.resolver.extraNodeModules = {
     ...metroConfig.resolver.extraNodeModules,
-    [alias]: getIconsFilePath(options),
+    [alias]: getIconsFilePath(config),
   };
 
   return metroConfig;
