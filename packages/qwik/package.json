@@ -1,6 +1,6 @@
 {
   "name": "@monicon/qwik",
-  "version": "1.1.1-next.0",
+  "version": "1.1.1",
   "description": "Create a Qwik library",
   "main": "./lib/index.qwik.mjs",
   "qwik": "./lib/index.qwik.mjs",
@@ -37,11 +37,11 @@
     "clean": "rm -rf dist"
   },
   "dependencies": {
-    "@monicon/icon-loader": "1.1.1-next.0"
+    "@monicon/icon-loader": "1.1.1"
   },
   "devDependencies": {
     "@builder.io/qwik": "1.9.1",
-    "@monicon/vite": "1.1.1-next.0",
+    "@monicon/vite": "1.1.1",
     "@types/eslint": "8.56.10",
     "@types/node": "20.14.11",
     "@typescript-eslint/eslint-plugin": "7.16.1",

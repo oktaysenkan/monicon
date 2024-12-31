@@ -12,7 +12,7 @@
     "postinstall": "turbo run build --filter='@monicon/nuxt' && nuxt prepare"
   },
   "dependencies": {
-    "@monicon/nuxt": "1.1.1-next.0"
+    "@monicon/nuxt": "1.1.1"
   },
   "devDependencies": {
     "@nuxt/devtools": "latest",
@@ -21,6 +21,6 @@
     "nuxt": "^3.13.2",
     "vue": "^3.4.21",
     "vue-router": "^4.3.0",
-    "@monicon/vue": "1.1.1-next.0"
+    "@monicon/vue": "1.1.1"
   }
 }

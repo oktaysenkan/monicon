@@ -14,10 +14,7 @@ export const monicon = async (options: MoniconOptions): Promise<Plugin[]> => [
   {
     name,
     async buildStart() {
-      await loadIcons({
-        type: "esm",
-        ...options,
-      });
+      await loadIcons({ type: "esm", ...options });
     },
     async resolveId(source) {
       if (source === alias)
