@@ -11,7 +11,7 @@ Setting up Monicon with React Native is a straightforward process. This guide wi
 To get started, you’ll need to install the necessary dependencies for Monicon. In your project directory, run the following command to install the dependencies.
 
 ```sh npm2yarn
-npm i @monicon/native @monicon/metro @monicon/babel-plugin react-native-svg
+npm i @monicon/native @monicon/metro react-native-svg
 
 # if you want react-native-web support
 npm i @monicon/webpack
@@ -56,20 +56,6 @@ The `icons` array in the `monicon` plugin configuration specifies the icon sets 
 For a complete list of available icon sets, refer to the [Icones](https://icones.js.org/) website.
 
 </Callout>
-
-## Configure Babel
-
-Now you’ll need to configure Babel.
-
-```ts filename="babel.config.js"
-module.exports = function (api) {
-  api.cache(true);
-  return {
-    presets: ["babel-preset-expo"],
-    plugins: [["@monicon/babel-plugin"]],
-  };
-};
-```
 
 ## Configure Webpack (Optional)
 
@@ -140,6 +126,15 @@ function App() {
 }
 
 export default App;
+```
+
+## Configure .gitignore
+
+Add the following to your `.gitignore` file to prevent icons from being committed to your repository.
+
+```
+# monicon
+.monicon
 ```
 
 ## Next Steps

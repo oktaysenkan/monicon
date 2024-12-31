@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { defineProps, ref, watch, onMounted } from "vue";
+import { defineProps, ref, watch } from "vue";
 import {
   getIconDetails,
   IconDetails,
@@ -10,7 +10,7 @@ const props = defineProps<MoniconProps>();
 
 const details = ref<IconDetails | null>(null);
 
-const loadIcons = async () => {
+const loadIcons = () => {
   details.value = getIconDetails({
     name: props.name,
     size: props.size,

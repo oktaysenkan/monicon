@@ -16,7 +16,10 @@ export class MoniconPlugin {
   private options!: MoniconOptions;
 
   constructor(options: MoniconOptions) {
-    this.options = options;
+    this.options = {
+      ...options,
+      type: "esm",
+    };
   }
 
   async apply(compiler: Compiler) {

@@ -22,6 +22,16 @@ export const monicon = async (options: MoniconOptions): Promise<Plugin[]> => [
 
       return null;
     },
+    config: () => ({
+      server: {
+        fs: {
+          allow: [".."],
+        },
+      },
+      optimizeDeps: {
+        exclude: [alias],
+      },
+    }),
   },
 ];
 

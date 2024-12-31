@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "vue": "^3.5.10",
-    "@monicon/vue": "*"
+    "@monicon/vue": "1.1.1"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^5.1.4",

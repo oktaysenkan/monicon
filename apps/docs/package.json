@@ -1,6 +1,6 @@
 {
   "name": "@monicon/docs",
-  "version": "0.0.143",
+  "version": "0.0.0",
   "description": "Monicon Documentation",
   "private": true,
   "scripts": {

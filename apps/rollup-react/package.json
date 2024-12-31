@@ -9,14 +9,14 @@
     "dev": "rollup -c --watch"
   },
   "dependencies": {
-    "@monicon/react": "*",
+    "@monicon/react": "1.1.1",
     "react": "^18.3.1",
     "react-dom": "^18.3.1"
   },
   "devDependencies": {
     "@babel/preset-env": "^7.25.7",
     "@babel/preset-react": "^7.25.7",
-    "@monicon/rollup": "*",
+    "@monicon/rollup": "1.1.1",
     "@rollup/plugin-babel": "^6.0.4",
     "@rollup/plugin-commonjs": "^28.0.0",
     "@rollup/plugin-node-resolve": "^15.3.0",

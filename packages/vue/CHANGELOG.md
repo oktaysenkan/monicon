@@ -1,5 +1,23 @@
 # @monicon/vue
 
+## 1.1.1
+
+### Patch Changes
+
+- [#59](https://github.com/oktaysenkan/monicon/pull/59) [`165e338`](https://github.com/oktaysenkan/monicon/commit/165e338e4c53088bebf2e08f49816fbec2161e81) Thanks [@oktaysenkan](https://github.com/oktaysenkan)! - fix: change auto-generated icons folder path
+
+- Updated dependencies [[`165e338`](https://github.com/oktaysenkan/monicon/commit/165e338e4c53088bebf2e08f49816fbec2161e81)]:
+  - @monicon/icon-loader@1.1.1
+
+## 1.1.1-next.0
+
+### Patch Changes
+
+- fix: change auto-generated icons folder path
+
+- Updated dependencies []:
+  - @monicon/icon-loader@1.1.1-next.0
+
 ## 1.1.0
 
 ### Minor Changes

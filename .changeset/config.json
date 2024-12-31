@@ -20,6 +20,7 @@
     "@monicon/vite-react",
     "@monicon/vite-vue",
     "@monicon/svelte-app",
+    "@monicon/qwik-app",
     "@monicon/docs"
   ]
 }
