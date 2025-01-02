@@ -1,4 +1,6 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { Monicon } from "@monicon/vue";
+</script>
 
 <template>
   <main>

@@ -204,6 +204,8 @@ export const loadIcons = async (opts?: MoniconOptions) => {
   const outputPath = getIconsFilePath(options);
 
   writeIcons(loadedIcons, outputPath, options.type);
+
+  return loadedIcons;
 };
 
 const writeIcons = (
