@@ -6,16 +6,22 @@
   "scripts": {
     "dev": "vite",
     "build": "vue-tsc -b && vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "test": "vitest"
   },
   "dependencies": {
-    "vue": "^3.5.10",
-    "@monicon/vue": "1.1.1"
+    "@monicon/vue": "*",
+    "vue": "^3.5.10"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^5.1.4",
+    "@vitest/coverage-v8": "^2.1.8",
+    "@vitest/ui": "^2.1.8",
+    "@vue/test-utils": "^2.4.6",
+    "jsdom": "^25.0.1",
     "typescript": "^5.5.3",
     "vite": "^6.0.2",
+    "vitest": "^2.1.8",
     "vue-tsc": "^2.1.6"
   }
 }

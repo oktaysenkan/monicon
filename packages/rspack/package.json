@@ -22,13 +22,13 @@
     "clean": "rm -rf dist"
   },
   "devDependencies": {
-    "@monicon/typescript-config": "1.1.1",
+    "@monicon/typescript-config": "*",
     "tsup": "^8.0.1",
     "typescript": "^5.3.3"
   },
   "dependencies": {
-    "@monicon/core": "1.1.1",
-    "@monicon/webpack": "1.1.1",
+    "@monicon/core": "*",
+    "@monicon/webpack": "*",
     "@rspack/core": "^1.0.8",
     "radash": "^12.1.0"
   }

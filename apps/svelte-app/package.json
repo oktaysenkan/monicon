@@ -29,7 +29,7 @@
 		"vite": "^6.0.2"
 	},
 	"dependencies": {
-		"@monicon/vite": "1.1.1",
-		"@monicon/svelte": "1.1.1"
+		"@monicon/vite": "*",
+		"@monicon/svelte": "*"
 	}
 }

@@ -34,8 +34,8 @@
 	},
 	"devDependencies": {
 		"@eslint/compat": "^1.2.3",
-		"@monicon/icon-loader": "1.1.1",
-		"@monicon/vite": "1.1.1",
+		"@monicon/icon-loader": "*",
+		"@monicon/vite": "*",
 		"@sveltejs/adapter-auto": "^3.0.0",
 		"@sveltejs/kit": "^2.9.0",
 		"@sveltejs/package": "^2.0.0",

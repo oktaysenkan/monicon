@@ -22,14 +22,14 @@
     "clean": "rm -rf dist"
   },
   "devDependencies": {
-    "@monicon/typescript-config": "1.1.1",
+    "@monicon/typescript-config": "*",
     "tsup": "^8.0.1",
     "typescript": "^5.3.3"
   },
   "dependencies": {
     "@nuxt/kit": "^3.11.2",
-    "@monicon/core": "1.1.1",
-    "@monicon/webpack": "1.1.1",
-    "@monicon/vite": "1.1.1"
+    "@monicon/core": "*",
+    "@monicon/webpack": "*",
+    "@monicon/vite": "*"
   }
 }

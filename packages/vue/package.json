@@ -22,7 +22,7 @@
     "clean": "rm -rf dist"
   },
   "devDependencies": {
-    "@monicon/typescript-config": "1.1.1",
+    "@monicon/typescript-config": "*",
     "@vitejs/plugin-vue": "^5.1.4",
     "rollup-plugin-typescript2": "^0.36.0",
     "typescript": "^5.3.3",
@@ -30,7 +30,7 @@
     "vite-plugin-dts": "^4.2.3"
   },
   "dependencies": {
-    "@monicon/icon-loader": "1.1.1"
+    "@monicon/icon-loader": "*"
   },
   "peerDependencies": {
     "vue": "^2.6.14 || ^3.0.0"

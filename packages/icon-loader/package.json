@@ -22,8 +22,8 @@
     "clean": "rm -rf dist"
   },
   "devDependencies": {
-    "@monicon/typescript-config": "1.1.1",
-    "@monicon/core": "1.1.1",
+    "@monicon/typescript-config": "*",
+    "@monicon/core": "*",
     "tsup": "^8.0.1",
     "typescript": "^5.3.3"
   },
