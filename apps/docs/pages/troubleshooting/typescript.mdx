@@ -16,9 +16,6 @@ import react from "@vitejs/plugin-react";
 import monicon from "@monicon/vite";
 
 export default defineConfig({
-  plugins: [
-    react(),
-    monicon({ typesFileName: "types.d.ts", generateTypes: true }),
-  ],
+  plugins: [react(), monicon({ typesFileName: "types", generateTypes: true })],
 });
 ```
