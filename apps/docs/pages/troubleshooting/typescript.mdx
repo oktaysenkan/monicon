@@ -10,12 +10,18 @@ Monicon uses TypeScript to generate types for the icons. To enable TypeScript ty
 
 You can also use the `typesFileName` option to specify the name of the file to output the types to. If you want to disable the types file, you can set the `generateTypes` option to `false`.
 
-```ts filename="apps/vite-react/vite.config.ts" copy {8}
+```ts filename="apps/vite-react/vite.config.ts" copy {9,10}
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 import monicon from "@monicon/vite";
 
 export default defineConfig({
-  plugins: [react(), monicon({ typesFileName: "types", generateTypes: true })],
+  plugins: [
+    react(),
+    monicon({
+      typesFileName: "types",
+      generateTypes: true,
+    }),
+  ],
 });
 ```
