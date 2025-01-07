@@ -253,13 +253,15 @@ declare module "@monicon/icon-loader" {
      *
      * @example "mdi:home"
      *
-     * For TypeScript users, you must check https://monicon-docs.vercel.app/troubleshooting/typescript for more information.
+     * For TypeScript users, you must check below for more information.
+     *
+     * @link https://monicon-docs.vercel.app/troubleshooting/typescript
      */
     name: MoniconIconName;
     /**
      * The size of the icon.
      *
-     * @default icon collection size
+     * @default collection's view box size
      */
     size?: number;
     /**
