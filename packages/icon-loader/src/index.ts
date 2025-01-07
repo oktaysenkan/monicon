@@ -4,9 +4,31 @@ import { parseSync, stringify } from "svgson";
 import icons from "@monicon/runtime";
 
 export type MoniconProps = {
+  /**
+   * The name of the icon to render.
+   *
+   * @example "mdi:home"
+   *
+   * For TypeScript users, you must check below for more information.
+   *
+   * @link https://monicon-docs.vercel.app/troubleshooting/typescript
+   */
   name: string;
+  /**
+   * The size of the icon.
+   *
+   * @default collection's view box size
+   */
   size?: number;
+  /**
+   * The color of the icon.
+   *
+   * @default "currentColor"
+   */
   color?: string;
+  /**
+   * The stroke width of the icon. This feature is only available for limited icon collections.
+   */
   strokeWidth?: number;
 };
 
