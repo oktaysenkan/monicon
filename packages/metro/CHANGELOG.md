@@ -1,5 +1,16 @@
 # @monicon/metro
 
+## 1.2.0
+
+### Minor Changes
+
+- [#62](https://github.com/oktaysenkan/monicon/pull/62) [`6a3a299`](https://github.com/oktaysenkan/monicon/commit/6a3a299398311653e7c9f7765572c1bbaf494c45) Thanks [@oktaysenkan](https://github.com/oktaysenkan)! - implement type generation
+
+### Patch Changes
+
+- Updated dependencies [[`6a3a299`](https://github.com/oktaysenkan/monicon/commit/6a3a299398311653e7c9f7765572c1bbaf494c45)]:
+  - @monicon/core@1.2.0
+
 ## 1.1.1
 
 ### Patch Changes
