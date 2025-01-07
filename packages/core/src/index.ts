@@ -248,9 +248,29 @@ declare module "@monicon/icon-loader" {
   export type MoniconIconName = ${iconNamesAsCode};
 
   export type MoniconProps = {
+    /**
+     * The name of the icon to render.
+     *
+     * @example "mdi:home"
+     *
+     * For TypeScript users, you must check https://monicon-docs.vercel.app/troubleshooting/typescript for more information.
+     */
     name: MoniconIconName;
+    /**
+     * The size of the icon.
+     *
+     * @default icon collection size
+     */
     size?: number;
+    /**
+     * The color of the icon.
+     *
+     * @default "currentColor"
+     */
     color?: string;
+    /**
+     * The stroke width of the icon. This feature is only available for limited icon collections.
+     */
     strokeWidth?: number;
   };
 }
