@@ -1,4 +1,4 @@
-import { Plugin } from "vite";
+import type { PluginOption } from "vite";
 import {
   loadIcons,
   getIconsFilePath,
@@ -10,29 +10,26 @@ const alias = getResolveAlias();
 
 const name = "vite-monicon";
 
-export const monicon = async (options: MoniconOptions): Promise<Plugin[]> => [
-  {
-    name,
-    async buildStart() {
-      await loadIcons({ type: "esm", ...options });
-    },
-    async resolveId(source) {
-      if (source === alias)
-        return getIconsFilePath({ type: "esm", ...options });
-
-      return null;
-    },
-    config: () => ({
-      server: {
-        fs: {
-          allow: [".."],
-        },
-      },
-      optimizeDeps: {
-        exclude: [alias],
-      },
-    }),
+export const monicon = (options: MoniconOptions): PluginOption => ({
+  name,
+  async buildStart() {
+    await loadIcons({ type: "esm", ...options });
   },
-];
+  async resolveId(source) {
+    if (source === alias) return getIconsFilePath({ type: "esm", ...options });
+
+    return null;
+  },
+  config: () => ({
+    server: {
+      fs: {
+        allow: [".."],
+      },
+    },
+    optimizeDeps: {
+      exclude: [alias],
+    },
+  }),
+});
 
 export default monicon;

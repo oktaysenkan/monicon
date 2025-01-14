@@ -4,7 +4,7 @@ import {
   MoniconOptions,
   getResolveAlias,
 } from "@monicon/core";
-import { Plugin } from "esbuild";
+import type { Plugin } from "esbuild";
 
 const alias = getResolveAlias();
 
