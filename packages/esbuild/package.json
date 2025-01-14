@@ -21,11 +21,13 @@
     "dev": "tsup --watch",
     "clean": "rm -rf dist"
   },
+  "peerDependencies": {
+    "esbuild": "^0.17.0"
+  },
   "devDependencies": {
     "@monicon/typescript-config": "*",
     "tsup": "^8.0.1",
-    "typescript": "^5.3.3",
-    "vite": "^6.0.2"
+    "typescript": "^5.3.3"
   },
   "dependencies": {
     "@monicon/core": "*"

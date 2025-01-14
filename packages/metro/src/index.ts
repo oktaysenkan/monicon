@@ -1,4 +1,4 @@
-import { type IntermediateConfigT } from "metro-config";
+import type { IntermediateConfigT } from "metro-config";
 import {
   loadIcons,
   getIconsFilePath,

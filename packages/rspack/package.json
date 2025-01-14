@@ -28,8 +28,6 @@
   },
   "dependencies": {
     "@monicon/core": "*",
-    "@monicon/webpack": "*",
-    "@rspack/core": "^1.0.8",
-    "radash": "^12.1.0"
+    "@monicon/webpack": "*"
   }
 }
