@@ -1,5 +1,14 @@
 # @monicon/metro
 
+## 1.2.1
+
+### Patch Changes
+
+- [#64](https://github.com/oktaysenkan/monicon/pull/64) [`400aad8`](https://github.com/oktaysenkan/monicon/commit/400aad80bad14d7fd4901a747dd34eedd65afc1c) Thanks [@oktaysenkan](https://github.com/oktaysenkan)! - fix: update peer dependencies
+
+- Updated dependencies [[`400aad8`](https://github.com/oktaysenkan/monicon/commit/400aad80bad14d7fd4901a747dd34eedd65afc1c)]:
+  - @monicon/core@1.2.1
+
 ## 1.2.0
 
 ### Minor Changes

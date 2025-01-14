@@ -1,6 +1,6 @@
 {
   "name": "@monicon/qwik",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "Create a Qwik library",
   "main": "./lib/index.qwik.mjs",
   "qwik": "./lib/index.qwik.mjs",
