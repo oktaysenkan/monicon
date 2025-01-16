@@ -1,5 +1,9 @@
 import React from "react";
-import { getIconDetails, MoniconProps } from "@monicon/icon-loader";
+import {
+  getIconDetails,
+  MoniconProps,
+  camelCasedProps,
+} from "@monicon/icon-loader";
 
 export const Monicon = (props: MoniconProps) => {
   const details = React.useMemo(
@@ -13,9 +17,14 @@ export const Monicon = (props: MoniconProps) => {
     [props.name, props.size, props.color, props.strokeWidth]
   );
 
+  const attributes = React.useMemo(
+    () => camelCasedProps(details.attributes),
+    [details.attributes]
+  );
+
   return (
     <svg
-      {...details.attributes}
+      {...attributes}
       dangerouslySetInnerHTML={{ __html: details.innerHtml }}
     />
   );

@@ -1,5 +1,8 @@
 import { Icon } from "@monicon/core";
 import { parseSync, stringify } from "svgson";
+import _ from "lodash";
+import type { CamelCasedPropertiesDeep } from "type-fest";
+
 // @ts-ignore
 import icons from "@monicon/runtime";
 
@@ -97,4 +100,16 @@ export const getIconDetails = (props: MoniconProps) => {
     attributes,
     svg,
   } satisfies IconDetails;
+};
+
+export const camelCasedProps = <T extends object>(props: T) => {
+  const camelCasedProps = {} as CamelCasedPropertiesDeep<T>;
+
+  Object.entries(props).forEach(([key, value]) => {
+    const propName = _.camelCase(key) as keyof CamelCasedPropertiesDeep<T>;
+
+    camelCasedProps[propName] = value as any;
+  });
+
+  return camelCasedProps;
 };
