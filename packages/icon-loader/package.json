@@ -22,6 +22,7 @@
     "clean": "rm -rf dist"
   },
   "devDependencies": {
+    "@monicon/core": "*",
     "@monicon/typescript-config": "*",
     "@types/lodash": "^4.17.14",
     "tsup": "^8.0.1",

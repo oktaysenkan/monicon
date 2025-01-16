@@ -10,4 +10,5 @@ export default {
   "react-webpack": "React (Webpack)",
   "react-rollup": "React (Rollup)",
   "react-rspack": "React (Rspack)",
+  "react-esbuild": "React (esbuild)",
 };
