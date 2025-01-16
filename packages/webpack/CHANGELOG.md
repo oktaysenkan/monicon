@@ -1,5 +1,14 @@
 # @monicon/webpack
 
+## 1.2.2
+
+### Patch Changes
+
+- [#68](https://github.com/oktaysenkan/monicon/pull/68) [`1902f22`](https://github.com/oktaysenkan/monicon/commit/1902f229ac19e3b74aebfddb2e2fe73ae78d2834) Thanks [@oktaysenkan](https://github.com/oktaysenkan)! - fix(react): resolve kebab-case html attributes warning
+
+- Updated dependencies [[`1902f22`](https://github.com/oktaysenkan/monicon/commit/1902f229ac19e3b74aebfddb2e2fe73ae78d2834)]:
+  - @monicon/core@1.2.2
+
 ## 1.2.1
 
 ### Patch Changes

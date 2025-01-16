@@ -1,6 +1,6 @@
 {
   "name": "@monicon/react",
-  "version": "1.2.1",
+  "version": "1.2.2",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
