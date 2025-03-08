@@ -1,0 +1,44 @@
+{
+  "name": "@monicon/cli",
+  "version": "1.2.2",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist/index.d.ts",
+    "dist/index.d.mts",
+    "dist/index.js",
+    "dist/index.mjs"
+  ],
+  "exports": {
+    ".": {
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "clean": "rm -rf dist"
+  },
+  "devDependencies": {
+    "@iconify/json": "^2.2.251",
+    "@iconify/types": "^2.0.0",
+    "@monicon/loader": "*",
+    "@monicon/typescript-config": "*",
+    "@types/lodash": "^4.17.14",
+    "tsup": "^8.0.1",
+    "typescript": "^5.3.3"
+  },
+  "dependencies": {
+    "@iconify/utils": "^2.1.33",
+    "c12": "^3.0.2",
+    "fuuu": "^0.0.8",
+    "lodash": "^4.17.21",
+    "svgson": "^5.3.1",
+    "@monicon/core": "*"
+  }
+}
