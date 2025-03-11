@@ -3,6 +3,8 @@
   "include": ["."],
   "exclude": ["dist", "build", "node_modules"],
   "compilerOptions": {
-    "strict": true
+    "strict": true,
+    "target": "ESNext",
+    "module": "ESNext"
   }
 }

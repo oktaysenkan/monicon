@@ -1,4 +1,4 @@
-import { Config } from "./src";
+import { MoniconConfig } from "./src";
 
 export default {
   icons: [
@@ -8,4 +8,6 @@ export default {
     "mdi:home",
     "mdi:user",
   ],
-} satisfies Config;
+  outputPath: "./.monicon/components/icons",
+  watch: false,
+} satisfies MoniconConfig;

@@ -29,16 +29,19 @@
     "@iconify/types": "^2.0.0",
     "@monicon/loader": "*",
     "@monicon/typescript-config": "*",
+    "@types/jsdom": "^21.1.7",
     "@types/lodash": "^4.17.14",
     "tsup": "^8.0.1",
     "typescript": "^5.3.3"
   },
   "dependencies": {
     "@iconify/utils": "^2.1.33",
+    "@monicon/core": "*",
     "c12": "^3.0.2",
     "fuuu": "^0.0.8",
+    "jsdom": "^26.0.0",
     "lodash": "^4.17.21",
-    "svgson": "^5.3.1",
-    "@monicon/core": "*"
+    "svgo": "^3.3.2",
+    "svgson": "^5.3.1"
   }
 }

@@ -1,8 +1,16 @@
 import { loadConfig, LoadConfigOptions, watchConfig } from "c12";
+import { mkdirSync, writeFileSync } from "fs";
+import { JSDOM } from "jsdom";
+import path, { dirname } from "path";
+import slugify from "slugify";
+import { fileURLToPath } from "url";
 
-export type Config = {
+slugify.extend({ ":": "/" });
+
+export type MoniconConfig = {
   icons?: string[];
   watch?: boolean;
+  outputPath?: string;
 };
 
 type CollectionIcon = {
@@ -24,6 +32,7 @@ type Icon = {
   body: string;
   width: number;
   height: number;
+  svg: string;
 };
 
 /**
@@ -83,6 +92,52 @@ const parseIcon = (icon: string) => {
   const [prefix, name] = parts;
 
   return { prefix, name };
+};
+
+/**
+ * Create an SVG from the icon body
+ * @param icon - The icon to create the SVG from
+ * @returns The SVG
+ */
+const createSvg = (icon: Required<CollectionIcon>) => {
+  const { window } = new JSDOM();
+
+  const svg = window.document.createElement("svg");
+
+  const viewBox = `0 0 ${icon.width} ${icon.height}`;
+
+  svg.setAttribute("xmlns", "http://www.w3.org/2000/svg");
+  svg.setAttribute("width", icon.width.toString());
+  svg.setAttribute("height", icon.height.toString());
+  svg.setAttribute("viewBox", viewBox);
+
+  svg.innerHTML = icon.body;
+
+  return svg.outerHTML;
+};
+
+/**
+ * Generate an icon file
+ * @param icon - The icon to generate the file from
+ * @param outputPath - The path to output the file to
+ */
+const generateIconFile = (icon: Icon, outputPath: string) => {
+  const fileName = slugify(icon.name, { lower: true, remove: /:/g });
+
+  const filePath = path.join(outputPath, `${fileName}.svg`);
+  const directory = path.dirname(filePath);
+
+  mkdirSync(directory, { recursive: true });
+  writeFileSync(filePath, icon.svg, { flag: "wx" });
+};
+
+/**
+ * Generate icon files
+ * @param icons - The icons to generate the files from
+ * @param outputPath - The path to output the files to
+ */
+const generateIconFiles = (icons: Icon[], outputPath: string) => {
+  icons.forEach((icon) => generateIconFile(icon, outputPath));
 };
 
 /**
@@ -157,42 +212,77 @@ const getIcons = async (icons: string[]) => {
 
   const fullIcons: Icon[] = Array.from(iconsByCollection.values()).flatMap(
     (collection) =>
-      Object.entries(collection.icons).map(([name, icon]) => ({
-        ...icon,
-        name: `${collection.prefix}:${name}`,
-        width: icon.width ?? collection.width ?? 16,
-        height: icon.height ?? collection.height ?? 16,
-      }))
+      Object.entries(collection.icons).map(([name, icon]) => {
+        const width = icon.width ?? collection.width ?? 16;
+        const height = icon.height ?? collection.height ?? 16;
+
+        const svg = createSvg({ body: icon.body, width, height });
+
+        const iconName = `${collection.prefix}:${name}`;
+
+        return {
+          name: iconName,
+          width,
+          height,
+          body: icon.body,
+          svg,
+        };
+      })
   );
 
   return fullIcons;
 };
 
-export const loadIcons = async () => {
-  const defaultConfig: Required<Config> = {
+/**
+ * Generate icon files
+ * @param iconNames - The icon names to generate the files from
+ * @param outputPath - The path to output the files to
+ * @returns The generated icons
+ */
+const generateIcons = async (iconNames: string[], outputPath: string) => {
+  const icons = await getIcons(iconNames);
+  generateIconFiles(icons, outputPath);
+
+  return icons;
+};
+
+/**
+ * Start the CLI
+ */
+export const start = async () => {
+  const currentFile = fileURLToPath(import.meta.url);
+  const currentDir = dirname(currentFile);
+
+  const outputPath = path.join(currentDir, "./src/components/icons");
+
+  const defaultConfig: Required<MoniconConfig> = {
     icons: [],
     watch: true,
+    outputPath,
   };
 
-  const userInputConfig: LoadConfigOptions<Config> = {
+  const userInputConfig: LoadConfigOptions<MoniconConfig> = {
     name: "monicon",
     defaultConfig,
   };
 
-  const config = await loadConfig<Config>(userInputConfig);
+  const config = await loadConfig<MoniconConfig>(userInputConfig);
 
-  const icons = await getIcons(config.config.icons!);
-  console.log(icons);
+  const icons = await generateIcons(
+    config.config.icons!,
+    config.config.outputPath!
+  );
 
   if (config.config.watch) {
-    watchConfig<Config>({
+    watchConfig<MoniconConfig>({
       ...userInputConfig,
       onUpdate: async ({ newConfig }) => {
-        const icons = await getIcons(newConfig.config.icons!);
-        console.log();
+        const icons = await generateIcons(
+          newConfig.config.icons!,
+          newConfig.config.outputPath!
+        );
+
         console.log(icons);
-        console.log();
-        console.log("updated", new Date().toISOString());
       },
     });
   }
@@ -200,4 +290,4 @@ export const loadIcons = async () => {
   return config;
 };
 
-loadIcons();
+start();
