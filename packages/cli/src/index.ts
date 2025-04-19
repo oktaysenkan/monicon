@@ -1,5 +1,4 @@
 import { loadConfig, LoadConfigOptions, watchConfig } from "c12";
-import { mkdirSync, writeFileSync } from "fs";
 import { JSDOM } from "jsdom";
 import path, { dirname } from "path";
 import slugify from "slugify";
@@ -7,19 +6,33 @@ import { fileURLToPath } from "url";
 
 slugify.extend({ ":": "/" });
 
+export type MoniconPluginPayload = {
+  config: Required<MoniconConfig>;
+  icons: Icon[];
+};
+
+export type MoniconPlugin<T = any> = (opts: T) => (
+  payload: MoniconPluginPayload
+) => {
+  name: string;
+  setup(): Promise<void> | void;
+  onUpdate(): Promise<void> | void;
+};
+
 export type MoniconConfig = {
   icons?: string[];
   watch?: boolean;
   outputPath?: string;
+  plugins?: ReturnType<MoniconPlugin>[];
 };
 
-type CollectionIcon = {
+export type CollectionIcon = {
   body: string;
   width?: number;
   height?: number;
 };
 
-type Collection = {
+export type Collection = {
   prefix: string;
   lastModified: number;
   width?: number;
@@ -27,7 +40,7 @@ type Collection = {
   icons: Record<string, CollectionIcon>;
 };
 
-type Icon = {
+export type Icon = {
   name: string;
   body: string;
   width: number;
@@ -114,30 +127,6 @@ const createSvg = (icon: Required<CollectionIcon>) => {
   svg.innerHTML = icon.body;
 
   return svg.outerHTML;
-};
-
-/**
- * Generate an icon file
- * @param icon - The icon to generate the file from
- * @param outputPath - The path to output the file to
- */
-const generateIconFile = (icon: Icon, outputPath: string) => {
-  const fileName = slugify(icon.name, { lower: true, remove: /:/g });
-
-  const filePath = path.join(outputPath, `${fileName}.svg`);
-  const directory = path.dirname(filePath);
-
-  mkdirSync(directory, { recursive: true });
-  writeFileSync(filePath, icon.svg, { flag: "wx" });
-};
-
-/**
- * Generate icon files
- * @param icons - The icons to generate the files from
- * @param outputPath - The path to output the files to
- */
-const generateIconFiles = (icons: Icon[], outputPath: string) => {
-  icons.forEach((icon) => generateIconFile(icon, outputPath));
 };
 
 /**
@@ -234,14 +223,42 @@ const getIcons = async (icons: string[]) => {
 };
 
 /**
+ * Run the plugins
+ * @param config - The config
+ * @param icons - The icons to run the plugins on
+ * @param configModified - Whether the config has been modified
+ */
+const runPlugins = async (
+  config: Required<MoniconConfig>,
+  icons: Icon[],
+  configModified: boolean
+) => {
+  const plugins = config.plugins ?? [];
+
+  await Promise.all(
+    plugins.map((plugin) => {
+      const pluginInstance = plugin({ icons, config });
+
+      return configModified
+        ? pluginInstance.onUpdate()
+        : pluginInstance.setup();
+    })
+  );
+};
+
+/**
  * Generate icon files
- * @param iconNames - The icon names to generate the files from
- * @param outputPath - The path to output the files to
+ * @param config - The config
+ * @param configModified - Whether the config has been modified
  * @returns The generated icons
  */
-const generateIcons = async (iconNames: string[], outputPath: string) => {
-  const icons = await getIcons(iconNames);
-  generateIconFiles(icons, outputPath);
+const generateIcons = async (
+  config: Required<MoniconConfig>,
+  configModified: boolean
+) => {
+  const icons = await getIcons(config.icons!);
+
+  await runPlugins(config, icons, configModified);
 
   return icons;
 };
@@ -259,6 +276,7 @@ export const start = async () => {
     icons: [],
     watch: true,
     outputPath,
+    plugins: [],
   };
 
   const userInputConfig: LoadConfigOptions<MoniconConfig> = {
@@ -266,23 +284,19 @@ export const start = async () => {
     defaultConfig,
   };
 
-  const config = await loadConfig<MoniconConfig>(userInputConfig);
+  const loadedConfig = await loadConfig<MoniconConfig>(userInputConfig);
 
-  const icons = await generateIcons(
-    config.config.icons!,
-    config.config.outputPath!
-  );
+  const config = loadedConfig.config as Required<MoniconConfig>;
 
-  if (config.config.watch) {
+  await generateIcons(config, false);
+
+  if (config.watch) {
     watchConfig<MoniconConfig>({
       ...userInputConfig,
-      onUpdate: async ({ newConfig }) => {
-        const icons = await generateIcons(
-          newConfig.config.icons!,
-          newConfig.config.outputPath!
-        );
+      onUpdate: async (context) => {
+        const newConfig = context.newConfig.config as Required<MoniconConfig>;
 
-        console.log(icons);
+        await generateIcons(newConfig, true);
       },
     });
   }

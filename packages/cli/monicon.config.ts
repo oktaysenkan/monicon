@@ -1,4 +1,5 @@
 import { MoniconConfig } from "./src";
+import { svg } from "./src/plugins/svg";
 
 export default {
   icons: [
@@ -8,6 +9,7 @@ export default {
     "mdi:home",
     "mdi:user",
   ],
+  plugins: [svg()],
   outputPath: "./.monicon/components/icons",
   watch: false,
 } satisfies MoniconConfig;
