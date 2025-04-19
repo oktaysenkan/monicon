@@ -1,3 +1,5 @@
+import { transformIcon } from "@monicon/core";
+import { Loader } from "@monicon/loader";
 import { loadConfig, LoadConfigOptions, watchConfig } from "c12";
 import { JSDOM } from "jsdom";
 import path, { dirname } from "path";
@@ -24,6 +26,7 @@ export type MoniconConfig = {
   watch?: boolean;
   outputPath?: string;
   plugins?: ReturnType<MoniconPlugin>[];
+  loaders?: Record<string, ReturnType<Loader>>;
 };
 
 export type CollectionIcon = {
@@ -134,7 +137,7 @@ const createSvg = (icon: Required<CollectionIcon>) => {
  * @param icons - The icons to get
  * @returns The icons
  */
-const getIcons = async (icons: string[]) => {
+const fetchIcons = async (icons: string[]) => {
   const parsedIcons = parseIcons(Array.from(new Set(icons)));
   const collections = new Map<string, string[]>();
 
@@ -223,12 +226,37 @@ const getIcons = async (icons: string[]) => {
 };
 
 /**
+ * Get the icons from the loaders
+ * @param config - The config
+ * @returns The loaded icons
+ */
+const getLoaderIcons = async (config: Required<MoniconConfig>) => {
+  const loaders = Object.entries(config.loaders);
+
+  const loadedIcons: Record<string, Icon> = {};
+
+  for await (const [loaderName, loader] of loaders) {
+    const loaderResult = await loader();
+
+    for await (const [iconName, svg] of Object.entries(loaderResult)) {
+      const icon = transformIcon(svg);
+
+      const name = `${loaderName}:${iconName}`;
+
+      loadedIcons[name] = { name, ...icon };
+    }
+  }
+
+  return Object.values(loadedIcons);
+};
+
+/**
  * Run the plugins
  * @param config - The config
  * @param icons - The icons to run the plugins on
  * @param configModified - Whether the config has been modified
  */
-const runPlugins = async (
+const loadPlugins = async (
   config: Required<MoniconConfig>,
   icons: Icon[],
   configModified: boolean
@@ -256,11 +284,14 @@ const generateIcons = async (
   config: Required<MoniconConfig>,
   configModified: boolean
 ) => {
-  const icons = await getIcons(config.icons!);
+  const fetchedIcons = await fetchIcons(config.icons!);
+  const loaderIcons = await getLoaderIcons(config);
 
-  await runPlugins(config, icons, configModified);
+  const allIcons = [...fetchedIcons, ...loaderIcons];
 
-  return icons;
+  await loadPlugins(config, allIcons, configModified);
+
+  return allIcons;
 };
 
 /**
@@ -277,6 +308,7 @@ export const start = async () => {
     watch: true,
     outputPath,
     plugins: [],
+    loaders: {},
   };
 
   const userInputConfig: LoadConfigOptions<MoniconConfig> = {

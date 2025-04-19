@@ -4,7 +4,7 @@ import { loadNodeIcon } from "@iconify/utils/lib/loader/node-loader";
 import type { Loader } from "@monicon/loader";
 import fs from "fs";
 import path from "path";
-import { parseSync } from "svgson";
+import { parseSync, stringify } from "svgson";
 import * as f from "fuuu";
 
 import { toPx } from "./utils";
@@ -72,6 +72,7 @@ export type Icon = {
   svg: string;
   width: number;
   height: number;
+  body: string;
 };
 
 const defaultOptions: Required<MoniconOptions> = {
@@ -130,10 +131,13 @@ export const transformIcon = (svg: string) => {
   const width = toPx(svgObject.attributes.width ?? "1em");
   const height = toPx(svgObject.attributes.height ?? "1em");
 
+  const body = svgObject.children.map((child) => stringify(child)).join("");
+
   return {
     svg,
     width: width,
     height: height,
+    body,
   } satisfies Icon;
 };
 
