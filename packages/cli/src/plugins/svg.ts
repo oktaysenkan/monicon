@@ -30,7 +30,7 @@ const generateIconFiles = (icons: Icon[], outputPath: string) => {
 export const svg: MoniconPlugin<SvgPluginOptions> = (options) => (payload) => {
   return {
     name: "monicon-test-plugin",
-    setup: () => {
+    onStart: () => {
       generateIconFiles(
         payload.icons,
         options?.outputPath ?? payload.config.outputPath

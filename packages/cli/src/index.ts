@@ -15,7 +15,7 @@ export type MoniconPlugin<T = any> = (opts: T) => (
   payload: MoniconPluginPayload
 ) => {
   name: string;
-  setup(): Promise<void> | void;
+  onStart(): Promise<void> | void;
   onUpdate(): Promise<void> | void;
 };
 
@@ -241,7 +241,7 @@ const runPlugins = async (
 
       return configModified
         ? pluginInstance.onUpdate()
-        : pluginInstance.setup();
+        : pluginInstance.onStart();
     })
   );
 };
