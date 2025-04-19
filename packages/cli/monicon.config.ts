@@ -12,8 +12,13 @@ export default {
     "ic:baseline-chat",
     "ic:baseline-cloud",
     "mdi:home",
-    "mdi:user",
+    "mdi:account",
+    "mdi:battery-20",
+    "mdi:battery-50",
+    "mdi:battery-80",
+    "mdi:battery-100",
   ],
+  collections: ["ei", "fad"],
   plugins: [svg()],
   loaders: {
     local: loadLocalCollection("local"),
@@ -26,5 +31,5 @@ export default {
     }),
   },
   outputPath: ".monicon/components/icons",
-  watch: false,
+  watch: true,
 } satisfies MoniconConfig;

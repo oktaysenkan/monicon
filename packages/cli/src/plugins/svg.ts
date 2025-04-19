@@ -1,5 +1,5 @@
 import type { Icon, MoniconPlugin } from "..";
-import { mkdirSync, writeFileSync } from "fs";
+import { mkdirSync, rmSync, writeFileSync } from "fs";
 import path from "path";
 import slugify from "slugify";
 
@@ -9,9 +9,12 @@ export type SvgPluginOptions = void | {
 
 /**
  * Generate icon files
- * @param payload - The payload containing the icons and config
+ * @param icons - The icons to generate
+ * @param outputPath - The path to output the icons to
  */
 const generateIconFiles = (icons: Icon[], outputPath: string) => {
+  rmSync(outputPath, { recursive: true, force: true });
+
   icons.forEach((icon) => {
     const fileName = slugify(icon.name, { lower: true, remove: /:/g });
 

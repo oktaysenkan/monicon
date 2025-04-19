@@ -1,6 +1,7 @@
 import { transformIcon } from "@monicon/core";
 import { Loader } from "@monicon/loader";
 import { loadConfig, LoadConfigOptions, watchConfig } from "c12";
+import { rmSync } from "fs";
 import { JSDOM } from "jsdom";
 import path, { dirname } from "path";
 import slugify from "slugify";
@@ -27,6 +28,7 @@ export type MoniconConfig = {
   outputPath?: string;
   plugins?: ReturnType<MoniconPlugin>[];
   loaders?: Record<string, ReturnType<Loader>>;
+  collections?: string[];
 };
 
 export type CollectionIcon = {
@@ -250,6 +252,40 @@ const getLoaderIcons = async (config: Required<MoniconConfig>) => {
   return Object.values(loadedIcons);
 };
 
+const fetchCollectionIcons = async (config: Required<MoniconConfig>) => {
+  // TODO: write to file system for caching. Request iconify last modified date and compare with the local file. If it's newer, fetch the new icons.
+  const urls = config.collections.map((collection) => {
+    return `https://raw.githubusercontent.com/iconify/icon-sets/refs/heads/master/json/${collection}.json`;
+  });
+
+  const collectionResponses = await Promise.all(
+    urls.map(async (url) => {
+      const response = await fetch(url);
+
+      return response.json() as Promise<Collection>;
+    })
+  );
+
+  const icons = collectionResponses.flatMap((collection) => {
+    return Object.entries(collection.icons).map(([name, icon]) => {
+      const width = icon.width ?? collection.width ?? 16;
+      const height = icon.height ?? collection.height ?? 16;
+
+      const svg = createSvg({ body: icon.body, width, height });
+
+      return {
+        name: `${collection.prefix}:${name}`,
+        width,
+        height,
+        body: icon.body,
+        svg,
+      };
+    });
+  });
+
+  return icons;
+};
+
 /**
  * Run the plugins
  * @param config - The config
@@ -284,10 +320,15 @@ const generateIcons = async (
   config: Required<MoniconConfig>,
   configModified: boolean
 ) => {
-  const fetchedIcons = await fetchIcons(config.icons!);
-  const loaderIcons = await getLoaderIcons(config);
+  rmSync(config.outputPath!, { recursive: true, force: true });
 
-  const allIcons = [...fetchedIcons, ...loaderIcons];
+  const [fetchedIcons, collectionIcons, loaderIcons] = await Promise.all([
+    fetchIcons(config.icons),
+    fetchCollectionIcons(config),
+    getLoaderIcons(config),
+  ]);
+
+  const allIcons = [...fetchedIcons, ...loaderIcons, ...collectionIcons];
 
   await loadPlugins(config, allIcons, configModified);
 
@@ -309,6 +350,7 @@ export const start = async () => {
     outputPath,
     plugins: [],
     loaders: {},
+    collections: [],
   };
 
   const userInputConfig: LoadConfigOptions<MoniconConfig> = {
