@@ -98,7 +98,7 @@ export const parseIcons = (icons: string[]) => {
  * @param icon - The icon to parse eg: `"mdi:home"`
  * @returns The parsed icon
  */
-const parseIcon = (icon: string) => {
+export const parseIcon = (icon: string) => {
   const parts = icon.split(":");
 
   if (parts.length !== 2) {
@@ -297,7 +297,7 @@ const loadPlugins = async (
   icons: Icon[],
   configModified: boolean
 ) => {
-  const plugins = config.plugins ?? [];
+  const plugins = config.plugins;
 
   await Promise.all(
     plugins.map((plugin) => {
@@ -320,7 +320,7 @@ const generateIcons = async (
   config: Required<MoniconConfig>,
   configModified: boolean
 ) => {
-  rmSync(config.outputPath!, { recursive: true, force: true });
+  rmSync(config.outputPath, { recursive: true, force: true });
 
   const [fetchedIcons, collectionIcons, loaderIcons] = await Promise.all([
     fetchIcons(config.icons),
@@ -377,5 +377,3 @@ export const start = async () => {
 
   return config;
 };
-
-start();

@@ -5,6 +5,7 @@ import {
 } from "@monicon/loader";
 import { MoniconConfig } from "./src";
 import { svg } from "./src/plugins/svg";
+import { reactTypeScript } from "./src/plugins/react-ts";
 
 export default {
   icons: [
@@ -19,7 +20,7 @@ export default {
     "mdi:battery-100",
   ],
   collections: ["ei", "fad"],
-  plugins: [svg()],
+  plugins: [svg(), reactTypeScript()],
   loaders: {
     local: loadLocalCollection("local"),
     json: loadJSONCollection(
@@ -31,5 +32,5 @@ export default {
     }),
   },
   outputPath: ".monicon/components/icons",
-  watch: true,
+  watch: false,
 } satisfies MoniconConfig;

@@ -13,8 +13,6 @@ export type SvgPluginOptions = void | {
  * @param outputPath - The path to output the icons to
  */
 const generateIconFiles = (icons: Icon[], outputPath: string) => {
-  rmSync(outputPath, { recursive: true, force: true });
-
   icons.forEach((icon) => {
     const fileName = slugify(icon.name, { lower: true, remove: /:/g });
 
@@ -33,17 +31,7 @@ const generateIconFiles = (icons: Icon[], outputPath: string) => {
 export const svg: MoniconPlugin<SvgPluginOptions> = (options) => (payload) => {
   return {
     name: "monicon-svg-plugin",
-    onStart: () => {
-      generateIconFiles(
-        payload.icons,
-        options?.outputPath ?? payload.config.outputPath
-      );
-    },
-    onUpdate: () => {
-      generateIconFiles(
-        payload.icons,
-        options?.outputPath ?? payload.config.outputPath
-      );
-    },
+    onStart: () => generateIconFiles(payload.icons, payload.config.outputPath),
+    onUpdate: () => generateIconFiles(payload.icons, payload.config.outputPath),
   };
 };
