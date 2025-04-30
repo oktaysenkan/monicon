@@ -26,3 +26,7 @@ yarn-error.log*
 
 # turbo
 .turbo
+
+# monicon
+.monicon
+local

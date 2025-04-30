@@ -1,9 +1,4 @@
-import {
-  loadIcons,
-  getIconsFilePath,
-  MoniconOptions,
-  getResolveAlias,
-} from "@monicon/core";
+import { MoniconConfig, bootstrap } from "@monicon/core";
 import { Compiler } from "webpack";
 
 const pluginName = "webpack-monicon";
@@ -13,37 +8,24 @@ let iconsLoaded = false;
 export class MoniconPlugin {
   name = pluginName;
 
-  private options!: MoniconOptions;
+  private config!: MoniconConfig;
 
-  constructor(options: MoniconOptions) {
-    this.options = {
-      ...options,
-      type: "esm",
-    };
+  constructor(config: MoniconConfig) {
+    this.config = config;
   }
 
   async apply(compiler: Compiler) {
-    const alias = getResolveAlias();
-
     compiler.hooks.beforeCompile.tapAsync(
       this.name,
       async (params, callback) => {
         if (!iconsLoaded) {
-          await loadIcons(this.options);
+          await bootstrap(this.config);
           iconsLoaded = true;
         }
 
         callback();
       }
     );
-
-    compiler.options.resolve = {
-      ...compiler.options.resolve,
-      alias: {
-        ...compiler.options.resolve.alias,
-        [alias]: getIconsFilePath(this.options),
-      },
-    };
   }
 }
 
