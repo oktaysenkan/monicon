@@ -6,7 +6,7 @@ const pluginName = "rspack-monicon";
 export class MoniconPlugin extends MoniconWebpackPlugin {
   name = pluginName;
 
-  constructor(config: MoniconConfig) {
+  constructor(config?: MoniconConfig) {
     const opts: MoniconConfig = {
       ...config,
     };

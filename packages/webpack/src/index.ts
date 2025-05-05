@@ -8,10 +8,10 @@ let iconsLoaded = false;
 export class MoniconPlugin {
   name = pluginName;
 
-  private config!: MoniconConfig;
+  private config: MoniconConfig = {};
 
-  constructor(config: MoniconConfig) {
-    this.config = config;
+  constructor(config?: MoniconConfig) {
+    this.config = config ?? {};
   }
 
   async apply(compiler: Compiler) {

@@ -20,7 +20,6 @@ export default {
       extensions: [".js", ".jsx"],
     }),
     monicon({
-      outputFileName: "rollup-react",
       icons: ["mdi:home"],
     }),
     babel(),

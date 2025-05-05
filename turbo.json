@@ -27,54 +27,35 @@
       "dependsOn": ["webpack#build"]
     },
 
-    "react#build": {
-      "dependsOn": []
-    },
-    "native#build": {
-      "dependsOn": []
-    },
-    "vue#build": {
-      "dependsOn": []
-    },
-    "nuxt#build": {
-      "dependsOn": ["vue#build"]
-    },
-    "svelte#build": {
-      "dependsOn": ["vite#build"]
-    },
-    "qwik#build": {
-      "dependsOn": []
-    },
-
     "react-native-app#build": {
-      "dependsOn": ["metro#build", "webpack#build", "native#build"]
+      "dependsOn": ["metro#build", "webpack#build"]
     },
     "next#build": {
-      "dependsOn": ["webpack#build", "react#build"]
+      "dependsOn": ["webpack#build"]
     },
     "remix#build": {
-      "dependsOn": ["vite#build", "react#build"]
+      "dependsOn": ["vite#build"]
     },
     "vite-react#build": {
-      "dependsOn": ["vite#build", "react#build"]
+      "dependsOn": ["vite#build"]
     },
     "rspack-react#build": {
-      "dependsOn": ["rspack#build", "react#build"]
+      "dependsOn": ["rspack#build"]
     },
     "rollup-react#build": {
-      "dependsOn": ["rollup#build", "react#build"]
+      "dependsOn": ["rollup#build"]
     },
     "vite-vue#build": {
-      "dependsOn": ["vite#build", "vue#build"]
+      "dependsOn": ["vite#build"]
     },
     "nuxt-app#build": {
-      "dependsOn": ["nuxt#build", "vue#build"]
+      "dependsOn": ["nuxt#build"]
     },
     "svelte-app#build": {
-      "dependsOn": ["svelte#build"]
+      "dependsOn": []
     },
     "qwik-app#build": {
-      "dependsOn": ["qwik#build"]
+      "dependsOn": []
     },
 
     "dev": {

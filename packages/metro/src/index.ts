@@ -3,7 +3,7 @@ import { bootstrap, MoniconConfig } from "@monicon/core";
 
 export const withMonicon = (
   metroConfig: IntermediateConfigT,
-  config: MoniconConfig
+  config?: MoniconConfig
 ): IntermediateConfigT => {
   void bootstrap(config);
 
