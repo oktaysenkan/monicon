@@ -1,4 +1,3 @@
-import { Loader } from "@monicon/loader";
 import { loadConfig, LoadConfigOptions, watchConfig } from "c12";
 import { rmSync } from "fs";
 import { JSDOM } from "jsdom";
@@ -7,6 +6,7 @@ import slugify from "slugify";
 import { parseSync, stringify } from "svgson";
 import { fileURLToPath } from "url";
 import { toPx } from "./utils";
+import { Loader } from "./loaders";
 
 slugify.extend({ ":": "/" });
 

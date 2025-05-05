@@ -3,7 +3,7 @@ import {
   loadJSONCollection,
   loadLocalCollection,
   loadRemoteCollection,
-} from "@monicon/loader";
+} from "@monicon/core/loaders";
 
 export default {
   icons: [

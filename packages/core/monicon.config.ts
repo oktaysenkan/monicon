@@ -1,9 +1,9 @@
+import { MoniconConfig } from "./src";
 import {
   loadJSONCollection,
   loadLocalCollection,
   loadRemoteCollection,
-} from "@monicon/loader";
-import { MoniconConfig } from "./src";
+} from "./src/loaders";
 import { svg } from "./src/plugins/svg";
 import { reactTypeScript } from "./src/plugins/react-ts";
 
