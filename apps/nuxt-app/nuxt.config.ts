@@ -14,6 +14,5 @@ export default defineNuxtConfig({
       "lucide:badge-check",
     ],
     collections: ["lucide"],
-    outputFileName: "nuxt",
   },
 });

@@ -8,44 +8,53 @@ import { mkdirSync, writeFileSync } from "fs";
 import path, { dirname } from "path";
 import slugify from "slugify";
 import { Eta } from "eta";
-import { camelCase, startCase } from "lodash";
 import { htmlToJsx } from "html-to-jsx-transform";
 import { format } from "prettier";
 import { fileURLToPath } from "url";
+import pascalCase from "pascalcase";
 
 export type ReactTypeScriptPluginOptions = void | {
   outputPath?: ((icon: Icon) => string | undefined) | string;
   componentName?: (icon: Icon) => string | undefined;
-  fileName?: (icon: Icon) => string;
+  fileName?: (icon: Icon) => string | undefined;
   prefix?: ((icon: Icon) => string | undefined) | string;
   suffix?: ((icon: Icon) => string | undefined) | string;
 };
-
-const pascalCase = (value: string) =>
-  startCase(camelCase(value)).replace(/ /g, "");
 
 const getComponentName = (
   icon: Icon,
   options: ReactTypeScriptPluginOptions
 ) => {
   const parsedIcon = parseIcon(icon.name);
-  const componentName = pascalCase(parsedIcon.name);
+  const deneme = parsedIcon.name.replace(/-/g, " ");
+  const componentName = pascalCase(deneme);
 
   const prefix =
     typeof options?.prefix === "function"
       ? options.prefix(icon)
-      : options?.prefix ?? "";
+      : (options?.prefix ?? "");
 
   const suffix =
     typeof options?.suffix === "function"
       ? options.suffix(icon)
-      : options?.suffix ?? "";
+      : (options?.suffix ?? "");
 
   const isConfigured = Boolean(options?.componentName ?? prefix ?? suffix);
 
-  if (!isConfigured) return `${componentName}Icon`;
+  if (!isConfigured) {
+    const isPrefixed = componentName.toLowerCase().endsWith("icon");
+    return isPrefixed ? componentName : `${componentName}Icon`;
+  }
 
   return `${prefix}${componentName}${suffix}`;
+};
+
+const getFileName = (icon: Icon, options: ReactTypeScriptPluginOptions) => {
+  const defaultFileName = slugify(icon.name, { lower: true, remove: /:/g });
+
+  return typeof options?.fileName === "function"
+    ? (options.fileName(icon) ?? defaultFileName)
+    : (options?.fileName ?? defaultFileName);
 };
 
 const getOutputPath = (
@@ -54,12 +63,7 @@ const getOutputPath = (
   payload: MoniconPluginPayload
 ) => {
   if (!options?.outputPath || !payload.config.outputPath) {
-    const currentFile = fileURLToPath(import.meta.url);
-    const currentDir = dirname(currentFile);
-
-    const outputPath = path.join(currentDir, "src/components/icons");
-
-    return outputPath;
+    return "src/components/icons";
   }
 
   if (options.outputPath) {
@@ -79,25 +83,22 @@ const generateIconFiles = (
   options: ReactTypeScriptPluginOptions,
   payload: MoniconPluginPayload
 ) => {
+  const currentFile = fileURLToPath(import.meta.url);
+  const currentDir = dirname(currentFile);
+
   const eta = new Eta({
-    views: path.join(__dirname, "..", "templates"),
+    views: path.join(currentDir, "..", "templates"),
     autoEscape: false,
   });
 
   payload.icons.forEach(async (icon) => {
-    const defaultFileName = slugify(icon.name, { lower: true, remove: /:/g });
-
-    const fileName =
-      typeof options?.fileName === "function"
-        ? options.fileName(icon)
-        : options?.fileName ?? defaultFileName;
-
+    const fileName = getFileName(icon, options);
     const componentName = getComponentName(icon, options);
 
     const reactCode = htmlToJsx(icon.svg);
 
     const fileContent = eta.render("react-ts", {
-      name: `${componentName}Icon`,
+      name: componentName,
       code: reactCode,
     });
 

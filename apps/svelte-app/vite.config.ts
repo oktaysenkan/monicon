@@ -14,8 +14,7 @@ export default defineConfig({
 				'feather:alert-circle',
 				'logos:active-campaign',
 				'logos:apache-superset-icon'
-			],
-			outputFileName: 'svelte-app'
+			]
 		})
 	]
 });

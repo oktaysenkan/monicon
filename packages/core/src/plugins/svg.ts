@@ -1,5 +1,5 @@
 import type { Icon, MoniconPlugin } from "..";
-import { mkdirSync, rmSync, writeFileSync } from "fs";
+import { mkdirSync, writeFileSync } from "fs";
 import path from "path";
 import slugify from "slugify";
 

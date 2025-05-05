@@ -1,9 +1,10 @@
 import { defineConfig, Options } from "tsup";
 
 export default defineConfig((options: Options) => ({
-  entry: ["src/index.ts"],
+  entry: ["src/index.ts", "src/plugins/index.ts"],
   clean: true,
   format: ["cjs", "esm"],
   dts: true,
+  publicDir: "src",
   ...options,
 }));

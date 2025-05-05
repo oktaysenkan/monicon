@@ -4,8 +4,7 @@ import { rmSync } from "fs";
 import { JSDOM } from "jsdom";
 import path, { dirname } from "path";
 import slugify from "slugify";
-import { parseSync } from "svgson";
-import { stringify } from "svgson";
+import { parseSync, stringify } from "svgson";
 import { fileURLToPath } from "url";
 import { toPx } from "./utils";
 
@@ -338,6 +337,12 @@ const generateIcons = async (
   config: Required<MoniconConfig>,
   configModified: boolean
 ) => {
+  const message = configModified
+    ? "Config updated icons will be re-generated"
+    : "Generating icons";
+
+  console.log(`Monicon - ${message}`);
+
   rmSync(config.outputPath, { recursive: true, force: true });
 
   const [fetchedIcons, collectionIcons, loaderIcons] = await Promise.all([
@@ -348,7 +353,13 @@ const generateIcons = async (
 
   const allIcons = [...fetchedIcons, ...loaderIcons, ...collectionIcons];
 
-  await loadPlugins(config, allIcons, configModified);
+  const uniqueIcons = new Map<string, Icon>();
+
+  allIcons.forEach((icon) => uniqueIcons.set(icon.name, icon));
+
+  await loadPlugins(config, Array.from(uniqueIcons.values()), configModified);
+
+  console.log(`Monicon - ${allIcons.length} icons generated`);
 
   return allIcons;
 };

@@ -1,4 +1,3 @@
-import Monicon from "@monicon/react";
 import type { MetaFunction } from "@remix-run/node";
 
 export const meta: MetaFunction = () => {
@@ -9,11 +8,5 @@ export const meta: MetaFunction = () => {
 };
 
 export default function Index() {
-  return (
-    <div className="flex h-screen items-center justify-center">
-          <Monicon name="mdi:home" size={32} />
-          <Monicon name="mdi:account" />
-    </div>
-  );
+  return <div className="flex h-screen items-center justify-center">todo</div>;
 }
-

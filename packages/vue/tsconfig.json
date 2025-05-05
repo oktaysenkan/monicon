@@ -1,8 +1,0 @@
-{
-  "extends": "@monicon/typescript-config/vue-library",
-  "include": ["./src"],
-  "exclude": ["dist", "build", "node_modules"],
-  "compilerOptions": {
-    "strict": true
-  }
-}

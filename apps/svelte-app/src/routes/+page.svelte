@@ -1,13 +1,7 @@
 <script>
-	import { Monicon } from '@monicon/svelte';
 </script>
 
-<main>
-	<Monicon name="mdi:home" size={24} />
-	<Monicon name="logos:active-campaign" />
-	<Monicon name="logos:apache-superset-icon" />
-	<Monicon name="invalid:icon" color="red" />
-</main>
+<main>todo</main>
 
 <style>
 	:global(html),

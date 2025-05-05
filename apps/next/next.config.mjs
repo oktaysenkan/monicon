@@ -1,6 +1,6 @@
-const { MoniconPlugin } = require("@monicon/webpack");
+import { MoniconPlugin } from "@monicon/webpack";
 
-module.exports = {
+const nextConfig = {
   reactStrictMode: true,
   webpack: (config) => {
     config.resolve.alias = {
@@ -28,10 +28,11 @@ module.exports = {
           "logos:active-campaign",
           "logos:apache-superset-icon",
         ],
-        outputFileName: "next",
       })
     );
 
     return config;
   },
 };
+
+export default nextConfig;

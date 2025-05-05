@@ -4,7 +4,8 @@ import { bootstrap, MoniconConfig } from "@monicon/core";
 export const monicon = (config: MoniconConfig): PluginOption => ({
   name: "vite-monicon",
   async buildStart() {
-    await bootstrap(config);
+    const isWatching = this.environment.mode === "dev";
+    await bootstrap({ ...config, watch: isWatching });
   },
   config: () => ({
     server: {

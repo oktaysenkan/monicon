@@ -8,10 +8,6 @@
       "dependsOn": ["^build"]
     },
 
-    "icon-loader#build": {
-      "dependsOn": ["core#build"]
-    },
-
     "vite#build": {
       "dependsOn": ["core#build"]
     },
@@ -32,22 +28,22 @@
     },
 
     "react#build": {
-      "dependsOn": ["icon-loader#build"]
+      "dependsOn": []
     },
     "native#build": {
-      "dependsOn": ["icon-loader#build"]
+      "dependsOn": []
     },
     "vue#build": {
-      "dependsOn": ["icon-loader#build"]
+      "dependsOn": []
     },
     "nuxt#build": {
       "dependsOn": ["vue#build"]
     },
     "svelte#build": {
-      "dependsOn": ["vite#build", "icon-loader#build"]
+      "dependsOn": ["vite#build"]
     },
     "qwik#build": {
-      "dependsOn": ["icon-loader#build"]
+      "dependsOn": []
     },
 
     "react-native-app#build": {
