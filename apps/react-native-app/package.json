@@ -12,7 +12,6 @@
   },
   "dependencies": {
     "@monicon/metro": "*",
-    "@monicon/native": "*",
     "@monicon/webpack": "*",
     "expo": "^49.0.21",
     "expo-status-bar": "~1.7.0",

@@ -39,7 +39,6 @@
     "eslint-plugin-qwik": "^1.9.1",
     "prettier": "3.3.3",
     "@monicon/vite": "*",
-    "@monicon/qwik": "*",
     "typescript": "5.4.5",
     "undici": "*",
     "vite": "^6.0.2",

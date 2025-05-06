@@ -51,8 +51,8 @@ const getOutputPath = (icon: Icon, options: SvgPluginOptions) => {
 const generateIconFiles = (icons: Icon[], options: SvgPluginOptions) => {
   return icons.map((icon) => {
     const fileName = getFileName(icon, options);
-
     const outputPath = getOutputPath(icon, options);
+
     const filePath = path.join(outputPath, `${fileName}.svg`);
 
     const file: MoniconPluginFile = {

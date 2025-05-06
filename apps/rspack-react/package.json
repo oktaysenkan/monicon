@@ -8,8 +8,7 @@
   },
   "dependencies": {
     "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "@monicon/react": "*"
+    "react-dom": "^18.2.0"
   },
   "devDependencies": {
     "@rspack/plugin-react-refresh": "1.0.0",

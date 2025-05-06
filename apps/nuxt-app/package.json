@@ -19,7 +19,6 @@
     "eslint": "^8.57.0",
     "nuxt": "^3.13.2",
     "vue": "^3.4.21",
-    "vue-router": "^4.3.0",
-    "@monicon/vue": "*"
+    "vue-router": "^4.3.0"
   }
 }

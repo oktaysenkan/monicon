@@ -10,7 +10,6 @@
     "test": "vitest"
   },
   "dependencies": {
-    "@monicon/vue": "*",
     "vue": "^3.5.10"
   },
   "devDependencies": {

@@ -1,4 +1,4 @@
-import { addComponent, defineNuxtModule } from "@nuxt/kit";
+import { defineNuxtModule } from "@nuxt/kit";
 import { MoniconConfig } from "@monicon/core";
 import moniconVitePlugin from "@monicon/vite";
 import MoniconWebpackPlugin from "@monicon/webpack";
@@ -14,14 +14,6 @@ export default defineNuxtModule<MoniconConfig>({
   },
   defaults: defaultOptions,
   async setup(options, nuxt) {
-    addComponent({
-      name: "Monicon",
-      export: "Monicon",
-      filePath: "@monicon/vue",
-      kebabName: "monicon",
-      pascalName: "Monicon",
-    });
-
     nuxt.hook("webpack:config", async (configs: any[]) => {
       configs.forEach((config) => {
         config.plugins = config.plugins || [];
