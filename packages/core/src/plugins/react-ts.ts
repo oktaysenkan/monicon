@@ -1,17 +1,18 @@
+import { mkdirSync, writeFileSync } from "fs";
+import path from "node:path";
+import slugify from "slugify";
+import { Eta } from "eta";
+import { htmlToJsx } from "html-to-jsx-transform";
+import { format } from "prettier";
+import { pascalCase } from "change-case-all";
+
 import {
   parseIcon,
   type Icon,
   type MoniconPluginPayload,
   type MoniconPlugin,
-} from "..";
-import { mkdirSync, writeFileSync } from "fs";
-import path, { dirname } from "path";
-import slugify from "slugify";
-import { Eta } from "eta";
-import { htmlToJsx } from "html-to-jsx-transform";
-import { format } from "prettier";
-import { fileURLToPath } from "url";
-import pascalCase from "pascalcase";
+} from "../index";
+import template from "../templates/react-ts";
 
 export type ReactTypeScriptPluginOptions = void | {
   outputPath?: ((icon: Icon) => string | undefined) | string;
@@ -26,8 +27,7 @@ const getComponentName = (
   options: ReactTypeScriptPluginOptions
 ) => {
   const parsedIcon = parseIcon(icon.name);
-  const deneme = parsedIcon.name.replace(/-/g, " ");
-  const componentName = pascalCase(deneme);
+  const componentName = pascalCase(parsedIcon.name);
 
   const prefix =
     typeof options?.prefix === "function"
@@ -38,13 +38,6 @@ const getComponentName = (
     typeof options?.suffix === "function"
       ? options.suffix(icon)
       : (options?.suffix ?? "");
-
-  const isConfigured = Boolean(options?.componentName ?? prefix ?? suffix);
-
-  if (!isConfigured) {
-    const isPrefixed = componentName.toLowerCase().endsWith("icon");
-    return isPrefixed ? componentName : `${componentName}Icon`;
-  }
 
   return `${prefix}${componentName}${suffix}`;
 };
@@ -57,23 +50,18 @@ const getFileName = (icon: Icon, options: ReactTypeScriptPluginOptions) => {
     : (options?.fileName ?? defaultFileName);
 };
 
-const getOutputPath = (
-  icon: Icon,
-  options: ReactTypeScriptPluginOptions,
-  payload: MoniconPluginPayload
-) => {
-  if (!options?.outputPath || !payload.config.outputPath) {
-    return "src/components/icons";
+const getOutputPath = (icon: Icon, options: ReactTypeScriptPluginOptions) => {
+  const defaultOutputPath = "src/components/icons";
+
+  if (!options?.outputPath) {
+    return defaultOutputPath;
   }
 
-  if (options.outputPath) {
-    return typeof options.outputPath === "function"
-      ? options.outputPath(icon) || payload.config.outputPath
-      : options.outputPath;
-  }
-
-  return payload.config.outputPath;
+  return typeof options.outputPath === "function"
+    ? (options.outputPath(icon) ?? defaultOutputPath)
+    : (options.outputPath ?? defaultOutputPath);
 };
+
 /**
  * Generate React TypeScript icon files
  * @param icons - The icons to generate
@@ -83,13 +71,7 @@ const generateIconFiles = (
   options: ReactTypeScriptPluginOptions,
   payload: MoniconPluginPayload
 ) => {
-  const currentFile = fileURLToPath(import.meta.url);
-  const currentDir = dirname(currentFile);
-
-  const eta = new Eta({
-    views: path.join(currentDir, "..", "templates"),
-    autoEscape: false,
-  });
+  const eta = new Eta({ autoEscape: false });
 
   payload.icons.forEach(async (icon) => {
     const fileName = getFileName(icon, options);
@@ -97,7 +79,7 @@ const generateIconFiles = (
 
     const reactCode = htmlToJsx(icon.svg);
 
-    const fileContent = eta.render("react-ts", {
+    const fileContent = eta.renderString(template, {
       name: componentName,
       code: reactCode,
     });
@@ -111,7 +93,7 @@ const generateIconFiles = (
       parser: "typescript",
     });
 
-    const outputPath = getOutputPath(icon, options, payload);
+    const outputPath = getOutputPath(icon, options);
 
     const filePath = path.join(outputPath, `${fileName}.tsx`);
     const directory = path.dirname(filePath);
@@ -127,9 +109,14 @@ const generateIconFiles = (
  */
 export const reactTypeScript: MoniconPlugin<ReactTypeScriptPluginOptions> =
   (options) => (payload) => {
+    const defaultOptions: ReactTypeScriptPluginOptions = {
+      suffix: "Icon",
+      ...options,
+    };
+
     return {
       name: "monicon-react-typescript-plugin",
-      onStart: () => generateIconFiles(options, payload),
-      onUpdate: () => generateIconFiles(options, payload),
+      onStart: () => generateIconFiles(defaultOptions, payload),
+      onUpdate: () => generateIconFiles(defaultOptions, payload),
     };
   };

@@ -1,11 +1,9 @@
-import { loadConfig, LoadConfigOptions, watchConfig } from "c12";
-import { rmSync } from "fs";
 import { JSDOM } from "jsdom";
-import path, { dirname } from "path";
+import path from "path";
 import slugify from "slugify";
 import { parseSync, stringify } from "svgson";
 import { fileURLToPath } from "url";
-import { toPx } from "./utils";
+import { toPx, watchConfigFile, loadConfigFile } from "./utils";
 import { Loader } from "./loaders";
 
 slugify.extend({ ":": "/" });
@@ -26,7 +24,6 @@ export type MoniconPlugin<T = any> = (opts: T) => (
 export type MoniconConfig = {
   icons?: string[];
   watch?: boolean;
-  outputPath?: string;
   plugins?: ReturnType<MoniconPlugin>[];
   loaders?: Record<string, ReturnType<Loader>>;
   collections?: string[];
@@ -52,6 +49,28 @@ export type Icon = {
   width: number;
   height: number;
   svg: string;
+};
+
+/**
+ * Get the current file name and directory name
+ * @returns The current file name and directory name
+ */
+export const getCurrentPath = () => {
+  const isESM = Boolean(import.meta?.url);
+
+  if (!isESM) {
+    return {
+      fileName: __filename,
+      directoryName: __dirname,
+    };
+  }
+
+  const currentFile = fileURLToPath(import.meta?.url);
+
+  return {
+    fileName: currentFile,
+    directoryName: path.dirname(currentFile),
+  };
 };
 
 /**
@@ -317,7 +336,7 @@ const loadPlugins = async (
   const plugins = config.plugins;
 
   await Promise.all(
-    plugins.map((plugin) => {
+    plugins.map(async (plugin) => {
       const pluginInstance = plugin({ icons, config });
 
       return configModified
@@ -343,8 +362,6 @@ const generateIcons = async (
 
   console.log(`Monicon - ${message}`);
 
-  rmSync(config.outputPath, { recursive: true, force: true });
-
   const [fetchedIcons, collectionIcons, loaderIcons] = await Promise.all([
     fetchIcons(config.icons),
     fetchCollectionIcons(config),
@@ -365,39 +382,25 @@ const generateIcons = async (
 };
 
 export const bootstrap = async (options?: MoniconConfig) => {
-  const currentFile = fileURLToPath(import.meta.url);
-  const currentDir = dirname(currentFile);
-
-  const outputPath = path.join(currentDir, "./src/components/icons");
-
   const defaultConfig: Required<MoniconConfig> = {
     icons: [],
     watch: true,
-    outputPath,
     plugins: [],
     loaders: {},
     collections: [],
     ...options,
   };
 
-  const userInputConfig: LoadConfigOptions<MoniconConfig> = {
-    name: "monicon",
-    defaultConfig,
-  };
+  const loadedConfig = await loadConfigFile();
 
-  const loadedConfig = await loadConfig<MoniconConfig>(userInputConfig);
-
-  const config = loadedConfig.config as Required<MoniconConfig>;
+  const config = { ...defaultConfig, ...loadedConfig.config };
 
   await generateIcons(config, false);
 
   if (config.watch) {
-    watchConfig<MoniconConfig>({
-      ...userInputConfig,
-      onUpdate: async (context) => {
-        const newConfig = context.newConfig.config as Required<MoniconConfig>;
-
-        await generateIcons(newConfig, true);
+    await watchConfigFile({
+      onUpdate: async (newConfig) => {
+        await generateIcons({ ...defaultConfig, ...newConfig }, true);
       },
     });
   }

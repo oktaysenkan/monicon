@@ -1,3 +1,8 @@
-import { bootstrap } from ".";
+import { bootstrap } from "./index";
+import { svg, reactTypeScript } from "./plugins";
 
-bootstrap();
+bootstrap({
+  icons: ["mdi:home"],
+  plugins: [svg(), reactTypeScript()],
+  watch: false,
+});

@@ -1,9 +1,9 @@
-import { readFileSync } from "fs";
 import * as f from "fuuu";
 import { glob } from "glob";
 import path from "path";
 import * as _ from "radashi";
 import slugify from "slugify";
+import * as fs from "fs";
 import { Content, Loader, LoaderResult } from "./types";
 import { isValidSvg } from "./utils";
 
@@ -32,7 +32,7 @@ export const loadLocalCollection: Loader<LocalCollectionLoaderOptions> =
     }
 
     const files = filePaths.map((filePath) => {
-      const content = f.syncSafe(() => readFileSync(filePath, "utf-8"));
+      const content = f.syncSafe(() => fs.readFileSync(filePath, "utf-8"));
 
       if (content.error) {
         console.warn(

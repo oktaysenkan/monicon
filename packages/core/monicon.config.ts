@@ -4,8 +4,7 @@ import {
   loadLocalCollection,
   loadRemoteCollection,
 } from "./src/loaders";
-import { svg } from "./src/plugins/svg";
-import { reactTypeScript } from "./src/plugins/react-ts";
+import { svg } from "./src/plugins";
 
 export default {
   icons: [
@@ -20,7 +19,7 @@ export default {
     "mdi:battery-100",
   ],
   collections: ["ei", "fad"],
-  plugins: [svg(), reactTypeScript()],
+  plugins: [svg()],
   loaders: {
     local: loadLocalCollection("local"),
     json: loadJSONCollection(
@@ -31,6 +30,5 @@ export default {
       attachment: "https://api.iconify.design/ri:attachment-2.svg",
     }),
   },
-  outputPath: ".monicon/components/icons",
   watch: false,
 } satisfies MoniconConfig;

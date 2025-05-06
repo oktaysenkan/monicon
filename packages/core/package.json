@@ -2,6 +2,7 @@
   "name": "@monicon/core",
   "version": "1.2.2",
   "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
   "files": [
     "./dist"
@@ -10,7 +11,6 @@
     ".": {
       "require": "./dist/index.js",
       "import": "./dist/index.mjs",
-      "default": "./dist/index.js",
       "types": "./dist/index.d.ts"
     },
     "./*": {
@@ -48,9 +48,12 @@
   },
   "dependencies": {
     "@iconify/utils": "^2.1.33",
-    "c12": "^3.0.2",
+    "change-case-all": "^2.1.0",
+    "chokidar": "^4.0.3",
+    "cosmiconfig": "^9.0.0",
     "eta": "^3.5.0",
     "fuuu": "^0.0.8",
+    "glob": "^11.0.2",
     "html-to-jsx-transform": "^1.2.0",
     "jsdom": "^26.0.0",
     "lodash": "^4.17.21",
