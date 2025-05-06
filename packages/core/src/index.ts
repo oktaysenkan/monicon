@@ -64,3 +64,5 @@ export const bootstrap = async (options?: MoniconConfig) => {
     });
   }
 };
+
+export type { MoniconConfig };
