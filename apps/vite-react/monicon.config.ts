@@ -3,7 +3,8 @@ import {
   loadJSONCollection,
   loadLocalCollection,
   loadRemoteCollection,
-} from "@monicon/loader";
+} from "@monicon/core/loaders";
+import { MoniconConfig } from "@monicon/core";
 
 export default {
   icons: [
@@ -30,4 +31,4 @@ export default {
     }),
   },
   plugins: [reactTypeScript()],
-};
+} satisfies MoniconConfig;
