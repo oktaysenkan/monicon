@@ -16,7 +16,7 @@ export const toPx = (value: string) => {
 export const loadConfigFile = async () => {
   const result = await explorer.search();
 
-  const config = result?.config as MoniconConfig;
+  const config = result?.config?.default as MoniconConfig;
 
   return {
     ...result,
@@ -39,7 +39,7 @@ export const watchConfigFile = async ({ onUpdate }: WatchConfigFileParams) => {
 
       const newResult = await explorer.load(filepath);
 
-      onUpdate(newResult?.config as MoniconConfig);
+      onUpdate(newResult?.config?.default as MoniconConfig);
     });
   }
 
