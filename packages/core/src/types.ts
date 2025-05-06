@@ -1,10 +1,10 @@
 import { Loader } from "./loaders";
-import { MoniconPlugin } from "./plugins";
+import { MoniconPluginFunction } from "./plugins";
 
 export type MoniconConfig = {
   icons?: string[];
   watch?: boolean;
-  plugins?: ReturnType<MoniconPlugin>[];
+  plugins?: MoniconPluginFunction[];
   loaders?: Record<string, ReturnType<Loader>>;
   collections?: string[];
 };

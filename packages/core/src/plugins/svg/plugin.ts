@@ -70,7 +70,6 @@ const generateIconFiles = (icons: Icon[], options: SvgPluginOptions) => {
 export const svg: MoniconPlugin<SvgPluginOptions> = (options) => (payload) => {
   return {
     name: "monicon-svg-plugin",
-    onStart: () => generateIconFiles(payload.icons, options),
-    onUpdate: () => generateIconFiles(payload.icons, options),
+    generate: () => generateIconFiles(payload.icons, options),
   };
 };

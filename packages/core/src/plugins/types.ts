@@ -15,6 +15,14 @@ export type MoniconPlugin<T = any> = (opts: T) => (
   payload: MoniconPluginPayload
 ) => {
   name: string;
-  onStart: () => PromiseLike<MoniconPluginFile[]>;
-  onUpdate: () => PromiseLike<MoniconPluginFile[]>;
+  generate: (configUpdated: boolean) => PromiseLike<MoniconPluginFile[]>;
+  onPluginsLoad?: (plugins: string[]) => PromiseLike<void>;
+  beforeGenerate?: (icons: Icon[]) => PromiseLike<void>;
+  afterGenerate?: (icons: Icon[]) => PromiseLike<void>;
+  beforeWriteFiles?: (files: MoniconPluginFile[]) => PromiseLike<void>;
+  afterWriteFiles?: (files: MoniconPluginFile[]) => PromiseLike<void>;
 };
+
+export type MoniconPluginFunction = Awaited<ReturnType<MoniconPlugin>>;
+
+export type MoniconPluginInstance = Awaited<ReturnType<MoniconPluginFunction>>;

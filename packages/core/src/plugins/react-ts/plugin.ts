@@ -118,7 +118,6 @@ export const reactTypeScript: MoniconPlugin<ReactTypeScriptPluginOptions> =
 
     return {
       name: "monicon-react-typescript-plugin",
-      onStart: () => generateIconFiles(defaultOptions, payload.icons),
-      onUpdate: () => generateIconFiles(defaultOptions, payload.icons),
+      generate: () => generateIconFiles(defaultOptions, payload.icons),
     };
   };

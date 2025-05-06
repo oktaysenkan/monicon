@@ -218,16 +218,7 @@ const fetchCollectionIcons = async (config: Required<MoniconConfig>) => {
  * @param configModified - Whether the config has been modified
  * @returns The generated icons
  */
-export const generateIcons = async (
-  config: Required<MoniconConfig>,
-  configModified: boolean
-) => {
-  const message = configModified
-    ? "Config updated icons will be re-generated"
-    : "Generating icons";
-
-  console.log(`Monicon - ${message}`);
-
+export const generateIcons = async (config: Required<MoniconConfig>) => {
   const [fetchedIcons, collectionIcons, loaderIcons] = await Promise.all([
     fetchIcons(config.icons),
     fetchCollectionIcons(config),

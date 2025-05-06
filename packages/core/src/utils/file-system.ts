@@ -6,5 +6,4 @@ import { MoniconPluginFile } from "../plugins";
  */
 export const writeFiles = async (files: MoniconPluginFile[]) => {
   console.log(files);
-  console.log(`Monicon - ${files.length} icons generated`);
 };
