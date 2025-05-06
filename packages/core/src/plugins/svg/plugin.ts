@@ -1,8 +1,10 @@
-import { mkdirSync, writeFileSync } from "fs";
 import path from "path";
 import slugify from "slugify";
 
-import type { Icon, MoniconPlugin } from "../index";
+import type { Icon } from "../../index";
+import { MoniconPlugin, MoniconPluginFile } from "../types";
+
+slugify.extend({ ":": "/" });
 
 export type SvgPluginOptions = void | {
   outputPath?: ((icon: Icon) => string | undefined) | string;
@@ -47,15 +49,18 @@ const getOutputPath = (icon: Icon, options: SvgPluginOptions) => {
  * @param outputPath - The path to output the icons to
  */
 const generateIconFiles = (icons: Icon[], options: SvgPluginOptions) => {
-  icons.forEach((icon) => {
+  return icons.map((icon) => {
     const fileName = getFileName(icon, options);
 
     const outputPath = getOutputPath(icon, options);
     const filePath = path.join(outputPath, `${fileName}.svg`);
-    const directory = path.dirname(filePath);
 
-    mkdirSync(directory, { recursive: true });
-    writeFileSync(filePath, icon.svg, { flag: "w" });
+    const file: MoniconPluginFile = {
+      path: path.resolve(filePath),
+      content: icon.svg,
+    };
+
+    return file;
   });
 };
 

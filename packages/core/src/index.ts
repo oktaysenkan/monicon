@@ -1,25 +1,11 @@
 import { JSDOM } from "jsdom";
 import path from "path";
-import slugify from "slugify";
 import { parseSync, stringify } from "svgson";
 import { fileURLToPath } from "url";
+
 import { toPx, watchConfigFile, loadConfigFile } from "./utils";
 import { Loader } from "./loaders";
-
-slugify.extend({ ":": "/" });
-
-export type MoniconPluginPayload = {
-  config: Required<MoniconConfig>;
-  icons: Icon[];
-};
-
-export type MoniconPlugin<T = any> = (opts: T) => (
-  payload: MoniconPluginPayload
-) => {
-  name: string;
-  onStart(): Promise<void> | void;
-  onUpdate(): Promise<void> | void;
-};
+import { MoniconPlugin, MoniconPluginFile } from "./plugins";
 
 export type MoniconConfig = {
   icons?: string[];
@@ -323,6 +309,15 @@ const fetchCollectionIcons = async (config: Required<MoniconConfig>) => {
 };
 
 /**
+ * Write the files to the file system
+ * @param files - The files to write
+ */
+const writeFiles = async (files: MoniconPluginFile[]) => {
+  console.log(files);
+  console.log(`Monicon - ${files.length} icons generated`);
+};
+
+/**
  * Run the plugins
  * @param config - The config
  * @param icons - The icons to run the plugins on
@@ -331,19 +326,25 @@ const fetchCollectionIcons = async (config: Required<MoniconConfig>) => {
 const loadPlugins = async (
   config: Required<MoniconConfig>,
   icons: Icon[],
-  configModified: boolean
+  configModified?: boolean
 ) => {
   const plugins = config.plugins;
 
-  await Promise.all(
+  const files = await Promise.all(
     plugins.map(async (plugin) => {
-      const pluginInstance = plugin({ icons, config });
+      const pluginInstance = plugin({ icons });
 
-      return configModified
-        ? pluginInstance.onUpdate()
-        : pluginInstance.onStart();
+      const loadedFiles = configModified
+        ? await pluginInstance.onUpdate()
+        : await pluginInstance.onStart();
+
+      return loadedFiles;
     })
   );
+
+  writeFiles(files.flat());
+
+  return files.flat();
 };
 
 /**
@@ -375,8 +376,6 @@ const generateIcons = async (
   allIcons.forEach((icon) => uniqueIcons.set(icon.name, icon));
 
   await loadPlugins(config, Array.from(uniqueIcons.values()), configModified);
-
-  console.log(`Monicon - ${allIcons.length} icons generated`);
 
   return allIcons;
 };

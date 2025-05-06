@@ -1,7 +1,7 @@
 import { cosmiconfig } from "cosmiconfig";
 import chokidar from "chokidar";
-import { Icon, MoniconConfig } from "./index";
-import { ReactTypeScriptPluginOptions } from "./plugins/react-ts";
+
+import { MoniconConfig } from "./index";
 
 const explorer = cosmiconfig("monicon");
 

@@ -1,4 +1,3 @@
-import { mkdirSync, writeFileSync } from "fs";
 import path from "node:path";
 import slugify from "slugify";
 import { Eta } from "eta";
@@ -6,13 +5,11 @@ import { htmlToJsx } from "html-to-jsx-transform";
 import { format } from "prettier";
 import { pascalCase } from "change-case-all";
 
-import {
-  parseIcon,
-  type Icon,
-  type MoniconPluginPayload,
-  type MoniconPlugin,
-} from "../index";
-import template from "../templates/react-ts";
+import { parseIcon, type Icon } from "../../index";
+import { MoniconPlugin, MoniconPluginFile } from "../types";
+import template from "./template";
+
+slugify.extend({ ":": "/" });
 
 export type ReactTypeScriptPluginOptions = void | {
   outputPath?: ((icon: Icon) => string | undefined) | string;
@@ -69,38 +66,43 @@ const getOutputPath = (icon: Icon, options: ReactTypeScriptPluginOptions) => {
  */
 const generateIconFiles = (
   options: ReactTypeScriptPluginOptions,
-  payload: MoniconPluginPayload
-) => {
+  icons: Icon[]
+): Promise<MoniconPluginFile[]> => {
   const eta = new Eta({ autoEscape: false });
 
-  payload.icons.forEach(async (icon) => {
-    const fileName = getFileName(icon, options);
-    const componentName = getComponentName(icon, options);
+  return Promise.all(
+    icons.map(async (icon) => {
+      const fileName = getFileName(icon, options);
+      const componentName = getComponentName(icon, options);
 
-    const reactCode = htmlToJsx(icon.svg);
+      const reactCode = htmlToJsx(icon.svg);
 
-    const fileContent = eta.renderString(template, {
-      name: componentName,
-      code: reactCode,
-    });
+      const fileContent = eta.renderString(template, {
+        name: componentName,
+        code: reactCode,
+      });
 
-    const fileContentWithProps = fileContent.replace(
-      /(<svg\b[^>]*)(?=>)/,
-      "$1 {...props}"
-    );
+      const fileContentWithProps = fileContent.replace(
+        /(<svg\b[^>]*)(?=>)/,
+        "$1 {...props}"
+      );
 
-    const formattedCode = await format(fileContentWithProps, {
-      parser: "typescript",
-    });
+      const formattedCode = await format(fileContentWithProps, {
+        parser: "typescript",
+      });
 
-    const outputPath = getOutputPath(icon, options);
+      const outputPath = getOutputPath(icon, options);
 
-    const filePath = path.join(outputPath, `${fileName}.tsx`);
-    const directory = path.dirname(filePath);
+      const filePath = path.join(outputPath, `${fileName}.tsx`);
 
-    mkdirSync(directory, { recursive: true });
-    writeFileSync(filePath, formattedCode, { flag: "w" });
-  });
+      const file: MoniconPluginFile = {
+        path: path.resolve(filePath),
+        content: formattedCode,
+      };
+
+      return file;
+    })
+  );
 };
 
 /**
@@ -116,7 +118,7 @@ export const reactTypeScript: MoniconPlugin<ReactTypeScriptPluginOptions> =
 
     return {
       name: "monicon-react-typescript-plugin",
-      onStart: () => generateIconFiles(defaultOptions, payload),
-      onUpdate: () => generateIconFiles(defaultOptions, payload),
+      onStart: () => generateIconFiles(defaultOptions, payload.icons),
+      onUpdate: () => generateIconFiles(defaultOptions, payload.icons),
     };
   };
