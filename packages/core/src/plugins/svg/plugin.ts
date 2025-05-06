@@ -1,7 +1,6 @@
 import path from "path";
 import slugify from "slugify";
-
-import type { Icon } from "../../index";
+import type { Icon } from "../../types";
 import { MoniconPlugin, MoniconPluginFile } from "../types";
 
 slugify.extend({ ":": "/" });

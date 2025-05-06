@@ -1,5 +1,5 @@
 import { bootstrap } from "./index";
-import { svg, reactTypeScript } from "./plugins";
+import { reactTypeScript, svg } from "./plugins";
 
 bootstrap({
   icons: ["mdi:home"],

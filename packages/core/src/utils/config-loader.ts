@@ -1,16 +1,11 @@
-import { cosmiconfig } from "cosmiconfig";
 import chokidar from "chokidar";
-
-import { MoniconConfig } from "./index";
+import { cosmiconfig } from "cosmiconfig";
+import type { MoniconConfig } from "../types";
 
 const explorer = cosmiconfig("monicon");
 
-export const toPx = (value: string) => {
-  if (value.endsWith("em")) {
-    return parseFloat(value) * 16;
-  }
-
-  return parseFloat(value);
+type WatchConfigFileParams = {
+  onUpdate: (config: MoniconConfig) => void;
 };
 
 export const loadConfigFile = async () => {
@@ -22,10 +17,6 @@ export const loadConfigFile = async () => {
     ...result,
     config,
   };
-};
-
-export type WatchConfigFileParams = {
-  onUpdate: (config: MoniconConfig) => void;
 };
 
 export const watchConfigFile = async ({ onUpdate }: WatchConfigFileParams) => {

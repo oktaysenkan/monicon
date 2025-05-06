@@ -1,4 +1,4 @@
-import { Icon } from "../index";
+import type { Icon } from "../types";
 
 export type MoniconPluginPayload = {
   icons: Icon[];

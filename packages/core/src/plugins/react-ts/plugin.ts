@@ -1,11 +1,11 @@
-import path from "node:path";
-import slugify from "slugify";
+import { pascalCase } from "change-case-all";
 import { Eta } from "eta";
 import { htmlToJsx } from "html-to-jsx-transform";
+import path from "node:path";
 import { format } from "prettier";
-import { pascalCase } from "change-case-all";
-
-import { parseIcon, type Icon } from "../../index";
+import slugify from "slugify";
+import { parseIcon } from "../../utils/icon-processor";
+import type { Icon } from "../../types";
 import { MoniconPlugin, MoniconPluginFile } from "../types";
 import template from "./template";
 
