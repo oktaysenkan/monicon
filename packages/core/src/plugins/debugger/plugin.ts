@@ -22,6 +22,7 @@ export const debuggerPlugin: MoniconPlugin<void> = (options) => (payload) => {
       console.log(
         `[Monicon - Debugger Plugin] After generate ${icons.length} icons`
       );
+      console.log(icons);
     },
     beforeWriteFiles: (files) => {
       console.log(

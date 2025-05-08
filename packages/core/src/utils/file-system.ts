@@ -5,5 +5,5 @@ import { MoniconPluginFile } from "../plugins";
  * @param files - The files to write
  */
 export const writeFiles = async (files: MoniconPluginFile[]) => {
-  console.log(files);
+  // console.log(files);
 };
