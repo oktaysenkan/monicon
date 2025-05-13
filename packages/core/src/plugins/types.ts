@@ -11,16 +11,38 @@ export type MoniconPluginFile = {
   content: string;
 };
 
+export type MoniconPluginContext<T = any> = T & {
+  configUpdated: boolean;
+};
+
+export type MoniconPluginLoadContext = MoniconPluginContext<{
+  plugins: string[];
+}>;
+
+export type MoniconPluginGenerateContext = MoniconPluginContext<{
+  icons: Icon[];
+}>;
+
+export type MoniconPluginWriteFilesContext = MoniconPluginContext<{
+  files: MoniconPluginFile[];
+}>;
+
 export type MoniconPlugin<T = any> = (opts: T) => (
   payload: MoniconPluginPayload
 ) => {
   name: string;
-  generate: (configUpdated: boolean) => PromiseLike<MoniconPluginFile[]>;
-  onPluginsLoad?: (plugins: string[]) => PromiseLike<void>;
-  beforeGenerate?: (icons: Icon[]) => PromiseLike<void>;
-  afterGenerate?: (icons: Icon[]) => PromiseLike<void>;
-  beforeWriteFiles?: (files: MoniconPluginFile[]) => PromiseLike<void>;
-  afterWriteFiles?: (files: MoniconPluginFile[]) => PromiseLike<void>;
+  generate: (
+    context: MoniconPluginGenerateContext
+  ) => PromiseLike<MoniconPluginFile[]>;
+  onPluginsLoad?: (context: MoniconPluginLoadContext) => PromiseLike<void>;
+  beforeGenerate?: (context: MoniconPluginGenerateContext) => PromiseLike<void>;
+  afterGenerate?: (context: MoniconPluginGenerateContext) => PromiseLike<void>;
+  beforeWriteFiles?: (
+    context: MoniconPluginWriteFilesContext
+  ) => PromiseLike<void>;
+  afterWriteFiles?: (
+    context: MoniconPluginWriteFilesContext
+  ) => PromiseLike<void>;
 };
 
 export type MoniconPluginFunction = Awaited<ReturnType<MoniconPlugin>>;

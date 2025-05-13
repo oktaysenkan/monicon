@@ -11,6 +11,7 @@ import { Icon } from "../types";
  */
 export const loadPlugins = async (
   config: Required<MoniconConfig>,
+  configModified: boolean,
   icons: Icon[]
 ) => {
   const plugins = config.plugins.map((plugin) => plugin({ icons }));
@@ -18,7 +19,12 @@ export const loadPlugins = async (
   const pluginNames = plugins.map((plugin) => plugin.name);
 
   await Promise.all(
-    plugins.map((plugin) => plugin.onPluginsLoad?.(pluginNames))
+    plugins.map((plugin) =>
+      plugin.onPluginsLoad?.({
+        configUpdated: configModified,
+        plugins: pluginNames,
+      })
+    )
   );
 
   return plugins;
@@ -36,11 +42,20 @@ export const runPlugins = async (
 ) => {
   const files = await Promise.all(
     plugins.map(async (plugin) => {
-      await plugin.beforeGenerate?.(icons);
+      await plugin.beforeGenerate?.({
+        configUpdated: configModified,
+        icons,
+      });
 
-      const files = await plugin.generate(configModified);
+      const files = await plugin.generate({
+        configUpdated: configModified,
+        icons,
+      });
 
-      await plugin.afterGenerate?.(icons);
+      await plugin.afterGenerate?.({
+        configUpdated: configModified,
+        icons,
+      });
 
       return files;
     })

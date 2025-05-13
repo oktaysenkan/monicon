@@ -16,20 +16,28 @@ const prepareIconFiles = async (
 ) => {
   const icons = await generateIcons(config);
 
-  const plugins = await loadPlugins(config, icons);
-
-  const pluginNames = plugins.map((plugin) => plugin.name);
+  const plugins = await loadPlugins(config, configModified, icons);
 
   const files = await runPlugins(plugins, configModified, icons);
 
   await Promise.all(
-    plugins.map(async (plugin) => plugin.beforeWriteFiles?.(files))
+    plugins.map(async (plugin) =>
+      plugin.beforeWriteFiles?.({
+        configUpdated: configModified,
+        files,
+      })
+    )
   );
 
   await writeFiles(files);
 
   await Promise.all(
-    plugins.map(async (plugin) => plugin.afterWriteFiles?.(files))
+    plugins.map(async (plugin) =>
+      plugin.afterWriteFiles?.({
+        configUpdated: configModified,
+        files,
+      })
+    )
   );
 };
 
@@ -50,6 +58,10 @@ export const bootstrap = async (options?: MoniconConfig) => {
   const loadedConfig = await loadConfigFile();
 
   const config = { ...defaultConfig, ...loadedConfig.config };
+
+  console.log("[Monicon] Starting icon generation...");
+
+  if (config.watch) console.log("[Monicon] Watching for config changes...");
 
   await prepareIconFiles(config, false);
 

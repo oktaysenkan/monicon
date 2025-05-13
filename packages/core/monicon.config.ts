@@ -4,12 +4,12 @@ import {
   loadLocalCollection,
   loadRemoteCollection,
 } from "./src/loaders";
-import { debuggerPlugin, reactTypeScript, svg } from "./src/plugins";
+import { debuggerPlugin, react, svg } from "./src/plugins";
 
 export default {
   icons: ["ic:baseline-chat", "mdi:home"],
   // collections: ["ei", "fad"],
-  plugins: [svg(), reactTypeScript(), debuggerPlugin()],
+  plugins: [svg(), react(), debuggerPlugin()],
   // loaders: {
   //   local: loadLocalCollection("local"),
   //   json: loadJSONCollection(
@@ -20,5 +20,5 @@ export default {
   //     attachment: "https://api.iconify.design/ri:attachment-2.svg",
   //   }),
   // },
-  watch: false,
+  watch: true,
 } satisfies MoniconConfig;

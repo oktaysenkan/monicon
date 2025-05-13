@@ -8,30 +8,30 @@ export const debuggerPlugin: MoniconPlugin<void> = (options) => (payload) => {
   return {
     name: "monicon-debugger-plugin",
     generate: () => [],
-    onPluginsLoad: (plugins) => {
+    onPluginsLoad: (context) => {
       console.log(
-        `[Monicon - Debugger Plugin] On plugins load ${plugins.length} plugins`
+        `[Monicon - Debugger Plugin] On plugins load ${context.plugins.length} plugins`
       );
     },
-    beforeGenerate: (icons) => {
+    beforeGenerate: (context) => {
       console.log(
-        `[Monicon - Debugger Plugin] Before generate ${icons.length} icons`
+        `[Monicon - Debugger Plugin] Before generate ${context.icons.length} icons`
       );
     },
-    afterGenerate: (icons) => {
+    afterGenerate: (context) => {
       console.log(
-        `[Monicon - Debugger Plugin] After generate ${icons.length} icons`
-      );
-      console.log(icons);
-    },
-    beforeWriteFiles: (files) => {
-      console.log(
-        `[Monicon - Debugger Plugin] Before write files ${files.length} files`
+        `[Monicon - Debugger Plugin] After generate ${context.icons.length} icons`
       );
     },
-    afterWriteFiles: (files) => {
+    beforeWriteFiles: (context) => {
       console.log(
-        `[Monicon - Debugger Plugin] After write files ${files.length} files`
+        `[Monicon - Debugger Plugin] Before write files ${context.files.length} files`
+      );
+      console.log(context.files);
+    },
+    afterWriteFiles: (context) => {
+      console.log(
+        `[Monicon - Debugger Plugin] After write files ${context.files.length} files`
       );
     },
   };
