@@ -1,4 +1,4 @@
-import { reactTypeScript } from "@monicon/core/plugins";
+import { react } from "@monicon/core/plugins";
 import {
   loadJSONCollection,
   loadLocalCollection,
@@ -30,5 +30,5 @@ export default {
       attachment: "https://api.iconify.design/ri:attachment-2.svg",
     }),
   },
-  plugins: [reactTypeScript()],
+  plugins: [react()],
 } satisfies MoniconConfig;
