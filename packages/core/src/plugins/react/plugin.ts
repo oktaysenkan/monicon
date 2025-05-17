@@ -88,7 +88,7 @@ const generateIconFiles = (
 
       const fileContentWithProps = fileContent.replace(
         /(<svg\b[^>]*)(?=>)/,
-        "$1 {...computedProps}"
+        "$1 {...props}"
       );
 
       const formattedCode = await prettier.format(fileContentWithProps, {
