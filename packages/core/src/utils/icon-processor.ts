@@ -1,5 +1,6 @@
 import { createSvg, transformIcon } from "./svg";
 import type { Collection, Icon, MoniconConfig } from "../types";
+import { create } from "lodash";
 
 /**
  * Chunk the strings into smaller arrays
@@ -169,9 +170,15 @@ const getLoaderIcons = async (config: Required<MoniconConfig>) => {
     for await (const [iconName, svg] of Object.entries(loaderResult)) {
       const icon = transformIcon(svg);
 
+      const svgAsHtml = createSvg({
+        body: icon.body,
+        width: icon.width,
+        height: icon.height,
+      });
+
       const name = `${loaderName}:${iconName}`;
 
-      loadedIcons[name] = { name, ...icon };
+      loadedIcons[name] = { ...icon, name, svg: svgAsHtml };
     }
   }
 

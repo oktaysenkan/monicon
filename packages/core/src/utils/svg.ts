@@ -13,16 +13,22 @@ export const toPx = (value: string) => {
 export const transformIcon = (svg: string) => {
   const svgObject = parseSync(svg);
 
-  const width = toPx(svgObject.attributes.width ?? "1em");
-  const height = toPx(svgObject.attributes.height ?? "1em");
+  const viewBox = svgObject.attributes?.viewBox;
 
-  const body = svgObject.children.map((child) => stringify(child)).join("");
+  const [, , widthAsString, heightAsString] = viewBox?.split(" ") ?? [];
+
+  const width = toPx(widthAsString ?? "1em");
+  const height = toPx(heightAsString ?? "1em");
+
+  const body = svgObject.children
+    .map((child) => stringify(child, { selfClose: false }))
+    .join("");
 
   return {
     svg,
+    body,
     width: width,
     height: height,
-    body,
   };
 };
 
@@ -33,17 +39,14 @@ export const transformIcon = (svg: string) => {
  */
 export const createSvg = (icon: Required<CollectionIcon>) => {
   const { window } = new JSDOM();
-
-  const svg = window.document.createElement("svg");
+  const parser = new window.DOMParser();
 
   const viewBox = `0 0 ${icon.width} ${icon.height}`;
 
-  svg.setAttribute("xmlns", "http://www.w3.org/2000/svg");
-  svg.setAttribute("width", icon.width.toString());
-  svg.setAttribute("height", icon.height.toString());
-  svg.setAttribute("viewBox", viewBox);
+  const dom = parser.parseFromString(
+    `<svg xmlns="http://www.w3.org/2000/svg" viewBox="${viewBox}">${icon.body}</svg>`,
+    "image/svg+xml"
+  );
 
-  svg.innerHTML = icon.body;
-
-  return svg.outerHTML;
+  return dom.documentElement.outerHTML;
 };

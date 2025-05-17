@@ -1,15 +1,15 @@
-import { MoniconConfig } from "./src";
-import {
-  loadJSONCollection,
-  loadLocalCollection,
-  loadRemoteCollection,
-} from "./src/loaders";
-import { debuggerPlugin, react, svg } from "./src/plugins";
+import type { MoniconConfig } from "@monicon/core";
+// import {
+//   loadJSONCollection,
+//   loadLocalCollection,
+//   loadRemoteCollection,
+// } from "@monicon/core/loaders";
+import { debuggerPlugin, react, vue, svg } from "@monicon/core/plugins";
 
 export default {
   icons: ["ic:baseline-chat", "mdi:home"],
   // collections: ["ei", "fad"],
-  plugins: [svg(), react(), debuggerPlugin()],
+  plugins: [svg(), react(), vue(), debuggerPlugin()],
   // loaders: {
   //   local: loadLocalCollection("local"),
   //   json: loadJSONCollection(

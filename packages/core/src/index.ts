@@ -55,7 +55,9 @@ export const bootstrap = async (options?: MoniconConfig) => {
     ...options,
   };
 
-  const loadedConfig = await loadConfigFile();
+  const loadedConfig = loadConfigFile();
+
+  console.log({ loadedConfig });
 
   const config = { ...defaultConfig, ...loadedConfig.config };
 
@@ -63,11 +65,14 @@ export const bootstrap = async (options?: MoniconConfig) => {
 
   if (config.watch) console.log("[Monicon] Watching for config changes...");
 
-  await prepareIconFiles(config, false);
+  prepareIconFiles(config, false);
 
   if (config.watch) {
-    await watchConfigFile({
+    watchConfigFile({
       onUpdate: async (newConfig) => {
+        console.log("[Monicon] Config updated, re-generating icons...");
+        console.log({ newConfig });
+
         await prepareIconFiles({ ...defaultConfig, ...newConfig }, true);
       },
     });

@@ -1,17 +1,17 @@
 import chokidar from "chokidar";
-import { cosmiconfig } from "cosmiconfig";
+import { cosmiconfigSync } from "cosmiconfig";
 import type { MoniconConfig } from "../types";
 
-const explorer = cosmiconfig("monicon");
+const explorer = cosmiconfigSync("monicon", { cache: false });
 
 type WatchConfigFileParams = {
   onUpdate: (config: MoniconConfig) => void;
 };
 
-export const loadConfigFile = async () => {
-  const result = await explorer.search();
+export const loadConfigFile = () => {
+  const result = explorer.search();
 
-  const config = result?.config?.default as MoniconConfig;
+  const config = (result?.config?.default || result?.config) as MoniconConfig;
 
   return {
     ...result,
@@ -19,18 +19,20 @@ export const loadConfigFile = async () => {
   };
 };
 
-export const watchConfigFile = async ({ onUpdate }: WatchConfigFileParams) => {
-  const result = await explorer.search();
+export const watchConfigFile = ({ onUpdate }: WatchConfigFileParams) => {
+  const result = explorer.search();
 
   const filepath = result?.filepath;
 
   if (filepath) {
-    chokidar.watch(filepath).on("change", async (file) => {
-      explorer.clearCaches();
+    chokidar.watch(filepath).on("change", (file) => {
+      console.log("file changed", file);
 
-      const newResult = await explorer.load(filepath);
+      const newResult = explorer.load(file);
 
-      onUpdate(newResult?.config?.default as MoniconConfig);
+      onUpdate(
+        (newResult?.config?.default || newResult?.config) as MoniconConfig
+      );
     });
   }
 

@@ -11,14 +11,14 @@ import templates from "./templates";
 
 slugify.extend({ ":": "/" });
 
-export type ReactPluginOptions = void | {
+export type ReactPluginOptions = {
   outputPath?: ((icon: Icon) => string | undefined) | string;
   componentName?: (icon: Icon) => string | undefined;
   fileName?: (icon: Icon) => string | undefined;
   prefix?: ((icon: Icon) => string | undefined) | string;
   suffix?: ((icon: Icon) => string | undefined) | string;
   format?: "jsx" | "tsx";
-};
+} | void;
 
 const getComponentName = (icon: Icon, options: ReactPluginOptions) => {
   const parsedIcon = parseIcon(icon.name);
@@ -82,11 +82,13 @@ const generateIconFiles = (
         name: componentName,
         code: reactCode,
         format: fileFormat,
+        height: icon.height,
+        width: icon.width,
       });
 
       const fileContentWithProps = fileContent.replace(
         /(<svg\b[^>]*)(?=>)/,
-        "$1 {...props}"
+        "$1 {...computedProps}"
       );
 
       const formattedCode = await prettier.format(fileContentWithProps, {
@@ -114,7 +116,6 @@ const generateIconFiles = (
 export const react: MoniconPlugin<ReactPluginOptions> =
   (options) => (payload) => {
     const defaultOptions: ReactPluginOptions = {
-      format: "tsx",
       suffix: "Icon",
       ...options,
     };

@@ -27,7 +27,6 @@ export const debuggerPlugin: MoniconPlugin<void> = (options) => (payload) => {
       console.log(
         `[Monicon - Debugger Plugin] Before write files ${context.files.length} files`
       );
-      console.log(context.files);
     },
     afterWriteFiles: (context) => {
       console.log(

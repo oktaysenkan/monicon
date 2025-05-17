@@ -1,3 +1,5 @@
+import fs from "fs/promises";
+import path from "path";
 import { MoniconPluginFile } from "../plugins";
 
 /**
@@ -5,5 +7,10 @@ import { MoniconPluginFile } from "../plugins";
  * @param files - The files to write
  */
 export const writeFiles = async (files: MoniconPluginFile[]) => {
-  // console.log(files);
+  await Promise.all(
+    files.map(async (file) => {
+      await fs.mkdir(path.dirname(file.path), { recursive: true });
+      await fs.writeFile(file.path, file.content);
+    })
+  );
 };
