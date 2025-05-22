@@ -13,6 +13,7 @@ export type MoniconPluginFile = {
 
 export type MoniconPluginContext<T = any> = T & {
   configUpdated: boolean;
+  configFilePath: string;
 };
 
 export type MoniconPluginLoadContext = MoniconPluginContext<{

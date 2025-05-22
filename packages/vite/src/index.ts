@@ -4,11 +4,6 @@ import { bootstrap, MoniconConfig } from "@monicon/core";
 export const monicon = (config?: MoniconConfig): PluginOption => {
   return {
     name: "vite-monicon",
-    apply(config, env) {
-      console.log("apply");
-
-      return true;
-    },
     async buildStart() {
       const isWatching = Boolean(this?.meta?.watchMode);
       console.log({ isWatching });

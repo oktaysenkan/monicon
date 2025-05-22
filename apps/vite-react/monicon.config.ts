@@ -1,4 +1,4 @@
-import { react, debuggerPlugin } from "@monicon/core/plugins";
+import { debuggerPlugin, react, clean } from "@monicon/core/plugins";
 // import {
 //   loadJSONCollection,
 //   loadLocalCollection,
@@ -31,5 +31,9 @@ export default {
     //   attachment: "https://api.iconify.design/ri:attachment-2.svg",
     // }),
   },
-  plugins: [react(), debuggerPlugin()],
+  plugins: [
+    clean({ patterns: ["src/components/icons/**/*.tsx"] }),
+    react({ outputPath: "src/components/icons" }),
+    debuggerPlugin(),
+  ],
 } satisfies MoniconConfig;

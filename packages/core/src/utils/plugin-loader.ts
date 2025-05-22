@@ -1,4 +1,4 @@
-import { MoniconPluginInstance } from "../plugins";
+import { MoniconPluginContext, MoniconPluginInstance } from "../plugins";
 import { MoniconConfig } from "../types";
 
 import { Icon } from "../types";
@@ -11,7 +11,7 @@ import { Icon } from "../types";
  */
 export const loadPlugins = async (
   config: Required<MoniconConfig>,
-  configModified: boolean,
+  context: MoniconPluginContext,
   icons: Icon[]
 ) => {
   const plugins = config.plugins.map((plugin) => plugin({ icons }));
@@ -21,7 +21,7 @@ export const loadPlugins = async (
   await Promise.all(
     plugins.map((plugin) =>
       plugin.onPluginsLoad?.({
-        configUpdated: configModified,
+        ...context,
         plugins: pluginNames,
       })
     )
@@ -37,23 +37,23 @@ export const loadPlugins = async (
  */
 export const runPlugins = async (
   plugins: MoniconPluginInstance[],
-  configModified: boolean,
+  context: MoniconPluginContext,
   icons: Icon[]
 ) => {
   const files = await Promise.all(
     plugins.map(async (plugin) => {
       await plugin.beforeGenerate?.({
-        configUpdated: configModified,
+        ...context,
         icons,
       });
 
       const files = await plugin.generate({
-        configUpdated: configModified,
+        ...context,
         icons,
       });
 
       await plugin.afterGenerate?.({
-        configUpdated: configModified,
+        ...context,
         icons,
       });
 

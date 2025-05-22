@@ -1,9 +1,9 @@
+import { MoniconPluginContext } from "./plugins";
 import type { MoniconConfig } from "./types";
 import { loadConfigFile, watchConfigFile } from "./utils/config-loader";
 import { writeFiles } from "./utils/file-system";
 import { generateIcons } from "./utils/icon-processor";
-import { runPlugins } from "./utils/plugin-loader";
-import { loadPlugins } from "./utils/plugin-loader";
+import { loadPlugins, runPlugins } from "./utils/plugin-loader";
 
 /**
  * Prepare the icon files
@@ -12,20 +12,17 @@ import { loadPlugins } from "./utils/plugin-loader";
  */
 const prepareIconFiles = async (
   config: Required<MoniconConfig>,
-  configModified: boolean
+  context: MoniconPluginContext
 ) => {
   const icons = await generateIcons(config);
 
-  const plugins = await loadPlugins(config, configModified, icons);
+  const plugins = await loadPlugins(config, context, icons);
 
-  const files = await runPlugins(plugins, configModified, icons);
+  const files = await runPlugins(plugins, context, icons);
 
   await Promise.all(
     plugins.map(async (plugin) =>
-      plugin.beforeWriteFiles?.({
-        configUpdated: configModified,
-        files,
-      })
+      plugin.beforeWriteFiles?.({ ...context, files })
     )
   );
 
@@ -33,10 +30,7 @@ const prepareIconFiles = async (
 
   await Promise.all(
     plugins.map(async (plugin) =>
-      plugin.afterWriteFiles?.({
-        configUpdated: configModified,
-        files,
-      })
+      plugin.afterWriteFiles?.({ ...context, files })
     )
   );
 };
@@ -65,7 +59,10 @@ export const bootstrap = async (options?: MoniconConfig) => {
 
   if (config.watch) console.log("[Monicon] Watching for config changes...");
 
-  prepareIconFiles(config, false);
+  prepareIconFiles(config, {
+    configFilePath: loadedConfig.filepath,
+    configUpdated: false,
+  });
 
   if (config.watch) {
     watchConfigFile({
@@ -73,7 +70,13 @@ export const bootstrap = async (options?: MoniconConfig) => {
         console.log("[Monicon] Config updated, re-generating icons...");
         console.log({ newConfig });
 
-        await prepareIconFiles({ ...defaultConfig, ...newConfig }, true);
+        await prepareIconFiles(
+          { ...defaultConfig, ...newConfig },
+          {
+            configFilePath: loadedConfig.filepath,
+            configUpdated: true,
+          }
+        );
       },
     });
   }
