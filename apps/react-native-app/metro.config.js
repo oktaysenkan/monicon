@@ -21,7 +21,7 @@ const configWithMonicon = withMonicon(config, {
     "icon-park-outline:arrow-circle-right",
   ],
   collections: ["lucide"],
-  outputFileName: "react-native-app",
+  
 });
 
 // 1. Watch all files within the monorepo

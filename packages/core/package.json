@@ -45,10 +45,10 @@
     "@types/jsdom": "^21.1.7",
     "@types/lodash": "^4.17.14",
     "@types/pascalcase": "^1.0.3",
-    "tsup": "^8.0.1",
-    "typescript": "^5.3.3",
     "patch-package": "^8.0.0",
-    "postinstall-postinstall": "^2.1.0"
+    "postinstall-postinstall": "^2.1.0",
+    "tsup": "^8.0.1",
+    "typescript": "^5.3.3"
   },
   "dependencies": {
     "@iconify/utils": "^2.1.33",
@@ -63,5 +63,8 @@
     "lodash": "^4.17.21",
     "pascalcase": "^2.0.0",
     "prettier": "^3.5.3"
+  },
+  "peerDependencies": {
+    "react-native-svg": ">=13.9.0"
   }
 }

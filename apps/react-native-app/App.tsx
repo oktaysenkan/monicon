@@ -1,23 +1,22 @@
 import React from "react";
-import { Button, StyleSheet, View } from "react-native";
-import { Monicon } from "@monicon/native";
+import { StyleSheet, View } from "react-native";
+
+import ApacheLogo from "./src/components/icons/logos/apache";
+import BadgeCheckIcon from "./src/components/icons/lucide/badge-check";
+import CloudDownloadIcon from "./src/components/icons/lucide/cloud-download";
+import AccountIcon from "./src/components/icons/mdi/account";
+import HomeIcon from "./src/components/icons/mdi/home";
+import AtomIcon from "./src/components/icons/logos/atom-icon";
 
 export default function App() {
-  const [size, setSize] = React.useState(32);
   return (
     <View style={styles.container}>
-      <Button title="Press me" onPress={(s) => setSize((s) => s + 2)} />
-      <Monicon name="mdi:home" color="red" size={size} />
-      <Monicon name="feather:activity" />
-      <Monicon name="logos:active-campaign" size={30} />
-      <Monicon name="logos:apache-superset-icon" />
-      <Monicon name="invalid:icon" />
-      <Monicon name="lucide:trash" />
-      <Monicon
-        size={24}
-        name="icon-park-outline:arrow-circle-right"
-        color="red"
-      />
+      <ApacheLogo color="red" width={32} height={32} />
+      <BadgeCheckIcon color="red" width={32} height={32} />
+      <CloudDownloadIcon color="red" width={32} height={32} />
+      <AccountIcon color="red" width={32} height={32} />
+      <HomeIcon color="red" width={32} height={32} />
+      <AtomIcon color="red" width={32} height={32} />
     </View>
   );
 }
@@ -27,5 +26,6 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
     justifyContent: "center",
+    gap: 10,
   },
 });
