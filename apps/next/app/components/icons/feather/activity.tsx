@@ -1,22 +1,18 @@
 import React from "react";
 
-export const AlertCircleIcon = (
-  props: React.ComponentPropsWithoutRef<"svg">,
-) => {
+const ActivityIcon = (props: React.ComponentPropsWithoutRef<"svg">) => {
   return (
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" {...props}>
-      <g
+      <path
         fill="none"
         stroke="currentColor"
         strokeLinecap="round"
         strokeLinejoin="round"
         strokeWidth={2}
-      >
-        <circle cx="12" cy="12" r="10" />
-        <path d="M12 8v4m0 4h.01" />
-      </g>
+        d="M22 12h-4l-3 9L9 3l-3 9H2"
+      />
     </svg>
   );
 };
 
-export default AlertCircleIcon;
+export default ActivityIcon;

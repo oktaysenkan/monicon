@@ -7,7 +7,19 @@ import { debuggerPlugin, react, clean } from "@monicon/core/plugins";
 import { MoniconConfig } from "@monicon/core";
 
 export default {
-  icons: ["mdi:home", "lucide:cloud-download"],
+  icons: [
+    "mdi:home",
+    "mdi:account",
+    "mdi:account-badge-outline",
+    "feather:activity",
+    "feather:alert-circle",
+    "logos:active-campaign",
+    "logos:atom-icon",
+    "logos:apache",
+    "lucide:badge-check",
+    "lucide:cloud-download",
+    "lucide:attachment-2",
+  ],
   // collections: ["lucide"],
   loaders: {
     // local: loadLocalCollection("../../packages/icons"),

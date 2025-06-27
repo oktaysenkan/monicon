@@ -1,8 +1,6 @@
 import React from "react";
 
-export const CloudDownloadIcon = (
-  props: React.ComponentPropsWithoutRef<"svg">,
-) => {
+const BadgeCheckIcon = (props) => {
   return (
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" {...props}>
       <g
@@ -12,11 +10,11 @@ export const CloudDownloadIcon = (
         strokeLinejoin="round"
         strokeWidth={2}
       >
-        <path d="M12 13v8l-4-4m4 4l4-4" />
-        <path d="M4.393 15.269A7 7 0 1 1 15.71 8h1.79a4.5 4.5 0 0 1 2.436 8.284" />
+        <path d="M3.85 8.62a4 4 0 0 1 4.78-4.77a4 4 0 0 1 6.74 0a4 4 0 0 1 4.78 4.78a4 4 0 0 1 0 6.74a4 4 0 0 1-4.77 4.78a4 4 0 0 1-6.75 0a4 4 0 0 1-4.78-4.77a4 4 0 0 1 0-6.76" />
+        <path d="m9 12l2 2l4-4" />
       </g>
     </svg>
   );
 };
 
-export default CloudDownloadIcon;
+export default BadgeCheckIcon;

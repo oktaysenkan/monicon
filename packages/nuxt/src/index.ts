@@ -1,11 +1,23 @@
 import { defineNuxtModule } from "@nuxt/kit";
-import { MoniconConfig } from "@monicon/core";
-import moniconVitePlugin from "@monicon/vite";
-import MoniconWebpackPlugin from "@monicon/webpack";
+import { bootstrap, MoniconConfig } from "@monicon/core";
 
 const defaultOptions: MoniconConfig = {
   icons: [],
 };
+
+let alreadyBootstrapped = false;
+
+const runOnce = async (fn: Promise<void>) =>
+  new Promise((resolve) => {
+    let isRunning = false;
+
+    return async () => {
+      if (isRunning) return;
+      isRunning = true;
+      await fn;
+      resolve(true);
+    };
+  });
 
 export default defineNuxtModule<MoniconConfig>({
   meta: {
@@ -14,16 +26,11 @@ export default defineNuxtModule<MoniconConfig>({
   },
   defaults: defaultOptions,
   async setup(options, nuxt) {
-    nuxt.hook("webpack:config", async (configs: any[]) => {
-      configs.forEach((config) => {
-        config.plugins = config.plugins || [];
-        config.plugins.unshift(new MoniconWebpackPlugin(options));
-      });
-    });
+    nuxt.hook("build:before", async () => {
+      if (alreadyBootstrapped) return;
+      alreadyBootstrapped = true;
 
-    nuxt.hook("vite:extend", async (vite: any) => {
-      vite.config.plugins = vite.config.plugins || [];
-      vite.config.plugins.push(moniconVitePlugin(options));
+      await bootstrap(options);
     });
   },
 });

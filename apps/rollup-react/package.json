@@ -5,7 +5,7 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "build": "rollup -c",
+    "build": "rollup -c --dev",
     "dev": "rollup -c --watch"
   },
   "dependencies": {

@@ -5,7 +5,14 @@ module.exports = {
     "mdi:home",
     "mdi:account",
     "mdi:account-badge-outline",
+    "feather:activity",
+    "feather:alert-circle",
+    "logos:active-campaign",
+    "logos:atom-icon",
+    "logos:apache",
+    "lucide:badge-check",
     "lucide:cloud-download",
+    "lucide:attachment-2",
   ],
   // collections: ["lucide"],
   loaders: {
@@ -19,7 +26,7 @@ module.exports = {
     // }),
   },
   plugins: [
-    react({ outputPath: "src/components/icons" }),
+    react({ outputPath: "src/components/icons", format: "jsx" }),
     clean({ patterns: ["src/components/icons"] }),
     debuggerPlugin(),
   ],

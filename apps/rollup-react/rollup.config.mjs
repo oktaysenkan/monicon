@@ -5,8 +5,6 @@ import replace from "@rollup/plugin-replace";
 import monicon from "@monicon/rollup";
 import serve from "rollup-plugin-serve";
 
-const isDev = process.env.NODE_ENV === "development";
-
 /** @type {import('rollup')} */
 export default {
   input: "src/index.js",
@@ -26,6 +24,9 @@ export default {
       preventAssignment: false,
       "process.env.NODE_ENV": '"development"',
     }),
-    ...(isDev ? [serve("public")] : []),
+    serve({
+      contentBase: "public",
+      port: 3000,
+    }),
   ],
 };
