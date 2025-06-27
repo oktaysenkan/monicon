@@ -1,4 +1,5 @@
 export * from "./react";
+export * from "./svelte";
 export * from "./native";
 export * from "./qwik";
 export * from "./vue";

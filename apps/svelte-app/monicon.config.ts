@@ -1,4 +1,4 @@
-import { debuggerPlugin, clean, react } from '@monicon/core/plugins';
+import { debuggerPlugin, clean, svelte } from '@monicon/core/plugins';
 // import {
 //   loadJSONCollection,
 //   loadLocalCollection,
@@ -32,8 +32,8 @@ export default {
 		// }),
 	},
 	plugins: [
-		clean({ patterns: ['src/components/icons'] }),
-		react({ outputPath: 'src/components/icons' }),
+		clean({ patterns: ['src/lib/components/icons'] }),
+		svelte({ outputPath: 'src/lib/components/icons' }),
 		debuggerPlugin()
 	]
 } satisfies MoniconConfig;
