@@ -1,7 +1,7 @@
 {
   "name": "@monicon/core",
   "version": "1.2.2",
-  "main": "./dist/index.js",
+  "main": "./dist/index.cjs",
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
   "files": [
@@ -9,12 +9,13 @@
   ],
   "exports": {
     ".": {
-      "require": "./dist/index.js",
+      "require": "./dist/index.cjs",
       "import": "./dist/index.mjs",
-      "types": "./dist/index.d.ts"
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.mjs"
     },
     "./*": {
-      "require": "./dist/*/index.js",
+      "require": "./dist/*/index.cjs",
       "import": "./dist/*/index.mjs",
       "types": "./dist/*/index.d.ts"
     }
@@ -33,7 +34,8 @@
   "scripts": {
     "build": "tsup",
     "dev": "tsup --watch",
-    "clean": "rm -rf dist"
+    "clean": "rm -rf dist",
+    "postinstall": "patch-package"
   },
   "devDependencies": {
     "@iconify/json": "^2.2.251",
@@ -44,7 +46,9 @@
     "@types/lodash": "^4.17.14",
     "@types/pascalcase": "^1.0.3",
     "tsup": "^8.0.1",
-    "typescript": "^5.3.3"
+    "typescript": "^5.3.3",
+    "patch-package": "^8.0.0",
+    "postinstall-postinstall": "^2.1.0"
   },
   "dependencies": {
     "@iconify/utils": "^2.1.33",

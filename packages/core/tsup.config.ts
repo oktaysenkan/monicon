@@ -9,7 +9,24 @@ export default defineConfig((options: Options) => ({
   ],
   clean: true,
   format: ["cjs", "esm"],
-  splitting: false,
   dts: true,
+  minify: false,
+  outDir: "dist/",
+  sourcemap: false,
+  bundle: true,
+  splitting: false,
+  outExtension(ctx) {
+    return {
+      dts: ".d.ts",
+      js: ctx.format === "cjs" ? ".cjs" : ".mjs",
+    };
+  },
+  treeshake: false,
+  target: "es2022",
+  platform: "node",
+  tsconfig: "./tsconfig.json",
+  cjsInterop: true,
+  keepNames: true,
+  skipNodeModulesBundle: false,
   ...options,
 }));

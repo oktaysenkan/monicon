@@ -19,6 +19,7 @@ export default defineConfig({
   resolve: {
     extensions: ["...", ".ts", ".tsx", ".jsx"],
   },
+  watch: true,
   module: {
     rules: [
       {
@@ -56,9 +57,7 @@ export default defineConfig({
       template: "./index.html",
     }),
     isDev ? new RefreshPlugin() : null,
-    new MoniconPlugin({
-      icons: ["mdi:home"],
-    }),
+    new MoniconPlugin(),
   ].filter(Boolean),
   optimization: {
     minimizer: [

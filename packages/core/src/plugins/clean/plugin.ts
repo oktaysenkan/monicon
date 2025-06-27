@@ -1,5 +1,5 @@
 import fs from "fs";
-import { glob } from "glob";
+import glob from "./glob";
 import type { MoniconPlugin } from "../types";
 
 export type CleanOptions = {

@@ -19,9 +19,7 @@ export default {
     nodeResolve({
       extensions: [".js", ".jsx"],
     }),
-    monicon({
-      icons: ["mdi:home"],
-    }),
+    monicon(),
     babel(),
     commonjs(),
     replace({

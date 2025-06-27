@@ -2,8 +2,10 @@
   "name": "@monicon/rspack-react",
   "private": true,
   "version": "0.0.0",
+  "type": "module",
   "scripts": {
-    "dev": "cross-env NODE_ENV=development rspack serve",
+    "dev": "cross-env NODE_ENV=development rspack dev",
+    "start": "cross-env NODE_ENV=development rspack serve",
     "build": "cross-env NODE_ENV=production rspack build"
   },
   "dependencies": {

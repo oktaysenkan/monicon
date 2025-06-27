@@ -1,0 +1,13 @@
+body {
+  margin: 0;
+}
+
+.home {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #1a202c;
+}

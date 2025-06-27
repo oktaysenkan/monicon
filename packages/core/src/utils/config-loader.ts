@@ -1,15 +1,37 @@
 import chokidar from "chokidar";
-import { cosmiconfigSync } from "cosmiconfig";
-import type { MoniconConfig } from "../types";
+import { cosmiconfig, defaultLoaders } from "cosmiconfig";
 
-const explorer = cosmiconfigSync("monicon", { cache: false });
+import type { MoniconConfig } from "../types";
 
 type WatchConfigFileParams = {
   onUpdate: (config: MoniconConfig) => void;
 };
 
-export const loadConfigFile = () => {
-  const result = explorer.search();
+const loadJS = (filepath: string) => {
+  const isESM = typeof import.meta !== "undefined";
+
+  return isESM ? loadESM(filepath) : loadCJS(filepath);
+};
+
+const loadESM = (filepath: string) => {
+  return import(`${filepath}?t=${Date.now()}`);
+};
+
+const loadCJS = (filepath: string) => {
+  return require(`${filepath}?t=${Date.now()}`);
+};
+
+const explorer = cosmiconfig("monicon", {
+  cache: false,
+  loaders: {
+    ...defaultLoaders,
+    ".js": loadJS,
+    ".mjs": loadJS,
+  },
+});
+
+export const loadConfigFile = async () => {
+  const result = await explorer.search();
 
   const config = (result?.config?.default || result?.config) as MoniconConfig;
 
@@ -19,16 +41,16 @@ export const loadConfigFile = () => {
   };
 };
 
-export const watchConfigFile = ({ onUpdate }: WatchConfigFileParams) => {
-  const result = explorer.search();
+export const watchConfigFile = async ({ onUpdate }: WatchConfigFileParams) => {
+  const result = await explorer.search();
 
   const filepath = result?.filepath;
 
   if (filepath) {
-    chokidar.watch(filepath).on("change", (file) => {
+    chokidar.watch(filepath).on("change", async (file) => {
       console.log("file changed", file);
 
-      const newResult = explorer.load(file);
+      const newResult = await explorer.load(file);
 
       onUpdate(
         (newResult?.config?.default || newResult?.config) as MoniconConfig

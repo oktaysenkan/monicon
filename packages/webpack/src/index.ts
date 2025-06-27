@@ -3,27 +3,26 @@ import { Compiler } from "webpack";
 
 const pluginName = "webpack-monicon";
 
-let iconsLoaded = false;
-
+let bootstraped = false;
 export class MoniconPlugin {
   name = pluginName;
 
-  private config: MoniconConfig = {};
+  private readonly config: MoniconConfig = {};
 
   constructor(config?: MoniconConfig) {
     this.config = config ?? {};
   }
 
   async apply(compiler: Compiler) {
-    compiler.hooks.beforeCompile.tapAsync(
-      this.name,
-      async (params, callback) => {
-        if (!iconsLoaded) {
-          await bootstrap(this.config);
-          iconsLoaded = true;
-        }
+    const watch = compiler.options.watch === true;
 
-        callback();
+    compiler.hooks.beforeCompile.tapPromise(
+      "MoniconWebpackPlugin",
+      async () => {
+        if (bootstraped) return;
+
+        await bootstrap({ watch, ...this.config });
+        bootstraped = true;
       }
     );
   }

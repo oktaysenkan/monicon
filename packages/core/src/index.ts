@@ -49,7 +49,7 @@ export const bootstrap = async (options?: MoniconConfig) => {
     ...options,
   };
 
-  const loadedConfig = loadConfigFile();
+  const loadedConfig = await loadConfigFile();
 
   console.log({ loadedConfig });
 

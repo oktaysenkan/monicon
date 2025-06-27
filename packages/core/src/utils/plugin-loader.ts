@@ -20,10 +20,7 @@ export const loadPlugins = async (
 
   await Promise.all(
     plugins.map((plugin) =>
-      plugin.onPluginsLoad?.({
-        ...context,
-        plugins: pluginNames,
-      })
+      plugin.onPluginsLoad?.({ ...context, plugins: pluginNames })
     )
   );
 
@@ -42,20 +39,11 @@ export const runPlugins = async (
 ) => {
   const files = await Promise.all(
     plugins.map(async (plugin) => {
-      await plugin.beforeGenerate?.({
-        ...context,
-        icons,
-      });
+      await plugin.beforeGenerate?.({ ...context, icons });
 
-      const files = await plugin.generate({
-        ...context,
-        icons,
-      });
+      const files = await plugin.generate({ ...context, icons });
 
-      await plugin.afterGenerate?.({
-        ...context,
-        icons,
-      });
+      await plugin.afterGenerate?.({ ...context, icons });
 
       return files;
     })

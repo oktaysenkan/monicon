@@ -13,8 +13,6 @@ export default defineConfig({
       },
     }),
     tsconfigPaths(),
-    monicon({
-      icons: ["mdi:home", "mdi:account"],
-    }),
+    monicon(),
   ],
 });

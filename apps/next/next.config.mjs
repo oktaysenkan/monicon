@@ -2,7 +2,7 @@ import { MoniconPlugin } from "@monicon/webpack";
 
 const nextConfig = {
   reactStrictMode: true,
-  webpack: (config) => {
+  webpack: (config, { dev }) => {
     config.resolve.alias = {
       ...(config.resolve.alias || {}),
       // Transform all direct `react-native` imports to `react-native-web`
@@ -17,19 +17,7 @@ const nextConfig = {
       ...config.resolve.extensions,
     ];
 
-    config.plugins.push(
-      new MoniconPlugin({
-        icons: [
-          "mdi:home",
-          "mdi:account",
-          "mdi:account-badge-outline",
-          "feather:activity",
-          "feather:alert-circle",
-          "logos:active-campaign",
-          "logos:apache-superset-icon",
-        ],
-      })
-    );
+    config.plugins.push(new MoniconPlugin({ watch: dev }));
 
     return config;
   },
