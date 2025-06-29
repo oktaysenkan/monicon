@@ -1,5 +1,5 @@
 import chokidar from "chokidar";
-import { cosmiconfig, defaultLoaders } from "cosmiconfig";
+import { cosmiconfig, defaultLoaders } from "@oktaysenkan/cosmiconfig";
 
 import type { MoniconConfig } from "../types";
 

@@ -30,7 +30,7 @@ export default defineNuxtModule<MoniconConfig>({
       if (alreadyBootstrapped) return;
       alreadyBootstrapped = true;
 
-      await bootstrap(options);
+      await bootstrap({ ...options, watch: nuxt.options.dev });
     });
   },
 });

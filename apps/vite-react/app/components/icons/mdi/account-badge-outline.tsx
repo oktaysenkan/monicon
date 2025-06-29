@@ -1,6 +1,6 @@
 import React from "react";
 
-export const AccountBadgeOutlineIcon = (
+const AccountBadgeOutlineIcon = (
   props: React.ComponentPropsWithoutRef<"svg">,
 ) => {
   return (
