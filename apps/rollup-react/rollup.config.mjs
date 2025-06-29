@@ -19,7 +19,7 @@ export default {
     nodeResolve({
       extensions: [".js", ".jsx"],
     }),
-    monicon({ watch: isDev }),
+    monicon(),
     babel(),
     commonjs(),
     replace({

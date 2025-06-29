@@ -57,7 +57,7 @@ export default defineConfig({
       template: "./index.html",
     }),
     isDev ? new RefreshPlugin() : null,
-    new MoniconPlugin({ watch: isDev }),
+    new MoniconPlugin(),
   ].filter(Boolean),
   optimization: {
     minimizer: [

@@ -5,9 +5,11 @@ export const monicon = (config?: MoniconConfig): PluginOption => {
   return {
     name: "vite-monicon",
     async buildStart() {
-      const isWatching = Boolean(this?.meta?.watchMode);
-      console.log({ isWatching });
-      await bootstrap({ ...config, watch: isWatching });
+      const isWatching =
+        Boolean(this?.meta?.watchMode) ||
+        process.env.NODE_ENV === "development";
+
+      await bootstrap({ watch: isWatching, ...config });
     },
     config: () => ({
       server: {
