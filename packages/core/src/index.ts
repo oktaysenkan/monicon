@@ -59,7 +59,7 @@ export const bootstrap = async (options?: MoniconConfig) => {
 
   if (config.watch) console.log("[Monicon] Watching for config changes...");
 
-  prepareIconFiles(config, {
+  await prepareIconFiles(config, {
     configFilePath: loadedConfig.filepath,
     configUpdated: false,
   });

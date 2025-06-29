@@ -32,8 +32,8 @@ export default {
     // }),
   },
   plugins: [
-    clean({ patterns: ["app/components/icons"] }),
-    react({ outputPath: "app/components/icons" }),
+    clean({ patterns: ["src/components/icons"] }),
+    react({ outputPath: "src/components/icons" }),
     debuggerPlugin(),
   ],
 } satisfies MoniconConfig;

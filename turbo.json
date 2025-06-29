@@ -48,8 +48,9 @@
     "vite-vue#build": {
       "dependsOn": ["vite#build"]
     },
+    "nuxt-app#prepare": {},
     "nuxt-app#build": {
-      "dependsOn": ["nuxt#build"]
+      "dependsOn": ["nuxt-app#prepare", "nuxt#build"]
     },
     "svelte-app#build": {
       "dependsOn": []

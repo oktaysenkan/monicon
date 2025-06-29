@@ -1,8 +1,6 @@
 import React from "react";
 
-export const ActiveCampaignIcon = (
-  props: React.ComponentPropsWithoutRef<"svg">,
-) => {
+const ActiveCampaignIcon = (props: React.ComponentPropsWithoutRef<"svg">) => {
   return (
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 52" {...props}>
       <path
