@@ -3,11 +3,11 @@ import { Compiler } from "webpack";
 
 const pluginName = "webpack-monicon";
 
-let bootstraped = false;
 export class MoniconPlugin {
   name = pluginName;
 
   private readonly config: MoniconConfig = {};
+  private bootstrapPromise: Promise<void> | null = null;
 
   constructor(config?: MoniconConfig) {
     this.config = config ?? {};
@@ -16,15 +16,12 @@ export class MoniconPlugin {
   async apply(compiler: Compiler) {
     const watch = compiler.options.watch === true;
 
-    compiler.hooks.beforeCompile.tapPromise(
-      "MoniconWebpackPlugin",
-      async () => {
-        if (bootstraped) return;
+    compiler.hooks.beforeRun.tapPromise("MoniconWebpackPlugin", async () => {
+      if (!this.bootstrapPromise)
+        this.bootstrapPromise = bootstrap({ watch, ...this.config });
 
-        await bootstrap({ watch, ...this.config });
-        bootstraped = true;
-      }
-    );
+      await this.bootstrapPromise;
+    });
   }
 }
 

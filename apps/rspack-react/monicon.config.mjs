@@ -26,8 +26,8 @@ export default {
     // }),
   },
   plugins: [
-    react({ outputPath: "src/components/icons", format: "jsx" }),
     clean({ patterns: ["src/components/icons"] }),
+    react({ outputPath: "src/components/icons", format: "jsx" }),
     debuggerPlugin(),
   ],
 };

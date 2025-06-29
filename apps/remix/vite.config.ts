@@ -5,7 +5,6 @@ import monicon from "@monicon/vite";
 
 export default defineConfig({
   plugins: [
-    monicon(),
     remix({
       future: {
         v3_fetcherPersist: true,
@@ -14,5 +13,6 @@ export default defineConfig({
       },
     }),
     tsconfigPaths(),
+    monicon(),
   ],
 });
