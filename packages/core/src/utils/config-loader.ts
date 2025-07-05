@@ -29,8 +29,6 @@ export const watchConfigFile = async ({ onUpdate }: WatchConfigFileParams) => {
 
   if (filepath) {
     chokidar.watch(filepath).on("change", async (file) => {
-      console.log("file changed", file);
-
       const newResult = await explorer.load(file);
 
       onUpdate(

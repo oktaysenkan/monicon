@@ -1,3 +1,6 @@
+import _ from "lodash";
+import merge from "deepmerge";
+
 import { MoniconPluginContext } from "./plugins";
 import type { MoniconConfig } from "./types";
 import { loadConfigFile, watchConfigFile } from "./utils/config-loader";
@@ -46,14 +49,15 @@ export const bootstrap = async (options?: MoniconConfig) => {
     plugins: [],
     loaders: {},
     collections: [],
-    ...options,
   };
 
   const loadedConfig = await loadConfigFile();
 
-  console.log({ loadedConfig });
-
-  const config = { ...defaultConfig, ...loadedConfig.config };
+  const config = merge.all<Required<MoniconConfig>>([
+    defaultConfig,
+    loadedConfig?.config ?? {},
+    options ?? {},
+  ]);
 
   console.log("[Monicon] Starting icon generation...");
 
@@ -68,7 +72,6 @@ export const bootstrap = async (options?: MoniconConfig) => {
     watchConfigFile({
       onUpdate: async (newConfig) => {
         console.log("[Monicon] Config updated, re-generating icons...");
-        console.log({ newConfig });
 
         await prepareIconFiles(
           { ...defaultConfig, ...newConfig },

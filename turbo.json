@@ -8,6 +8,10 @@
       "dependsOn": ["^build"]
     },
 
+    "cli#build": {
+      "dependsOn": ["core#build"]
+    },
+
     "vite#build": {
       "dependsOn": ["core#build"]
     },

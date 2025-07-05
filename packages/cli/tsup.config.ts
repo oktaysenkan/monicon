@@ -1,13 +1,7 @@
 import { defineConfig, Options } from "tsup";
 
 export default defineConfig((options: Options) => ({
-  entry: [
-    "src/index.ts",
-    "src/plugins/index.ts",
-    "src/loaders/index.ts",
-    "src/utils/index.ts",
-    "src/cli.ts",
-  ],
+  entry: ["src/index.ts"],
   clean: true,
   format: ["cjs", "esm"],
   dts: true,
@@ -23,7 +17,7 @@ export default defineConfig((options: Options) => ({
     };
   },
   treeshake: false,
-  target: "es2022",
+  target: "es6",
   platform: "node",
   tsconfig: "./tsconfig.json",
   cjsInterop: true,
