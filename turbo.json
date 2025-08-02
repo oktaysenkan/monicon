@@ -32,7 +32,7 @@
     },
 
     "react-native-app#build": {
-      "dependsOn": ["metro#build", "webpack#build"]
+      "dependsOn": ["metro#build"]
     },
     "next#build": {
       "dependsOn": ["webpack#build"]

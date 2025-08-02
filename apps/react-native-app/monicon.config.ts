@@ -1,4 +1,4 @@
-import { debuggerPlugin, reactNative, clean, qwik } from "@monicon/core/plugins";
+import { debuggerPlugin, reactNative, clean } from "@monicon/core/plugins";
 // import {
 //   loadJSONCollection,
 //   loadLocalCollection,
@@ -32,8 +32,8 @@ export default {
     // }),
   },
   plugins: [
-    clean({ patterns: ["src/components/icons"] }),
-    reactNative({ outputPath: "src/components/icons" }),
+    clean({ patterns: ["components/icons"] }),
+    reactNative({ outputPath: "components/icons" }),
     debuggerPlugin(),
   ],
 } satisfies MoniconConfig;
