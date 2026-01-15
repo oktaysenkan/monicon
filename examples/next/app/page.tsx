@@ -1,11 +1,11 @@
 import styles from "../styles/index.module.css";
 
-import AtomIcon from "./components/icons/logos/atom-icon";
-import ApacheLogo from "./components/icons/logos/apache";
-import BadgeCheckIcon from "./components/icons/lucide/badge-check";
-import CloudDownloadIcon from "./components/icons/lucide/cloud-download";
-import AccountIcon from "./components/icons/mdi/account";
-import HomeIcon from "./components/icons/mdi/home";
+import BadgeCheckIcon from "../components/icons/lucide/badge-check";
+import CloudDownloadIcon from "../components/icons/lucide/cloud-download";
+import AccountIcon from "../components/icons/mdi/account";
+import HomeIcon from "../components/icons/mdi/home";
+import AtomIcon from "../components/icons/logos/atom-icon";
+import ApacheLogo from "../components/icons/logos/apache";
 
 export default function Web() {
   return (

@@ -18,7 +18,6 @@ export default {
     "logos:apache",
     "lucide:badge-check",
     "lucide:cloud-download",
-    "lucide:attachment-2",
   ],
   // collections: ["lucide"],
   loaders: {
@@ -32,8 +31,8 @@ export default {
     // }),
   },
   plugins: [
-    clean({ patterns: ["app/components/icons"] }),
-    react({ outputPath: "app/components/icons" }),
+    clean({ patterns: ["components/icons"] }),
+    react({ outputPath: "components/icons" }),
     debuggerPlugin(),
   ],
 } satisfies MoniconConfig;

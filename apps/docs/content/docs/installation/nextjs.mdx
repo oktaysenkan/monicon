@@ -1,0 +1,102 @@
+---
+title: Next.js
+description: Learn how to install and use Monicon in your Next.js project
+---
+
+## Installation
+
+Install Monicon and its Webpack plugin in your Next.js project:
+
+```bash tab="npm"
+npm install @monicon/core
+npm install -D @monicon/webpack
+```
+
+```bash tab="pnpm"
+pnpm add @monicon/core
+pnpm add -D @monicon/webpack
+```
+
+```bash tab="yarn"
+yarn add @monicon/core
+yarn add -D @monicon/webpack
+```
+
+```bash tab="bun"
+bun add @monicon/core
+bun add -D @monicon/webpack
+```
+
+## Configuration
+
+### 1. Create Monicon Config
+
+Create a `monicon.config.ts` file in your project root:
+
+```ts title="monicon.config.ts"
+import { react, clean } from "@monicon/core/plugins";
+import { MoniconConfig } from "@monicon/core";
+
+export default {
+  // Loads individual icons by icon name
+  icons: ["mdi:home", "feather:heart"],
+  // Loads all icons from the lucide collection
+  collections: ["lucide"],
+  plugins: [
+    /**
+     * change the output path to your project config for example;
+     * - components/icons
+     * - src/components/icons
+     */
+    clean({ patterns: ["components/icons"] }),
+    react({ outputPath: "components/icons" }),
+  ],
+} satisfies MoniconConfig;
+```
+
+### 2. Configure Next.js
+
+Add the Monicon plugin to your `next.config.mjs`:
+
+```js title="next.config.mjs"
+import { MoniconPlugin } from "@monicon/webpack";
+
+const nextConfig = {
+  reactStrictMode: true,
+  webpack: (config, { dev }) => {
+    config.plugins.push(new MoniconPlugin({ watch: dev }));
+    return config;
+  },
+};
+
+export default nextConfig;
+```
+
+<Callout type="info">
+  The `watch: dev` option enables automatic icon regeneration during development
+  when your config changes.
+</Callout>
+
+## Usage
+
+After configuration, Monicon will automatically generate React components for your icons. You can import and use them in your components:
+
+```tsx title="app/page.tsx"
+import BadgeCheckIcon from "./components/icons/lucide/badge-check";
+import CloudDownloadIcon from "./components/icons/lucide/cloud-download";
+import HomeIcon from "./components/icons/mdi/home";
+import HeartIcon from "./components/icons/feather/heart";
+
+export default function Home() {
+  return (
+    <main className="flex gap-4 items-center justify-center min-h-screen">
+      <BadgeCheckIcon className="size-10" />
+      <CloudDownloadIcon className="size-10" />
+      <HeartIcon className="size-10" />
+      <HomeIcon className="size-10" />
+      {/* if you don't want to use the className prop, you can use the svg props */}
+      <HomeIcon width={40} height={40} color="blue" />
+    </main>
+  );
+}
+```

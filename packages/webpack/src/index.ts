@@ -16,7 +16,7 @@ export class MoniconPlugin {
   async apply(compiler: Compiler) {
     const watch = compiler.options.watch === true;
 
-    compiler.hooks.beforeRun.tapPromise("MoniconWebpackPlugin", async () => {
+    compiler.hooks.beforeCompile.tap("MoniconWebpackPlugin", async () => {
       if (!this.bootstrapPromise)
         this.bootstrapPromise = bootstrap({ watch, ...this.config });
 

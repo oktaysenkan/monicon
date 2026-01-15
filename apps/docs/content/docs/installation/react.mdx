@@ -1,0 +1,95 @@
+---
+title: React
+description: Learn how to install and use Monicon in your React (Vite) project
+---
+
+## Installation
+
+Install Monicon and its Vite plugin in your React project:
+
+```bash tab="npm"
+npm install @monicon/core
+npm install -D @monicon/vite
+```
+
+```bash tab="pnpm"
+pnpm add @monicon/core
+pnpm add -D @monicon/vite
+```
+
+```bash tab="yarn"
+yarn add @monicon/core
+yarn add -D @monicon/vite
+```
+
+```bash tab="bun"
+bun add @monicon/core
+bun add -D @monicon/vite
+```
+
+## Configuration
+
+### 1. Create Monicon Config
+
+Create a `monicon.config.ts` file in your project root:
+
+```ts title="monicon.config.ts"
+import { react, clean } from "@monicon/core/plugins";
+import { MoniconConfig } from "@monicon/core";
+
+export default {
+  // Loads individual icons by icon name
+  icons: ["mdi:home", "feather:heart"],
+  // Loads all icons from the lucide collection
+  collections: ["lucide"],
+  plugins: [
+    /**
+     * change the output path to your project config for example;
+     * - src/components/icons
+     * - components/icons
+     */
+    clean({ patterns: ["src/components/icons"] }),
+    react({ outputPath: "src/components/icons" }),
+  ],
+} satisfies MoniconConfig;
+```
+
+### 2. Configure Vite
+
+Add the Monicon plugin to your `vite.config.ts`:
+
+```ts title="vite.config.ts"
+import { defineConfig } from "vite";
+import react from "@vitejs/plugin-react";
+import monicon from "@monicon/vite";
+
+export default defineConfig({
+  plugins: [react(), monicon()],
+});
+```
+
+## Usage
+
+After configuration, Monicon will automatically generate React components for your icons. You can import and use them in your components:
+
+```tsx title="src/App.tsx"
+import BadgeCheckIcon from "./components/icons/lucide/badge-check";
+import CloudDownloadIcon from "./components/icons/lucide/cloud-download";
+import HomeIcon from "./components/icons/mdi/home";
+import HeartIcon from "./components/icons/feather/heart";
+
+function App() {
+  return (
+    <main className="flex gap-4 items-center justify-center min-h-screen">
+      <BadgeCheckIcon className="size-10" />
+      <CloudDownloadIcon className="size-10" />
+      <HeartIcon className="size-10" />
+      <HomeIcon className="size-10" />
+      {/* if you don't want to use the className prop, you can use the svg props */}
+      <HomeIcon height={40} />
+    </main>
+  );
+}
+
+export default App;
+```

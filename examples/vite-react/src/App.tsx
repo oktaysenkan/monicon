@@ -8,12 +8,13 @@ import ApacheLogo from "./components/icons/logos/apache";
 function App() {
   return (
     <main className="flex gap-4 items-center justify-center min-h-screen bg-gray-900">
-      <ApacheLogo color="white" width={50} />
-      <BadgeCheckIcon color="white" width={50} />
-      <CloudDownloadIcon color="white" width={50} />
-      <AccountIcon color="white" width={50} />
-      <HomeIcon color="white" width={50} />
-      <AtomIcon color="white" width={50} />
+      <ApacheLogo className="size-10" />
+      <BadgeCheckIcon className="size-10" />
+      <CloudDownloadIcon className="size-10" />
+      <AccountIcon className="size-10" />
+      <HomeIcon className="size-10" />
+      <AtomIcon className="size-10" />
+      <AtomIcon height={40} />
     </main>
   );
 }
