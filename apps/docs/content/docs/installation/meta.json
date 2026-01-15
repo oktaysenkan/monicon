@@ -1,6 +1,7 @@
 {
   "title": "Installation",
   "pages": [
+    "cli",
     "react",
     "nextjs",
     "remix",
