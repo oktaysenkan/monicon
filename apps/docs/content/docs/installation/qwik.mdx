@@ -29,7 +29,7 @@ bun add @monicon/core @monicon/vite
 
 Create a `monicon.config.ts` file in your project root:
 
-```ts title="monicon.config.ts"
+```ts twoslash title="monicon.config.ts"
 import { qwik, clean } from "@monicon/core/plugins";
 import { MoniconConfig } from "@monicon/core";
 
@@ -54,16 +54,16 @@ export default {
 
 Add the Monicon plugin to your `vite.config.ts`:
 
-```ts title="vite.config.ts"
+```ts twoslash title="vite.config.ts"
 import { defineConfig, type UserConfig } from "vite";
-import { qwikVite } from "@builder.io/qwik/optimizer";
-import { qwikCity } from "@builder.io/qwik-city/vite";
 import { monicon } from "@monicon/vite";
-import tsconfigPaths from "vite-tsconfig-paths";
 
 export default defineConfig((): UserConfig => {
   return {
-    plugins: [qwikCity(), qwikVite(), tsconfigPaths(), monicon()],
+    plugins: [
+      // ... other plugins
+      monicon(),
+    ],
   };
 });
 ```

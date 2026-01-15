@@ -7,7 +7,7 @@ The Debugger plugin logs information about the icon generation process, helping 
 
 ## Usage
 
-```ts title="monicon.config.ts"
+```ts twoslash title="monicon.config.ts"
 import { react, clean, debuggerPlugin } from "@monicon/core/plugins";
 import { MoniconConfig } from "@monicon/core";
 
@@ -30,7 +30,9 @@ Enable or disable the debugger plugin.
 - **Type:** `boolean`
 - **Default:** `true`
 
-```ts
+```ts twoslash
+import { debuggerPlugin } from "@monicon/core/plugins";
+
 debuggerPlugin({ enabled: false });
 
 debuggerPlugin({ enabled: true });
@@ -105,7 +107,10 @@ The Debugger plugin is useful for:
 
 The Debugger plugin can be placed anywhere in the plugins array. It's typically placed last so it logs information about all other plugins:
 
-```ts
+```ts twoslash
+import { react, clean, debuggerPlugin } from "@monicon/core/plugins";
+import { MoniconConfig } from "@monicon/core";
+
 export default {
   icons: ["mdi:home"],
   plugins: [
@@ -113,5 +118,5 @@ export default {
     react({ outputPath: "src/components/icons" }),
     debuggerPlugin(), // Last to log all plugin activity
   ],
-};
+} satisfies MoniconConfig;
 ```

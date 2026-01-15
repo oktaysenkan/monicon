@@ -7,7 +7,7 @@ The SVG plugin exports your icons as raw SVG files, useful when you need standal
 
 ## Usage
 
-```ts title="monicon.config.ts"
+```ts twoslash title="monicon.config.ts"
 import { svg } from "@monicon/core/plugins";
 import { MoniconConfig } from "@monicon/core";
 
@@ -30,7 +30,9 @@ The directory where SVG files will be saved.
 - **Type:** `string | ((icon: Icon) => string | undefined)`
 - **Default:** `"src/components/icons"`
 
-```ts
+```ts twoslash
+import { svg } from "@monicon/core/plugins";
+
 // Static path
 svg({ outputPath: "public/icons" })
 
@@ -53,6 +55,8 @@ Customize the file name for each icon.
 - **Default:** Slugified icon name
 
 ```ts
+import { svg } from "@monicon/core/plugins";
+
 svg({
   fileName: (icon) => {
     // Custom file naming

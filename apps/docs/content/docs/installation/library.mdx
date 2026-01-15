@@ -29,7 +29,7 @@ bun add @monicon/core -g
 
 Import the `bootstrap` function from `@monicon/core` and call it with your configuration:
 
-```ts title="scripts/generate-icons.ts"
+```ts twoslash title="scripts/generate-icons.ts"
 import { bootstrap } from "@monicon/core";
 import { svg, clean } from "@monicon/core/plugins";
 
@@ -52,14 +52,8 @@ The `bootstrap` function accepts a configuration object with the following optio
 
 ### Type Definition
 
-```ts
-type MoniconConfig = {
-  icons?: string[];
-  watch?: boolean;
-  plugins?: MoniconPluginFunction[];
-  loaders?: Record<string, ReturnType<Loader>>;
-  collections?: string[];
-};
+```ts twoslash
+import { MoniconConfig } from '@monicon/core'
 ```
 
 ### Configuration Options
@@ -76,7 +70,7 @@ type MoniconConfig = {
 
 The `bootstrap` function automatically loads your `monicon.config.ts` file if it exists, and merges it with any options you pass:
 
-```ts title="scripts/generate-icons.ts"
+```ts twoslash title="scripts/generate-icons.ts"
 import { bootstrap } from "@monicon/core";
 
 // This will load monicon.config.ts and merge with the provided options
@@ -85,7 +79,7 @@ await bootstrap({
 });
 ```
 
-```ts title="monicon.config.ts"
+```ts twoslash title="monicon.config.ts"
 import { svg, clean } from "@monicon/core/plugins";
 import { MoniconConfig } from "@monicon/core";
 
@@ -105,7 +99,7 @@ export default {
 
 Create a custom build script that generates icons before building your app:
 
-```ts title="scripts/build.ts"
+```ts twoslash title="scripts/build.ts"
 import { bootstrap } from "@monicon/core";
 import { svg } from "@monicon/core/plugins";
 import { execSync } from "child_process";
@@ -138,7 +132,7 @@ build().catch(console.error);
 
 Use Monicon in a pre-build hook:
 
-```json title="package.json"
+```json twoslash title="package.json"
 {
   "scripts": {
     "prebuild": "tsx scripts/generate-icons.ts",
@@ -147,7 +141,7 @@ Use Monicon in a pre-build hook:
 }
 ```
 
-```ts title="scripts/generate-icons.ts"
+```ts twoslash title="scripts/generate-icons.ts"
 import { bootstrap } from "@monicon/core";
 import { svg } from "@monicon/core/plugins";
 
@@ -162,7 +156,7 @@ await bootstrap({
 
 Use watch mode during development:
 
-```ts title="scripts/dev.ts"
+```ts twoslash title="scripts/dev.ts"
 import { bootstrap } from "@monicon/core";
 import { react } from "@monicon/core/plugins";
 

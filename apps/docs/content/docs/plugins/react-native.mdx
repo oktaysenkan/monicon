@@ -7,7 +7,7 @@ The React Native plugin generates React Native components using `react-native-sv
 
 ## Usage
 
-```ts title="monicon.config.ts"
+```ts twoslash title="monicon.config.ts"
 import { reactNative, clean } from "@monicon/core/plugins";
 import { MoniconConfig } from "@monicon/core";
 
@@ -37,7 +37,9 @@ The directory where icon components will be generated.
 - **Type:** `string | ((icon: Icon) => string | undefined)`
 - **Default:** `"src/components/icons"`
 
-```ts
+```ts twoslash
+import { reactNative } from "@monicon/core/plugins";
+
 // Static path
 reactNative({ outputPath: "components/icons" })
 
@@ -59,7 +61,9 @@ The output format for generated files.
 - **Type:** `"jsx" | "tsx"`
 - **Default:** `"tsx"`
 
-```ts
+```ts twoslash
+import { reactNative } from "@monicon/core/plugins";
+
 // Generate JSX files
 reactNative({ format: "jsx" })
 
@@ -74,7 +78,9 @@ Customize the component name.
 - **Type:** `(icon: Icon) => string | undefined`
 - **Default:** `${icon.name}Icon`
 
-```ts
+```ts twoslash
+import { reactNative } from "@monicon/core/plugins";
+
 reactNative({
   componentName: (icon) => {
     return `Custom${icon.name}`;
@@ -89,7 +95,9 @@ Customize the file name.
 - **Type:** `(icon: Icon) => string | undefined`
 - **Default:** Slugified icon name
 
-```ts
+```ts twoslash
+import { reactNative } from "@monicon/core/plugins";
+
 reactNative({
   fileName: (icon) => {
     return icon.name.toLowerCase().replace(":", "-");
@@ -104,7 +112,9 @@ Add a prefix to component names.
 - **Type:** `string | ((icon: Icon) => string | undefined)`
 - **Default:** `""`
 
-```ts
+```ts twoslash
+import { reactNative } from "@monicon/core/plugins";
+
 // Static prefix
 reactNative({ prefix: "Icon" })
 ```
@@ -116,7 +126,9 @@ Add a suffix to component names.
 - **Type:** `string | ((icon: Icon) => string | undefined)`
 - **Default:** `"Icon"`
 
-```ts
+```ts twoslash
+import { reactNative } from "@monicon/core/plugins";
+
 // Static suffix
 reactNative({ suffix: "Component" })
 

@@ -7,18 +7,22 @@ export type CleanOptions = {
   enabled?: boolean;
 };
 
-export const clean: MoniconPlugin<CleanOptions> = (opts) => {
+/**
+ * Clean plugin to remove files and directories before generating new icons
+ * @param options - The options for the plugin
+ */
+export const clean: MoniconPlugin<CleanOptions> = (options) => {
   return () => ({
     name: "clean",
     generate: async () => {
       return [];
     },
     beforeWriteFiles: async () => {
-      const enabled = opts.enabled ?? true;
+      const enabled = options.enabled ?? true;
 
       if (!enabled) return;
 
-      const files = opts.patterns.flatMap((pattern) => glob.sync(pattern));
+      const files = options.patterns.flatMap((pattern) => glob.sync(pattern));
 
       files.forEach((path) => {
         const isExists = fs.existsSync(path);

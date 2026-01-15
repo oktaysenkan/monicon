@@ -7,7 +7,7 @@ The Clean plugin removes files and directories before generating new icons. This
 
 ## Usage
 
-```ts title="monicon.config.ts"
+```ts twoslash title="monicon.config.ts"
 import { react, clean } from "@monicon/core/plugins";
 import { MoniconConfig } from "@monicon/core";
 
@@ -33,7 +33,9 @@ An array of glob patterns to match files and directories for removal.
 - **Type:** `string[]`
 - **Required:** Yes
 
-```ts
+```ts twoslash
+import { clean } from "@monicon/core/plugins";
+
 clean({
   patterns: [
     "src/components/icons",           // Remove entire directory
@@ -49,7 +51,9 @@ Enable or disable the clean plugin.
 - **Type:** `boolean`
 - **Default:** `true`
 
-```ts
+```ts twoslash
+import { clean } from "@monicon/core/plugins";
+
 clean({
   patterns: ["src/components/icons"],
   enabled: process.env.NODE_ENV === "production",
@@ -71,6 +75,7 @@ You can conditionally enable cleaning based on environment:
 
 ```ts title="monicon.config.ts"
 import { react, clean } from "@monicon/core/plugins";
+import { MoniconConfig } from "@monicon/core";
 
 export default {
   icons: ["mdi:home"],
@@ -82,5 +87,5 @@ export default {
     }),
     react({ outputPath: "src/components/icons" }),
   ],
-};
+} satisfies MoniconConfig;
 ```

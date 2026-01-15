@@ -7,7 +7,7 @@ The React plugin generates React components (TSX or JSX) from your SVG icons.
 
 ## Usage
 
-```ts title="monicon.config.ts"
+```ts twoslash title="monicon.config.ts"
 import { react, clean } from "@monicon/core/plugins";
 import { MoniconConfig } from "@monicon/core";
 
@@ -33,7 +33,9 @@ The directory where icon components will be generated.
 - **Type:** `string | ((icon: Icon) => string | undefined)`
 - **Default:** `"src/components/icons"`
 
-```ts
+```ts twoslash
+import { react } from "@monicon/core/plugins";
+
 // Static path
 react({ outputPath: "components/icons" })
 
@@ -55,7 +57,9 @@ The output format for generated files.
 - **Type:** `"jsx" | "tsx"`
 - **Default:** `"tsx"`
 
-```ts
+```ts twoslash
+import { react } from "@monicon/core/plugins";
+
 // Generate JSX files
 react({ format: "jsx" })
 
@@ -70,7 +74,9 @@ Customize the component name.
 - **Type:** `(icon: Icon) => string | undefined`
 - **Default:** `${icon.name}Icon`
 
-```ts
+```ts twoslash
+import { react } from "@monicon/core/plugins";
+
 react({
   componentName: (icon) => {
     // Custom naming logic
@@ -102,7 +108,9 @@ Add a prefix to component names.
 - **Type:** `string | ((icon: Icon) => string | undefined)`
 - **Default:** `""`
 
-```ts
+```ts twoslash
+import { react } from "@monicon/core/plugins";
+
 // Static prefix
 react({ prefix: "Icon" })
 
@@ -121,7 +129,9 @@ Add a suffix to component names.
 - **Type:** `string | ((icon: Icon) => string | undefined)`
 - **Default:** `"Icon"`
 
-```ts
+```ts twoslash
+import { react } from "@monicon/core/plugins";
+
 // Static suffix
 react({ suffix: "Component" })
 
@@ -140,9 +150,7 @@ react({
 
 For an icon `mdi:home`, the plugin generates:
 
-```tsx title="src/components/icons/mdi/home.tsx"
-import React from "react";
-
+```ts title="src/components/icons/mdi/home.tsx"
 const HomeIcon = (props: React.ComponentPropsWithoutRef<"svg">) => {
   return (
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" {...props}>

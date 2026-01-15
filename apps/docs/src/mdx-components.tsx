@@ -2,6 +2,7 @@ import defaultMdxComponents from "fumadocs-ui/mdx";
 import type { MDXComponents } from "mdx/types";
 import * as TabsComponents from "fumadocs-ui/components/tabs";
 import * as CodeBlockComponents from "fumadocs-ui/components/codeblock";
+import * as Twoslash from "fumadocs-twoslash/ui";
 import {
   createGenerator,
   createFileSystemGeneratorCache,
@@ -28,6 +29,7 @@ export function getMDXComponents(components?: MDXComponents): MDXComponents {
       <AutoTypeTable {...props} generator={generator} />
     ),
     Mermaid,
+    ...Twoslash,
     ...components,
   };
 }

@@ -29,7 +29,7 @@ bun add @monicon/core @monicon/vite
 
 Create a `monicon.config.ts` file in your project root:
 
-```ts title="monicon.config.ts"
+```ts twoslash title="monicon.config.ts"
 import { vue, clean } from "@monicon/core/plugins";
 import { MoniconConfig } from "@monicon/core";
 
@@ -54,13 +54,15 @@ export default {
 
 Add the Monicon plugin to your `vite.config.ts`:
 
-```ts title="vite.config.ts"
+```ts twoslash title="vite.config.ts"
 import { defineConfig } from "vite";
-import vue from "@vitejs/plugin-vue";
 import monicon from "@monicon/vite";
 
 export default defineConfig({
-  plugins: [vue(), monicon()],
+  plugins: [
+    // ... other plugins
+    monicon(),
+  ],
 });
 ```
 

@@ -29,7 +29,7 @@ bun add @monicon/core @monicon/rollup
 
 Create a `monicon.config.js` file in your project root:
 
-```js title="monicon.config.js"
+```js twoslash title="monicon.config.js"
 const { react, clean } = require("@monicon/core/plugins");
 
 module.exports = {
@@ -53,26 +53,14 @@ module.exports = {
 
 Add the Monicon plugin to your `rollup.config.mjs`:
 
-```js title="rollup.config.mjs"
-import nodeResolve from "@rollup/plugin-node-resolve";
-import commonjs from "@rollup/plugin-commonjs";
-import babel from "@rollup/plugin-babel";
+```js twoslash title="rollup.config.mjs"
 import monicon from "@monicon/rollup";
 
 export default {
-  input: "src/index.js",
-  output: {
-    file: "dist/bundle.js",
-    format: "iife",
-    inlineDynamicImports: true,
-  },
+  // ... your rollup config
   plugins: [
-    nodeResolve({
-      extensions: [".js", ".jsx"],
-    }),
+    // ... other plugins
     monicon(),
-    babel(),
-    commonjs(),
   ],
 };
 ```

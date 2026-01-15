@@ -29,7 +29,7 @@ bun add @monicon/core @monicon/esbuild
 
 Create a `monicon.config.ts` file in your project root:
 
-```ts title="monicon.config.ts"
+```ts twoslash title="monicon.config.ts"
 import { react, clean } from "@monicon/core/plugins";
 import { MoniconConfig } from "@monicon/core";
 
@@ -55,38 +55,11 @@ export default {
 Add the Monicon plugin to your esbuild configuration:
 
 ```js title="build.js"
-import { build } from "esbuild";
+import * as esbuild from "esbuild";
 import { monicon } from "@monicon/esbuild";
 
-await build({
-  entryPoints: ["src/index.tsx"],
-  bundle: true,
-  outfile: "dist/bundle.js",
+await esbuild.build({
   plugins: [monicon()],
-});
-```
-
-You can also pass Monicon configuration directly to the plugin:
-
-```js title="build.js"
-import { build } from "esbuild";
-import { monicon } from "@monicon/esbuild";
-import { react, clean } from "@monicon/core/plugins";
-
-await build({
-  entryPoints: ["src/index.tsx"],
-  bundle: true,
-  outfile: "dist/bundle.js",
-  plugins: [
-    monicon({
-      icons: ["mdi:home", "feather:activity"],
-      collections: ["lucide"],
-      plugins: [
-        clean({ patterns: ["src/components/icons"] }),
-        react({ outputPath: "src/components/icons" }),
-      ],
-    }),
-  ],
 });
 ```
 

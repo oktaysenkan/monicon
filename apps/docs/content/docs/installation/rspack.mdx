@@ -29,7 +29,7 @@ bun add @monicon/core @monicon/rspack
 
 Create a `monicon.config.mjs` file in your project root:
 
-```js title="monicon.config.mjs"
+```js twoslash title="monicon.config.mjs"
 import { react, clean } from "@monicon/core/plugins";
 
 export default {
@@ -59,13 +59,9 @@ import { rspack } from "@rspack/core";
 import MoniconPlugin from "@monicon/rspack";
 
 export default defineConfig({
-  entry: {
-    main: "./src/main.jsx",
-  },
+  // ... your rspack config
   plugins: [
-    new rspack.HtmlRspackPlugin({
-      template: "./index.html",
-    }),
+    // ... other plugins
     new MoniconPlugin(),
   ],
 });

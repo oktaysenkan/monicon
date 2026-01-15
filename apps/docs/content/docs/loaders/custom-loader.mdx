@@ -9,8 +9,10 @@ Custom loaders in Monicon allow you to define your own logic for providing SVG i
 
 A custom loader is a function that returns an async function which returns an object mapping icon names to SVG strings:
 
-```ts title="loaders/custom.ts"
-import { Loader } from "@monicon/core";
+```ts twoslash title="loaders/custom.ts"
+import { MoniconConfig } from "@monicon/core";
+import { react, clean } from "@monicon/core/plugins";
+import { Loader } from "@monicon/core/loaders";
 
 export const customLoader: Loader<void> = () => async () => {
   // your custom logic here
@@ -19,16 +21,6 @@ export const customLoader: Loader<void> = () => async () => {
       '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>',
   };
 };
-```
-
-## Configuration
-
-Add your custom loader to your `monicon.config.ts`:
-
-```ts title="monicon.config.ts"
-import { react, clean } from "@monicon/core/plugins";
-import { MoniconConfig } from "@monicon/core";
-import { customLoader } from "./loaders/custom";
 
 export default {
   icons: ["mdi:home"],

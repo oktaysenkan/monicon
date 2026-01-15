@@ -7,7 +7,7 @@ The Vue plugin generates Vue 3 Single File Components (SFC) from your SVG icons.
 
 ## Usage
 
-```ts title="monicon.config.ts"
+```ts twoslash title="monicon.config.ts"
 import { vue, clean } from "@monicon/core/plugins";
 import { MoniconConfig } from "@monicon/core";
 
@@ -33,7 +33,9 @@ The directory where icon components will be generated.
 - **Type:** `string | ((icon: Icon) => string | undefined)`
 - **Default:** `"src/components/icons"`
 
-```ts
+```ts twoslash
+import { vue } from "@monicon/core/plugins";
+
 // Static path
 vue({ outputPath: "components/icons" })
 
@@ -55,7 +57,9 @@ The script template type for generated components.
 - **Type:** `"js" | "ts"`
 - **Default:** `"ts"`
 
-```ts
+```ts twoslash
+import { vue } from "@monicon/core/plugins";
+
 // TypeScript setup (default)
 vue({ template: "ts" })
 
@@ -70,7 +74,9 @@ Customize the component name.
 - **Type:** `(icon: Icon) => string | undefined`
 - **Default:** `${icon.name}Icon`
 
-```ts
+```ts twoslash
+import { vue } from "@monicon/core/plugins";
+
 vue({
   componentName: (icon) => {
     return `Custom${icon.name}`;
@@ -85,7 +91,9 @@ Customize the file name.
 - **Type:** `(icon: Icon) => string | undefined`
 - **Default:** Slugified icon name
 
-```ts
+```ts twoslash
+import { vue } from "@monicon/core/plugins";
+
 vue({
   fileName: (icon) => {
     return icon.name.toLowerCase().replace(":", "-");
@@ -100,7 +108,9 @@ Add a prefix to component names.
 - **Type:** `string | ((icon: Icon) => string | undefined)`
 - **Default:** `""`
 
-```ts
+```ts twoslash
+import { vue } from "@monicon/core/plugins";
+
 // Static prefix
 vue({ prefix: "Icon" })
 
@@ -119,7 +129,9 @@ Add a suffix to component names.
 - **Type:** `string | ((icon: Icon) => string | undefined)`
 - **Default:** `"Icon"`
 
-```ts
+```ts twoslash
+import { vue } from "@monicon/core/plugins";
+
 // Static suffix
 vue({ suffix: "Component" })
 

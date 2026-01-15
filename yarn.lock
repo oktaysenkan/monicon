@@ -7228,6 +7228,15 @@
     "@shikijs/types" "1.21.0"
     twoslash "^0.2.12"
 
+"@shikijs/twoslash@^3.20.0":
+  version "3.21.0"
+  resolved "https://registry.yarnpkg.com/@shikijs/twoslash/-/twoslash-3.21.0.tgz#2088c259e144a7e46fdcce40078733ec164d941b"
+  integrity sha512-iH360udAYON2JwfIldoCiMZr9MljuQA5QRBivKLpEuEpmVCSwrR+0WTQ0eS1ptgGBdH9weFiIsA5wJDzsEzTYg==
+  dependencies:
+    "@shikijs/core" "3.21.0"
+    "@shikijs/types" "3.21.0"
+    twoslash "^0.3.6"
+
 "@shikijs/types@1.21.0":
   version "1.21.0"
   resolved "https://registry.npmjs.org/@shikijs/types/-/types-1.21.0.tgz"
@@ -8692,6 +8701,13 @@
   version "1.6.0"
   resolved "https://registry.npmjs.org/@typescript/vfs/-/vfs-1.6.0.tgz"
   integrity sha512-hvJUjNVeBMp77qPINuUvYXj4FyWeeMMKZkxEATEU3hqBAQ7qdTBCUFT7Sp0Zu0faeEtFf+ldXxMEDr/bk73ISg==
+  dependencies:
+    debug "^4.1.1"
+
+"@typescript/vfs@^1.6.2":
+  version "1.6.2"
+  resolved "https://registry.yarnpkg.com/@typescript/vfs/-/vfs-1.6.2.tgz#e66883c5a8dcc5d2794dfa05c8f9749d767219f8"
+  integrity sha512-hoBwJwcbKHmvd2QVebiytN1aELvpk9B74B4L1mFm/XT1Q/VOYAWl2vQ9AWRFtQq8zmz6enTpfTV8WRc4ATjW/g==
   dependencies:
     debug "^4.1.1"
 
@@ -15185,6 +15201,20 @@ fumadocs-mdx@14.2.5:
     vfile "^6.0.3"
     zod "^4.3.5"
 
+fumadocs-twoslash@^3.1.12:
+  version "3.1.12"
+  resolved "https://registry.yarnpkg.com/fumadocs-twoslash/-/fumadocs-twoslash-3.1.12.tgz#a275c00096180322744c5566eddf8e9df99d490a"
+  integrity sha512-s+81vm0+VsWUNy49SifNjvuv5p1y98EKg3EA5wHA2sN0FQG83LRyKa840YMTw9szvQxUdM2Jc+8t7g4pxdjxVw==
+  dependencies:
+    "@radix-ui/react-popover" "^1.1.15"
+    "@shikijs/twoslash" "^3.20.0"
+    mdast-util-from-markdown "^2.0.2"
+    mdast-util-gfm "^3.1.0"
+    mdast-util-to-hast "^13.2.1"
+    shiki "^3.20.0"
+    tailwind-merge "^3.4.0"
+    twoslash "^0.3.6"
+
 fumadocs-typescript@^5.0.1:
   version "5.0.1"
   resolved "https://registry.yarnpkg.com/fumadocs-typescript/-/fumadocs-typescript-5.0.1.tgz#3abb1e7364f6f80876e59ddf6e192cdd68688d19"
@@ -18382,6 +18412,24 @@ mdast-util-from-markdown@^2.0.0:
     micromark-util-types "^2.0.0"
     unist-util-stringify-position "^4.0.0"
 
+mdast-util-from-markdown@^2.0.2:
+  version "2.0.2"
+  resolved "https://registry.yarnpkg.com/mdast-util-from-markdown/-/mdast-util-from-markdown-2.0.2.tgz#4850390ca7cf17413a9b9a0fbefcd1bc0eb4160a"
+  integrity sha512-uZhTV/8NBuw0WHkPTrCqDOl0zVe1BIng5ZtHoDk49ME1qqcjYmmLmOf0gELgcRMxN4w2iuIeVso5/6QymSrgmA==
+  dependencies:
+    "@types/mdast" "^4.0.0"
+    "@types/unist" "^3.0.0"
+    decode-named-character-reference "^1.0.0"
+    devlop "^1.0.0"
+    mdast-util-to-string "^4.0.0"
+    micromark "^4.0.0"
+    micromark-util-decode-numeric-character-reference "^2.0.0"
+    micromark-util-decode-string "^2.0.0"
+    micromark-util-normalize-identifier "^2.0.0"
+    micromark-util-symbol "^2.0.0"
+    micromark-util-types "^2.0.0"
+    unist-util-stringify-position "^4.0.0"
+
 mdast-util-frontmatter@^1.0.0:
   version "1.0.1"
   resolved "https://registry.npmjs.org/mdast-util-frontmatter/-/mdast-util-frontmatter-1.0.1.tgz"
@@ -18459,6 +18507,19 @@ mdast-util-gfm@^3.0.0:
   version "3.0.0"
   resolved "https://registry.npmjs.org/mdast-util-gfm/-/mdast-util-gfm-3.0.0.tgz"
   integrity sha512-dgQEX5Amaq+DuUqf26jJqSK9qgixgd6rYDHAv4aTBuA92cTknZlKpPfa86Z/s8Dj8xsAQpFfBmPUHWJBWqS4Bw==
+  dependencies:
+    mdast-util-from-markdown "^2.0.0"
+    mdast-util-gfm-autolink-literal "^2.0.0"
+    mdast-util-gfm-footnote "^2.0.0"
+    mdast-util-gfm-strikethrough "^2.0.0"
+    mdast-util-gfm-table "^2.0.0"
+    mdast-util-gfm-task-list-item "^2.0.0"
+    mdast-util-to-markdown "^2.0.0"
+
+mdast-util-gfm@^3.1.0:
+  version "3.1.0"
+  resolved "https://registry.yarnpkg.com/mdast-util-gfm/-/mdast-util-gfm-3.1.0.tgz#2cdf63b92c2a331406b0fb0db4c077c1b0331751"
+  integrity sha512-0ulfdQOM3ysHhCJ1p06l0b0VKlhU0wuQs3thxZQagjcjPrlFRqY215uZGHHJan9GEAXd9MbfPjFJz+qMkVR6zQ==
   dependencies:
     mdast-util-from-markdown "^2.0.0"
     mdast-util-gfm-autolink-literal "^2.0.0"
@@ -18619,6 +18680,21 @@ mdast-util-to-hast@^13.0.0:
   version "13.2.0"
   resolved "https://registry.npmjs.org/mdast-util-to-hast/-/mdast-util-to-hast-13.2.0.tgz"
   integrity sha512-QGYKEuUsYT9ykKBCMOEDLsU5JRObWQusAolFMeko/tYPufNkRffBAQjIE+99jbA87xv6FgmjLtwjh9wBWajwAA==
+  dependencies:
+    "@types/hast" "^3.0.0"
+    "@types/mdast" "^4.0.0"
+    "@ungap/structured-clone" "^1.0.0"
+    devlop "^1.0.0"
+    micromark-util-sanitize-uri "^2.0.0"
+    trim-lines "^3.0.0"
+    unist-util-position "^5.0.0"
+    unist-util-visit "^5.0.0"
+    vfile "^6.0.0"
+
+mdast-util-to-hast@^13.2.1:
+  version "13.2.1"
+  resolved "https://registry.yarnpkg.com/mdast-util-to-hast/-/mdast-util-to-hast-13.2.1.tgz#d7ff84ca499a57e2c060ae67548ad950e689a053"
+  integrity sha512-cctsq2wp5vTsLIcaymblUriiTcZd0CwWtCbLvrOzYCDZoWyMNV8sZ7krj09FSnsiJi3WVsHLM4k6Dq/yaPyCXA==
   dependencies:
     "@types/hast" "^3.0.0"
     "@types/mdast" "^4.0.0"
@@ -23949,7 +24025,7 @@ shell-quote@^1.6.1, shell-quote@^1.8.1:
   resolved "https://registry.npmjs.org/shell-quote/-/shell-quote-1.8.1.tgz"
   integrity sha512-6j1W9l1iAs/4xYBI1SYOVZyFcCis9b4KCLQ8fgAGG07QvzaRLVVRQvAy85yNmmZSjYjg4MWh4gNvlPujU/5LpA==
 
-shiki@3.21.0, shiki@^3.21.0:
+shiki@3.21.0, shiki@^3.20.0, shiki@^3.21.0:
   version "3.21.0"
   resolved "https://registry.yarnpkg.com/shiki/-/shiki-3.21.0.tgz#64686fe6bfc6b2b602d209eb6c8cdbc79d0eff22"
   integrity sha512-N65B/3bqL/TI2crrXr+4UivctrAGEjmsib5rPMMPpFp1xAx/w03v8WZ9RDDFYteXoEgY7qZ4HGgl5KBIu1153w==
@@ -25507,6 +25583,11 @@ twoslash-protocol@0.2.12:
   resolved "https://registry.npmjs.org/twoslash-protocol/-/twoslash-protocol-0.2.12.tgz"
   integrity sha512-5qZLXVYfZ9ABdjqbvPc4RWMr7PrpPaaDSeaYY55vl/w1j6H6kzsWK/urAEIXlzYlyrFmyz1UbwIt+AA0ck+wbg==
 
+twoslash-protocol@0.3.6:
+  version "0.3.6"
+  resolved "https://registry.yarnpkg.com/twoslash-protocol/-/twoslash-protocol-0.3.6.tgz#841b7c6217ddec8a475a4e088b64cb9f80ef0fe3"
+  integrity sha512-FHGsJ9Q+EsNr5bEbgG3hnbkvEBdW5STgPU824AHUjB4kw0Dn4p8tABT7Ncg1Ie6V0+mDg3Qpy41VafZXcQhWMA==
+
 twoslash@^0.2.12:
   version "0.2.12"
   resolved "https://registry.npmjs.org/twoslash/-/twoslash-0.2.12.tgz"
@@ -25514,6 +25595,14 @@ twoslash@^0.2.12:
   dependencies:
     "@typescript/vfs" "^1.6.0"
     twoslash-protocol "0.2.12"
+
+twoslash@^0.3.6:
+  version "0.3.6"
+  resolved "https://registry.yarnpkg.com/twoslash/-/twoslash-0.3.6.tgz#cf647bfe138adf8c617002e4cbb2d4893b8ff832"
+  integrity sha512-VuI5OKl+MaUO9UIW3rXKoPgHI3X40ZgB/j12VY6h98Ae1mCBihjPvhOPeJWlxCYcmSbmeZt5ZKkK0dsVtp+6pA==
+  dependencies:
+    "@typescript/vfs" "^1.6.2"
+    twoslash-protocol "0.3.6"
 
 type-check@^0.4.0, type-check@~0.4.0:
   version "0.4.0"

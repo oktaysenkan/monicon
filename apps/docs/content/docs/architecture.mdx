@@ -170,17 +170,16 @@ Each plugin can implement the following hooks:
 
 Plugins are functions that return a configuration object:
 
-```ts
-import { MoniconPluginFunction } from "@monicon/core";
+```ts twoslash
+import { MoniconPlugin, MoniconPluginFile } from "@monicon/core/plugins";
 
-export const myPlugin: MoniconPluginFunction = (options) => {
+export const txtPlugin: MoniconPlugin<void> = (options) => (payload) => {
   return {
-    name: "my-plugin",
-    
-    async generate(context, icons) {
-      const files = [];
+    name: "monicon-txt-plugin",
+    generate: () => {
+      const files: MoniconPluginFile[] = [];
       
-      for (const icon of icons) {
+      for (const icon of payload.icons) {
         files.push({
           path: `output/${icon.name}.txt`,
           content: icon.svg,
@@ -188,15 +187,7 @@ export const myPlugin: MoniconPluginFunction = (options) => {
       }
       
       return files;
-    },
-    
-    async beforeWriteFiles(context) {
-      console.log("About to write files...");
-    },
-    
-    async afterWriteFiles(context) {
-      console.log("Files written!");
-    },
+    }
   };
 };
 ```
@@ -292,7 +283,7 @@ Full TypeScript support with exported types for configuration and plugins.
 
 ### Using Core Directly
 
-```ts
+```ts twoslash
 import { bootstrap } from "@monicon/core";
 import { react } from "@monicon/core/plugins";
 
@@ -304,15 +295,16 @@ await bootstrap({
 
 ### Using with Vite
 
-```ts
+```ts twoslash
 import { defineConfig } from "vite";
 import monicon from "@monicon/vite";
+import { react } from "@monicon/core/plugins";
 
 export default defineConfig({
   plugins: [
     monicon({
       icons: ["mdi:home"],
-      plugins: [/* ... */],
+      plugins: [react({ outputPath: "src/components/icons" })],
     }),
   ],
 });
