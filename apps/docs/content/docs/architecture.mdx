@@ -1,0 +1,325 @@
+---
+title: Architecture
+description: Understand Monicon's architecture, package structure, and how components work together
+---
+
+This guide explains Monicon's architecture, including package dependencies, the icon generation flow, and how different components work together.
+
+## Overview
+
+Monicon is built as a monorepo with multiple packages that work together to provide a flexible, framework-agnostic icon management system. The architecture is designed to be modular, extensible, and easy to integrate with different build tools and frameworks.
+
+## Package Structure
+
+<Mermaid chart={`
+graph TD
+A[@monicon/core] --> B[@monicon/cli]
+A --> C[@monicon/vite]
+A --> D[@monicon/webpack]
+A --> E[@monicon/rollup]
+A --> F[@monicon/esbuild]
+A --> G[@monicon/rspack]
+A --> H[@monicon/metro]
+A --> I[@monicon/nuxt]
+
+style A fill:#059669,stroke:#047857,color:#fff
+style B fill:#2563eb,stroke:#1d4ed8,color:#fff
+style C fill:#d97706,stroke:#b45309,color:#fff
+style D fill:#d97706,stroke:#b45309,color:#fff
+style E fill:#d97706,stroke:#b45309,color:#fff
+style F fill:#d97706,stroke:#b45309,color:#fff
+style G fill:#d97706,stroke:#b45309,color:#fff
+style H fill:#d97706,stroke:#b45309,color:#fff
+style I fill:#d97706,stroke:#b45309,color:#fff
+`}/>
+
+### Core Packages
+
+#### @monicon/core (Core Engine)
+The heart of Monicon, containing all the core functionality:
+- **Bootstrap Function**: Entry point for icon generation
+- **Loaders**: Fetch icons from different sources (remote, local, JSON)
+- **Plugins**: Transform icons into framework-specific components
+- **Utilities**: Config loading, file system operations, icon processing
+
+#### @monicon/cli (Command Line Interface)
+Command-line tool for generating icons outside of build processes. Uses `@monicon/core` to provide a CLI experience.
+
+### Bundler Integration Packages
+
+All bundler packages depend on `@monicon/core` and provide seamless integration:
+
+- **@monicon/vite** - Vite plugin
+- **@monicon/webpack** - Webpack plugin
+- **@monicon/rollup** - Rollup plugin
+- **@monicon/esbuild** - esbuild plugin
+- **@monicon/rspack** - Rspack plugin
+- **@monicon/metro** - Metro bundler plugin (React Native)
+- **@monicon/nuxt** - Nuxt module
+
+## Core Architecture
+
+The `@monicon/core` package is structured into four main components:
+
+<Mermaid chart={`
+graph LR
+    A[Bootstrap] --> B[Loaders]
+    A --> C[Plugins]
+    A --> D[Utils]
+    
+    B --> B1[Remote Collection]
+    B --> B2[Local Collection]
+    B --> B3[JSON Collection]
+    
+    C --> C1[React Plugin]
+    C --> C2[Vue Plugin]
+    C --> C3[Svelte Plugin]
+    C --> C4[Qwik Plugin]
+    C --> C5[React Native Plugin]
+    C --> C6[SVG Plugin]
+    C --> C7[Clean Plugin]
+    C --> C8[Debugger Plugin]
+    
+    D --> D1[Config Loader]
+    D --> D2[File System]
+    D --> D3[Icon Processor]
+    D --> D4[Plugin Loader]
+    D --> D5[SVG Utils]
+    
+    style A fill:#059669,stroke:#047857,color:#fff
+    style B fill:#2563eb,stroke:#1d4ed8,color:#fff
+    style C fill:#d97706,stroke:#b45309,color:#fff
+    style D fill:#7c3aed,stroke:#6d28d9,color:#fff
+`}/>
+
+### Components
+
+#### Bootstrap
+Entry point that orchestrates the entire icon generation process. It:
+- Loads configuration
+- Processes icons
+- Runs plugins
+- Writes output files
+
+#### Loaders
+Fetch icons from various sources:
+- **Remote Collection**: Fetch from Iconify CDN
+- **Local Collection**: Load from local file system
+- **JSON Collection**: Load from JSON files
+
+#### Plugins
+Transform raw SVG icons into framework-specific components:
+- **React Plugin**: Generate React/JSX components
+- **Vue Plugin**: Generate Vue SFC components
+- **Svelte Plugin**: Generate Svelte components
+- **Qwik Plugin**: Generate Qwik components
+- **React Native Plugin**: Generate React Native components with react-native-svg
+- **SVG Plugin**: Generate plain SVG files
+- **Clean Plugin**: Clean output directories
+- **Debugger Plugin**: Debug icon generation
+
+#### Utils
+Helper utilities for various operations:
+- **Config Loader**: Load and watch configuration files
+- **File System**: Handle file operations
+- **Icon Processor**: Process and transform icons
+- **Plugin Loader**: Load and execute plugins
+- **SVG Utils**: Parse and manipulate SVG content
+
+## Plugin System
+
+Plugins are the core of Monicon's extensibility. Here's how the plugin system works:
+
+<Mermaid chart={`
+flowchart LR
+    A[Icon Data] --> B[Plugin 1]
+    A --> C[Plugin 2]
+    A --> D[Plugin N]
+    
+    B --> B1[Transform]
+    C --> C1[Transform]
+    D --> D1[Transform]
+    
+    B1 --> B2[Generate Files]
+    C1 --> C2[Generate Files]
+    D1 --> D2[Generate Files]
+    
+    B2 --> E[Collect All Files]
+    C2 --> E
+    D2 --> E
+    
+    E --> F[beforeWriteFiles Hook]
+    F --> G[Write to Disk]
+    G --> H[afterWriteFiles Hook]
+    
+    style A fill:#059669,stroke:#047857,color:#fff
+    style E fill:#2563eb,stroke:#1d4ed8,color:#fff
+    style G fill:#d97706,stroke:#b45309,color:#fff
+`}/>
+
+### Plugin Lifecycle
+
+Each plugin can implement the following hooks:
+
+1. **Transform**: Convert icon data into framework-specific format
+2. **Generate Files**: Create output files from transformed data
+3. **beforeWriteFiles**: Hook called before files are written (optional)
+4. **afterWriteFiles**: Hook called after files are written (optional)
+
+### Creating Custom Plugins
+
+Plugins are functions that return a configuration object:
+
+```ts
+import { MoniconPluginFunction } from "@monicon/core";
+
+export const myPlugin: MoniconPluginFunction = (options) => {
+  return {
+    name: "my-plugin",
+    
+    async generate(context, icons) {
+      const files = [];
+      
+      for (const icon of icons) {
+        files.push({
+          path: `output/${icon.name}.txt`,
+          content: icon.svg,
+        });
+      }
+      
+      return files;
+    },
+    
+    async beforeWriteFiles(context) {
+      console.log("About to write files...");
+    },
+    
+    async afterWriteFiles(context) {
+      console.log("Files written!");
+    },
+  };
+};
+```
+
+## Bundler Integration Flow
+
+Bundler packages integrate Monicon into the build process:
+
+<Mermaid chart={`
+flowchart TD
+    A[Build Process Start] --> B[Bundler Plugin Initialized]
+    B --> C[Load Monicon Config]
+    C --> D[Watch Config File]
+    
+    D --> E{File Change Detected?}
+    E -->|Yes| F[Trigger Icon Generation]
+    
+    F --> G[Bootstrap Process]
+    G --> H[Generate Icon Components]
+    H --> I[Files Written]
+    I --> J[Bundler Detects Changes]
+    J --> K[Bundler Triggers HMR]
+    K --> L[Browser Updates]
+    
+    style A fill:#059669,stroke:#047857,color:#fff
+    style G fill:#2563eb,stroke:#1d4ed8,color:#fff
+    style K fill:#d97706,stroke:#b45309,color:#fff
+`}/>
+
+### How Bundler Plugins Work
+
+1. **Initialize**: Plugin is loaded by the bundler during startup
+2. **Load Config**: Load Monicon configuration from `monicon.config.ts`
+3. **Watch**: Watch the config file for changes
+4. **Generate**: When changes are detected, trigger icon generation via `bootstrap()`
+5. **HMR**: The bundler detects file changes and automatically triggers Hot Module Replacement
+6. **Update**: Browser receives updated icon components without full page reload
+
+## Data Flow Example
+
+Let's trace a complete example of generating a React icon component:
+
+<Mermaid chart={`
+sequenceDiagram
+    participant User
+    participant CLI
+    participant Bootstrap
+    participant Loader
+    participant IconProcessor
+    participant ReactPlugin
+    participant FileSystem
+    
+    User->>CLI: npx @monicon/cli generate
+    CLI->>Bootstrap: bootstrap(config)
+    Bootstrap->>Loader: Load icons ["mdi:home"]
+    Loader->>Loader: Fetch from Iconify CDN
+    Loader-->>Bootstrap: Raw SVG data
+    
+    Bootstrap->>IconProcessor: Process icons
+    IconProcessor->>IconProcessor: Parse SVG
+    IconProcessor->>IconProcessor: Normalize dimensions
+    IconProcessor-->>Bootstrap: Processed icons
+    
+    Bootstrap->>ReactPlugin: generate(icons)
+    ReactPlugin->>ReactPlugin: Transform to JSX
+    ReactPlugin->>ReactPlugin: Apply template
+    ReactPlugin-->>Bootstrap: File objects
+    
+    Bootstrap->>FileSystem: Write files
+    FileSystem->>FileSystem: Create directories
+    FileSystem->>FileSystem: Write components
+    FileSystem-->>Bootstrap: Success
+    
+    Bootstrap-->>CLI: Complete
+    CLI-->>User: Icons generated!
+`}/>
+
+## Key Design Principles
+
+### 1. Framework Agnostic
+The core is framework-agnostic. Framework-specific logic is isolated in plugins, making it easy to support new frameworks.
+
+### 2. Build Tool Independent
+Bundler integration packages are separate, allowing users to choose their preferred build tool or use the CLI.
+
+### 3. Extensible
+The plugin system allows users to create custom transformations and integrations.
+
+### 4. Type Safe
+Full TypeScript support with exported types for configuration and plugins.
+
+## Examples
+
+### Using Core Directly
+
+```ts
+import { bootstrap } from "@monicon/core";
+import { react } from "@monicon/core/plugins";
+
+await bootstrap({
+  icons: ["mdi:home"],
+  plugins: [react({ outputPath: "src/icons" })],
+});
+```
+
+### Using with Vite
+
+```ts
+import { defineConfig } from "vite";
+import monicon from "@monicon/vite";
+
+export default defineConfig({
+  plugins: [
+    monicon({
+      icons: ["mdi:home"],
+      plugins: [/* ... */],
+    }),
+  ],
+});
+```
+
+### Using CLI
+
+```bash
+npx @monicon/cli generate --watch
+```

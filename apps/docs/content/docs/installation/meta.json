@@ -2,6 +2,7 @@
   "title": "Installation",
   "pages": [
     "cli",
+    "library",
     "react",
     "nextjs",
     "remix",

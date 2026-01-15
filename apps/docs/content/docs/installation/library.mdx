@@ -1,0 +1,177 @@
+---
+title: Library
+description: Learn how to use Monicon programmatically as a library
+---
+
+Monicon can be used programmatically as a library, giving you full control over icon generation in your build scripts, custom tooling, or any other project.
+
+## Installation
+
+Install `@monicon/core` globally:
+
+```bash tab="npm"
+npm install @monicon/core -g
+```
+
+```bash tab="pnpm"
+pnpm add @monicon/core -g
+```
+
+```bash tab="yarn"
+yarn global add @monicon/core
+```
+
+```bash tab="bun"
+bun add @monicon/core -g
+```
+
+## Basic Usage
+
+Import the `bootstrap` function from `@monicon/core` and call it with your configuration:
+
+```ts title="scripts/generate-icons.ts"
+import { bootstrap } from "@monicon/core";
+import { svg, clean } from "@monicon/core/plugins";
+
+await bootstrap({
+  // Loads individual icons by icon name
+  icons: ["mdi:home", "feather:activity"],
+  // Loads all icons from a collection
+  collections: ["lucide"],
+  plugins: [
+    clean({ patterns: ["src/components/icons"] }),
+    svg({ outputPath: "src/components/icons" }),
+  ],
+  watch: false, // Set to true for watch mode
+});
+```
+
+## Configuration
+
+The `bootstrap` function accepts a configuration object with the following options:
+
+### Type Definition
+
+```ts
+type MoniconConfig = {
+  icons?: string[];
+  watch?: boolean;
+  plugins?: MoniconPluginFunction[];
+  loaders?: Record<string, ReturnType<Loader>>;
+  collections?: string[];
+};
+```
+
+### Configuration Options
+
+| Option | Type | Default | Description |
+|--------|------|---------|-------------|
+| `icons` | `string[]` | `[]` | Array of individual icon names to load (e.g., `["mdi:home", "feather:activity"]`) |
+| `collections` | `string[]` | `[]` | Array of complete icon collections to load (e.g., `["lucide", "heroicons"]`) |
+| `plugins` | `MoniconPluginFunction[]` | `[]` | Array of plugins to process icons |
+| `loaders` | `Record<string, ReturnType<Loader>>` | `{}` | Custom loaders for loading icons from different sources |
+| `watch` | `boolean` | `false` | Enable watch mode to automatically regenerate icons on config changes |
+
+## Using with Config File
+
+The `bootstrap` function automatically loads your `monicon.config.ts` file if it exists, and merges it with any options you pass:
+
+```ts title="scripts/generate-icons.ts"
+import { bootstrap } from "@monicon/core";
+
+// This will load monicon.config.ts and merge with the provided options
+await bootstrap({
+  watch: false, // Override watch mode
+});
+```
+
+```ts title="monicon.config.ts"
+import { svg, clean } from "@monicon/core/plugins";
+import { MoniconConfig } from "@monicon/core";
+
+export default {
+  icons: ["mdi:home", "feather:activity"],
+  collections: ["lucide"],
+  plugins: [
+    clean({ patterns: ["src/components/icons"] }),
+    svg({ outputPath: "src/components/icons" }),
+  ],
+} satisfies MoniconConfig;
+```
+
+## Integration Examples
+
+### Custom Build Script
+
+Create a custom build script that generates icons before building your app:
+
+```ts title="scripts/build.ts"
+import { bootstrap } from "@monicon/core";
+import { svg } from "@monicon/core/plugins";
+import { execSync } from "child_process";
+
+async function build() {
+  console.log("Generating icons...");
+  
+  await bootstrap({
+    icons: ["mdi:home", "feather:activity"],
+    plugins: [svg({ outputPath: "src/components/icons" })],
+    watch: false,
+  });
+  
+  console.log("Building application...");
+  execSync("npm run build:app", { stdio: "inherit" });
+}
+
+build().catch(console.error);
+```
+
+```json title="package.json"
+{
+  "scripts": {
+    "build": "tsx scripts/build.ts"
+  }
+}
+```
+
+### Pre-build Hook
+
+Use Monicon in a pre-build hook:
+
+```json title="package.json"
+{
+  "scripts": {
+    "prebuild": "tsx scripts/generate-icons.ts",
+    "build": "vite build"
+  }
+}
+```
+
+```ts title="scripts/generate-icons.ts"
+import { bootstrap } from "@monicon/core";
+import { svg } from "@monicon/core/plugins";
+
+await bootstrap({
+  icons: ["mdi:home", "feather:activity", "lucide:star"],
+  plugins: [svg({ outputPath: "src/icons" })],
+  watch: false,
+});
+```
+
+### Watch Mode for Development
+
+Use watch mode during development:
+
+```ts title="scripts/dev.ts"
+import { bootstrap } from "@monicon/core";
+import { react } from "@monicon/core/plugins";
+
+// Generate icons with watch mode
+await bootstrap({
+  icons: ["mdi:home", "feather:activity"],
+  plugins: [react({ outputPath: "src/components/icons" })],
+  watch: true,
+});
+
+console.log("Icon generator running in watch mode...");
+```
