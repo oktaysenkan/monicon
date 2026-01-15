@@ -8,13 +8,12 @@ The Vue plugin generates Vue 3 Single File Components (SFC) from your SVG icons.
 ## Usage
 
 ```ts twoslash title="monicon.config.ts"
-import { vue, clean } from "@monicon/core/plugins";
+import { vue } from "@monicon/core/plugins";
 import { MoniconConfig } from "@monicon/core";
 
 export default {
   icons: ["mdi:home", "lucide:heart"],
   plugins: [
-    clean({ patterns: ["src/components/icons"] }),
     vue({
       outputPath: "src/components/icons",
       template: "ts",

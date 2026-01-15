@@ -8,13 +8,12 @@ The React plugin generates React components (TSX or JSX) from your SVG icons.
 ## Usage
 
 ```ts twoslash title="monicon.config.ts"
-import { react, clean } from "@monicon/core/plugins";
+import { react } from "@monicon/core/plugins";
 import { MoniconConfig } from "@monicon/core";
 
 export default {
   icons: ["mdi:home", "lucide:heart"],
   plugins: [
-    clean({ patterns: ["src/components/icons"] }),
     react({
       outputPath: "src/components/icons",
       format: "tsx",
@@ -37,7 +36,7 @@ The directory where icon components will be generated.
 import { react } from "@monicon/core/plugins";
 
 // Static path
-react({ outputPath: "components/icons" })
+react({ outputPath: "components/icons" });
 
 // Dynamic path based on icon
 react({
@@ -47,7 +46,7 @@ react({
     }
     return "components/icons";
   },
-})
+});
 ```
 
 ### `format`
@@ -61,10 +60,10 @@ The output format for generated files.
 import { react } from "@monicon/core/plugins";
 
 // Generate JSX files
-react({ format: "jsx" })
+react({ format: "jsx" });
 
 // Generate TSX files (default)
-react({ format: "tsx" })
+react({ format: "tsx" });
 ```
 
 ### `componentName`
@@ -82,7 +81,7 @@ react({
     // Custom naming logic
     return `Custom${icon.name}`;
   },
-})
+});
 ```
 
 ### `fileName`
@@ -98,7 +97,7 @@ react({
     // Custom file naming
     return icon.name.toLowerCase().replace(":", "-");
   },
-})
+});
 ```
 
 ### `prefix`
@@ -112,14 +111,14 @@ Add a prefix to component names.
 import { react } from "@monicon/core/plugins";
 
 // Static prefix
-react({ prefix: "Icon" })
+react({ prefix: "Icon" });
 
 // Dynamic prefix
 react({
   prefix: (icon) => {
     return icon.name.startsWith("mdi:") ? "Mdi" : "";
   },
-})
+});
 ```
 
 ### `suffix`
@@ -133,17 +132,17 @@ Add a suffix to component names.
 import { react } from "@monicon/core/plugins";
 
 // Static suffix
-react({ suffix: "Component" })
+react({ suffix: "Component" });
 
 // No suffix
-react({ suffix: "" })
+react({ suffix: "" });
 
 // Dynamic suffix
 react({
   suffix: (icon) => {
     return icon.name.includes("outline") ? "Outline" : "Icon";
   },
-})
+});
 ```
 
 ## Generated Output

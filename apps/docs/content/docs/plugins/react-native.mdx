@@ -8,13 +8,12 @@ The React Native plugin generates React Native components using `react-native-sv
 ## Usage
 
 ```ts twoslash title="monicon.config.ts"
-import { reactNative, clean } from "@monicon/core/plugins";
+import { reactNative } from "@monicon/core/plugins";
 import { MoniconConfig } from "@monicon/core";
 
 export default {
   icons: ["mdi:home", "lucide:heart"],
   plugins: [
-    clean({ patterns: ["components/icons"] }),
     reactNative({
       outputPath: "components/icons",
       format: "tsx",
@@ -41,7 +40,7 @@ The directory where icon components will be generated.
 import { reactNative } from "@monicon/core/plugins";
 
 // Static path
-reactNative({ outputPath: "components/icons" })
+reactNative({ outputPath: "components/icons" });
 
 // Dynamic path based on icon
 reactNative({
@@ -51,7 +50,7 @@ reactNative({
     }
     return "components/icons";
   },
-})
+});
 ```
 
 ### `format`
@@ -65,10 +64,10 @@ The output format for generated files.
 import { reactNative } from "@monicon/core/plugins";
 
 // Generate JSX files
-reactNative({ format: "jsx" })
+reactNative({ format: "jsx" });
 
 // Generate TSX files (default)
-reactNative({ format: "tsx" })
+reactNative({ format: "tsx" });
 ```
 
 ### `componentName`
@@ -85,7 +84,7 @@ reactNative({
   componentName: (icon) => {
     return `Custom${icon.name}`;
   },
-})
+});
 ```
 
 ### `fileName`
@@ -102,7 +101,7 @@ reactNative({
   fileName: (icon) => {
     return icon.name.toLowerCase().replace(":", "-");
   },
-})
+});
 ```
 
 ### `prefix`
@@ -116,7 +115,7 @@ Add a prefix to component names.
 import { reactNative } from "@monicon/core/plugins";
 
 // Static prefix
-reactNative({ prefix: "Icon" })
+reactNative({ prefix: "Icon" });
 ```
 
 ### `suffix`
@@ -130,10 +129,10 @@ Add a suffix to component names.
 import { reactNative } from "@monicon/core/plugins";
 
 // Static suffix
-reactNative({ suffix: "Component" })
+reactNative({ suffix: "Component" });
 
 // No suffix
-reactNative({ suffix: "" })
+reactNative({ suffix: "" });
 ```
 
 ## Generated Output

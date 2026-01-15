@@ -8,13 +8,12 @@ The Svelte plugin generates Svelte components from your SVG icons.
 ## Usage
 
 ```ts twoslash title="monicon.config.ts"
-import { svelte, clean } from "@monicon/core/plugins";
+import { svelte } from "@monicon/core/plugins";
 import { MoniconConfig } from "@monicon/core";
 
 export default {
   icons: ["mdi:home", "lucide:heart"],
   plugins: [
-    clean({ patterns: ["src/lib/components/icons"] }),
     svelte({
       outputPath: "src/lib/components/icons",
       suffix: "Icon",
@@ -36,7 +35,7 @@ The directory where icon components will be generated.
 import { svelte } from "@monicon/core/plugins";
 
 // Static path
-svelte({ outputPath: "src/lib/components/icons" })
+svelte({ outputPath: "src/lib/components/icons" });
 
 // Dynamic path based on icon
 svelte({
@@ -46,7 +45,7 @@ svelte({
     }
     return "src/lib/components/icons";
   },
-})
+});
 ```
 
 ### `componentName`
@@ -63,7 +62,7 @@ svelte({
   componentName: (icon) => {
     return `Custom${icon.name}`;
   },
-})
+});
 ```
 
 ### `fileName`
@@ -80,7 +79,7 @@ svelte({
   fileName: (icon) => {
     return icon.name.toLowerCase().replace(":", "-");
   },
-})
+});
 ```
 
 ### `prefix`
@@ -94,14 +93,14 @@ Add a prefix to component names.
 import { svelte } from "@monicon/core/plugins";
 
 // Static prefix
-svelte({ prefix: "Icon" })
+svelte({ prefix: "Icon" });
 
 // Dynamic prefix
 svelte({
   prefix: (icon) => {
     return icon.name.startsWith("mdi:") ? "Mdi" : "";
   },
-})
+});
 ```
 
 ### `suffix`
@@ -115,10 +114,10 @@ Add a suffix to component names.
 import { svelte } from "@monicon/core/plugins";
 
 // Static suffix
-svelte({ suffix: "Component" })
+svelte({ suffix: "Component" });
 
 // No suffix
-svelte({ suffix: "" })
+svelte({ suffix: "" });
 ```
 
 ## Generated Output

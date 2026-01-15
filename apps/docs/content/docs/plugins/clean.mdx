@@ -8,20 +8,19 @@ The Clean plugin removes files and directories before generating new icons. This
 ## Usage
 
 ```ts twoslash title="monicon.config.ts"
-import { react, clean } from "@monicon/core/plugins";
+import { clean } from "@monicon/core/plugins";
 import { MoniconConfig } from "@monicon/core";
 
 export default {
   icons: ["mdi:home", "lucide:heart"],
-  plugins: [
-    clean({ patterns: ["src/components/icons"] }),
-    react({ outputPath: "src/components/icons" }),
-  ],
+  plugins: [clean({ patterns: ["src/components/icons"] })],
 } satisfies MoniconConfig;
 ```
 
 <Callout type="warning">
-  The Clean plugin should typically be placed **before** other plugins in the plugins array to ensure directories are cleaned before new files are generated.
+  The Clean plugin should typically be placed **before** other plugins in the
+  plugins array to ensure directories are cleaned before new files are
+  generated.
 </Callout>
 
 ## Options
@@ -38,10 +37,10 @@ import { clean } from "@monicon/core/plugins";
 
 clean({
   patterns: [
-    "src/components/icons",           // Remove entire directory
-    "components/icons/**/*.tsx",      // Remove specific file types
+    "src/components/icons", // Remove entire directory
+    "components/icons/**/*.tsx", // Remove specific file types
   ],
-})
+});
 ```
 
 ### `enabled`
@@ -57,7 +56,7 @@ import { clean } from "@monicon/core/plugins";
 clean({
   patterns: ["src/components/icons"],
   enabled: process.env.NODE_ENV === "production",
-})
+});
 ```
 
 ## Why Use Clean?
@@ -74,7 +73,7 @@ Without the Clean plugin, old icon files might remain in your output directory e
 You can conditionally enable cleaning based on environment:
 
 ```ts title="monicon.config.ts"
-import { react, clean } from "@monicon/core/plugins";
+import { clean } from "@monicon/core/plugins";
 import { MoniconConfig } from "@monicon/core";
 
 export default {
@@ -85,7 +84,6 @@ export default {
       // Only clean in development
       enabled: process.env.NODE_ENV !== "production",
     }),
-    react({ outputPath: "src/components/icons" }),
   ],
 } satisfies MoniconConfig;
 ```

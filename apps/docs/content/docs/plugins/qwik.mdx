@@ -8,13 +8,12 @@ The Qwik plugin generates Qwik components from your SVG icons.
 ## Usage
 
 ```ts twoslash title="monicon.config.ts"
-import { qwik, clean } from "@monicon/core/plugins";
+import { qwik } from "@monicon/core/plugins";
 import { MoniconConfig } from "@monicon/core";
 
 export default {
   icons: ["mdi:home", "lucide:heart"],
   plugins: [
-    clean({ patterns: ["src/components/icons"] }),
     qwik({
       outputPath: "src/components/icons",
       suffix: "Icon",
@@ -36,7 +35,7 @@ The directory where icon components will be generated.
 import { qwik } from "@monicon/core/plugins";
 
 // Static path
-qwik({ outputPath: "src/components/icons" })
+qwik({ outputPath: "src/components/icons" });
 
 // Dynamic path based on icon
 qwik({
@@ -46,7 +45,7 @@ qwik({
     }
     return "src/components/icons";
   },
-})
+});
 ```
 
 ### `componentName`
@@ -63,7 +62,7 @@ qwik({
   componentName: (icon) => {
     return `Custom${icon.name}`;
   },
-})
+});
 ```
 
 ### `fileName`
@@ -80,7 +79,7 @@ qwik({
   fileName: (icon) => {
     return icon.name.toLowerCase().replace(":", "-");
   },
-})
+});
 ```
 
 ### `prefix`
@@ -94,14 +93,14 @@ Add a prefix to component names.
 import { qwik } from "@monicon/core/plugins";
 
 // Static prefix
-qwik({ prefix: "Icon" })
+qwik({ prefix: "Icon" });
 
 // Dynamic prefix
 qwik({
   prefix: (icon) => {
     return icon.name.startsWith("mdi:") ? "Mdi" : "";
   },
-})
+});
 ```
 
 ### `suffix`
@@ -115,10 +114,10 @@ Add a suffix to component names.
 import { qwik } from "@monicon/core/plugins";
 
 // Static suffix
-qwik({ suffix: "Component" })
+qwik({ suffix: "Component" });
 
 // No suffix
-qwik({ suffix: "" })
+qwik({ suffix: "" });
 ```
 
 ## Generated Output
