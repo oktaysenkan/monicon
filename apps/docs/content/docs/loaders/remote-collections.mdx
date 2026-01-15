@@ -1,0 +1,53 @@
+---
+title: Remote Collections
+description: Fetch icons directly from remote URLs
+---
+
+Remote Collections in Monicon allow you to fetch and use icons directly from remote URLs. These collections are configured using the `loadRemoteCollection` function, which maps icon names to their respective URLs. This setup is perfect for integrating third-party or dynamically fetched icons into your project.
+
+## Configuration
+
+Add the remote collection loader to your `monicon.config.ts`:
+
+```ts title="monicon.config.ts"
+import { react, clean } from "@monicon/core/plugins";
+import { loadRemoteCollection } from "@monicon/core/loaders";
+import { MoniconConfig } from "@monicon/core";
+
+export default {
+  icons: ["mdi:home"],
+  loaders: {
+    remote: loadRemoteCollection({
+      download: "https://api.iconify.design/lucide:cloud-download.svg",
+      attachment: "https://api.iconify.design/ri:attachment-2.svg",
+      github: "https://api.iconify.design/simple-icons:github.svg",
+    }),
+  },
+  plugins: [
+    clean({ patterns: ["src/components/icons"] }),
+    react({ outputPath: "src/components/icons" }),
+  ],
+} satisfies MoniconConfig;
+```
+
+## Usage
+
+After configuration, Monicon will generate components for your remote icons. You can import and use them in your components:
+
+```tsx title="src/App.tsx"
+import DownloadIcon from "./components/icons/remote/download";
+import AttachmentIcon from "./components/icons/remote/attachment";
+import GitHubIcon from "./components/icons/remote/github";
+
+function App() {
+  return (
+    <main>
+      <DownloadIcon className="size-6" />
+      <AttachmentIcon className="size-6" />
+      <GitHubIcon className="size-6" />
+    </main>
+  );
+}
+
+export default App;
+```

@@ -1,0 +1,85 @@
+---
+title: Local Collections
+description: Load icons from your local file system
+---
+
+Local Collections in Monicon allow you to use icons stored locally on your file system. These collections can be loaded using the `loadLocalCollection` function, which points to the directory containing your SVG files. This setup is ideal for projects where icons are managed locally, providing a quick and flexible way to integrate custom icon sets.
+
+## Configuration
+
+Add the local collection loader to your `monicon.config.ts`:
+
+```ts title="monicon.config.ts"
+import { react, clean } from "@monicon/core/plugins";
+import { loadLocalCollection } from "@monicon/core/loaders";
+import { MoniconConfig } from "@monicon/core";
+
+export default {
+  icons: ["mdi:home"],
+  loaders: {
+    local: loadLocalCollection("assets/icons"),
+  },
+  plugins: [
+    clean({ patterns: ["src/components/icons"] }),
+    react({ outputPath: "src/components/icons" }),
+  ],
+} satisfies MoniconConfig;
+```
+
+## Directory Structure
+
+For the above configuration, your `assets/icons` directory might look like this:
+
+```
+assets/
+└── icons/
+    ├── folder.svg
+    ├── user.svg
+    └── network.svg
+```
+
+Each SVG file in the directory is automatically assigned a name based on its filename (e.g., `folder` for `folder.svg`).
+
+## Usage
+
+After configuration, Monicon will generate components for your local icons. You can import and use them in your components:
+
+```tsx title="src/App.tsx"
+import FolderIcon from "./components/icons/local/folder";
+import UserIcon from "./components/icons/local/user";
+import NetworkIcon from "./components/icons/local/network";
+
+function App() {
+  return (
+    <main>
+      <FolderIcon className="size-6" />
+      <UserIcon className="size-6" />
+      <NetworkIcon className="size-6" />
+    </main>
+  );
+}
+
+export default App;
+```
+
+## Nested Directories
+
+You can also organize your SVG files in nested directories:
+
+```
+assets/
+└── icons/
+    ├── ui/
+    │   ├── button.svg
+    │   └── input.svg
+    └── social/
+        ├── twitter.svg
+        └── github.svg
+```
+
+The nested structure will be preserved in the generated component paths:
+
+```tsx
+import ButtonIcon from "./components/icons/local/ui/button";
+import TwitterIcon from "./components/icons/local/social/twitter";
+```

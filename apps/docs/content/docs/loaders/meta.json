@@ -1,0 +1,9 @@
+{
+  "title": "Loaders",
+  "pages": [
+    "local-collections",
+    "json-collections",
+    "remote-collections",
+    "custom-loader"
+  ]
+}
