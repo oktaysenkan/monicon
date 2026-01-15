@@ -6,7 +6,6 @@ export default defineConfig((options: Options) => ({
     "src/plugins/index.ts",
     "src/loaders/index.ts",
     "src/utils/index.ts",
-    "src/cli.ts",
   ],
   clean: true,
   format: ["cjs", "esm"],

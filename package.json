@@ -2,14 +2,16 @@
   "name": "monicon",
   "private": true,
   "workspaces": [
-    "apps/*",
-    "packages/*"
+    "packages/*",
+    "examples/*",
+    "apps/*"
   ],
   "files": [],
   "scripts": {
     "dev": "turbo run dev",
     "build": "turbo run build",
     "build:pkgs": "turbo run build --filter='./packages/*'",
+    "build:examples": "turbo run build --filter='./examples/*'",
     "clean": "turbo run clean",
     "format": "prettier --write \"**/*.{ts,tsx,js,jsx,json,md}\" --ignore-path .gitignore",
     "changeset": "changeset",
