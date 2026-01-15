@@ -4,6 +4,8 @@
  * and should modify this configuration to best suit your team's needs.
  */
 
+const path = require("path");
+
 /** @type {import('eslint').Linter.Config} */
 module.exports = {
   root: true,
@@ -44,9 +46,6 @@ module.exports = {
           { name: "Link", linkAttribute: "to" },
           { name: "NavLink", linkAttribute: "to" },
         ],
-        "import/resolver": {
-          typescript: {},
-        },
       },
     },
 
@@ -55,16 +54,19 @@ module.exports = {
       files: ["**/*.{ts,tsx}"],
       plugins: ["@typescript-eslint", "import"],
       parser: "@typescript-eslint/parser",
+      parserOptions: {
+        project: path.resolve(__dirname, "./tsconfig.json"),
+      },
       settings: {
         "import/internal-regex": "^~/",
         "import/resolver": {
-          node: {
-            extensions: [".ts", ".tsx"],
-          },
           typescript: {
             alwaysTryTypes: true,
+            project: path.resolve(__dirname, "./tsconfig.json"),
+            extensions: [".ts", ".tsx", ".js", ".jsx"],
           },
         },
+        "import/extensions": [".ts", ".tsx", ".js", ".jsx"],
       },
       extends: [
         "plugin:@typescript-eslint/recommended",

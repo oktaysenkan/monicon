@@ -1,0 +1,88 @@
+---
+title: Vue
+description: Learn how to install and use Monicon in your Vue (Vite) project
+---
+
+## Installation
+
+Install Monicon and its Vite plugin in your Vue project:
+
+```bash tab="npm"
+npm install @monicon/core @monicon/vite
+```
+
+```bash tab="pnpm"
+pnpm add @monicon/core @monicon/vite
+```
+
+```bash tab="yarn"
+yarn add @monicon/core @monicon/vite
+```
+
+```bash tab="bun"
+bun add @monicon/core @monicon/vite
+```
+
+## Configuration
+
+### 1. Create Monicon Config
+
+Create a `monicon.config.ts` file in your project root:
+
+```ts title="monicon.config.ts"
+import { vue, clean } from "@monicon/core/plugins";
+import { MoniconConfig } from "@monicon/core";
+
+export default {
+  // Loads individual icons by icon name
+  icons: ["mdi:home", "feather:activity"],
+  // Loads all icons from the lucide collection
+  collections: ["lucide"],
+  plugins: [
+    /**
+     * change the output path to your project config for example;
+     * - src/components/icons
+     * - components/icons
+     */
+    clean({ patterns: ["src/components/icons"] }),
+    vue({ outputPath: "src/components/icons" }),
+  ],
+} satisfies MoniconConfig;
+```
+
+### 2. Configure Vite
+
+Add the Monicon plugin to your `vite.config.ts`:
+
+```ts title="vite.config.ts"
+import { defineConfig } from "vite";
+import vue from "@vitejs/plugin-vue";
+import monicon from "@monicon/vite";
+
+export default defineConfig({
+  plugins: [vue(), monicon()],
+});
+```
+
+## Usage
+
+After configuration, Monicon will automatically generate Vue components for your icons. You can import and use them in your components:
+
+```vue title="src/App.vue"
+<script setup lang="ts">
+import BadgeCheckIcon from "./components/icons/lucide/badge-check.vue";
+import CloudDownloadIcon from "./components/icons/lucide/cloud-download.vue";
+import HomeIcon from "./components/icons/mdi/home.vue";
+import ActivityIcon from "./components/icons/feather/activity.vue";
+</script>
+
+<template>
+  <main class="flex h-screen items-center justify-center gap-4">
+    <BadgeCheckIcon class="size-10" />
+    <CloudDownloadIcon class="size-10" />
+    <ActivityIcon class="size-10" />
+    <!-- If you don't want to use the className prop, you can use the svg props -->
+    <HomeIcon width="40" height="40" />
+  </main>
+</template>
+```

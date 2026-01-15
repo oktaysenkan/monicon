@@ -2,6 +2,16 @@
   "title": "Installation",
   "pages": [
     "react",
-    "nextjs"
+    "nextjs",
+    "remix",
+    "qwik",
+    "react-native",
+    "vue",
+    "nuxt",
+    "svelte",
+    "rollup",
+    "rspack",
+    "webpack",
+    "esbuild"
   ]
 }

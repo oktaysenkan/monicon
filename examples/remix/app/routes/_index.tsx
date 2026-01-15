@@ -1,11 +1,11 @@
 import type { MetaFunction } from "@remix-run/node";
 
-import HomeIcon from "../components/icons/mdi/home";
-import BadgeCheckIcon from "../components/icons/lucide/badge-check";
-import CloudDownloadIcon from "../components/icons/lucide/cloud-download";
-import AccountIcon from "../components/icons/mdi/account";
-import ApacheLogo from "../components/icons/logos/apache";
-import AtomIcon from "../components/icons/logos/atom-icon";
+import HomeIcon from "~/components/icons/mdi/home";
+import BadgeCheckIcon from "~/components/icons/lucide/badge-check";
+import CloudDownloadIcon from "~/components/icons/lucide/cloud-download";
+import AccountIcon from "~/components/icons/mdi/account";
+import ApacheLogo from "~/components/icons/logos/apache";
+import AtomIcon from "~/components/icons/logos/atom-icon";
 
 export const meta: MetaFunction = () => {
   return [

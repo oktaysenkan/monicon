@@ -1,0 +1,98 @@
+---
+title: Remix
+description: Learn how to install and use Monicon in your Remix project
+---
+
+## Installation
+
+Install Monicon and its Vite plugin in your Remix project:
+
+```bash tab="npm"
+npm install @monicon/core @monicon/vite
+```
+
+```bash tab="pnpm"
+pnpm add @monicon/core @monicon/vite
+```
+
+```bash tab="yarn"
+yarn add @monicon/core @monicon/vite
+```
+
+```bash tab="bun"
+bun add @monicon/core @monicon/vite
+```
+
+## Configuration
+
+### 1. Create Monicon Config
+
+Create a `monicon.config.ts` file in your project root:
+
+```ts title="monicon.config.ts"
+import { react, clean } from "@monicon/core/plugins";
+import { MoniconConfig } from "@monicon/core";
+
+export default {
+  // Loads individual icons by icon name
+  icons: ["mdi:home", "feather:activity"],
+  // Loads all icons from the lucide collection
+  collections: ["lucide"],
+  plugins: [
+    /**
+     * change the output path to your project config for example;
+     * - app/components/icons
+     * - src/components/icons
+     */
+    clean({ patterns: ["app/components/icons"] }),
+    react({ outputPath: "app/components/icons" }),
+  ],
+} satisfies MoniconConfig;
+```
+
+### 2. Configure Vite
+
+Add the Monicon plugin to your `vite.config.ts`:
+
+```ts title="vite.config.ts"
+import { vitePlugin as remix } from "@remix-run/dev";
+import { defineConfig } from "vite";
+import tsconfigPaths from "vite-tsconfig-paths";
+import monicon from "@monicon/vite";
+
+export default defineConfig({
+  plugins: [remix(), tsconfigPaths(), monicon()],
+});
+```
+
+## Usage
+
+After configuration, Monicon will automatically generate React components for your icons. You can import and use them in your routes and components:
+
+```tsx title="app/routes/_index.tsx"
+import type { MetaFunction } from "@remix-run/node";
+import BadgeCheckIcon from "~/components/icons/lucide/badge-check";
+import CloudDownloadIcon from "~/components/icons/lucide/cloud-download";
+import HomeIcon from "~/components/icons/mdi/home";
+import ActivityIcon from "~/components/icons/feather/activity";
+
+export const meta: MetaFunction = () => {
+  return [
+    { title: "New Remix App" },
+    { name: "description", content: "Welcome to Remix!" },
+  ];
+};
+
+export default function Index() {
+  return (
+    <div className="flex h-screen items-center justify-center gap-4">
+      <BadgeCheckIcon className="size-10" />
+      <CloudDownloadIcon className="size-10" />
+      <ActivityIcon className="size-10" />
+      <HomeIcon className="size-10" />
+      {/* if you don't want to use the className prop, you can use the svg props */}
+      <HomeIcon width={40} height={40} color="blue" />
+    </div>
+  );
+}
+```

@@ -9,11 +9,11 @@ import NetworkIcon from "./components/icons/json/network.vue";
 
 <template>
   <main>
-    <ActivityIcon height="48" width="48" color="skyblue" />
+    <ActivityIcon class="size-10" />
     <AlertCircleIcon height="48" color="red" />
-    <CloudDownloadIcon height="48" color="green" />
-    <AttachmentIcon height="48" width="48" color="blue" />
-    <FolderIcon height="48" color="purple" />
-    <NetworkIcon height="48" color="orange" />
+    <CloudDownloadIcon class="size-10" />
+    <AttachmentIcon class="size-10" />
+    <FolderIcon class="size-10" />
+    <NetworkIcon width="40" height="40" />
   </main>
 </template>
