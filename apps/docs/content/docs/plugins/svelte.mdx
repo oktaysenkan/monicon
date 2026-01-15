@@ -1,0 +1,136 @@
+---
+title: Svelte
+description: Generate Svelte components for your icons
+---
+
+The Svelte plugin generates Svelte components from your SVG icons.
+
+## Usage
+
+```ts title="monicon.config.ts"
+import { svelte, clean } from "@monicon/core/plugins";
+import { MoniconConfig } from "@monicon/core";
+
+export default {
+  icons: ["mdi:home", "lucide:heart"],
+  plugins: [
+    clean({ patterns: ["src/lib/components/icons"] }),
+    svelte({
+      outputPath: "src/lib/components/icons",
+      suffix: "Icon",
+    }),
+  ],
+} satisfies MoniconConfig;
+```
+
+## Options
+
+### `outputPath`
+
+The directory where icon components will be generated.
+
+- **Type:** `string | ((icon: Icon) => string | undefined)`
+- **Default:** `"src/components/icons"`
+
+```ts
+// Static path
+svelte({ outputPath: "src/lib/components/icons" })
+
+// Dynamic path based on icon
+svelte({
+  outputPath: (icon) => {
+    if (icon.name.startsWith("mdi:")) {
+      return "src/lib/components/icons/mdi";
+    }
+    return "src/lib/components/icons";
+  },
+})
+```
+
+### `componentName`
+
+Customize the component name.
+
+- **Type:** `(icon: Icon) => string | undefined`
+- **Default:** `${icon.name}Icon`
+
+```ts
+svelte({
+  componentName: (icon) => {
+    return `Custom${icon.name}`;
+  },
+})
+```
+
+### `fileName`
+
+Customize the file name.
+
+- **Type:** `(icon: Icon) => string | undefined`
+- **Default:** Slugified icon name
+
+```ts
+svelte({
+  fileName: (icon) => {
+    return icon.name.toLowerCase().replace(":", "-");
+  },
+})
+```
+
+### `prefix`
+
+Add a prefix to component names.
+
+- **Type:** `string | ((icon: Icon) => string | undefined)`
+- **Default:** `""`
+
+```ts
+// Static prefix
+svelte({ prefix: "Icon" })
+
+// Dynamic prefix
+svelte({
+  prefix: (icon) => {
+    return icon.name.startsWith("mdi:") ? "Mdi" : "";
+  },
+})
+```
+
+### `suffix`
+
+Add a suffix to component names.
+
+- **Type:** `string | ((icon: Icon) => string | undefined)`
+- **Default:** `"Icon"`
+
+```ts
+// Static suffix
+svelte({ suffix: "Component" })
+
+// No suffix
+svelte({ suffix: "" })
+```
+
+## Generated Output
+
+For an icon `mdi:home`, the plugin generates:
+
+```svelte title="src/lib/components/icons/mdi/home.svelte"
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" {...$$restProps}>
+  <path fill="currentColor" d="M10 20v-6h4v6h5v-8h3L12 3L2 12h3v8z" />
+</svg>
+```
+
+## Usage in Components
+
+```svelte title="src/routes/+page.svelte"
+<script>
+  import HomeIcon from "$lib/components/icons/mdi/home.svelte";
+  import HeartIcon from "$lib/components/icons/lucide/heart.svelte";
+</script>
+
+<div>
+  <HomeIcon class="size-6" />
+  <HeartIcon width={24} height={24} color="red" />
+</div>
+```

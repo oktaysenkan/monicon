@@ -13,7 +13,7 @@ export const clean: MoniconPlugin<CleanOptions> = (opts) => {
     generate: async () => {
       return [];
     },
-    beforeWriteFiles: async (context) => {
+    beforeWriteFiles: async () => {
       const enabled = opts.enabled ?? true;
 
       if (!enabled) return;

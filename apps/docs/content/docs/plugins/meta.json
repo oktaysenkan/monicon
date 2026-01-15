@@ -1,0 +1,14 @@
+{
+    "title": "Plugins",
+    "pages": [
+      "react",
+      "vue",
+      "svelte",
+      "qwik",
+      "react-native",
+      "svg",
+      "clean",
+      "debugger"
+    ]
+  }
+  

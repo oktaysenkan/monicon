@@ -1,0 +1,86 @@
+---
+title: Clean
+description: Clean output directories before generating icons
+---
+
+The Clean plugin removes files and directories before generating new icons. This ensures your output directory only contains the icons you've configured, without leftover files from previous runs.
+
+## Usage
+
+```ts title="monicon.config.ts"
+import { react, clean } from "@monicon/core/plugins";
+import { MoniconConfig } from "@monicon/core";
+
+export default {
+  icons: ["mdi:home", "lucide:heart"],
+  plugins: [
+    clean({ patterns: ["src/components/icons"] }),
+    react({ outputPath: "src/components/icons" }),
+  ],
+} satisfies MoniconConfig;
+```
+
+<Callout type="warning">
+  The Clean plugin should typically be placed **before** other plugins in the plugins array to ensure directories are cleaned before new files are generated.
+</Callout>
+
+## Options
+
+### `patterns`
+
+An array of glob patterns to match files and directories for removal.
+
+- **Type:** `string[]`
+- **Required:** Yes
+
+```ts
+clean({
+  patterns: [
+    "src/components/icons",           // Remove entire directory
+    "components/icons/**/*.tsx",      // Remove specific file types
+  ],
+})
+```
+
+### `enabled`
+
+Enable or disable the clean plugin.
+
+- **Type:** `boolean`
+- **Default:** `true`
+
+```ts
+clean({
+  patterns: ["src/components/icons"],
+  enabled: process.env.NODE_ENV === "production",
+})
+```
+
+## Why Use Clean?
+
+Without the Clean plugin, old icon files might remain in your output directory even after removing them from your configuration. This can lead to:
+
+- **Stale files** - Icons you no longer use still exist in your codebase
+- **Import errors** - Imports may resolve to old files
+- **Larger builds** - Unnecessary files increase bundle size
+- **Confusion** - Hard to know which icons are actually in use
+
+## Conditional Cleaning
+
+You can conditionally enable cleaning based on environment:
+
+```ts title="monicon.config.ts"
+import { react, clean } from "@monicon/core/plugins";
+
+export default {
+  icons: ["mdi:home"],
+  plugins: [
+    clean({
+      patterns: ["src/components/icons"],
+      // Only clean in development
+      enabled: process.env.NODE_ENV !== "production",
+    }),
+    react({ outputPath: "src/components/icons" }),
+  ],
+};
+```

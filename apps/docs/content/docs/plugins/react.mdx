@@ -1,0 +1,171 @@
+---
+title: React
+description: Generate React components for your icons
+---
+
+The React plugin generates React components (TSX or JSX) from your SVG icons.
+
+## Usage
+
+```ts title="monicon.config.ts"
+import { react, clean } from "@monicon/core/plugins";
+import { MoniconConfig } from "@monicon/core";
+
+export default {
+  icons: ["mdi:home", "lucide:heart"],
+  plugins: [
+    clean({ patterns: ["src/components/icons"] }),
+    react({
+      outputPath: "src/components/icons",
+      format: "tsx",
+      suffix: "Icon",
+    }),
+  ],
+} satisfies MoniconConfig;
+```
+
+## Options
+
+### `outputPath`
+
+The directory where icon components will be generated.
+
+- **Type:** `string | ((icon: Icon) => string | undefined)`
+- **Default:** `"src/components/icons"`
+
+```ts
+// Static path
+react({ outputPath: "components/icons" })
+
+// Dynamic path based on icon
+react({
+  outputPath: (icon) => {
+    if (icon.name.startsWith("mdi:")) {
+      return "components/icons/mdi";
+    }
+    return "components/icons";
+  },
+})
+```
+
+### `format`
+
+The output format for generated files.
+
+- **Type:** `"jsx" | "tsx"`
+- **Default:** `"tsx"`
+
+```ts
+// Generate JSX files
+react({ format: "jsx" })
+
+// Generate TSX files (default)
+react({ format: "tsx" })
+```
+
+### `componentName`
+
+Customize the component name.
+
+- **Type:** `(icon: Icon) => string | undefined`
+- **Default:** `${icon.name}Icon`
+
+```ts
+react({
+  componentName: (icon) => {
+    // Custom naming logic
+    return `Custom${icon.name}`;
+  },
+})
+```
+
+### `fileName`
+
+Customize the file name.
+
+- **Type:** `(icon: Icon) => string | undefined`
+- **Default:** Slugified icon name
+
+```ts
+react({
+  fileName: (icon) => {
+    // Custom file naming
+    return icon.name.toLowerCase().replace(":", "-");
+  },
+})
+```
+
+### `prefix`
+
+Add a prefix to component names.
+
+- **Type:** `string | ((icon: Icon) => string | undefined)`
+- **Default:** `""`
+
+```ts
+// Static prefix
+react({ prefix: "Icon" })
+
+// Dynamic prefix
+react({
+  prefix: (icon) => {
+    return icon.name.startsWith("mdi:") ? "Mdi" : "";
+  },
+})
+```
+
+### `suffix`
+
+Add a suffix to component names.
+
+- **Type:** `string | ((icon: Icon) => string | undefined)`
+- **Default:** `"Icon"`
+
+```ts
+// Static suffix
+react({ suffix: "Component" })
+
+// No suffix
+react({ suffix: "" })
+
+// Dynamic suffix
+react({
+  suffix: (icon) => {
+    return icon.name.includes("outline") ? "Outline" : "Icon";
+  },
+})
+```
+
+## Generated Output
+
+For an icon `mdi:home`, the plugin generates:
+
+```tsx title="src/components/icons/mdi/home.tsx"
+import React from "react";
+
+const HomeIcon = (props: React.ComponentPropsWithoutRef<"svg">) => {
+  return (
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" {...props}>
+      <path fill="currentColor" d="M10 20v-6h4v6h5v-8h3L12 3L2 12h3v8z" />
+    </svg>
+  );
+};
+
+export default HomeIcon;
+```
+
+## Usage in Components
+
+```tsx title="src/App.tsx"
+import HomeIcon from "./components/icons/mdi/home";
+import HeartIcon from "./components/icons/lucide/heart";
+
+function App() {
+  return (
+    <div>
+      <HomeIcon className="size-6" />
+      <HeartIcon width={24} height={24} color="red" />
+    </div>
+  );
+}
+```
