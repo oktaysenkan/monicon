@@ -36,13 +36,16 @@ style I fill:#d97706,stroke:#b45309,color:#fff
 ### Core Packages
 
 #### @monicon/core (Core Engine)
+
 The heart of Monicon, containing all the core functionality:
+
 - **Bootstrap Function**: Entry point for icon generation
 - **Loaders**: Fetch icons from different sources (remote, local, JSON)
 - **Plugins**: Transform icons into framework-specific components
 - **Utilities**: Config loading, file system operations, icon processing
 
 #### @monicon/cli (Command Line Interface)
+
 Command-line tool for generating icons outside of build processes. Uses `@monicon/core` to provide a CLI experience.
 
 ### Bundler Integration Packages
@@ -61,7 +64,8 @@ All bundler packages depend on `@monicon/core` and provide seamless integration:
 
 The `@monicon/core` package is structured into four main components:
 
-<Mermaid chart={`
+<Mermaid
+  chart={`
 graph LR
     A[Bootstrap] --> B[Loaders]
     A --> C[Plugins]
@@ -90,25 +94,32 @@ graph LR
     style B fill:#2563eb,stroke:#1d4ed8,color:#fff
     style C fill:#d97706,stroke:#b45309,color:#fff
     style D fill:#7c3aed,stroke:#6d28d9,color:#fff
-`}/>
+`}
+/>
 
 ### Components
 
 #### Bootstrap
+
 Entry point that orchestrates the entire icon generation process. It:
+
 - Loads configuration
 - Processes icons
 - Runs plugins
 - Writes output files
 
 #### Loaders
+
 Fetch icons from various sources:
+
 - **Remote Collection**: Fetch from Iconify CDN
 - **Local Collection**: Load from local file system
 - **JSON Collection**: Load from JSON files
 
 #### Plugins
+
 Transform raw SVG icons into framework-specific components:
+
 - **React Plugin**: Generate React/JSX components
 - **Vue Plugin**: Generate Vue SFC components
 - **Svelte Plugin**: Generate Svelte components
@@ -119,7 +130,9 @@ Transform raw SVG icons into framework-specific components:
 - **Debugger Plugin**: Debug icon generation
 
 #### Utils
+
 Helper utilities for various operations:
+
 - **Config Loader**: Load and watch configuration files
 - **File System**: Handle file operations
 - **Icon Processor**: Process and transform icons
@@ -130,7 +143,8 @@ Helper utilities for various operations:
 
 Plugins are the core of Monicon's extensibility. Here's how the plugin system works:
 
-<Mermaid chart={`
+<Mermaid
+  chart={`
 flowchart LR
     A[Icon Data] --> B[Plugin 1]
     A --> C[Plugin 2]
@@ -155,7 +169,8 @@ flowchart LR
     style A fill:#059669,stroke:#047857,color:#fff
     style E fill:#2563eb,stroke:#1d4ed8,color:#fff
     style G fill:#d97706,stroke:#b45309,color:#fff
-`}/>
+`}
+/>
 
 ### Plugin Lifecycle
 
@@ -178,16 +193,16 @@ export const txtPlugin: MoniconPlugin<void> = (options) => (payload) => {
     name: "monicon-txt-plugin",
     generate: () => {
       const files: MoniconPluginFile[] = [];
-      
+
       for (const icon of payload.icons) {
         files.push({
           path: `output/${icon.name}.txt`,
           content: icon.svg,
         });
       }
-      
+
       return files;
-    }
+    },
   };
 };
 ```
@@ -196,7 +211,8 @@ export const txtPlugin: MoniconPlugin<void> = (options) => (payload) => {
 
 Bundler packages integrate Monicon into the build process:
 
-<Mermaid chart={`
+<Mermaid
+  chart={`
 flowchart TD
     A[Build Process Start] --> B[Bundler Plugin Initialized]
     B --> C[Load Monicon Config]
@@ -215,7 +231,8 @@ flowchart TD
     style A fill:#059669,stroke:#047857,color:#fff
     style G fill:#2563eb,stroke:#1d4ed8,color:#fff
     style K fill:#d97706,stroke:#b45309,color:#fff
-`}/>
+`}
+/>
 
 ### How Bundler Plugins Work
 
@@ -230,7 +247,8 @@ flowchart TD
 
 Let's trace a complete example of generating a React icon component:
 
-<Mermaid chart={`
+<Mermaid
+  chart={`
 sequenceDiagram
     participant User
     participant CLI
@@ -263,20 +281,25 @@ sequenceDiagram
     
     Bootstrap-->>CLI: Complete
     CLI-->>User: Icons generated!
-`}/>
+`}
+/>
 
 ## Key Design Principles
 
 ### 1. Framework Agnostic
+
 The core is framework-agnostic. Framework-specific logic is isolated in plugins, making it easy to support new frameworks.
 
 ### 2. Build Tool Independent
+
 Bundler integration packages are separate, allowing users to choose their preferred build tool or use the CLI.
 
 ### 3. Extensible
+
 The plugin system allows users to create custom transformations and integrations.
 
 ### 4. Type Safe
+
 Full TypeScript support with exported types for configuration and plugins.
 
 ## Examples
@@ -289,7 +312,7 @@ import { react } from "@monicon/core/plugins";
 
 await bootstrap({
   icons: ["mdi:home"],
-  plugins: [react({ outputPath: "src/icons" })],
+  plugins: [react({ outputPath: "src/components/icons" })],
 });
 ```
 
