@@ -67,7 +67,7 @@
     },
 
     "docs#build": {
-      "dependsOn": ["core#build", "vite#build", "webpack#build", "rollup#build", "esbuild#build", "rspack#build", "metro#build", "nuxt#build"]
+      "dependsOn": ["core#build", "vite#build"]
     },
 
     "dev": {
