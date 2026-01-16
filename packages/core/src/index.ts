@@ -1,5 +1,6 @@
 import _ from "lodash";
 import merge from "deepmerge";
+export * from "./types";
 
 import { MoniconPluginContext, MoniconPluginFunction } from "./plugins";
 import type { MoniconConfig } from "./types";
@@ -98,5 +99,3 @@ export const bootstrap = async (options?: MoniconConfig) => {
     });
   }
 };
-
-export type { MoniconConfig };
