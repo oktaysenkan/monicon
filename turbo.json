@@ -30,6 +30,9 @@
     "rspack#build": {
       "dependsOn": ["webpack#build"]
     },
+    "nuxt#build": {
+      "dependsOn": ["core#build"]
+    },
 
     "react-native-app#build": {
       "dependsOn": ["metro#build"]
@@ -61,6 +64,10 @@
     },
     "qwik-app#build": {
       "dependsOn": []
+    },
+
+    "docs#build": {
+      "dependsOn": ["core#build", "vite#build", "webpack#build", "rollup#build", "esbuild#build", "rspack#build", "metro#build", "nuxt#build"]
     },
 
     "dev": {
