@@ -1,17 +1,22 @@
 import path from "path";
 import slugify from "slugify";
 import type { Icon } from "../../types";
-import { MoniconPlugin, MoniconPluginFile } from "../types";
+import {
+  MoniconPlugin,
+  MoniconPluginFile,
+  MoniconPluginInstance,
+} from "../types";
 
 slugify.extend({ ":": "/" });
 
-export type GenericPluginOptions = void | {
-  name: string;
-  outputPath?: ((icon: Icon) => string | undefined) | string;
-  fileName?: ((icon: Icon) => string | undefined) | string;
-  extension?: ((icon: Icon) => string | undefined) | string;
-  content: ((icon: Icon) => string) | string;
-};
+export type GenericPluginOptions =
+  | (Partial<MoniconPluginInstance> & {
+      outputPath?: ((icon: Icon) => string | undefined) | string;
+      fileName?: ((icon: Icon) => string | undefined) | string;
+      extension?: ((icon: Icon) => string | undefined) | string;
+      content?: ((icon: Icon) => string) | string;
+    })
+  | void;
 
 /**
  * Get the file name for the icon
@@ -59,24 +64,40 @@ const getOutputPath = (icon: Icon, options: GenericPluginOptions) => {
  * @param outputPath - The path to output the icons to
  */
 const generateIconFiles = (icons: Icon[], options: GenericPluginOptions) => {
-  return icons.map((icon) => {
+  const files: MoniconPluginFile[] = [];
+
+  icons.forEach((icon) => {
     const fileName = getFileName(icon, options);
+
+    if (!fileName) return;
+
     const outputPath = getOutputPath(icon, options);
+
+    if (!outputPath) return;
 
     const content =
       typeof options?.content === "function"
-        ? (options?.content(icon) ?? icon.svg)
-        : (options?.content ?? icon.svg);
+        ? options?.content(icon)
+        : options?.content;
+
+    if (!content) {
+      console.warn(
+        `[Monicon] - No content found for icon "${icon.name}" in "${options?.name}" plugin`
+      );
+      return;
+    }
 
     const filePath = path.join(outputPath, fileName);
 
     const file: MoniconPluginFile = {
       path: path.resolve(filePath),
-      content: content ?? "",
+      content: content,
     };
 
-    return file;
+    files.push(file);
   });
+
+  return files;
 };
 
 /**
@@ -87,6 +108,9 @@ export const generic: MoniconPlugin<GenericPluginOptions> =
   (options) => (payload) => {
     return {
       name: options?.name ?? "monicon-generic-plugin",
-      generate: () => generateIconFiles(payload.icons, options),
+      generate() {
+        return generateIconFiles(payload.icons, this);
+      },
+      ...options,
     };
   };

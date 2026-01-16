@@ -10,7 +10,6 @@ type SvgPluginOptions = Partial<GenericPluginOptions>;
 export const svg: MoniconPlugin<SvgPluginOptions> = (options) =>
   generic({
     name: "monicon-svg-plugin",
-    extension: "svg",
     content: (icon) => icon.svg,
     ...options,
   });
