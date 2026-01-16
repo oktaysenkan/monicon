@@ -1,7 +1,7 @@
 import _ from "lodash";
 import merge from "deepmerge";
 
-import { MoniconPluginContext } from "./plugins";
+import { MoniconPluginContext, MoniconPluginFunction } from "./plugins";
 import type { MoniconConfig } from "./types";
 import { loadConfigFile, watchConfigFile } from "./utils/config-loader";
 import { writeFiles } from "./utils/file-system";
@@ -38,6 +38,18 @@ const prepareIconFiles = async (
   );
 };
 
+const resolvePlugins = (plugins: MoniconPluginFunction[]) => {
+  const resolvedPlugins = new Map<string, MoniconPluginFunction>();
+
+  plugins.forEach((plugin) => {
+    const pluginInstance = plugin({ icons: [] });
+
+    resolvedPlugins.set(pluginInstance.name, plugin);
+  });
+
+  return Array.from(resolvedPlugins.values());
+};
+
 /**
  * Bootstrap the icon generator
  * @param options - The options
@@ -58,6 +70,8 @@ export const bootstrap = async (options?: MoniconConfig) => {
     loadedConfig?.config ?? {},
     options ?? {},
   ]);
+
+  config.plugins = resolvePlugins(config.plugins);
 
   console.log("[Monicon] Starting icon generation...");
 

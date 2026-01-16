@@ -7,3 +7,4 @@ export * from "./svg";
 export * from "./debugger";
 export * from "./clean";
 export * from "./types";
+export * from "./generic";
