@@ -1,7 +1,7 @@
 import { MoniconPlugin } from "../types";
 import { generic, GenericPluginOptions } from "../generic";
 
-type SvgPluginOptions = Partial<GenericPluginOptions>;
+type SvgPluginOptions = GenericPluginOptions;
 
 /**
  * SVG plugin to generate icon files

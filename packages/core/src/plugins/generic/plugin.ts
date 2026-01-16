@@ -9,14 +9,21 @@ import {
 
 slugify.extend({ ":": "/" });
 
-export type GenericPluginOptions =
-  | (Partial<MoniconPluginInstance> & {
-      outputPath?: ((icon: Icon) => string | undefined) | string;
-      fileName?: ((icon: Icon) => string | undefined) | string;
-      extension?: ((icon: Icon) => string | undefined) | string;
-      content?: ((icon: Icon) => string) | string;
-    })
-  | void;
+export type FileCreationOptions = {
+  outputPath?: ((icon: Icon) => string | undefined) | string;
+  fileName?: ((icon: Icon) => string | undefined) | string;
+  extension?: ((icon: Icon) => string | undefined) | string;
+  content?: ((icon: Icon) => string) | string;
+};
+
+type HasRequiredKey<T extends object> = {} extends T ? false : true;
+
+type NormalizeOptions<T extends object> =
+  HasRequiredKey<T> extends true ? T : T | void;
+
+export type GenericPluginOptions<T extends object = object> = NormalizeOptions<
+  Partial<MoniconPluginInstance> & FileCreationOptions & T
+>;
 
 /**
  * Get the file name for the icon
