@@ -11,16 +11,9 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
     const docsPagesSitemap: MetadataRoute.Sitemap = await Promise.all(
         source.getPages().map(async (page) => {
-            const time = await getGithubLastEdit({
-                owner: 'oktaysenkan',
-                repo: 'monicon',
-                path: `apps/docs/content/docs/${page.path}`,
-            });
-
             return {
                 url: url(page.url),
                 changeFrequency: 'weekly',
-                lastModified: time ?? undefined,
                 priority: 0.5,
             }
         })
