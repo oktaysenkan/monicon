@@ -1,13 +1,18 @@
 import type { MetadataRoute } from 'next';
-import { getGithubLastEdit } from 'fumadocs-core/content/github';
 import { source } from '@/lib/source';
 
 export const revalidate = false;
 
-export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL ?? process.env.VERCEL_URL ?? "http://localhost:3000";
+const getBaseUrl = () => {
+    if (process.env.VERCEL_URL)
+        return `https://${process.env.VERCEL_URL}`;
 
-    const url = (path: string): string => new URL(path, baseUrl).toString();
+    return 'http://localhost:3000';
+}
+
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+
+    const url = (path: string): string => new URL(path, getBaseUrl()).toString();
 
     const docsPagesSitemap: MetadataRoute.Sitemap = await Promise.all(
         source.getPages().map(async (page) => {
