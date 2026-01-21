@@ -107,7 +107,6 @@ import { generic } from "@monicon/core/plugins";
 
 export default {
   icons: ["mdi:home"],
-  collections: ["lucide"],
   plugins: [
     generic({
       extension: "json",

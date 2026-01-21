@@ -11,7 +11,6 @@ const getBaseUrl = () => {
 }
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-
     const url = (path: string): string => new URL(path, getBaseUrl()).toString();
 
     const docsPagesSitemap: MetadataRoute.Sitemap = await Promise.all(

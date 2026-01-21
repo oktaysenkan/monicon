@@ -115,12 +115,12 @@ export default function HomePage() {
           <p className="text-sm text-fd-muted-foreground">
             Made by{" "}
             <a
-              href="https://twitter.com/oktaysenkan"
+              href="https://twitter.com/senkanoktay"
               target="_blank"
               rel="noopener noreferrer"
               className="text-fd-primary hover:underline font-medium"
             >
-              @oktaysenkan
+              @senkanoktay
             </a>
           </p>
         </div>
