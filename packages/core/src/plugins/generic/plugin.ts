@@ -1,0 +1,131 @@
+import path from "path";
+import slugify from "slugify";
+import type { Icon } from "../../types";
+import {
+  MoniconPlugin,
+  MoniconPluginFile,
+  MoniconPluginInstance,
+} from "../types";
+
+slugify.extend({ ":": "/" });
+
+export type FileCreationOptions = {
+  outputPath?: ((icon: Icon) => string | undefined) | string;
+  fileName?: ((icon: Icon) => string | undefined) | string;
+  extension?: ((icon: Icon) => string | undefined) | string;
+  content?: ((icon: Icon) => string | Promise<string>) | string
+};
+
+type HasRequiredKey<T extends object> = {} extends T ? false : true;
+
+type NormalizeOptions<T extends object> =
+  HasRequiredKey<T> extends true ? T : T | void;
+
+export type GenericPluginOptions<T extends object = object> = NormalizeOptions<
+  Partial<MoniconPluginInstance> & FileCreationOptions & T
+>;
+
+/**
+ * Get the file name for the icon
+ * @param icon - The icon to get the file name for
+ * @param options - The options for the plugin
+ * @returns The file name for the icon
+ */
+const getFileName = (icon: Icon, options: GenericPluginOptions) => {
+  const defaultFileName = slugify(icon.name, { lower: true, remove: /:/g });
+
+  const fileName =
+    typeof options?.fileName === "function"
+      ? (options.fileName(icon) ?? defaultFileName)
+      : (options?.fileName ?? defaultFileName);
+
+  const extension =
+    typeof options?.extension === "function"
+      ? (options.extension(icon) ?? "svg")
+      : (options?.extension ?? "svg");
+
+  return `${fileName}.${extension}`;
+};
+
+/**
+ * Get the output path for the icon
+ * @param icon - The icon to get the output path for
+ * @param options - The options for the plugin
+ * @returns The output path for the icon
+ */
+const getOutputPath = (icon: Icon, options: GenericPluginOptions) => {
+  const defaultOutputPath = "src/components/icons";
+
+  if (!options?.outputPath) {
+    return defaultOutputPath;
+  }
+
+  return typeof options.outputPath === "function"
+    ? (options.outputPath(icon) ?? defaultOutputPath)
+    : (options.outputPath ?? defaultOutputPath);
+};
+
+/**
+ * Generate icon files
+ * @param icons - The icons to generate
+ * @param outputPath - The path to output the icons to
+ */
+const generateIconFiles = async (icons: Icon[], options: GenericPluginOptions) => {
+  const results = await Promise.allSettled(icons.map(async (icon) => {
+    const fileName = getFileName(icon, options);
+
+    if (!fileName) return;
+
+    const outputPath = getOutputPath(icon, options);
+
+    if (!outputPath) return;
+
+    const content =
+      typeof options?.content === "function"
+        ? (await options?.content(icon)) ?? ""
+        : options?.content;
+
+    if (!content) {
+      console.warn(
+        `[Monicon] - No content found for icon "${icon.name}" in "${options?.name}" plugin`
+      );
+      return;
+    }
+
+    const filePath = path.join(outputPath, fileName);
+
+    const file: MoniconPluginFile = {
+      path: path.resolve(filePath),
+      content: content,
+    };
+
+    return file;
+  }));
+
+  const rejected = results.filter((result) => result.status === "rejected") as PromiseRejectedResult[];
+
+  if (rejected.length > 0) {
+    console.warn(
+      `[Monicon] - Failed to generate ${rejected.length} icons for "${options?.name}" plugin: ${rejected.map((result) => result.reason).join(", ")}`
+    );
+  }
+
+  const files = results.filter((result) => result.status === "fulfilled") as PromiseFulfilledResult<MoniconPluginFile>[];
+
+  return files.map((result) => result.value ?? "");
+};
+
+/**
+ * SVG plugin to generate icon files
+ * @param options - The options for the plugin
+ */
+export const generic: MoniconPlugin<GenericPluginOptions> =
+  (options) => (payload) => {
+    return {
+      name: options?.name ?? "monicon-generic-plugin",
+      async generate() {
+        return generateIconFiles(payload.icons, this);
+      },
+      ...options,
+    };
+  };

@@ -24,9 +24,13 @@
   "devDependencies": {
     "@monicon/typescript-config": "*",
     "tsup": "^8.0.1",
-    "typescript": "^5.3.3"
+    "typescript": "^5.3.3",
+    "webpack": "^5.0.0"
   },
   "dependencies": {
     "@monicon/core": "*"
+  },
+  "peerDependencies": {
+    "webpack": "^5.0.0"
   }
 }

@@ -1,0 +1,89 @@
+import { Steps, Callout } from "nextra/components";
+
+# Install Monicon with Svelte
+
+Setting up Monicon with Svelte is a straightforward process. This guide will walk you through the installation and configuration steps to get started with Monicon in your React project.
+
+<Steps>
+
+## Install
+
+To get started, you’ll need to install the necessary dependencies for Monicon. In your project directory, run the following command to install the dependencies.
+
+```sh npm2yarn
+npm i @monicon/svelte@1 @monicon/vite@1
+```
+
+Now you should install the development dependency `@iconify/json` for the icon sets. This package provides a comprehensive collection of icons that can be easily integrated into your project.
+
+```sh npm2yarn
+npm i -D @iconify/json
+
+# or specific icon sets
+npm i -D @iconify-json/mdi @iconify-json/feather
+```
+
+## Configure Vite
+
+Now that the dependencies are installed, you’ll need to configure Vite to use Monicon.
+
+```tsx filename="vite.config.ts"
+import { defineConfig } from "vite";
+import { svelte } from "@sveltejs/vite-plugin-svelte";
+import monicon from "@monicon/vite";
+
+export default defineConfig({
+  plugins: [
+    svelte(),
+    monicon({
+      icons: [
+        "mdi:home",
+        "feather:activity",
+        "logos:active-campaign",
+        "lucide:badge-check",
+      ],
+      // Load all icons from the listed collections
+      collections: ["radix-icons"],
+    }),
+  ],
+});
+```
+
+<Callout>
+The `icons` array in the `monicon` plugin configuration specifies the icon sets you want to use in your project. You can add more icon sets as needed.
+
+For a complete list of available icon sets, refer to the [Icones](https://icones.js.org/) website.
+
+</Callout>
+
+## Usage
+
+You can now use Monicon in your Svelte components. Here’s an example of how to use Monicon in a Svelte component.
+
+```svelte filename="src/App.svelte"
+  <script>
+    import { Monicon } from "@monicon/svelte";
+  </script>
+
+  <main>
+      <Monicon name="mdi:home" />
+      <Monicon name="logos:active-campaign" size={30} />
+      <Monicon name="feather:activity" color="red" />
+      <Monicon name="lucide:badge-check" size={24} strokeWidth={4} />
+  </main>
+```
+
+## Configure .gitignore
+
+Add the following to your `.gitignore` file to prevent icons from being committed to your repository.
+
+```
+# monicon
+.monicon
+```
+
+## Next Steps
+
+You’ve successfully set up Monicon with Svelte! You can now explore more icon sets and customize your usage further.
+
+</Steps>

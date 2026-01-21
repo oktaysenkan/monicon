@@ -1,0 +1,180 @@
+---
+title: React Native
+description: Generate React Native components for your icons
+---
+
+The React Native plugin generates React Native components using `react-native-svg` from your SVG icons.
+
+## Usage
+
+```ts twoslash title="monicon.config.ts"
+import { reactNative } from "@monicon/core/plugins";
+import { MoniconConfig } from "@monicon/core";
+
+export default {
+  icons: ["mdi:home", "lucide:heart"],
+  plugins: [
+    reactNative({
+      outputPath: "components/icons",
+      format: "tsx",
+      suffix: "Icon",
+    }),
+  ],
+} satisfies MoniconConfig;
+```
+
+<Callout type="info">
+  Make sure you have `react-native-svg` installed in your project.
+</Callout>
+
+## Options
+
+### `outputPath`
+
+The directory where icon components will be generated.
+
+- **Type:** `string | ((icon: Icon) => string | undefined)`
+- **Default:** `"src/components/icons"`
+
+```ts twoslash
+import { reactNative } from "@monicon/core/plugins";
+
+// Static path
+reactNative({ outputPath: "components/icons" });
+
+// Dynamic path based on icon
+reactNative({
+  outputPath: (icon) => {
+    if (icon.name.startsWith("mdi:")) {
+      return "components/icons/mdi";
+    }
+    return "components/icons";
+  },
+});
+```
+
+### `format`
+
+The output format for generated files.
+
+- **Type:** `"jsx" | "tsx"`
+- **Default:** `"tsx"`
+
+```ts twoslash
+import { reactNative } from "@monicon/core/plugins";
+
+// Generate JSX files
+reactNative({ format: "jsx" });
+
+// Generate TSX files (default)
+reactNative({ format: "tsx" });
+```
+
+### `componentName`
+
+Customize the component name.
+
+- **Type:** `(icon: Icon) => string | undefined`
+- **Default:** `${icon.name}Icon`
+
+```ts twoslash
+import { reactNative } from "@monicon/core/plugins";
+
+reactNative({
+  componentName: (icon) => {
+    return `Custom${icon.name}`;
+  },
+});
+```
+
+### `fileName`
+
+Customize the file name.
+
+- **Type:** `(icon: Icon) => string | undefined`
+- **Default:** Slugified icon name
+
+```ts twoslash
+import { reactNative } from "@monicon/core/plugins";
+
+reactNative({
+  fileName: (icon) => {
+    return icon.name.toLowerCase().replace(":", "-");
+  },
+});
+```
+
+### `prefix`
+
+Add a prefix to component names.
+
+- **Type:** `string | ((icon: Icon) => string | undefined)`
+- **Default:** `""`
+
+```ts twoslash
+import { reactNative } from "@monicon/core/plugins";
+
+// Static prefix
+reactNative({ prefix: "Icon" });
+```
+
+### `suffix`
+
+Add a suffix to component names.
+
+- **Type:** `string | ((icon: Icon) => string | undefined)`
+- **Default:** `"Icon"`
+
+```ts twoslash
+import { reactNative } from "@monicon/core/plugins";
+
+// Static suffix
+reactNative({ suffix: "Component" });
+
+// No suffix
+reactNative({ suffix: "" });
+```
+
+## Generated Output
+
+For an icon `mdi:home`, the plugin generates:
+
+```tsx title="components/icons/mdi/home.tsx"
+import React from "react";
+import { SvgXml, type SvgProps } from "react-native-svg";
+
+const HomeIcon = (props: Omit<SvgProps, "xml">) => {
+  const xml = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="currentColor" d="M10 20v-6h4v6h5v-8h3L12 3L2 12h3v8z"/></svg>`;
+
+  return <SvgXml xml={xml} {...props} />;
+};
+
+export default HomeIcon;
+```
+
+## Usage in Components
+
+```tsx title="app/(tabs)/index.tsx"
+import { View, StyleSheet } from "react-native";
+import HomeIcon from "@/components/icons/mdi/home";
+import HeartIcon from "@/components/icons/lucide/heart";
+
+export default function HomeScreen() {
+  return (
+    <View style={styles.container}>
+      <HomeIcon width={32} height={32} color="blue" />
+      <HeartIcon width={32} height={32} color="red" />
+    </View>
+  );
+}
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
+    gap: 10,
+  },
+});
+```

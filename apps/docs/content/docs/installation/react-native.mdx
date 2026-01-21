@@ -1,0 +1,103 @@
+---
+title: React Native
+description: Learn how to install and use Monicon in your React Native project
+---
+
+## Installation
+
+Install Monicon and its Metro plugin in your React Native project:
+
+```bash tab="npm"
+npm install @monicon/core @monicon/metro react-native-svg
+```
+
+```bash tab="pnpm"
+pnpm add @monicon/core @monicon/metro react-native-svg
+```
+
+```bash tab="yarn"
+yarn add @monicon/core @monicon/metro react-native-svg
+```
+
+```bash tab="bun"
+bun add @monicon/core @monicon/metro react-native-svg
+```
+
+<Callout type="info">
+  `react-native-svg` is required for rendering SVG icons in React Native.
+</Callout>
+
+## Configuration
+
+### 1. Create Monicon Config
+
+Create a `monicon.config.ts` file in your project root:
+
+```ts twoslash title="monicon.config.ts"
+import { reactNative, clean } from "@monicon/core/plugins";
+import { MoniconConfig } from "@monicon/core";
+
+export default {
+  // Loads individual icons by icon name
+  icons: ["mdi:home", "feather:activity"],
+  // Loads all icons from the lucide collection
+  collections: ["lucide"],
+  plugins: [
+    /**
+     * change the output path to your project config for example;
+     * - components/icons
+     * - src/components/icons
+     */
+    clean({ patterns: ["components/icons"] }),
+    reactNative({ outputPath: "components/icons" }),
+  ],
+} satisfies MoniconConfig;
+```
+
+### 2. Configure Metro
+
+Update your `metro.config.js` to use the Monicon Metro plugin:
+
+```js title="metro.config.js"
+const { getDefaultConfig } = require("expo/metro-config");
+const { withMonicon } = require("@monicon/metro");
+
+const config = getDefaultConfig(__dirname);
+const configWithMonicon = withMonicon(config);
+
+module.exports = configWithMonicon;
+```
+
+## Usage
+
+After configuration, Monicon will automatically generate React Native components for your icons. You can import and use them in your components:
+
+```tsx title="app/(tabs)/index.tsx"
+import { StyleSheet, View } from "react-native";
+
+import BadgeCheckIcon from "@/components/icons/lucide/badge-check";
+import CloudDownloadIcon from "@/components/icons/lucide/cloud-download";
+import HomeIcon from "@/components/icons/mdi/home";
+import ActivityIcon from "@/components/icons/feather/activity";
+
+export default function HomeScreen() {
+  return (
+    <View style={styles.container}>
+      <BadgeCheckIcon color="aqua" width={32} height={32} />
+      <CloudDownloadIcon color="aqua" width={32} height={32} />
+      <ActivityIcon color="aqua" width={32} height={32} />
+      <HomeIcon color="aqua" width={32} height={32} />
+    </View>
+  );
+}
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
+    gap: 10,
+  },
+});
+```

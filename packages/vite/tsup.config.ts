@@ -7,6 +7,7 @@ export default defineConfig((options: Options) => ({
   clean: true,
   format: ["cjs", "esm"],
   external: ["react"],
+  splitting: false,
   dts: true,
   ...options,
 }));

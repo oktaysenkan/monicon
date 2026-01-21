@@ -1,0 +1,175 @@
+---
+title: Vue
+description: Generate Vue components for your icons
+---
+
+The Vue plugin generates Vue 3 Single File Components (SFC) from your SVG icons.
+
+## Usage
+
+```ts twoslash title="monicon.config.ts"
+import { vue } from "@monicon/core/plugins";
+import { MoniconConfig } from "@monicon/core";
+
+export default {
+  icons: ["mdi:home", "lucide:heart"],
+  plugins: [
+    vue({
+      outputPath: "src/components/icons",
+      template: "ts",
+      suffix: "Icon",
+    }),
+  ],
+} satisfies MoniconConfig;
+```
+
+## Options
+
+### `outputPath`
+
+The directory where icon components will be generated.
+
+- **Type:** `string | ((icon: Icon) => string | undefined)`
+- **Default:** `"src/components/icons"`
+
+```ts twoslash
+import { vue } from "@monicon/core/plugins";
+
+// Static path
+vue({ outputPath: "components/icons" })
+
+// Dynamic path based on icon
+vue({
+  outputPath: (icon) => {
+    if (icon.name.startsWith("mdi:")) {
+      return "components/icons/mdi";
+    }
+    return "components/icons";
+  },
+})
+```
+
+### `template`
+
+The script template type for generated components.
+
+- **Type:** `"js" | "ts"`
+- **Default:** `"ts"`
+
+```ts twoslash
+import { vue } from "@monicon/core/plugins";
+
+// TypeScript setup (default)
+vue({ template: "ts" })
+
+// JavaScript setup
+vue({ template: "js" })
+```
+
+### `componentName`
+
+Customize the component name.
+
+- **Type:** `(icon: Icon) => string | undefined`
+- **Default:** `${icon.name}Icon`
+
+```ts twoslash
+import { vue } from "@monicon/core/plugins";
+
+vue({
+  componentName: (icon) => {
+    return `Custom${icon.name}`;
+  },
+})
+```
+
+### `fileName`
+
+Customize the file name.
+
+- **Type:** `(icon: Icon) => string | undefined`
+- **Default:** Slugified icon name
+
+```ts twoslash
+import { vue } from "@monicon/core/plugins";
+
+vue({
+  fileName: (icon) => {
+    return icon.name.toLowerCase().replace(":", "-");
+  },
+})
+```
+
+### `prefix`
+
+Add a prefix to component names.
+
+- **Type:** `string | ((icon: Icon) => string | undefined)`
+- **Default:** `""`
+
+```ts twoslash
+import { vue } from "@monicon/core/plugins";
+
+// Static prefix
+vue({ prefix: "Icon" })
+
+// Dynamic prefix
+vue({
+  prefix: (icon) => {
+    return icon.name.startsWith("mdi:") ? "Mdi" : "";
+  },
+})
+```
+
+### `suffix`
+
+Add a suffix to component names.
+
+- **Type:** `string | ((icon: Icon) => string | undefined)`
+- **Default:** `"Icon"`
+
+```ts twoslash
+import { vue } from "@monicon/core/plugins";
+
+// Static suffix
+vue({ suffix: "Component" })
+
+// No suffix
+vue({ suffix: "" })
+```
+
+## Generated Output
+
+For an icon `mdi:home`, the plugin generates:
+
+```vue title="src/components/icons/mdi/home.vue"
+<script setup lang="ts">
+const props = defineProps();
+</script>
+
+<template>
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" v-bind="props">
+    <path fill="currentColor" d="M10 20v-6h4v6h5v-8h3L12 3L2 12h3v8z" />
+  </svg>
+</template>
+
+<script lang="ts">
+export default { name: "HomeIcon" };
+</script>
+```
+
+## Usage in Components
+
+```vue title="src/App.vue"
+<script setup lang="ts">
+import HomeIcon from "./components/icons/mdi/home.vue";
+import HeartIcon from "./components/icons/lucide/heart.vue";
+</script>
+
+<template>
+  <div>
+    <HomeIcon class="size-6" />
+    <HeartIcon width="24" height="24" color="red" />
+  </div>
+</template>
+```

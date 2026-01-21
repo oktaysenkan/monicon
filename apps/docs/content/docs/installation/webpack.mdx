@@ -1,0 +1,96 @@
+---
+title: React (Webpack)
+description: Learn how to install and use Monicon in your React (Webpack) project
+---
+
+## Installation
+
+Install Monicon and its Webpack plugin in your project:
+
+```bash tab="npm"
+npm install @monicon/core @monicon/webpack
+```
+
+```bash tab="pnpm"
+pnpm add @monicon/core @monicon/webpack
+```
+
+```bash tab="yarn"
+yarn add @monicon/core @monicon/webpack
+```
+
+```bash tab="bun"
+bun add @monicon/core @monicon/webpack
+```
+
+## Configuration
+
+### 1. Create Monicon Config
+
+Create a `monicon.config.js` file in your project root:
+
+```ts twoslash title="monicon.config.js"
+import { react, clean } from "@monicon/core/plugins";
+import { MoniconConfig } from "@monicon/core";
+
+export default {
+  // Loads individual icons by icon name
+  icons: ["mdi:home", "feather:activity"],
+  // Loads all icons from the lucide collection
+  collections: ["lucide"],
+  plugins: [
+    /**
+     * change the output path to your project config for example;
+     * - src/components/icons
+     * - components/icons
+     */
+    clean({ patterns: ["src/components/icons"] }),
+    react({ outputPath: "src/components/icons", format: "jsx" }),
+  ],
+} satisfies MoniconConfig;
+```
+
+### 2. Configure Webpack
+
+Add the Monicon plugin to your `webpack.config.js`:
+
+```js title="webpack.config.js"
+const { MoniconPlugin } = require("@monicon/webpack");
+
+module.exports = {
+  // ... your webpack config
+  plugins: [
+    new MoniconPlugin({ watch: process.env.NODE_ENV === "development" }),
+    // ... other plugins
+  ],
+};
+```
+
+<Callout type="info">
+  The `watch: true` option enables automatic icon regeneration during
+  development when your config changes.
+</Callout>
+
+## Usage
+
+After configuration, Monicon will automatically generate React components for your icons. You can import and use them in your components:
+
+```jsx title="src/App.jsx"
+import BadgeCheckIcon from "./components/icons/lucide/badge-check";
+import CloudDownloadIcon from "./components/icons/lucide/cloud-download";
+import HomeIcon from "./components/icons/mdi/home";
+import ActivityIcon from "./components/icons/feather/activity";
+
+export default function App() {
+  return (
+    <main className="flex gap-4 items-center justify-center min-h-screen">
+      <BadgeCheckIcon className="size-10" />
+      <CloudDownloadIcon className="size-10" />
+      <ActivityIcon className="size-10" />
+      <HomeIcon className="size-10" />
+      {/* If you don't want to use the className prop, you can use the svg props */}
+      <HomeIcon width={40} height={40} color="blue" />
+    </main>
+  );
+}
+```

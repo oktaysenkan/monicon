@@ -1,0 +1,69 @@
+---
+title: JSON Collections
+description: Load icons from JSON files or URLs
+---
+
+JSON Collections in Monicon allow you to define custom icons from JSON files or URLs. These JSON files map icon names to their corresponding SVG data, making it easy to include and manage custom icon sets in your project.
+
+## Configuration
+
+Add the JSON collection loader to your `monicon.config.ts`:
+
+```ts twoslash title="monicon.config.ts"
+import { react, clean } from "@monicon/core/plugins";
+import { loadJSONCollection } from "@monicon/core/loaders";
+import { MoniconConfig } from "@monicon/core";
+
+export default {
+  icons: ["mdi:home"],
+  loaders: {
+    json: loadJSONCollection(
+      "https://gist.githubusercontent.com/oktaysenkan/39681ecdb066dc44c52fa840dacc7562/raw/6aa7b8f8bf9d806742be0e1c4759809391d00bcd/icons.json"
+    ),
+  },
+  plugins: [
+    clean({ patterns: ["src/components/icons"] }),
+    react({ outputPath: "src/components/icons" }),
+  ],
+} satisfies MoniconConfig;
+```
+
+## JSON File Format
+
+The JSON file should map icon names to their corresponding SVG markup:
+
+```json title="icons.json"
+{
+  "network": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><rect x=\"16\" y=\"16\" width=\"6\" height=\"6\" rx=\"1\"/><rect x=\"2\" y=\"16\" width=\"6\" height=\"6\" rx=\"1\"/><rect x=\"9\" y=\"2\" width=\"6\" height=\"6\" rx=\"1\"/><path d=\"M5 16v-3a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v3\"/><path d=\"M12 12V8\"/></svg>",
+  "user": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\"><path d=\"M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z\"/></svg>"
+}
+```
+
+## Usage
+
+After configuration, Monicon will generate components for your JSON icons. You can import and use them in your components:
+
+```tsx title="src/App.tsx"
+import NetworkIcon from "./components/icons/json/network";
+import UserIcon from "./components/icons/json/user";
+
+function App() {
+  return (
+    <main>
+      <NetworkIcon className="size-6" />
+      <UserIcon className="size-6" />
+    </main>
+  );
+}
+
+export default App;
+```
+
+## Use Cases
+
+JSON collections are particularly useful for:
+
+- Sharing icon sets across multiple projects
+- Loading icons from a CMS or API
+- Versioning and managing icon sets centrally
+- Quick prototyping with hosted icon sets

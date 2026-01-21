@@ -1,0 +1,19 @@
+{
+  "title": "Installation",
+  "pages": [
+    "cli",
+    "library",
+    "react",
+    "nextjs",
+    "remix",
+    "qwik",
+    "react-native",
+    "vue",
+    "nuxt",
+    "svelte",
+    "rollup",
+    "rspack",
+    "webpack",
+    "esbuild"
+  ]
+}

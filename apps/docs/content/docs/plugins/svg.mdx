@@ -1,0 +1,92 @@
+---
+title: SVG
+description: Export icons as raw SVG files
+---
+
+The SVG plugin exports your icons as raw SVG files, useful when you need standalone SVG files for design tools, documentation, or other purposes.
+
+## Usage
+
+```ts twoslash title="monicon.config.ts"
+import { svg } from "@monicon/core/plugins";
+import { MoniconConfig } from "@monicon/core";
+
+export default {
+  icons: ["mdi:home", "lucide:heart"],
+  plugins: [
+    svg({
+      outputPath: "public/icons",
+    }),
+  ],
+} satisfies MoniconConfig;
+```
+
+## Options
+
+### `outputPath`
+
+The directory where SVG files will be saved.
+
+- **Type:** `string | ((icon: Icon) => string | undefined)`
+- **Default:** `"src/components/icons"`
+
+```ts twoslash
+import { svg } from "@monicon/core/plugins";
+
+// Static path
+svg({ outputPath: "public/icons" })
+
+// Dynamic path based on icon
+svg({
+  outputPath: (icon) => {
+    if (icon.name.startsWith("mdi:")) {
+      return "public/icons/mdi";
+    }
+    return "public/icons";
+  },
+})
+```
+
+### `fileName`
+
+Customize the file name for each icon.
+
+- **Type:** `string | ((icon: Icon) => string | undefined)`
+- **Default:** Slugified icon name
+
+```ts
+import { svg } from "@monicon/core/plugins";
+
+svg({
+  fileName: (icon) => {
+    // Custom file naming
+    return icon.name.toLowerCase().replace(":", "-");
+  },
+})
+```
+
+## Generated Output
+
+For an icon `mdi:home`, the plugin generates:
+
+```html title="public/icons/mdi/home.svg"
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+  <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
+</svg>
+```
+
+## Usage in HTML
+
+```html
+<!-- Direct usage -->
+<img src="/icons/mdi/home.svg" alt="Home" width="24" height="24" />
+
+<!-- As background -->
+<style>
+  .icon-home {
+    background-image: url("/icons/mdi/home.svg");
+    width: 24px;
+    height: 24px;
+  }
+</style>
+```

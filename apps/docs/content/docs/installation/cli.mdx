@@ -1,0 +1,101 @@
+---
+title: CLI
+description: Learn how to use the Monicon CLI to generate icons
+---
+
+The Monicon CLI provides a command-line interface for generating icons, this is useful if you want to use Monicon as a tool-agnostic.
+
+## Installation
+
+Install the Monicon Core globally
+
+```bash tab="npm"
+npm install @monicon/cli -g
+```
+
+```bash tab="pnpm"
+pnpm add @monicon/cli -g
+```
+
+```bash tab="yarn"
+yarn global add @monicon/core
+```
+
+```bash tab="bun"
+bun add @monicon/cli -g
+```
+
+## Configuration
+
+Create a `monicon.config.ts` (or `.js`) file in your project root:
+
+```ts twoslash title="monicon.config.ts"
+import { svg, clean } from "@monicon/core/plugins";
+import { MoniconConfig } from "@monicon/core";
+
+export default {
+  // Loads individual icons by icon name
+  icons: ["mdi:home", "feather:activity"],
+  // Loads all icons from a collection
+  collections: ["lucide"],
+  plugins: [
+    clean({ patterns: ["src/components/icons"] }),
+    svg({ outputPath: "src/components/icons" }),
+  ],
+} satisfies MoniconConfig;
+```
+
+## Commands
+
+### Generate Icons
+
+Generate icons based on your configuration:
+
+```bash
+npx @monicon/cli generate
+```
+
+This command will:
+
+1. Load your `monicon.config.ts` file
+2. Fetch the specified icons
+3. Generate components in the configured output path
+
+### Watch Mode
+
+Run the CLI in watch mode to automatically regenerate icons when your config changes:
+
+```bash
+npx @monicon/cli generate -w
+```
+
+This is useful during development to see changes immediately.
+
+### Help
+
+Display help information:
+
+```bash
+npx @monicon/cli -h
+```
+
+### Version
+
+Check the installed CLI version:
+
+```bash
+npx @monicon/cli -v
+```
+
+## Usage in Scripts
+
+You can add the CLI to your `package.json` scripts for easy access:
+
+```json title="package.json"
+{
+  "scripts": {
+    "dev": "npx @monicon/cli generate --watch && next dev",
+    "build": "npx @monicon/cli generate && next build"
+  }
+}
+```

@@ -1,4 +1,4 @@
-import { MoniconOptions } from "@monicon/core";
+import { MoniconConfig } from "@monicon/core";
 import { MoniconPlugin as MoniconWebpackPlugin } from "@monicon/webpack";
 
 const pluginName = "rspack-monicon";
@@ -6,10 +6,9 @@ const pluginName = "rspack-monicon";
 export class MoniconPlugin extends MoniconWebpackPlugin {
   name = pluginName;
 
-  constructor(options: MoniconOptions) {
-    const opts: MoniconOptions = {
-      type: "esm",
-      ...options,
+  constructor(config?: MoniconConfig) {
+    const opts: MoniconConfig = {
+      ...config,
     };
 
     super(opts);

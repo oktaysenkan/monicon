@@ -8,7 +8,7 @@
       "dependsOn": ["^build"]
     },
 
-    "icon-loader#build": {
+    "cli#build": {
       "dependsOn": ["core#build"]
     },
 
@@ -30,55 +30,44 @@
     "rspack#build": {
       "dependsOn": ["webpack#build"]
     },
-
-    "react#build": {
-      "dependsOn": ["icon-loader#build"]
-    },
-    "native#build": {
-      "dependsOn": ["icon-loader#build"]
-    },
-    "vue#build": {
-      "dependsOn": ["icon-loader#build"]
-    },
     "nuxt#build": {
-      "dependsOn": ["vue#build"]
-    },
-    "svelte#build": {
-      "dependsOn": ["vite#build", "icon-loader#build"]
-    },
-    "qwik#build": {
-      "dependsOn": ["icon-loader#build"]
+      "dependsOn": ["core#build"]
     },
 
     "react-native-app#build": {
-      "dependsOn": ["metro#build", "webpack#build", "native#build"]
+      "dependsOn": ["metro#build"]
     },
     "next#build": {
-      "dependsOn": ["webpack#build", "react#build"]
+      "dependsOn": ["webpack#build"]
     },
     "remix#build": {
-      "dependsOn": ["vite#build", "react#build"]
+      "dependsOn": ["vite#build"]
     },
     "vite-react#build": {
-      "dependsOn": ["vite#build", "react#build"]
+      "dependsOn": ["vite#build"]
     },
     "rspack-react#build": {
-      "dependsOn": ["rspack#build", "react#build"]
+      "dependsOn": ["rspack#build"]
     },
     "rollup-react#build": {
-      "dependsOn": ["rollup#build", "react#build"]
+      "dependsOn": ["rollup#build"]
     },
     "vite-vue#build": {
-      "dependsOn": ["vite#build", "vue#build"]
+      "dependsOn": ["vite#build"]
     },
+    "nuxt-app#prepare": {},
     "nuxt-app#build": {
-      "dependsOn": ["nuxt#build", "vue#build"]
+      "dependsOn": ["nuxt-app#prepare", "nuxt#build"]
     },
     "svelte-app#build": {
-      "dependsOn": ["svelte#build"]
+      "dependsOn": []
     },
     "qwik-app#build": {
-      "dependsOn": ["qwik#build"]
+      "dependsOn": []
+    },
+
+    "docs#build": {
+      "dependsOn": ["core#build", "vite#build"]
     },
 
     "dev": {

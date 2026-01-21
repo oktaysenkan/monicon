@@ -1,35 +1,36 @@
 import type { PluginOption } from "vite";
-import {
-  loadIcons,
-  getIconsFilePath,
-  MoniconOptions,
-  getResolveAlias,
-} from "@monicon/core";
+import { bootstrap, MoniconConfig } from "@monicon/core";
 
-const alias = getResolveAlias();
+// Remix's vite plugin calls resolveId before buildStart, so we need to wait for the bootstrap to complete before resolving the id.
+let bootstrapPromise: Promise<void> | null = null;
 
-const name = "vite-monicon";
+export const monicon = (config?: MoniconConfig): PluginOption => {
+  return {
+    name: "vite-monicon",
+    async buildStart() {
+      if (bootstrapPromise) return;
 
-export const monicon = (options: MoniconOptions): PluginOption => ({
-  name,
-  async buildStart() {
-    await loadIcons({ type: "esm", ...options });
-  },
-  async resolveId(source) {
-    if (source === alias) return getIconsFilePath({ type: "esm", ...options });
+      const isWatching =
+        Boolean(this?.meta?.watchMode) ||
+        process.env.NODE_ENV === "development";
 
-    return null;
-  },
-  config: () => ({
-    server: {
-      fs: {
-        allow: [".."],
-      },
+      bootstrapPromise = bootstrap({ watch: isWatching, ...config });
     },
-    optimizeDeps: {
-      exclude: [alias],
+    resolveId: async () => {
+      await bootstrapPromise;
+
+      return;
     },
-  }),
-});
+    config: async () => {
+      return {
+        server: {
+          fs: {
+            allow: [".."],
+          },
+        },
+      };
+    },
+  };
+};
 
 export default monicon;

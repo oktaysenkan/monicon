@@ -1,0 +1,88 @@
+---
+title: Nuxt
+description: Learn how to install and use Monicon in your Nuxt project
+---
+
+## Installation
+
+Install Monicon and its Nuxt module in your Nuxt project:
+
+```bash tab="npm"
+npm install @monicon/core @monicon/nuxt
+```
+
+```bash tab="pnpm"
+pnpm add @monicon/core @monicon/nuxt
+```
+
+```bash tab="yarn"
+yarn add @monicon/core @monicon/nuxt
+```
+
+```bash tab="bun"
+bun add @monicon/core @monicon/nuxt
+```
+
+## Configuration
+
+### 1. Create Monicon Config
+
+Create a `monicon.config.ts` file in your project root:
+
+```ts twoslash title="monicon.config.ts"
+import { vue, clean } from "@monicon/core/plugins";
+import { MoniconConfig } from "@monicon/core";
+
+export default {
+  // Loads individual icons by icon name
+  icons: ["mdi:home", "feather:activity"],
+  // Loads all icons from the lucide collection
+  collections: ["lucide"],
+  plugins: [
+    /**
+     * change the output path to your project config for example;
+     * - components/icons
+     * - src/components/icons
+     */
+    clean({ patterns: ["components/icons"] }),
+    vue({ outputPath: "components/icons" }),
+  ],
+} satisfies MoniconConfig;
+```
+
+### 2. Configure Nuxt
+
+Add the Monicon module to your `nuxt.config.ts`:
+
+```ts title="nuxt.config.ts"
+export default defineNuxtConfig({
+  modules: ["@monicon/nuxt"],
+});
+```
+
+## Usage
+
+After configuration, Monicon will automatically generate Vue components for your icons. You can import and use them in your pages and components:
+
+```vue title="app.vue"
+<script setup lang="ts">
+import BadgeCheckIcon from "@/components/icons/lucide/badge-check.vue";
+import CloudDownloadIcon from "@/components/icons/lucide/cloud-download.vue";
+import HomeIcon from "@/components/icons/mdi/home.vue";
+import ActivityIcon from "@/components/icons/feather/activity.vue";
+
+useHead({
+  title: "Nuxt App",
+  meta: [{ name: "description", content: "My Nuxt App" }],
+});
+</script>
+
+<template>
+  <main class="flex h-screen items-center justify-center gap-4">
+    <BadgeCheckIcon color="white" width="50" />
+    <CloudDownloadIcon color="white" width="50" />
+    <ActivityIcon color="white" width="50" />
+    <HomeIcon color="white" width="50" />
+  </main>
+</template>
+```

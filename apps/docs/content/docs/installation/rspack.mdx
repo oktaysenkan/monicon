@@ -1,0 +1,96 @@
+---
+title: React (Rspack)
+description: Learn how to install and use Monicon in your React (Rspack) project
+---
+
+## Installation
+
+Install Monicon and its Rspack plugin in your project:
+
+```bash tab="npm"
+npm install @monicon/core @monicon/rspack
+```
+
+```bash tab="pnpm"
+pnpm add @monicon/core @monicon/rspack
+```
+
+```bash tab="yarn"
+yarn add @monicon/core @monicon/rspack
+```
+
+```bash tab="bun"
+bun add @monicon/core @monicon/rspack
+```
+
+## Configuration
+
+### 1. Create Monicon Config
+
+Create a `monicon.config.mjs` file in your project root:
+
+```js twoslash title="monicon.config.mjs"
+import { react, clean } from "@monicon/core/plugins";
+
+export default {
+  // Loads individual icons by icon name
+  icons: ["mdi:home", "feather:activity"],
+  // Loads all icons from the lucide collection
+  collections: ["lucide"],
+  plugins: [
+    /**
+     * change the output path to your project config for example;
+     * - src/components/icons
+     * - components/icons
+     */
+    clean({ patterns: ["src/components/icons"] }),
+    react({ outputPath: "src/components/icons", format: "jsx" }),
+  ],
+};
+```
+
+### 2. Configure Rspack
+
+Add the Monicon plugin to your `rspack.config.mjs`:
+
+```js title="rspack.config.mjs"
+import { defineConfig } from "@rspack/cli";
+import { rspack } from "@rspack/core";
+import MoniconPlugin from "@monicon/rspack";
+
+export default defineConfig({
+  // ... your rspack config
+  plugins: [
+    // ... other plugins
+    new MoniconPlugin(),
+  ],
+});
+```
+
+## Usage
+
+After configuration, Monicon will automatically generate React components for your icons. You can import and use them in your components:
+
+```jsx title="src/App.jsx"
+import React from "react";
+
+import BadgeCheckIcon from "./components/icons/lucide/badge-check";
+import CloudDownloadIcon from "./components/icons/lucide/cloud-download";
+import HomeIcon from "./components/icons/mdi/home";
+import ActivityIcon from "./components/icons/feather/activity";
+
+const App = () => {
+  return (
+    <div className="flex h-screen items-center justify-center gap-4">
+      <BadgeCheckIcon className="size-10" />
+      <CloudDownloadIcon className="size-10" />
+      <ActivityIcon className="size-10" />
+      <HomeIcon className="size-10" />
+      {/* If you don't want to use the className prop, you can use the svg props */}
+      <HomeIcon width={40} height={40} />
+    </div>
+  );
+};
+
+export default App;
+```

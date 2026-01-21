@@ -1,25 +1,12 @@
-import {
-  loadIcons,
-  getIconsFilePath,
-  MoniconOptions,
-  getResolveAlias,
-} from "@monicon/core";
+import { bootstrap, MoniconConfig } from "@monicon/core";
 import type { Plugin } from "esbuild";
 
-const alias = getResolveAlias();
-
-const name = "esbuild-monicon";
-
-export const monicon = (options: MoniconOptions): Plugin => {
+export const monicon = (options?: MoniconConfig): Plugin => {
   return {
-    name,
+    name: "esbuild-monicon",
     setup(build) {
-      build.onResolve({ filter: new RegExp(`^${alias}$`) }, (args) => {
-        return { path: getIconsFilePath({ type: "esm", ...options }) };
-      });
-
       build.onStart(async () => {
-        await loadIcons({ type: "esm", ...options });
+        await bootstrap(options);
       });
     },
   };

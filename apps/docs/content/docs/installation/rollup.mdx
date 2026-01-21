@@ -1,0 +1,94 @@
+---
+title: React (Rollup)
+description: Learn how to install and use Monicon in your Rollup project
+---
+
+## Installation
+
+Install Monicon and its Rollup plugin in your project:
+
+```bash tab="npm"
+npm install @monicon/core @monicon/rollup
+```
+
+```bash tab="pnpm"
+pnpm add @monicon/core @monicon/rollup
+```
+
+```bash tab="yarn"
+yarn add @monicon/core @monicon/rollup
+```
+
+```bash tab="bun"
+bun add @monicon/core @monicon/rollup
+```
+
+## Configuration
+
+### 1. Create Monicon Config
+
+Create a `monicon.config.js` file in your project root:
+
+```js twoslash title="monicon.config.js"
+const { react, clean } = require("@monicon/core/plugins");
+
+module.exports = {
+  // Loads individual icons by icon name
+  icons: ["mdi:home", "feather:activity"],
+  // Loads all icons from the lucide collection
+  collections: ["lucide"],
+  plugins: [
+    /**
+     * change the output path to your project config for example;
+     * - src/components/icons
+     * - components/icons
+     */
+    clean({ patterns: ["src/components/icons"] }),
+    react({ outputPath: "src/components/icons", format: "jsx" }),
+  ],
+};
+```
+
+### 2. Configure Rollup
+
+Add the Monicon plugin to your `rollup.config.mjs`:
+
+```js twoslash title="rollup.config.mjs"
+import monicon from "@monicon/rollup";
+
+export default {
+  // ... your rollup config
+  plugins: [
+    // ... other plugins
+    monicon(),
+  ],
+};
+```
+
+## Usage
+
+After configuration, Monicon will automatically generate React components for your icons. You can import and use them in your components:
+
+```jsx title="src/App.jsx"
+import React from "react";
+
+import BadgeCheckIcon from "./components/icons/lucide/badge-check";
+import CloudDownloadIcon from "./components/icons/lucide/cloud-download";
+import HomeIcon from "./components/icons/mdi/home";
+import ActivityIcon from "./components/icons/feather/activity";
+
+const App = () => {
+  return (
+    <main className="flex h-screen items-center justify-center gap-4">
+      <BadgeCheckIcon className="size-10" />
+      <CloudDownloadIcon className="size-10" />
+      <ActivityIcon class="size-10" />
+      <HomeIcon className="size-10" />
+      {/* If you don't want to use the className prop, you can use the svg props */}
+      <HomeIcon width={40} height={40} />
+    </main>
+  );
+};
+
+export default App;
+```

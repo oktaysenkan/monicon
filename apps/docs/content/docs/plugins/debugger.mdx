@@ -1,0 +1,116 @@
+---
+title: Debugger
+description: Debug the icon generation process
+---
+
+The Debugger plugin logs information about the icon generation process, helping you understand what's happening during build time.
+
+## Usage
+
+```ts twoslash title="monicon.config.ts"
+import { debuggerPlugin } from "@monicon/core/plugins";
+import { MoniconConfig } from "@monicon/core";
+
+export default {
+  icons: ["mdi:home", "lucide:heart"],
+  plugins: [debuggerPlugin()],
+} satisfies MoniconConfig;
+```
+
+## Options
+
+### `enabled`
+
+Enable or disable the debugger plugin.
+
+- **Type:** `boolean`
+- **Default:** `true`
+
+```ts twoslash
+import { debuggerPlugin } from "@monicon/core/plugins";
+
+debuggerPlugin({ enabled: false });
+
+debuggerPlugin({ enabled: true });
+```
+
+## What It Logs
+
+The Debugger plugin logs information at various stages of the generation process:
+
+### On Plugins Load
+
+Logs when all plugins are loaded.
+
+```
+[Monicon - Debugger Plugin] On plugins load 3 plugins
+```
+
+### Before Generate
+
+Logs the number of icons about to be generated.
+
+```
+[Monicon - Debugger Plugin] Before generate 2 icons
+```
+
+### After Generate
+
+Logs the number of icons that were generated.
+
+```
+[Monicon - Debugger Plugin] After generate 2 icons
+```
+
+### Before Write Files
+
+Logs the number of files about to be written to disk.
+
+```
+[Monicon - Debugger Plugin] Before write files 2 files
+```
+
+### After Write Files
+
+Logs the number of files that were written to disk.
+
+```
+[Monicon - Debugger Plugin] After write files 2 files
+```
+
+## Example Output
+
+When running your build with the debugger plugin enabled, you'll see output like:
+
+```bash
+[Monicon - Debugger Plugin] On plugins load 3 plugins
+[Monicon - Debugger Plugin] Before generate 12 icons
+[Monicon - Debugger Plugin] After generate 12 icons
+[Monicon - Debugger Plugin] Before write files 12 files
+[Monicon - Debugger Plugin] After write files 12 files
+```
+
+## Use Cases
+
+The Debugger plugin is useful for:
+
+- **Development** - Understanding what's happening during icon generation
+- **Debugging** - Troubleshooting issues with icon generation
+- **Performance** - Monitoring how many icons and files are being processed
+- **Verification** - Confirming that icons are being generated as expected
+
+## Plugin Order
+
+The Debugger plugin can be placed anywhere in the plugins array. It's typically placed last so it logs information about all other plugins:
+
+```ts twoslash
+import { debuggerPlugin } from "@monicon/core/plugins";
+import { MoniconConfig } from "@monicon/core";
+
+export default {
+  icons: ["mdi:home"],
+  plugins: [
+    debuggerPlugin(), // Last to log all plugin activity
+  ],
+} satisfies MoniconConfig;
+```

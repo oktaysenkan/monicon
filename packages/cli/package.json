@@ -1,0 +1,53 @@
+{
+  "name": "@monicon/cli",
+  "version": "1.2.2",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "bin": "./dist/index.cjs",
+  "exports": {
+    ".": {
+      "require": "./dist/index.cjs",
+      "import": "./dist/index.mjs",
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.mjs"
+    },
+    "./*": {
+      "require": "./dist/*/index.cjs",
+      "import": "./dist/*/index.mjs",
+      "types": "./dist/*/index.d.ts"
+    }
+  },
+  "typesVersions": {
+    "*": {
+      "*": [
+        "./dist/*/index.d.ts",
+        "./dist/index.d.ts"
+      ]
+    }
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "build": "tsup",
+    "start": "tsx src/index.ts",
+    "dev": "tsup --watch",
+    "clean": "rm -rf dist"
+  },
+  "devDependencies": {
+    "tsup": "^8.0.1",
+    "typescript": "^5.3.3",
+    "prettier": "^3.5.3"
+  },
+  "dependencies": {
+    "@oktaysenkan/cosmiconfig": "9.0.1",
+    "@monicon/loader": "*",
+    "@monicon/typescript-config": "*",
+    "@monicon/core": "*",
+    "cac": "^6.7.14"
+  }
+}
