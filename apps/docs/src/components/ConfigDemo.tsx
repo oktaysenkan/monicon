@@ -178,8 +178,8 @@ export function ConfigDemo() {
   const fileTree = buildFileTree(currentExample.files);
 
   return (
-    <div className="relative w-full max-w-7xl flex flex-col gap-6 p-8">
-      <div className="flex items-center gap-2">
+    <div className="relative w-full max-w-7xl flex flex-col gap-6">
+      <div className="flex items-center gap-2 flex-wrap">
         {examples.map((example, index) => (
           <button
             key={example.name}
@@ -194,14 +194,14 @@ export function ConfigDemo() {
         ))}
       </div>
 
-      <div className="relative w-full flex gap-12">
-        <div className="flex flex-col w-8/12 p-2 border rounded-md gap-2 h-fit">
+      <div className="relative w-full flex gap-12 lg:flex-row flex-col">
+        <div className="flex flex-col w-full lg:w-8/12 p-2 border rounded-md gap-2 h-fit">
           <div className="flex flex-col border-b -mx-2">
             <h2 className="font-medium text-sm px-2 pb-2">monicon.config.ts</h2>
           </div>
           <DynamicCodeBlock lang="ts" code={currentExample.code} />
         </div>
-        <div className="flex flex-col w-4/12">
+        <div className="flex flex-col w-full lg:w-4/12">
           <div
             key={currentIndex}
             className="p-2 border rounded-md flex flex-col gap-2"
