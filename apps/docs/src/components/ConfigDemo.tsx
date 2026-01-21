@@ -4,6 +4,7 @@ import { DynamicCodeBlock } from "fumadocs-ui/components/dynamic-codeblock";
 import { buttonVariants } from "fumadocs-ui/components/ui/button";
 import { File, Folder, Files } from "fumadocs-ui/components/files";
 import { useState } from "react";
+import { CodeBlock } from "fumadocs-ui/components/codeblock";
 
 const examples = [
   {

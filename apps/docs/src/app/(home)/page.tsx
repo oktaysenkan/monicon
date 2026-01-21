@@ -14,10 +14,10 @@ export default function HomePage() {
   return (
     <div className="flex flex-col items-center flex-1 w-full">
       <div className="w-full max-w-7xl px-8 py-16 text-center">
-        <h1 className="text-5xl text-fd-primary leading-tight font-medium tracking-tight mb-6">
+        <h1 className="text-4xl lg:text-5xl text-fd-primary leading-tight font-medium tracking-tight mb-6">
           Universal Icon Library
         </h1>
-        <p className="text-lg text-fd-muted-foreground max-w-3xl mx-auto mb-8">
+        <p className="text-sm lg:text-base text-fd-muted-foreground max-w-3xl mx-auto mb-8">
           Monicon is an easy-to-use icon orchestration tool that makes adding
           icons to your projects simple. Access 200,000+ icons from popular sets
           like Material Design, Feather, and Font Awesome.
@@ -100,10 +100,10 @@ export default function HomePage() {
         </div>
       </div>
       <div className="w-full max-w-7xl px-8 py-16">
-        <h2 className="text-3xl text-fd-primary font-medium text-center mb-4">
+        <h2 className="text-2xl lg:text-3xl text-fd-primary font-medium text-center mb-4">
           How It Works
         </h2>
-        <p className="text-center text-fd-muted-foreground mb-12 max-w-2xl mx-auto">
+        <p className="text-sm lg:text-base text-center text-fd-muted-foreground mb-12 max-w-2xl mx-auto">
           Define your configuration and select the icons you need. Monicon will
           automatically generate optimized icon components tailored to your
           framework.
