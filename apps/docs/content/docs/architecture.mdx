@@ -75,14 +75,16 @@ graph LR
     B --> B2[Local Collection]
     B --> B3[JSON Collection]
     
-    C --> C1[React Plugin]
-    C --> C2[Vue Plugin]
-    C --> C3[Svelte Plugin]
-    C --> C4[Qwik Plugin]
-    C --> C5[React Native Plugin]
-    C --> C6[SVG Plugin]
+    C --> C0[Generic Plugin]
     C --> C7[Clean Plugin]
     C --> C8[Debugger Plugin]
+    
+    C0 --> P1[React Plugin]
+    C0 --> P2[Vue Plugin]
+    C0 --> P3[Svelte Plugin]
+    C0 --> P4[Qwik Plugin]
+    C0 --> P5[React Native Plugin]
+    C0 --> P6[SVG Plugin]
     
     D --> D1[Config Loader]
     D --> D2[File System]
@@ -120,12 +122,13 @@ Fetch icons from various sources:
 
 Transform raw SVG icons into framework-specific components:
 
-- **React Plugin**: Generate React/JSX components
-- **Vue Plugin**: Generate Vue SFC components
-- **Svelte Plugin**: Generate Svelte components
-- **Qwik Plugin**: Generate Qwik components
-- **React Native Plugin**: Generate React Native components with react-native-svg
-- **SVG Plugin**: Generate plain SVG files
+- **Generic Plugin**: Base plugin providing file generation capabilities (used internally by framework plugins)
+- **React Plugin**: Generate React/JSX components (built on Generic Plugin)
+- **Vue Plugin**: Generate Vue SFC components (built on Generic Plugin)
+- **Svelte Plugin**: Generate Svelte components (built on Generic Plugin)
+- **Qwik Plugin**: Generate Qwik components (built on Generic Plugin)
+- **React Native Plugin**: Generate React Native components with react-native-svg (built on Generic Plugin)
+- **SVG Plugin**: Generate plain SVG files (built on Generic Plugin)
 - **Clean Plugin**: Clean output directories
 - **Debugger Plugin**: Debug icon generation
 
@@ -146,29 +149,29 @@ Plugins are the core of Monicon's extensibility. Here's how the plugin system wo
 <Mermaid
   chart={`
 flowchart LR
-    A[Icon Data] --> B[Plugin 1]
-    A --> C[Plugin 2]
-    A --> D[Plugin N]
+    A[Icon Data] --> B[onPluginsLoad Hook]
+    B --> C[beforeGenerate Hook]
     
-    B --> B1[Transform]
-    C --> C1[Transform]
-    D --> D1[Transform]
+    C --> D[Plugin 1]
+    C --> E[Plugin 2]
+    C --> F[Plugin N]
     
-    B1 --> B2[Generate Files]
-    C1 --> C2[Generate Files]
-    D1 --> D2[Generate Files]
+    D --> D1[generate]
+    E --> E1[generate]
+    F --> F1[generate]
     
-    B2 --> E[Collect All Files]
-    C2 --> E
-    D2 --> E
+    D1 --> G[Collect All Files]
+    E1 --> G
+    F1 --> G
     
-    E --> F[beforeWriteFiles Hook]
-    F --> G[Write to Disk]
-    G --> H[afterWriteFiles Hook]
+    G --> H[afterGenerate Hook]
+    H --> I[beforeWriteFiles Hook]
+    I --> J[Write to Disk]
+    J --> K[afterWriteFiles Hook]
     
     style A fill:#059669,stroke:#047857,color:#fff
-    style E fill:#2563eb,stroke:#1d4ed8,color:#fff
-    style G fill:#d97706,stroke:#b45309,color:#fff
+    style G fill:#2563eb,stroke:#1d4ed8,color:#fff
+    style J fill:#d97706,stroke:#b45309,color:#fff
 `}
 />
 
@@ -176,10 +179,12 @@ flowchart LR
 
 Each plugin can implement the following hooks:
 
-1. **Transform**: Convert icon data into framework-specific format
-2. **Generate Files**: Create output files from transformed data
-3. **beforeWriteFiles**: Hook called before files are written (optional)
-4. **afterWriteFiles**: Hook called after files are written (optional)
+1. **onPluginsLoad**: Called when plugins are loaded (optional)
+2. **beforeGenerate**: Called before the generation process starts (optional)
+3. **generate**: The main generation function that creates output files (required)
+4. **afterGenerate**: Called after the generation process completes (optional)
+5. **beforeWriteFiles**: Called before files are written to disk (optional)
+6. **afterWriteFiles**: Called after files are written to disk (optional)
 
 ### Creating Custom Plugins
 
@@ -205,6 +210,39 @@ export const txtPlugin: MoniconPlugin<void> = (options) => (payload) => {
     },
   };
 };
+```
+
+### Generic Plugin Foundation
+
+Most framework plugins (React, Vue, Svelte, Qwik, React Native, and SVG) are built on top of the **Generic Plugin**. The Generic Plugin provides a reusable foundation for file generation with flexible options:
+
+- **outputPath**: Function or string to determine where files are generated
+- **fileName**: Function or string to determine file names
+- **extension**: Function or string to determine file extensions
+- **content**: Function or string to generate file content
+
+This architecture allows framework plugins to focus on their specific transformations (e.g., converting SVG to React JSX) while delegating file management to the generic plugin.
+
+```ts twoslash
+import {
+  generic,
+  GenericPluginOptions,
+  MoniconPlugin,
+} from "@monicon/core/plugins";
+
+type CustomPluginOptions = GenericPluginOptions<CustomPluginInternalOptions>;
+
+type CustomPluginInternalOptions = {
+  foo?: string;
+};
+
+export const customPlugin: MoniconPlugin<CustomPluginOptions> = (options) =>
+  generic({
+    name: "my-custom-plugin",
+    extension: "custom",
+    content: (icon) => `/* Custom content for ${icon.name} */`,
+    ...options,
+  });
 ```
 
 ## Bundler Integration Flow

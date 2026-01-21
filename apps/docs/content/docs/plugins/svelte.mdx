@@ -15,7 +15,7 @@ export default {
   icons: ["mdi:home", "lucide:heart"],
   plugins: [
     svelte({
-      outputPath: "src/lib/components/icons",
+      outputPath: "'src/lib/components/icons",
       suffix: "Icon",
     }),
   ],
@@ -29,7 +29,7 @@ export default {
 The directory where icon components will be generated.
 
 - **Type:** `string | ((icon: Icon) => string | undefined)`
-- **Default:** `"src/components/icons"`
+- **Default:** `"src/lib/components/icons"`
 
 ```ts twoslash
 import { svelte } from "@monicon/core/plugins";
