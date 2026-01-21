@@ -10,7 +10,7 @@ import NetworkIcon from "./components/icons/json/network.vue";
 <template>
   <main>
     <ActivityIcon class="size-10" />
-    <AlertCircleIcon height="48" color="red" />
+    <AlertCircleIcon height="40" color="red" />
     <CloudDownloadIcon class="size-10" />
     <AttachmentIcon class="size-10" />
     <FolderIcon class="size-10" />

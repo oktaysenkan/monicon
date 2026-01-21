@@ -13,7 +13,7 @@ export type FileCreationOptions = {
   outputPath?: ((icon: Icon) => string | undefined) | string;
   fileName?: ((icon: Icon) => string | undefined) | string;
   extension?: ((icon: Icon) => string | undefined) | string;
-  content?: ((icon: Icon) => string) | string;
+  content?: ((icon: Icon) => string | Promise<string>) | string
 };
 
 type HasRequiredKey<T extends object> = {} extends T ? false : true;
@@ -70,10 +70,8 @@ const getOutputPath = (icon: Icon, options: GenericPluginOptions) => {
  * @param icons - The icons to generate
  * @param outputPath - The path to output the icons to
  */
-const generateIconFiles = (icons: Icon[], options: GenericPluginOptions) => {
-  const files: MoniconPluginFile[] = [];
-
-  icons.forEach((icon) => {
+const generateIconFiles = async (icons: Icon[], options: GenericPluginOptions) => {
+  const results = await Promise.allSettled(icons.map(async (icon) => {
     const fileName = getFileName(icon, options);
 
     if (!fileName) return;
@@ -84,7 +82,7 @@ const generateIconFiles = (icons: Icon[], options: GenericPluginOptions) => {
 
     const content =
       typeof options?.content === "function"
-        ? options?.content(icon)
+        ? (await options?.content(icon)) ?? ""
         : options?.content;
 
     if (!content) {
@@ -101,10 +99,20 @@ const generateIconFiles = (icons: Icon[], options: GenericPluginOptions) => {
       content: content,
     };
 
-    files.push(file);
-  });
+    return file;
+  }));
 
-  return files;
+  const rejected = results.filter((result) => result.status === "rejected") as PromiseRejectedResult[];
+
+  if (rejected.length > 0) {
+    console.warn(
+      `[Monicon] - Failed to generate ${rejected.length} icons for "${options?.name}" plugin: ${rejected.map((result) => result.reason).join(", ")}`
+    );
+  }
+
+  const files = results.filter((result) => result.status === "fulfilled") as PromiseFulfilledResult<MoniconPluginFile>[];
+
+  return files.map((result) => result.value ?? "");
 };
 
 /**
@@ -115,7 +123,7 @@ export const generic: MoniconPlugin<GenericPluginOptions> =
   (options) => (payload) => {
     return {
       name: options?.name ?? "monicon-generic-plugin",
-      generate() {
+      async generate() {
         return generateIconFiles(payload.icons, this);
       },
       ...options,
