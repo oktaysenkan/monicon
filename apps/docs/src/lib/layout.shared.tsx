@@ -5,5 +5,6 @@ export function baseOptions(): BaseLayoutProps {
     nav: {
       title: "Monicon",
     },
+    githubUrl: "https://github.com/oktaysenkan/monicon",
   };
 }

@@ -218,19 +218,15 @@ flowchart TD
     B --> C[Load Monicon Config]
     C --> D[Watch Config File]
     
-    D --> E{File Change Detected?}
+    D --> E{Config File Changed?}
     E -->|Yes| F[Trigger Icon Generation]
     
     F --> G[Bootstrap Process]
     G --> H[Generate Icon Components]
     H --> I[Files Written]
-    I --> J[Bundler Detects Changes]
-    J --> K[Bundler Triggers HMR]
-    K --> L[Browser Updates]
     
     style A fill:#059669,stroke:#047857,color:#fff
     style G fill:#2563eb,stroke:#1d4ed8,color:#fff
-    style K fill:#d97706,stroke:#b45309,color:#fff
 `}
 />
 
@@ -240,8 +236,6 @@ flowchart TD
 2. **Load Config**: Load Monicon configuration from `monicon.config.ts`
 3. **Watch**: Watch the config file for changes
 4. **Generate**: When changes are detected, trigger icon generation via `bootstrap()`
-5. **HMR**: The bundler detects file changes and automatically triggers Hot Module Replacement
-6. **Update**: Browser receives updated icon components without full page reload
 
 ## Data Flow Example
 

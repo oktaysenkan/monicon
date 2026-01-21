@@ -17,6 +17,7 @@
     "fumadocs-typescript": "^5.0.1",
     "fumadocs-ui": "16.4.7",
     "lucide-react": "^0.562.0",
+    "motion": "^12.27.5",
     "next": "16.1.1",
     "react": "^19.2.3",
     "react-dom": "^19.2.3",
