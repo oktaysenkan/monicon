@@ -1,0 +1,201 @@
+---
+title: Generic
+description: Create custom icon outputs with flexible file generation
+---
+
+The Generic plugin is a flexible base plugin that allows you to create custom file outputs from your icons. You can control the file path, name, extension, and content, making it perfect for custom integrations or specialized icon formats.
+
+## Usage
+
+```ts twoslash title="monicon.config.ts"
+import { generic } from "@monicon/core/plugins";
+import { MoniconConfig } from "@monicon/core";
+
+export default {
+  icons: ["mdi:home", "lucide:heart"],
+  plugins: [
+    generic({
+      name: "custom-plugin",
+      outputPath: "public/icons",
+      extension: "txt",
+      content: (icon) => `Icon: ${icon.name}\nSVG: ${icon.svg}`,
+    }),
+  ],
+} satisfies MoniconConfig;
+```
+
+## Options
+
+### `name`
+
+The name of your custom plugin instance (useful for debugging and logging).
+
+- **Type:** `string`
+- **Default:** `"monicon-generic-plugin"`
+
+```ts twoslash
+import { generic } from "@monicon/core/plugins";
+
+generic({
+  name: "my-custom-icon-plugin",
+  content: (icon) => icon.svg,
+});
+```
+
+### `outputPath`
+
+The directory where files will be saved.
+
+- **Type:** `string | ((icon: Icon) => string | undefined)`
+- **Default:** `"src/components/icons"`
+
+```ts twoslash
+import { generic } from "@monicon/core/plugins";
+
+// Static path
+generic({
+  outputPath: "public/icons",
+  content: (icon) => icon.svg,
+});
+
+// Dynamic path based on icon
+generic({
+  outputPath: (icon) => {
+    if (icon.name.startsWith("mdi:")) {
+      return "public/icons/mdi";
+    }
+    return "public/icons";
+  },
+  content: (icon) => icon.svg,
+});
+```
+
+### `fileName`
+
+Customize the file name for each icon.
+
+- **Type:** `string | ((icon: Icon) => string | undefined)`
+- **Default:** Slugified icon name (e.g., `mdi:home` becomes `mdi/home`)
+
+```ts twoslash
+import { generic } from "@monicon/core/plugins";
+
+generic({
+  fileName: (icon) => {
+    // Custom file naming
+    return icon.name.toLowerCase().replace(":", "-");
+  },
+  content: (icon) => icon.svg,
+});
+```
+
+### `extension`
+
+Set the file extension for the generated files.
+
+- **Type:** `string | ((icon: Icon) => string | undefined)`
+- **Default:** `"svg"`
+
+```ts twoslash
+import { generic } from "@monicon/core/plugins";
+
+// Static extension
+generic({
+  extension: "txt",
+  content: (icon) => icon.svg,
+});
+
+// Dynamic extension based on icon
+generic({
+  extension: (icon) => {
+    return icon.name.startsWith("mdi:") ? "xml" : "txt";
+  },
+  content: (icon) => icon.svg,
+});
+```
+
+### `content`
+
+The content to write to each file. This is a required option.
+
+- **Type:** `string | ((icon: Icon) => string)`
+- **Required:** `false`
+
+> [!NOTE] If no content is provided, the plugin will log a warning and skip the icon.
+
+```ts twoslash
+import { generic } from "@monicon/core/plugins";
+
+// Static content
+generic({
+  content: "Hello World",
+});
+
+// Dynamic content based on icon
+generic({
+  content: (icon) => {
+    return `Name: ${icon.name}\nSVG: ${icon.svg}`;
+  },
+});
+```
+
+## Examples
+
+### Create JSON Metadata Files
+
+Generate JSON files with icon metadata:
+
+```ts twoslash title="monicon.config.ts"
+import { generic } from "@monicon/core/plugins";
+import { MoniconConfig } from "@monicon/core";
+
+export default {
+  icons: ["mdi:home", "lucide:heart"],
+  plugins: [
+    generic({
+      name: "icon-metadata",
+      outputPath: "public/icons/metadata",
+      extension: "json",
+      content: (icon) => {
+        return JSON.stringify(icon, null, 2);
+      },
+    }),
+  ],
+} satisfies MoniconConfig;
+```
+
+## Use Cases
+
+The Generic plugin is perfect for:
+
+- **Custom file formats** - Generate icons in formats not supported by other plugins
+- **Metadata generation** - Create companion files with icon information
+- **Documentation** - Generate documentation or reference files from icons
+- **Testing** - Create test fixtures or sample data
+- **Integration** - Build custom outputs for specific tools or frameworks
+- **Logging** - Create text files that log icon information after processing
+
+## Advanced Usage
+
+You can use the Generic plugin to build your own specialized plugins:
+
+```ts twoslash title="my-plugin.ts"
+import {
+  generic,
+  GenericPluginOptions,
+  MoniconPlugin,
+} from "@monicon/core/plugins";
+import type { Icon } from "@monicon/core";
+
+type MyCustomPluginOptions = GenericPluginOptions<{ foo?: string }>;
+
+export const myCustomPlugin: MoniconPlugin<MyCustomPluginOptions> = (options) =>
+  generic({
+    name: "my-custom-plugin",
+    afterGenerate(context) {
+      console.log("afterGenerate", context);
+    },
+  });
+
+myCustomPlugin({ foo: "bar" });
+```

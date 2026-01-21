@@ -62,7 +62,7 @@ import { MoniconConfig } from "@monicon/core";
 | ------------- | ------------------------------------ | ------- | --------------------------------------------------------------------------------- |
 | `icons`       | `string[]`                           | `[]`    | Array of individual icon names to load (e.g., `["mdi:home", "feather:activity"]`) |
 | `collections` | `string[]`                           | `[]`    | Array of complete icon collections to load (e.g., `["lucide", "heroicons"]`)      |
-| `plugins`     | `MoniconPluginFunction[]`            | `[]`    | Array of plugins to process icons                                                 |
+| `plugins`     | `MoniconPlugin[]`                    | `[]`    | Array of plugins to process icons                                                 |
 | `loaders`     | `Record<string, ReturnType<Loader>>` | `{}`    | Custom loaders for loading icons from different sources                           |
 | `watch`       | `boolean`                            | `false` | Enable watch mode to automatically regenerate icons on config changes             |
 
