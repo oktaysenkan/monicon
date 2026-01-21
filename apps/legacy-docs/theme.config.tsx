@@ -131,7 +131,7 @@ const config: DocsThemeConfig = {
         <script
           async
           src="https://cdn.seline.so/seline.js"
-          data-token="ee8e773ffe2477a"
+          data-token="1c09c6616a10952"
         />
       </>
     );
