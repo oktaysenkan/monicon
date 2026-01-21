@@ -10,7 +10,7 @@ Learn how to create custom Monicon plugins to extend functionality with your own
 A Monicon plugin is a function that returns another function, which receives the icon payload and returns a plugin instance with lifecycle hooks.
 
 ```ts twoslash title="my-plugin.ts"
-import fs from "fs";
+import path from "path";
 import type {
   MoniconPlugin,
   MoniconPluginFile,
@@ -31,7 +31,7 @@ export const myPlugin: MoniconPlugin<MyPluginOptions> =
 
         for (const icon of payload.icons) {
           files.push({
-            path: fs.join(options?.outputPath ?? "output", icon.name),
+            path: path.join(options?.outputPath ?? "output", icon.name),
             content: icon.svg,
           });
         }
