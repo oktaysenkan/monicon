@@ -3,6 +3,14 @@ import { DocsThemeConfig, useConfig, useTheme } from "nextra-theme-docs";
 import { useRouter } from "next/router";
 
 const config: DocsThemeConfig = {
+  banner: {
+    key: "v2-release",
+    content: (
+      <a href="https://monicon.dev" target="_blank" rel="noopener noreferrer">
+        🎉 Monicon v2 is now available! Check out the new documentation →
+      </a>
+    ),
+  },
   head() {
     const config = useConfig();
     const { route } = useRouter();
