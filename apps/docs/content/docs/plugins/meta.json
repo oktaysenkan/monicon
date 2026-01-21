@@ -9,7 +9,8 @@
       "svg",
       "generic",
       "clean",
-      "debugger"
+      "debugger",
+      "custom"
     ]
   }
   
