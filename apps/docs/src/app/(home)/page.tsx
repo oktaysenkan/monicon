@@ -2,6 +2,13 @@ import Link from "next/link";
 import { ConfigDemo } from "@/components/ConfigDemo";
 import { buttonVariants } from "fumadocs-ui/components/ui/button";
 import { Card } from "fumadocs-ui/components/card";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Monicon",
+  description:
+    "Monicon is an easy-to-use icon orchestration tool that makes adding icons to your projects simple.",
+};
 
 export default function HomePage() {
   return (
