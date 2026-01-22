@@ -1,27 +1,36 @@
 import { MoniconConfig, bootstrap } from "@monicon/core";
-import { Compiler } from "webpack";
+import type { Compiler } from "webpack";
 
-const pluginName = "webpack-monicon";
+const pluginName = "MoniconWebpackPlugin";
 
 export class MoniconPlugin {
   name = pluginName;
 
-  private readonly config: MoniconConfig = {};
+  private readonly config: MoniconConfig;
   private bootstrapPromise: Promise<void> | null = null;
 
   constructor(config?: MoniconConfig) {
     this.config = config ?? {};
   }
 
-  async apply(compiler: Compiler) {
-    const watch = compiler.options.watch === true;
+  apply(compiler: Compiler) {
+    const runBootstrap = async () => {
+      if (!this.bootstrapPromise) {
+        const watch =
+          compiler.options.watch === true ||
+          compiler.watchMode === true;
 
-    compiler.hooks.beforeCompile.tap("MoniconWebpackPlugin", async () => {
-      if (!this.bootstrapPromise)
-        this.bootstrapPromise = bootstrap({ watch, ...this.config });
+        this.bootstrapPromise = bootstrap({
+          watch,
+          ...this.config,
+        })
 
-      await this.bootstrapPromise;
-    });
+        return this.bootstrapPromise;
+      };
+
+      compiler.hooks.beforeRun.tapPromise(pluginName, runBootstrap);
+      compiler.hooks.watchRun.tapPromise(pluginName, runBootstrap);
+    }
   }
 }
 
