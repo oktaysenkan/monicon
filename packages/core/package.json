@@ -48,7 +48,7 @@
   },
   "dependencies": {
     "@iconify/utils": "^2.1.33",
-    "@oktaysenkan/cosmiconfig": "9.0.2",
+    "@oktaysenkan/cosmiconfig": "9.0.3",
     "change-case-all": "^2.1.0",
     "chokidar": "^4.0.3",
     "deepmerge": "^4.3.1",
