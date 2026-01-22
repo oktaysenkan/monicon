@@ -43,12 +43,12 @@
   "devDependencies": {
     "tsup": "^8.0.1",
     "typescript": "^5.3.3",
-    "prettier": "^3.5.3"
+    "prettier": "^3.5.3",
+    "@monicon/typescript-config": "*"
   },
   "dependencies": {
     "@oktaysenkan/cosmiconfig": "9.0.1",
     "@monicon/loader": "*",
-    "@monicon/typescript-config": "*",
     "@monicon/core": "*",
     "cac": "^6.7.14"
   }
