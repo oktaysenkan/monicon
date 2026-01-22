@@ -8,6 +8,23 @@ export const metadata: Metadata = {
   title: "Monicon",
   description:
     "Monicon is an easy-to-use icon orchestration tool that makes adding icons to your projects simple.",
+  openGraph: {
+    title: "Monicon",
+    description:
+      "Monicon is an easy-to-use icon orchestration tool that makes adding icons to your projects simple.",
+    images: ["/og"],
+    url: "https://monicon.dev",
+    siteName: "Monicon",
+    locale: "en_US",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Monicon",
+    description:
+      "Monicon is an easy-to-use icon orchestration tool that makes adding icons to your projects simple.",
+    images: ["/og"],
+  },
 };
 
 export default function HomePage() {
