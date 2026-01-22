@@ -59,6 +59,8 @@
     "jsdom": "^26.0.0",
     "lodash": "^4.17.21",
     "pascalcase": "^2.0.0",
-    "prettier": "^3.5.3"
+    "prettier": "^3.5.3",
+    "radashi": "^12.7.1",
+    "svgson": "^5.3.1"
   }
 }
