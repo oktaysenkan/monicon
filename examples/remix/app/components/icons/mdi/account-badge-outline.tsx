@@ -1,6 +1,6 @@
 import React from "react";
 
-const AccountBadgeOutlineIcon = (
+const MdiAccountBadgeOutlineIcon = (
   props: React.ComponentPropsWithoutRef<"svg">,
 ) => {
   return (
@@ -13,4 +13,4 @@ const AccountBadgeOutlineIcon = (
   );
 };
 
-export default AccountBadgeOutlineIcon;
+export default MdiAccountBadgeOutlineIcon;

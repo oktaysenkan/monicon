@@ -19,6 +19,7 @@ export default {
     "lucide:badge-check",
     "lucide:cloud-download",
     "lucide:attachment-2",
+    "material-symbols:10k"
   ],
   // collections: ["lucide"],
   loaders: {

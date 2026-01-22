@@ -16,5 +16,5 @@ const props = defineProps();
 </template>
 
 <script lang="ts">
-export default { name: "ActivityIcon" };
+export default { name: "FeatherActivityIcon" };
 </script>

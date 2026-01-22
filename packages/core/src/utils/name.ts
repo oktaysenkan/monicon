@@ -1,7 +1,5 @@
 import { pascalCase } from "change-case-all";
 import { Icon } from "../types";
-import { parseIcon } from "./icon-processor";
-import { sanitize } from "string-sanitizer";
 
 export type ComponentNameOptions = {
     prefix?: ((icon: Icon) => string | undefined) | string;
@@ -14,8 +12,8 @@ export type ComponentNameOptions = {
  * @param input - The input string
  * @returns The string with leading digits removed
  */
-export const stripLeadingDigits = (input: string) => {
-    return input.replace(/^\d+/, "");
+export const alphaNumericOnly = (input: string) => {
+    return input.replace(/[^a-zA-Z0-9]/g, "");
 }
 
 /**
@@ -23,8 +21,8 @@ export const stripLeadingDigits = (input: string) => {
  * @param name - The name of the icon
  * @returns The component name
  */
-export const generateComponentName = (name: string) => {
-    return sanitize(pascalCase(stripLeadingDigits(name)));
+export const generateComponentName = (iconName: string) => {
+    return alphaNumericOnly(pascalCase(iconName))
 }
 
 /**
@@ -34,8 +32,7 @@ export const generateComponentName = (name: string) => {
  * @returns The component name
  */
 export const getComponentName = (icon: Icon, options: ComponentNameOptions) => {
-    const parsedIcon = parseIcon(icon.name);
-    const componentName = generateComponentName(parsedIcon.name);
+    const componentName = generateComponentName(icon.name);
 
     const prefix =
         typeof options?.prefix === "function"

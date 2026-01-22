@@ -18,5 +18,5 @@ const props = defineProps();
 </template>
 
 <script lang="ts">
-export default { name: "AlertCircleIcon" };
+export default { name: "FeatherAlertCircleIcon" };
 </script>

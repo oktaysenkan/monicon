@@ -1,6 +1,8 @@
 import React from "react";
 
-const AlertCircleIcon = (props: React.ComponentPropsWithoutRef<"svg">) => {
+const FeatherAlertCircleIcon = (
+  props: React.ComponentPropsWithoutRef<"svg">,
+) => {
   return (
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" {...props}>
       <g
@@ -17,4 +19,4 @@ const AlertCircleIcon = (props: React.ComponentPropsWithoutRef<"svg">) => {
   );
 };
 
-export default AlertCircleIcon;
+export default FeatherAlertCircleIcon;

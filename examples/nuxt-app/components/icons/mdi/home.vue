@@ -9,5 +9,5 @@ const props = defineProps();
 </template>
 
 <script lang="ts">
-export default { name: "HomeIcon" };
+export default { name: "MdiHomeIcon" };
 </script>

@@ -1,6 +1,6 @@
 import { component$, type QwikIntrinsicElements } from "@builder.io/qwik";
 
-const AccountIcon = component$((props: QwikIntrinsicElements["svg"]) => {
+const MdiAccountIcon = component$((props: QwikIntrinsicElements["svg"]) => {
   return (
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" {...props}>
       <path
@@ -11,4 +11,4 @@ const AccountIcon = component$((props: QwikIntrinsicElements["svg"]) => {
   );
 });
 
-export default AccountIcon;
+export default MdiAccountIcon;
