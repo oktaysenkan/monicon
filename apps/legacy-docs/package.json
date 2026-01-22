@@ -1,6 +1,6 @@
 {
   "name": "@monicon/legacy-docs",
-  "version": "2.0.2",
+  "version": "2.0.3",
   "description": "Monicon V1 Documentation",
   "private": true,
   "scripts": {
