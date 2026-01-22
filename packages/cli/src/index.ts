@@ -22,7 +22,11 @@ cli
       process.exit(1);
     }
 
-    bootstrap({ ...config.config, ...options });
+    await bootstrap({
+      watch: false,
+      ...config.config,
+      ...options,
+    });
   });
 
 cli.version(pkg.version);
