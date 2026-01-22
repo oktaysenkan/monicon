@@ -1,0 +1,99 @@
+---
+title: Universal Build Tool
+description: Learn how to use Monicon in universal build tools projects like Swift, Kotlin, etc.
+---
+
+Monicon can generate SVG icons for any project, regardless of the programming language. This guide shows you how to use Monicon as a build step to generate SVG files that can be used in Go, Rust, Python, PHP, or any other language.
+
+## Installation
+
+Install the Monicon Core
+
+```bash tab="npm"
+npm install @monicon/core tsx -g
+```
+
+```bash tab="pnpm"
+pnpm add @monicon/core tsx -g
+```
+
+```bash tab="yarn"
+yarn global add @monicon/core tsx
+```
+
+```bash tab="bun"
+bun add @monicon/core tsx -g
+```
+
+## Usage
+
+Create a `generate-icons.js` file to generate icons:
+
+```js title="generate-icons.js"
+import { bootstrap } from "@monicon/core";
+import { svg, clean } from "@monicon/core/plugins";
+
+await bootstrap({
+  // Loads individual icons by icon name
+  icons: ["mdi:home", "feather:activity"],
+  // Loads all icons from a collection
+  collections: ["lucide"],
+  plugins: [
+    clean({ patterns: ["assets/icons"] }),
+    svg({ outputPath: "assets/icons" }),
+  ],
+  watch: false,
+});
+```
+
+## Using a Config File (Optional)
+
+If you prefer to use a separate config file (useful for watch mode), create a `monicon.config.js` file:
+
+```js title="monicon.config.js"
+import { svg, clean } from "@monicon/core/plugins";
+
+export default {
+  icons: ["mdi:home", "feather:activity"],
+  collections: ["lucide"],
+  plugins: [
+    clean({ patterns: ["assets/icons"] }),
+    svg({ outputPath: "assets/icons" }),
+  ],
+  watch: true,
+};
+```
+
+Then your build script can simply call `bootstrap()`:
+
+```ts twoslash title="generate-icons.js"
+import { bootstrap } from "@monicon/core";
+
+bootstrap();
+```
+
+## Running the Build
+
+Run the build script to generate SVG files:
+
+```bash
+tsx generate-icons.js
+```
+
+This will generate SVG files in the configured output path (`assets/icons` in the example above).
+
+## Example Output
+
+After running the build script, you'll have SVG files in your output directory:
+
+```
+assets/icons/
+├── mdi/
+│   └── home.svg
+├── feather/
+│   └── activity.svg
+└── lucide/
+    └── badge-check.svg
+    └── cloud-download.svg
+    └── ...
+```

@@ -3,6 +3,7 @@
   "pages": [
     "cli",
     "library",
+    "universal-build-tool",
     "react",
     "nextjs",
     "remix",
