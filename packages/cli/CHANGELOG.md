@@ -1,5 +1,14 @@
 # @monicon/cli
 
+## 2.0.5
+
+### Patch Changes
+
+- [#87](https://github.com/oktaysenkan/monicon/pull/87) [`a68704f`](https://github.com/oktaysenkan/monicon/commit/a68704f9fdcb9e7de679779df61a9cfe4ffb97e9) Thanks [@oktaysenkan](https://github.com/oktaysenkan)! - feat: change component name generation algorithm
+
+- Updated dependencies [[`a68704f`](https://github.com/oktaysenkan/monicon/commit/a68704f9fdcb9e7de679779df61a9cfe4ffb97e9)]:
+  - @monicon/core@2.0.5
+
 ## 2.0.4
 
 ### Patch Changes
