@@ -1,5 +1,14 @@
 # @monicon/nuxt
 
+## 2.0.4
+
+### Patch Changes
+
+- [`9a5487c`](https://github.com/oktaysenkan/monicon/commit/9a5487c3b4babbc005de3aeeb25767c9aab613f5) Thanks [@oktaysenkan](https://github.com/oktaysenkan)! - fix: sanitize component names
+
+- Updated dependencies [[`9a5487c`](https://github.com/oktaysenkan/monicon/commit/9a5487c3b4babbc005de3aeeb25767c9aab613f5)]:
+  - @monicon/core@2.0.4
+
 ## 2.0.3
 
 ### Patch Changes
