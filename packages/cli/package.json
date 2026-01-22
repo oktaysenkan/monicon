@@ -7,7 +7,9 @@
   "files": [
     "dist"
   ],
-  "bin": "./dist/index.cjs",
+  "bin": {
+    "monicon": "./dist/index.cjs"
+  },
   "exports": {
     ".": {
       "require": "./dist/index.cjs",
