@@ -1,5 +1,14 @@
 # @monicon/metro
 
+## 2.0.6
+
+### Patch Changes
+
+- [#89](https://github.com/oktaysenkan/monicon/pull/89) [`b07677a`](https://github.com/oktaysenkan/monicon/commit/b07677a0f8ae704a439e34c0e9a824edeff328d6) Thanks [@oktaysenkan](https://github.com/oktaysenkan)! - feat: set default watch false for cli
+
+- Updated dependencies [[`b07677a`](https://github.com/oktaysenkan/monicon/commit/b07677a0f8ae704a439e34c0e9a824edeff328d6)]:
+  - @monicon/core@2.0.6
+
 ## 2.0.5
 
 ### Patch Changes
