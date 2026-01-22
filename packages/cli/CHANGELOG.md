@@ -1,5 +1,14 @@
 # @monicon/cli
 
+## 2.0.3
+
+### Patch Changes
+
+- [#84](https://github.com/oktaysenkan/monicon/pull/84) [`313dde7`](https://github.com/oktaysenkan/monicon/commit/313dde7a8425df79e0d42d6cbf40883d5e56da5b) Thanks [@oktaysenkan](https://github.com/oktaysenkan)! - chore: update cosmoconfig
+
+- Updated dependencies [[`313dde7`](https://github.com/oktaysenkan/monicon/commit/313dde7a8425df79e0d42d6cbf40883d5e56da5b)]:
+  - @monicon/core@2.0.3
+
 ## 2.0.2
 
 ### Patch Changes
