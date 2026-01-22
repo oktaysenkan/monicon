@@ -11,5 +11,5 @@ const props = defineProps();
 </template>
 
 <script lang="ts">
-export default { name: "FolderIcon" };
+export default { name: "LocalFolderIcon" };
 </script>

@@ -1,6 +1,6 @@
 import React from "react";
 
-const BadgeCheckIcon = (props: React.ComponentPropsWithoutRef<"svg">) => {
+const LucideBadgeCheckIcon = (props: React.ComponentPropsWithoutRef<"svg">) => {
   return (
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" {...props}>
       <g
@@ -17,4 +17,4 @@ const BadgeCheckIcon = (props: React.ComponentPropsWithoutRef<"svg">) => {
   );
 };
 
-export default BadgeCheckIcon;
+export default LucideBadgeCheckIcon;

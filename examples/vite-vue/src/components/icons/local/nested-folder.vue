@@ -11,5 +11,5 @@ const props = defineProps();
 </template>
 
 <script lang="ts">
-export default { name: "NestedFolderIcon" };
+export default { name: "LocalNestedFolderIcon" };
 </script>

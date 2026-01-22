@@ -1,6 +1,6 @@
 import { component$, type QwikIntrinsicElements } from "@builder.io/qwik";
 
-const ApacheIcon = component$((props: QwikIntrinsicElements["svg"]) => {
+const LogosApacheIcon = component$((props: QwikIntrinsicElements["svg"]) => {
   return (
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 512" {...props}>
       <defs>
@@ -120,4 +120,4 @@ const ApacheIcon = component$((props: QwikIntrinsicElements["svg"]) => {
   );
 });
 
-export default ApacheIcon;
+export default LogosApacheIcon;

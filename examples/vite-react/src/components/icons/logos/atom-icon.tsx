@@ -1,6 +1,6 @@
 import React from "react";
 
-const AtomIconIcon = (props: React.ComponentPropsWithoutRef<"svg">) => {
+const LogosAtomIconIcon = (props: React.ComponentPropsWithoutRef<"svg">) => {
   return (
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" {...props}>
       <circle cx="128.002" cy="128.002" r="128.002" fill="#60B57D" />
@@ -12,4 +12,4 @@ const AtomIconIcon = (props: React.ComponentPropsWithoutRef<"svg">) => {
   );
 };
 
-export default AtomIconIcon;
+export default LogosAtomIconIcon;

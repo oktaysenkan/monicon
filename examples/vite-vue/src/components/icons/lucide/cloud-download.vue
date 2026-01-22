@@ -20,5 +20,5 @@ const props = defineProps();
 </template>
 
 <script lang="ts">
-export default { name: "CloudDownloadIcon" };
+export default { name: "LucideCloudDownloadIcon" };
 </script>

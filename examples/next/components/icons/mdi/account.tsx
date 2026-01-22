@@ -1,6 +1,6 @@
 import React from "react";
 
-const AccountIcon = (props: React.ComponentPropsWithoutRef<"svg">) => {
+const MdiAccountIcon = (props: React.ComponentPropsWithoutRef<"svg">) => {
   return (
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" {...props}>
       <path
@@ -11,4 +11,4 @@ const AccountIcon = (props: React.ComponentPropsWithoutRef<"svg">) => {
   );
 };
 
-export default AccountIcon;
+export default MdiAccountIcon;

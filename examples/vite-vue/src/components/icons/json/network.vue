@@ -13,5 +13,5 @@ const props = defineProps();
 </template>
 
 <script lang="ts">
-export default { name: "NetworkIcon" };
+export default { name: "JsonNetworkIcon" };
 </script>

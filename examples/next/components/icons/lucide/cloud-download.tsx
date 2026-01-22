@@ -1,6 +1,8 @@
 import React from "react";
 
-const CloudDownloadIcon = (props: React.ComponentPropsWithoutRef<"svg">) => {
+const LucideCloudDownloadIcon = (
+  props: React.ComponentPropsWithoutRef<"svg">,
+) => {
   return (
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" {...props}>
       <g
@@ -17,4 +19,4 @@ const CloudDownloadIcon = (props: React.ComponentPropsWithoutRef<"svg">) => {
   );
 };
 
-export default CloudDownloadIcon;
+export default LucideCloudDownloadIcon;
