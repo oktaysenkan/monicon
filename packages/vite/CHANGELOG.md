@@ -1,5 +1,14 @@
 # @monicon/vite
 
+## 2.0.1
+
+### Patch Changes
+
+- [#80](https://github.com/oktaysenkan/monicon/pull/80) [`6b083a5`](https://github.com/oktaysenkan/monicon/commit/6b083a55396c8269c831155efe0d4c427b0a8a1d) Thanks [@oktaysenkan](https://github.com/oktaysenkan)! - fix: resolve npx executable issue
+
+- Updated dependencies [[`6b083a5`](https://github.com/oktaysenkan/monicon/commit/6b083a55396c8269c831155efe0d4c427b0a8a1d)]:
+  - @monicon/core@2.0.1
+
 ## 2.0.0
 
 ### Major Changes
