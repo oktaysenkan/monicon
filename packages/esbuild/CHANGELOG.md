@@ -1,5 +1,14 @@
 # @monicon/esbuild
 
+## 2.0.2
+
+### Patch Changes
+
+- [#82](https://github.com/oktaysenkan/monicon/pull/82) [`6bff168`](https://github.com/oktaysenkan/monicon/commit/6bff1681f957d236f87330e276dfba3ecd88bd9e) Thanks [@oktaysenkan](https://github.com/oktaysenkan)! - refactor: add typescript config package as dev dep
+
+- Updated dependencies [[`6bff168`](https://github.com/oktaysenkan/monicon/commit/6bff1681f957d236f87330e276dfba3ecd88bd9e)]:
+  - @monicon/core@2.0.2
+
 ## 2.0.1
 
 ### Patch Changes
