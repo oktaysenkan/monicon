@@ -47,8 +47,6 @@
     "@monicon/typescript-config": "*"
   },
   "dependencies": {
-    "@oktaysenkan/cosmiconfig": "9.0.1",
-    "@monicon/loader": "*",
     "@monicon/core": "*",
     "cac": "^6.7.14"
   }

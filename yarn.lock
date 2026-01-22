@@ -5078,17 +5078,6 @@
     "@module-federation/runtime" "0.5.1"
     "@module-federation/sdk" "0.5.1"
 
-"@monicon/loader@*":
-  version "1.2.2"
-  resolved "https://registry.npmjs.org/@monicon/loader/-/loader-1.2.2.tgz"
-  integrity sha512-NIFNTfa9VSTWnGJ61F9YVsm7Bftt9Iszya6sqWk/bhpdjkT7XQzNXAtitl3p/dBHF6tALzfdFQaPeDFgQqfH4Q==
-  dependencies:
-    fuuu "^0.0.8"
-    glob "^11.0.0"
-    radashi "^12.2.3"
-    slugify "^1.6.6"
-    svgson "^5.3.1"
-
 "@napi-rs/simple-git-android-arm-eabi@0.1.19":
   version "0.1.19"
   resolved "https://registry.yarnpkg.com/@napi-rs/simple-git-android-arm-eabi/-/simple-git-android-arm-eabi-0.1.19.tgz#72e1b33dd0e8af86f5443f69c35da66ef217e1f6"
@@ -5654,15 +5643,16 @@
     eslint-plugin-vue "^9.7.0"
     local-pkg "^0.4.2"
 
-"@oktaysenkan/cosmiconfig@9.0.1":
-  version "9.0.1"
-  resolved "https://registry.npmjs.org/@oktaysenkan/cosmiconfig/-/cosmiconfig-9.0.1.tgz"
-  integrity sha512-go7MKmRyysnL0iKU2Id7DGs+XAvzc5e/qgq7kBIR6p5q08bC2ihNOAl1GruEnQ9t5fYOxnv7jRG3ioHTEwx7fg==
+"@oktaysenkan/cosmiconfig@9.0.3":
+  version "9.0.3"
+  resolved "https://registry.yarnpkg.com/@oktaysenkan/cosmiconfig/-/cosmiconfig-9.0.3.tgz#0bdb557ae66a47a05f49b9d57036c24e0ab4f296"
+  integrity sha512-A6pDFFFbu8Wxu2402vg66KTtt1zWgnOiRR5AbnipGFHSdsb0KaGGWnGAV48SFzsX1Q1ZQX/rPBRTC67nn3ko3g==
   dependencies:
     env-paths "^2.2.1"
     import-fresh "^3.3.0"
     js-yaml "^4.1.0"
     parse-json "^5.2.0"
+    typescript "^5.2.2"
 
 "@one-ini/wasm@0.1.1":
   version "0.1.1"
@@ -7163,15 +7153,6 @@
 "@shikijs/engine-javascript@3.21.0":
   version "3.21.0"
   resolved "https://registry.npmjs.org/@shikijs/engine-javascript/-/engine-javascript-3.21.0.tgz"
-  integrity sha512-ATwv86xlbmfD9n9gKRiwuPpWgPENAWCLwYCGz9ugTJlsO2kOzhOkvoyV/UD+tJ0uT7YRyD530x6ugNSffmvIiQ==
-  dependencies:
-    "@shikijs/types" "3.21.0"
-    "@shikijs/vscode-textmate" "^10.0.2"
-    oniguruma-to-es "^4.3.4"
-
-"@shikijs/engine-javascript@^3.21.0":
-  version "3.21.0"
-  resolved "https://registry.yarnpkg.com/@shikijs/engine-javascript/-/engine-javascript-3.21.0.tgz#f04554fe87bed39d00ba4b140894b41cd207f5cb"
   integrity sha512-ATwv86xlbmfD9n9gKRiwuPpWgPENAWCLwYCGz9ugTJlsO2kOzhOkvoyV/UD+tJ0uT7YRyD530x6ugNSffmvIiQ==
   dependencies:
     "@shikijs/types" "3.21.0"
@@ -12228,14 +12209,6 @@ deep-object-diff@^1.1.9:
   resolved "https://registry.npmjs.org/deep-object-diff/-/deep-object-diff-1.1.9.tgz"
   integrity sha512-Rn+RuwkmkDwCi2/oXOFS9Gsr5lJZu/yTGpK7wAaAIE75CC+LCGEZHpY6VQJa/RoJcrmaA/docWJZvYohlNkWPA==
 
-deep-rename-keys@^0.2.1:
-  version "0.2.1"
-  resolved "https://registry.npmjs.org/deep-rename-keys/-/deep-rename-keys-0.2.1.tgz"
-  integrity sha512-RHd9ABw4Fvk+gYDWqwOftG849x0bYOySl/RgX0tLI9i27ZIeSO91mLZJEp7oPHOMFqHvpgu21YptmDt0FYD/0A==
-  dependencies:
-    kind-of "^3.0.2"
-    rename-keys "^1.1.2"
-
 deepmerge@^4.2.2, deepmerge@^4.3.1:
   version "4.3.1"
   resolved "https://registry.npmjs.org/deepmerge/-/deepmerge-4.3.1.tgz"
@@ -14288,11 +14261,6 @@ event-target-shim@^5.0.0, event-target-shim@^5.0.1:
   resolved "https://registry.npmjs.org/event-target-shim/-/event-target-shim-5.0.1.tgz"
   integrity sha512-i/2XbnSz/uxRCU6+NdVJgKWDTM427+MqYbkQzD321DuCQJUqOuJKIA0IM2+W2xtYHdKOmZ4dR6fExsd4SXL+WQ==
 
-eventemitter3@^2.0.0:
-  version "2.0.3"
-  resolved "https://registry.npmjs.org/eventemitter3/-/eventemitter3-2.0.3.tgz"
-  integrity sha512-jLN68Dx5kyFHaePoXWPsCGW5qdyZQtLYHkxkg02/Mz6g0kYpDx4FyP6XfArhQdlOC4b8Mv+EMxPo/8La7Tzghg==
-
 eventemitter3@^4.0.0:
   version "4.0.7"
   resolved "https://registry.npmjs.org/eventemitter3/-/eventemitter3-4.0.7.tgz"
@@ -15548,18 +15516,6 @@ glob@^10.3.10:
     minipass "^7.1.2"
     path-scurry "^1.11.1"
 
-glob@^11.0.0:
-  version "11.0.0"
-  resolved "https://registry.npmjs.org/glob/-/glob-11.0.0.tgz"
-  integrity sha512-9UiX/Bl6J2yaBbxKoEBRm4Cipxgok8kQYcOPEhScPwebu2I0HoQOuYdIO6S3hLuWoZgpDpwQZMzTFxgpkyT76g==
-  dependencies:
-    foreground-child "^3.1.0"
-    jackspeak "^4.0.1"
-    minimatch "^10.0.0"
-    minipass "^7.1.2"
-    package-json-from-dist "^1.0.0"
-    path-scurry "^2.0.0"
-
 glob@^11.0.2:
   version "11.0.2"
   resolved "https://registry.npmjs.org/glob/-/glob-11.0.2.tgz"
@@ -16666,15 +16622,15 @@ is-boolean-object@^1.2.1:
     call-bound "^1.0.3"
     has-tostringtag "^1.0.2"
 
-is-buffer@^1.1.5, is-buffer@~1.1.6:
-  version "1.1.6"
-  resolved "https://registry.npmjs.org/is-buffer/-/is-buffer-1.1.6.tgz"
-  integrity sha512-NcdALwpXkTm5Zvvbk7owOUSvVvBKDgKP5/ewfXEznmQFfs4ZRmanOeKBTjRVjka3QFoN6XJ+9F3USqfHqTaU5w==
-
 is-buffer@^2.0.0:
   version "2.0.5"
   resolved "https://registry.npmjs.org/is-buffer/-/is-buffer-2.0.5.tgz"
   integrity sha512-i2R6zNFDwgEHJyQUtJEk0XFi1i0dPFn/oqjK3/vPCcDeJvW5NQ83V8QbicfF1SupOaB0h8ntgBC2YiE7dfyctQ==
+
+is-buffer@~1.1.6:
+  version "1.1.6"
+  resolved "https://registry.npmjs.org/is-buffer/-/is-buffer-1.1.6.tgz"
+  integrity sha512-NcdALwpXkTm5Zvvbk7owOUSvVvBKDgKP5/ewfXEznmQFfs4ZRmanOeKBTjRVjka3QFoN6XJ+9F3USqfHqTaU5w==
 
 is-builtin-module@^3.2.0:
   version "3.2.1"
@@ -17661,13 +17617,6 @@ khroma@^2.1.0:
   version "2.1.0"
   resolved "https://registry.npmjs.org/khroma/-/khroma-2.1.0.tgz"
   integrity sha512-Ls993zuzfayK269Svk9hzpeGUKob/sIgZzyHYdjQoAdQetRKpOLj+k/QQQ/6Qi0Yz65mlROrfd+Ev+1+7dz9Kw==
-
-kind-of@^3.0.2:
-  version "3.2.2"
-  resolved "https://registry.npmjs.org/kind-of/-/kind-of-3.2.2.tgz"
-  integrity sha512-NOW9QQXMoZGg/oqnVNoNTTIFEIid1627WCffUBJEdMxYApq7mNE7CpzucIPc+ZQg25Phej7IJSmX3hO+oblOtQ==
-  dependencies:
-    is-buffer "^1.1.5"
 
 kind-of@^6.0.0, kind-of@^6.0.2:
   version "6.0.3"
@@ -22250,11 +22199,6 @@ queue@6.0.2:
   dependencies:
     inherits "~2.0.3"
 
-radashi@^12.2.3:
-  version "12.2.3"
-  resolved "https://registry.npmjs.org/radashi/-/radashi-12.2.3.tgz"
-  integrity sha512-KenCSk3vdquRkVwjQOwj1bdazsskNtpKTqnxR8CGFw42BqmIoW+lMRtT+qOZTkvzXHTbRnw8gL9mpDehAHENEQ==
-
 radix3@^1.1.2:
   version "1.1.2"
   resolved "https://registry.npmjs.org/radix3/-/radix3-1.1.2.tgz"
@@ -23179,11 +23123,6 @@ remove-trailing-slash@^0.1.0:
   version "0.1.1"
   resolved "https://registry.npmjs.org/remove-trailing-slash/-/remove-trailing-slash-0.1.1.tgz"
   integrity sha512-o4S4Qh6L2jpnCy83ysZDau+VORNvnFw07CKSAymkd6ICNVEPisMyzlc00KlvvicsxKck94SEwhDnMNdICzO+tA==
-
-rename-keys@^1.1.2:
-  version "1.2.0"
-  resolved "https://registry.npmjs.org/rename-keys/-/rename-keys-1.2.0.tgz"
-  integrity sha512-U7XpAktpbSgHTRSNRrjKSrjYkZKuhUukfoBlXWXUExCAqhzh1TU3BDRAfJmarcl5voKS+pbKU9MvyLWKZ4UEEg==
 
 repeating@^2.0.0:
   version "2.0.1"
@@ -24921,14 +24860,6 @@ svgo@^3.3, svgo@^3.3.2:
     csso "^5.0.5"
     picocolors "^1.0.0"
 
-svgson@^5.3.1:
-  version "5.3.1"
-  resolved "https://registry.npmjs.org/svgson/-/svgson-5.3.1.tgz"
-  integrity sha512-qdPgvUNWb40gWktBJnbJRelWcPzkLed/ShhnRsjbayXz8OtdPOzbil9jtiZdrYvSDumAz/VNQr6JaNfPx/gvPA==
-  dependencies:
-    deep-rename-keys "^0.2.1"
-    xml-reader "2.4.3"
-
 swap-case@^3.0.2:
   version "3.0.3"
   resolved "https://registry.npmjs.org/swap-case/-/swap-case-3.0.3.tgz"
@@ -25800,7 +25731,7 @@ typescript@^5.1.6, typescript@^5.5.3, typescript@^5.6.2:
   resolved "https://registry.npmjs.org/typescript/-/typescript-5.6.2.tgz"
   integrity sha512-NW8ByodCSNCwZeghjN3o+JX5OFH0Ojg6sadjEKY4huZ52TqbJTJnDo5+Tw98lSy63NZvi4n+ez5m2u5d4PkZyw==
 
-typescript@^5.9.3:
+typescript@^5.2.2, typescript@^5.9.3:
   version "5.9.3"
   resolved "https://registry.yarnpkg.com/typescript/-/typescript-5.9.3.tgz#5b4f59e15310ab17a216f5d6cf53ee476ede670f"
   integrity sha512-jl1vZzPDinLr9eUt3J/t7V6FgNEw9QjvBPdysz9KfQDD41fQrC2Y4vKQdiaUpFT4bXlb1RHhLpp8wtm6M5TgSw==
@@ -27274,13 +27205,6 @@ xcode@^3.0.1:
     simple-plist "^1.1.0"
     uuid "^7.0.3"
 
-xml-lexer@^0.2.2:
-  version "0.2.2"
-  resolved "https://registry.npmjs.org/xml-lexer/-/xml-lexer-0.2.2.tgz"
-  integrity sha512-G0i98epIwiUEiKmMcavmVdhtymW+pCAohMRgybyIME9ygfVu8QheIi+YoQh3ngiThsT0SQzJT4R0sKDEv8Ou0w==
-  dependencies:
-    eventemitter3 "^2.0.0"
-
 xml-name-validator@^4.0.0:
   version "4.0.0"
   resolved "https://registry.npmjs.org/xml-name-validator/-/xml-name-validator-4.0.0.tgz"
@@ -27290,14 +27214,6 @@ xml-name-validator@^5.0.0:
   version "5.0.0"
   resolved "https://registry.npmjs.org/xml-name-validator/-/xml-name-validator-5.0.0.tgz"
   integrity sha512-EvGK8EJ3DhaHfbRlETOWAS5pO9MZITeauHKJyb8wyajUfQUenkIg2MvLDTZ4T/TgIcm3HU0TFBgWWboAZ30UHg==
-
-xml-reader@2.4.3:
-  version "2.4.3"
-  resolved "https://registry.npmjs.org/xml-reader/-/xml-reader-2.4.3.tgz"
-  integrity sha512-xWldrIxjeAMAu6+HSf9t50ot1uL5M+BtOidRCWHXIeewvSeIpscWCsp4Zxjk8kHHhdqFBrfK8U0EJeCcnyQ/gA==
-  dependencies:
-    eventemitter3 "^2.0.0"
-    xml-lexer "^0.2.2"
 
 xml2js@0.6.0:
   version "0.6.0"
