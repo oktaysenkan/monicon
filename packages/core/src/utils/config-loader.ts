@@ -1,6 +1,6 @@
 import chokidar from "chokidar";
 import { cosmiconfig } from "cosmiconfig";
-import { loadJsSync, loadTsSync } from "cosmiconfig/dist/loaders";
+import { loadJsSync, loadTsSync } from "cosmiconfig/dist/loaders.js";
 
 import type { MoniconConfig } from "../types";
 
