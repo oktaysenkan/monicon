@@ -1,5 +1,15 @@
 # @monicon/rspack
 
+## 2.0.7
+
+### Patch Changes
+
+- [`450efa2`](https://github.com/oktaysenkan/monicon/commit/450efa221f0f33b56816d7f4c4296d637f210bc2) Thanks [@oktaysenkan](https://github.com/oktaysenkan)! - feat: use only needed loaders
+
+- Updated dependencies [[`450efa2`](https://github.com/oktaysenkan/monicon/commit/450efa221f0f33b56816d7f4c4296d637f210bc2)]:
+  - @monicon/core@2.0.7
+  - @monicon/webpack@2.0.7
+
 ## 2.0.6
 
 ### Patch Changes
