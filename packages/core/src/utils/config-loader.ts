@@ -1,5 +1,6 @@
 import chokidar from "chokidar";
-import { cosmiconfig } from "@oktaysenkan/cosmiconfig";
+import { cosmiconfig } from "cosmiconfig";
+import { loadJsSync, loadTsSync } from "cosmiconfig/dist/loaders";
 
 import type { MoniconConfig } from "../types";
 
@@ -9,6 +10,12 @@ type WatchConfigFileParams = {
 
 const explorer = cosmiconfig("monicon", {
   cache: false,
+  loaders: {
+    '.js': loadJsSync,
+    '.mjs': loadJsSync,
+    '.cjs': loadJsSync,
+    '.ts': loadTsSync,
+  }
 });
 
 export const loadConfigFile = async () => {
