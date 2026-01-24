@@ -18,6 +18,11 @@ export default function Layout({ children }: LayoutProps<"/">) {
         data-token="df6210bb1ad8bf7"
         strategy="afterInteractive"
       />
+      <Script
+        src="https://cloud.umami.is/script.js"
+        data-website-id="6bb1666f-8ea7-4876-9348-acb7d9679e79"
+        strategy="afterInteractive"
+      />
     </html>
   );
 }
