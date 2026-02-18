@@ -1,5 +1,11 @@
 # @monicon/core
 
+## 2.0.8
+
+### Patch Changes
+
+- [`8623e16`](https://github.com/oktaysenkan/monicon/commit/8623e16e28e6a562d7a9179e4f45eedc05f0d3bf) Thanks [@oktaysenkan](https://github.com/oktaysenkan)! - update vite peer dependencies version
+
 ## 2.0.7
 
 ### Patch Changes
